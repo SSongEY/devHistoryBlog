@@ -1,4 +1,108 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Sun, 18 Aug 2019 18:09:58 GMT</lastBuildDate><item><title><![CDATA[Upgraded to Gatsby v2]]></title><description><![CDATA[This starter has been forked and upgraded to Gatsby v2]]></description><link>http://sangbeo.github.io/posts/upgraded-to-gatsby-v2/</link><guid isPermaLink="false">http://sangbeo.github.io/posts/upgraded-to-gatsby-v2/</guid><pubDate>Thu, 18 Oct 2018 16:51:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a Gatsby v2 compatible version of the
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Sun, 18 Aug 2019 18:31:33 GMT</lastBuildDate><item><title><![CDATA[Gatsby 구축]]></title><description><![CDATA[gatsby + gh-pages + github]]></description><link>http://sangbeo.github.io/gatsby/posts/1</link><guid isPermaLink="false">http://sangbeo.github.io/gatsby/posts/1</guid><pubDate>Sun, 18 Aug 2019 14:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;1. gatsby-cli 설치 및 프로젝트 생성 (lumen 테마 사용)&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ yarn add -g gatsby-cli
+$ gatsby new devHistoryBlog https://github.com/GatsbyCentral/gatsby-v2-starter-lumen&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;2. gatsby 로컬 서버 구동 (기본포트 8000)&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; devHistoryBlog
+$ gatsby develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;3. github repository 연동&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//git remote add origin &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;repository_url&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote add origin https://github.com/SangBeo/devHistoryBlog.git&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;[브랜치 생성]&lt;br&gt;
+github 페이지는 최종적으로 master의 파일들이 배포된다.&lt;br&gt;
+master에서 gatsby 파일 관리와 gh-pages의 빌드를 같이 하니 난잡해서 보기 좋지 않다.&lt;br&gt;
+그래서 개발은 develop 브랜치에서 진행하고 master 브랜치는 gh-pages로 배포할때만 사용한다&lt;br&gt;
+-&gt; develop branch : gatsby 파일 구조를 관리&lt;br&gt;
+-&gt; master : build 된 파일들을 github 페이지에 배포&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3.1. develop 브랜치 생성&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//-m 옵션을 이용하여 develop 브랜치로 이동
+$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; branch -m develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;3.2. 커밋과 푸쉬&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; add *
+$ commit -m &lt;span class=&quot;token string&quot;&gt;&quot;init commit&quot;&lt;/span&gt;
+//push 시 -u 옵션을 붙여 이후 push 할때마다 develop 브랜치로 푸쉬한다
+$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push -u origin develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-4c164.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 79.16279069767442%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAACe0lEQVQ4y41UPXPUMBD1/+9omKGhpmCoKGjp6NJQQYYZLsklubMtW5L1ZcmPt3u5gwQKNPNmpbX2rfbLnbUOj4cRBxNxcwy4HwJSzkRBTCd5Ri4rQky4fzzCzBYTbUVaH+CWoN+7HAOimxBCQCkkSAmeH8XQ+0VJZR9C1P1CKeQi11pRa1NZ1hXrWtHJJTM7EmX8/9qeyW3b4PkgkV1ZN0Ry5SweGpVQFHqL/FDbdtGlVBTn81r4urgCFRfibi0RwR/h5iNiMNRGtBZQ14UGDq0uem71pJPzxjvYElw2uPV7HOIBUzbqhTnsYfqv8PM18R057rCte3q9V8hewX3Nt8hhhxR+ku8O18MVXn97i1ff3uD97gPaxhxa57G7vcfDocc4WYVUqxCtNQ2jPYUdQtJ8z9ZrhRcb8WV/hXc/PuLTzWeUxiqPNuDm4LDvHXpbYJaKw5yxZ/sMvvLc4GKFzxuWggtcaujngN4EOsmY3Sm3nVsijsbD8pZjgj2NbSh4HCweemKgI+MwTJ73HL+xtVjIkOkkFvi0Us/IZq817zKbePFMfqtMeKWXptJay9DYtAxN0iIhTmxi6UnpN0U9Scd+ld7VKksfHjklkW1TlYiG0wxjJpVCMstUECN18alfxfgMcSiksrpEooG5S+wpWQs9eblAnF/nvFc585w5JS8JdbI4OX8QMuxU9aMQXsguhIvqhFDmXCv/gnDhpChhZOc/jAkyMbLEUEOdfocsMNxLyOlfIdORP4csPTd5VjicXhj1R0CPy/KEoD8CTQWNcinPyARSKLFTwsB5vesjRreqwkryR4NxGE+SrxIM44SeupjSXy+c5llTI+sXLiTYYIC4fQoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;1&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-c83f1.png&quot;
+        srcset=&quot;/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-569e3.png 240w,
+/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-93400.png 480w,
+/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-c83f1.png 960w,
+/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-4c164.png 1075w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;br&gt;
+그럼 위와 같이 develop 브랜치에 소스 push가 된다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. gh-pages 설치 및 설정 파일 수정, 그리고 Deploy&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ yarn add --dev gh-pages&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;4.1. gatsby-config.js 수정
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/3-9b9f7bf8ba35b6c0af38da64066cf443-ed1e0.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 416px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 67.3076923076923%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAAB3klEQVQ4y32T27qaMBCFfZl6AMIhkBByAEXQdn/tXd//VVZX4larPVwsJgnyz5rMuKkqj6X/CdtdYMJKXSBUQDl/R3n+gSpcoY4T5SGNR1appLymGs2osS867PI2xU1RGvRygWwmtGaCtjPUcMKOL3NzQu4WFHpGrQd0o0VtDKQd0AbHPeUd8rJ/AuPjUKibRMxEFW1yEfd7rg+CKm8u4tl9HbXN2gcsxk1ZWvjuA0rOyaGQzCg19CkkJ/UwYFhHmCUkR2pyfMfy3QDRPZ1FE8nh/eB22GEbs+bPrEniLT5+/+ouAVVtcGUTRjrz0mLtPCZGwXPROuw+S0rK2tf9GywBs6rHQMA3Qo8EnAlsKoO81TDnkMpLl89SzRrQessP1aPEl0ruQNUMuBJ0IXBhjGqoojGfTVCpEVkcFY5JbOA76AEUhBk3Q3NEIiTjofjtrl7u+D+lPoClZBfHFT3dhS7AMsFB9GjUhExobA+SavFlL9P6X86eQAJsWOAZz4R2jDJ4uHXmaFhUvUkD3Ubx/rJSvTh916YixJ8+MNHRoo50OUL1I4qOMOVQyBg9wZT2yKsIHTj4fxdLdnDHr2hqC+tGOH+7S30a0fC/K62ns0CohZ4mNAMHPzWrZ6P+1C9chp1NV1NyoQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;3&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/3-9b9f7bf8ba35b6c0af38da64066cf443-ed1e0.png&quot;
+        srcset=&quot;/devHistoryBlog/static/3-9b9f7bf8ba35b6c0af38da64066cf443-9a3b2.png 240w,
+/devHistoryBlog/static/3-9b9f7bf8ba35b6c0af38da64066cf443-ed1e0.png 416w&quot;
+        sizes=&quot;(max-width: 416px) 100vw, 416px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;url 수정&lt;/li&gt;
+&lt;li&gt;pathPrefix 추가
+4.2. package.json 필요시 수정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;4.3. Deploy&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//build 및 master branch로 push
+$ yarn deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;5. 실행&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;http://sangbeo.github.io/devHistoryBlog&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Upgraded to Gatsby v2]]></title><description><![CDATA[This starter has been forked and upgraded to Gatsby v2]]></description><link>http://sangbeo.github.io/posts/upgraded-to-gatsby-v2/</link><guid isPermaLink="false">http://sangbeo.github.io/posts/upgraded-to-gatsby-v2/</guid><pubDate>Thu, 18 Oct 2018 16:51:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a Gatsby v2 compatible version of the
 &lt;a href=&quot;https://github.com/alxshelepenok/gatsby-starter-lumen&quot;&gt;lumen&lt;/a&gt; starter, started
 by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby Central&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Here’s a little recommended reading for Gatsby v2.&lt;/p&gt;
@@ -26,7 +130,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/test_gatsbyWithReact/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-00f86.jpg&quot;
+    href=&quot;/devHistoryBlog/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-00f86.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -45,10 +149,10 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;42-line-bible.jpg&quot;
         title=&quot;&quot;
-        src=&quot;/test_gatsbyWithReact/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-00f86.jpg&quot;
-        srcset=&quot;/test_gatsbyWithReact/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-6a66e.jpg 240w,
-/test_gatsbyWithReact/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-bc76f.jpg 480w,
-/test_gatsbyWithReact/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-00f86.jpg 800w&quot;
+        src=&quot;/devHistoryBlog/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-00f86.jpg&quot;
+        srcset=&quot;/devHistoryBlog/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-6a66e.jpg 240w,
+/devHistoryBlog/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-bc76f.jpg 480w,
+/devHistoryBlog/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-00f86.jpg 800w&quot;
         sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
       /&gt;
     &lt;/span&gt;
@@ -84,7 +188,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/test_gatsbyWithReact/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-b89bf.jpg&quot;
+    href=&quot;/devHistoryBlog/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-b89bf.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -103,11 +207,11 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;type-through-time.jpg&quot;
         title=&quot;&quot;
-        src=&quot;/test_gatsbyWithReact/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-d564d.jpg&quot;
-        srcset=&quot;/test_gatsbyWithReact/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-865fd.jpg 240w,
-/test_gatsbyWithReact/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-d40a0.jpg 480w,
-/test_gatsbyWithReact/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-d564d.jpg 960w,
-/test_gatsbyWithReact/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-b89bf.jpg 1250w&quot;
+        src=&quot;/devHistoryBlog/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-d564d.jpg&quot;
+        srcset=&quot;/devHistoryBlog/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-865fd.jpg 240w,
+/devHistoryBlog/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-d40a0.jpg 480w,
+/devHistoryBlog/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-d564d.jpg 960w,
+/devHistoryBlog/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-b89bf.jpg 1250w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
@@ -123,12 +227,12 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;&lt;strong&gt;Johannes Gensfleisch zur Laden zum Gutenberg&lt;/strong&gt; (c. 1398 – 1468) was a German blacksmith, goldsmith, printer, and publisher who introduced printing to Europe. His invention of mechanical movable type printing started the Printing Revolution and is widely regarded as the most important event of the modern period. It played a key role in the development of the Renaissance, Reformation, the Age of Enlightenment, and the Scientific revolution and laid the material basis for the modern knowledge-based economy and the spread of learning to the masses.&lt;/p&gt;
 &lt;figure class=&quot;float-right&quot; style=&quot;width: 240px&quot;&gt;
 	
-  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/test_gatsbyWithReact/static/Gutenberg-3e20438298edd3a3fa746766d803f379-a74ca.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/devHistoryBlog/static/Gutenberg-3e20438298edd3a3fa746766d803f379-a74ca.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
   
   &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block;  max-width: 374px; margin-left: auto; margin-right: auto;&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 128.3422459893048%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAaABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAQP/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAFxLehXJYBWnDYwH//EABsQAAIDAQEBAAAAAAAAAAAAAAECAAMRBBIT/9oACAEBAAEFAui4iBrK2rf2hI3YjFZdV5JyV14rDV5wPpP/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAeEAACAgAHAAAAAAAAAAAAAAAAAREhAhASIlGhsf/aAAgBAQAGPwLThFfZI5N3g4Hw7HZY5HWX/8QAHxABAAICAgIDAAAAAAAAAAAAAQARITFBURCRYXGB/9oACAEBAAE/IWlarGOWd5HgPsgEf06iru79xbpoz0gw1u5c/gfcw02CFiZcwgASuZpDGseP/9oADAMBAAIAAwAAABDgCDz/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/EB//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAfEAEAAgICAgMAAAAAAAAAAAABABEhMUFREGFxgaH/2gAIAQEAAT8QYiVZ26JrksdBuhYA1LjsGyEy5FThXV/cQErxTJvN83GEbavghHYez2bSCl7ZOS/YeMBX5LKKYFkai6FwYfXj/9k=&amp;apos;); background-size: cover; display: block;&quot;&gt;
-      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;Gutenberg&quot; title=&quot;&quot; src=&quot;/test_gatsbyWithReact/static/Gutenberg-3e20438298edd3a3fa746766d803f379-a74ca.jpg&quot; srcset=&quot;/test_gatsbyWithReact/static/Gutenberg-3e20438298edd3a3fa746766d803f379-79241.jpg 240w,
-/test_gatsbyWithReact/static/Gutenberg-3e20438298edd3a3fa746766d803f379-a74ca.jpg 374w&quot; sizes=&quot;(max-width: 374px) 100vw, 374px&quot;&gt;
+      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;Gutenberg&quot; title=&quot;&quot; src=&quot;/devHistoryBlog/static/Gutenberg-3e20438298edd3a3fa746766d803f379-a74ca.jpg&quot; srcset=&quot;/devHistoryBlog/static/Gutenberg-3e20438298edd3a3fa746766d803f379-79241.jpg 240w,
+/devHistoryBlog/static/Gutenberg-3e20438298edd3a3fa746766d803f379-a74ca.jpg 374w&quot; sizes=&quot;(max-width: 374px) 100vw, 374px&quot;&gt;
     &lt;/span&gt;
   &lt;/span&gt;
   
@@ -144,13 +248,13 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;Around 1439, Gutenberg was involved in a financial misadventure making polished metal mirrors (which were believed to capture holy light from religious relics) for sale to pilgrims to Aachen: in 1439 the city was planning to exhibit its collection of relics from Emperor Charlemagne but the event was delayed by one year due to a severe flood and the capital already spent could not be repaid. When the question of satisfying the investors came up, Gutenberg is said to have promised to share a “secret”. It has been widely speculated that this secret may have been the idea of printing with movable type. Also around 1439–1440, the Dutch Laurens Janszoon Coster came up with the idea of printing. Legend has it that the idea came to him “like a ray of light”.&lt;/p&gt;
 &lt;figure class=&quot;float-left&quot; style=&quot;width: 240px&quot;&gt;
 	
-  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/test_gatsbyWithReact/static/Printing-press-9ec265253f068855f00558a9be7f3e03-e45ee.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/devHistoryBlog/static/Printing-press-9ec265253f068855f00558a9be7f3e03-e45ee.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
   
   &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block;  max-width: 754px; margin-left: auto; margin-right: auto;&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 128.91246684350133%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAIAAAA44esqAAAACXBIWXMAAAsSAAALEgHS3X78AAAEVElEQVQ4yyWUxUt/WxTFzx/hTJAn/hAnDhQcWKCI2B1gByZ2d3d3d3d3dxe+gQqK4sCHPEUeFujE9/lez+By7zln7732Wmtf8fT0tLm5eX5+/re0jo+P9/b2dnZ2tre3Dw4O+Dw9PeW5tbXFDs/9/f3FxcXp6em7uzuxvr7u4+MTEBAQFxeXkpISERGRmJiYm5vr5+fn7u7u5ubm7++fkJAQFhbGi4eHBzs5OTm2trYdHR1iZWUlJibG19eXs+jo6ODgYGK4yqadnZ29vX11dXVUVBS3XV1dPT09TU1NCwoKeG9raxPz8/NeXl6RkZHcMzMzU1VVVVJS+kta8vLyampqJiYmFDEwMDA2NgYUn9ra2rq6urLKZ2dnNNnQ0AB40ru4uABYT09PS0tLXV09MzMzTFpFRUXUh4vs7Ow/0qqrqxOXl5c9PT2A7Orq4hhI9fX1NFZYWEiHoaGhEObs7Ezw7u4uGNPT062trRUVFWWwCa6qquJsdHQUzioqKshFb8nJyURCBBLQFCSZm5sLIchuZWWloKDQ2dkpbm9vR0ZGiouL+/v7YZvEpaWlUAVsQ0PD8PBwdAJqSEiIioqKt7c3rUKEnJwcNcT9/f3ExERTUxMfwKZhJycnT2nRs6OjY21tbXl5OYgyMjIAAkbuoOjg4KC4vr4eHh4GGCmpQE2CU1NTIcnS0pL6SAXUsrIyjjQ0NCorK9PS0uLj48fHx2U9DwwM/Lba3t4OvTgEMiiC5rQ9NjZGJAEktbCwgE5qgBG8ssoLCwuTk5OwWlJSUlNTAxMc0D8kLS8vA9vGxobg2NhYkLe0tGA4TiFYIAANEwZt3d3dEAZmbIfyQAAkOhkZGREM/pmZGXawFy2ASBwdHV1dXeGTubm51dXV1tZWKiMeUuXn50MPzkNestM/PDc2NoKfWZAFE3ZxcYEeh4eHcEYk78wTgqETWTAPAXCB+cAPOnzKC0gFV1Hr5OQEM0xNTUEysAHc3Nycl5cHi2Thk8oMjI6ODlwyP4GBgdAkmyqoxiQ8ScYBPvsdQETGFexQlp6TkpJoBGgQhn/QSMzOzv4yzBZ1IJOhB0hvby+NkIJ4pv/n5+f5+fnm5gZHQjVWBb+ApL6+Po6ZEnrGNyRic2NjA/IwA6pSlrwoimxDQ0Mooq+vT4jgz4IATDW/laWlJc7Azz0oQFVNTU2oZuZohG7xIuJjHgcHB0IEICGcbrEO3WLaoKAgjEWrDCbyMP3ojFX523BE/zTPnMhMQjCdkEZZWRk/cJwgrd8xBDNlgcB48w5sVKASVgGj7Af4+fkJSFTFldidtjEA8nKP9L3S4oh39kG+trYGHTAleHt/f6c4TiAZrmCXF8YbLmCBJxTgP3631IQ5EjGksp8B1qc4KYAEGHzOLvHU/71KFp4IgduxN7rCXFZWFnnF19fX4+MjGr69vQHh4+OD55u0Xl9f/5PWy8vLv9Li5j/Senh4+P7+/h90c24Ix/79SwAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;
-      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;Early Printing Press&quot; title=&quot;&quot; src=&quot;/test_gatsbyWithReact/static/Printing-press-9ec265253f068855f00558a9be7f3e03-e45ee.png&quot; srcset=&quot;/test_gatsbyWithReact/static/Printing-press-9ec265253f068855f00558a9be7f3e03-309d8.png 240w,
-/test_gatsbyWithReact/static/Printing-press-9ec265253f068855f00558a9be7f3e03-1d2a3.png 480w,
-/test_gatsbyWithReact/static/Printing-press-9ec265253f068855f00558a9be7f3e03-e45ee.png 754w&quot; sizes=&quot;(max-width: 754px) 100vw, 754px&quot;&gt;
+      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;Early Printing Press&quot; title=&quot;&quot; src=&quot;/devHistoryBlog/static/Printing-press-9ec265253f068855f00558a9be7f3e03-e45ee.png&quot; srcset=&quot;/devHistoryBlog/static/Printing-press-9ec265253f068855f00558a9be7f3e03-309d8.png 240w,
+/devHistoryBlog/static/Printing-press-9ec265253f068855f00558a9be7f3e03-1d2a3.png 480w,
+/devHistoryBlog/static/Printing-press-9ec265253f068855f00558a9be7f3e03-e45ee.png 754w&quot; sizes=&quot;(max-width: 754px) 100vw, 754px&quot;&gt;
     &lt;/span&gt;
   &lt;/span&gt;
   
@@ -185,7 +289,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/test_gatsbyWithReact/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-94ac0.jpg&quot;
+    href=&quot;/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-94ac0.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -204,13 +308,13 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Movable metal type, and composing stick, descended from Gutenberg&apos;s press. Photo by Willi Heidelbach. Licensed under CC BY 2.5&quot;
         title=&quot;&quot;
-        src=&quot;/test_gatsbyWithReact/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-d564d.jpg&quot;
-        srcset=&quot;/test_gatsbyWithReact/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-865fd.jpg 240w,
-/test_gatsbyWithReact/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-d40a0.jpg 480w,
-/test_gatsbyWithReact/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-d564d.jpg 960w,
-/test_gatsbyWithReact/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-c67c1.jpg 1440w,
-/test_gatsbyWithReact/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-667be.jpg 1920w,
-/test_gatsbyWithReact/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-94ac0.jpg 2288w&quot;
+        src=&quot;/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-d564d.jpg&quot;
+        srcset=&quot;/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-865fd.jpg 240w,
+/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-d40a0.jpg 480w,
+/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-d564d.jpg 960w,
+/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-c67c1.jpg 1440w,
+/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-667be.jpg 1920w,
+/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-94ac0.jpg 2288w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
@@ -239,7 +343,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/test_gatsbyWithReact/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-5b032.jpg&quot;
+    href=&quot;/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-5b032.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -258,12 +362,12 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Nulla faucibus vestibulum eros in tempus. Vestibulum tempor imperdiet velit nec dapibus&quot;
         title=&quot;&quot;
-        src=&quot;/test_gatsbyWithReact/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-d564d.jpg&quot;
-        srcset=&quot;/test_gatsbyWithReact/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-865fd.jpg 240w,
-/test_gatsbyWithReact/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-d40a0.jpg 480w,
-/test_gatsbyWithReact/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-d564d.jpg 960w,
-/test_gatsbyWithReact/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-c67c1.jpg 1440w,
-/test_gatsbyWithReact/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-5b032.jpg 1800w&quot;
+        src=&quot;/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-d564d.jpg&quot;
+        srcset=&quot;/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-865fd.jpg 240w,
+/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-d40a0.jpg 480w,
+/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-d564d.jpg 960w,
+/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-c67c1.jpg 1440w,
+/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-5b032.jpg 1800w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
@@ -300,7 +404,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/test_gatsbyWithReact/static/1-a3057b79175cdcf4a107e8cc2c8f8325-5b032.jpg&quot;
+    href=&quot;/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-5b032.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -319,12 +423,12 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Nulla faucibus vestibulum eros in tempus. Vestibulum tempor imperdiet velit nec dapibus&quot;
         title=&quot;&quot;
-        src=&quot;/test_gatsbyWithReact/static/1-a3057b79175cdcf4a107e8cc2c8f8325-d564d.jpg&quot;
-        srcset=&quot;/test_gatsbyWithReact/static/1-a3057b79175cdcf4a107e8cc2c8f8325-865fd.jpg 240w,
-/test_gatsbyWithReact/static/1-a3057b79175cdcf4a107e8cc2c8f8325-d40a0.jpg 480w,
-/test_gatsbyWithReact/static/1-a3057b79175cdcf4a107e8cc2c8f8325-d564d.jpg 960w,
-/test_gatsbyWithReact/static/1-a3057b79175cdcf4a107e8cc2c8f8325-c67c1.jpg 1440w,
-/test_gatsbyWithReact/static/1-a3057b79175cdcf4a107e8cc2c8f8325-5b032.jpg 1800w&quot;
+        src=&quot;/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-d564d.jpg&quot;
+        srcset=&quot;/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-865fd.jpg 240w,
+/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-d40a0.jpg 480w,
+/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-d564d.jpg 960w,
+/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-c67c1.jpg 1440w,
+/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-5b032.jpg 1800w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
@@ -333,117 +437,12 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
   &lt;/a&gt;
     &lt;/p&gt;
 &lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. &lt;/p&gt;
-&lt;p&gt;Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Gatsby 구축]]></title><description><![CDATA[gatsby + gh-pages + github]]></description><link>http://sangbeo.github.io/gatsby/posts/1/</link><guid isPermaLink="false">http://sangbeo.github.io/gatsby/posts/1/</guid><pubDate>Thu, 01 Sep 2016 23:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;1. gatsby-cli 설치 및 프로젝트 생성 (lumen 테마 사용)&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ yarn add -g gatsby-cli
-$ gatsby new devHistoryBlog https://github.com/GatsbyCentral/gatsby-v2-starter-lumen&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;2. gatsby 로컬 서버 구동 (기본포트 8000)&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; devHistoryBlog
-$ gatsby develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;3. github repository 연동&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//git remote add origin &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;repository_url&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote add origin https://github.com/SangBeo/devHistoryBlog.git&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;[브랜치 생성]&lt;br&gt;
-github 페이지는 최종적으로 master의 파일들이 배포된다.&lt;br&gt;
-master에서 gatsby 파일 관리와 gh-pages의 빌드를 같이 하니 난잡해서 보기 좋지 않다.&lt;br&gt;
-그래서 개발은 develop 브랜치에서 진행하고 master 브랜치는 gh-pages로 배포할때만 사용한다&lt;br&gt;
--&gt; develop branch : gatsby 파일 구조를 관리&lt;br&gt;
--&gt; master : build 된 파일들을 github 페이지에 배포&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;3.1. develop 브랜치 생성&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//-m 옵션을 이용하여 develop 브랜치로 이동
-$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; branch -m develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;3.2. 커밋과 푸쉬&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; add *
-$ commit -m &lt;span class=&quot;token string&quot;&gt;&quot;init commit&quot;&lt;/span&gt;
-//push 시 -u 옵션을 붙여 이후 push 할때마다 develop 브랜치로 푸쉬한다
-$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push -u origin develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/test_gatsbyWithReact/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-4c164.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 79.16279069767442%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAACe0lEQVQ4y41UPXPUMBD1/+9omKGhpmCoKGjp6NJQQYYZLsklubMtW5L1ZcmPt3u5gwQKNPNmpbX2rfbLnbUOj4cRBxNxcwy4HwJSzkRBTCd5Ri4rQky4fzzCzBYTbUVaH+CWoN+7HAOimxBCQCkkSAmeH8XQ+0VJZR9C1P1CKeQi11pRa1NZ1hXrWtHJJTM7EmX8/9qeyW3b4PkgkV1ZN0Ry5SweGpVQFHqL/FDbdtGlVBTn81r4urgCFRfibi0RwR/h5iNiMNRGtBZQ14UGDq0uem71pJPzxjvYElw2uPV7HOIBUzbqhTnsYfqv8PM18R057rCte3q9V8hewX3Nt8hhhxR+ku8O18MVXn97i1ff3uD97gPaxhxa57G7vcfDocc4WYVUqxCtNQ2jPYUdQtJ8z9ZrhRcb8WV/hXc/PuLTzWeUxiqPNuDm4LDvHXpbYJaKw5yxZ/sMvvLc4GKFzxuWggtcaujngN4EOsmY3Sm3nVsijsbD8pZjgj2NbSh4HCweemKgI+MwTJ73HL+xtVjIkOkkFvi0Us/IZq817zKbePFMfqtMeKWXptJay9DYtAxN0iIhTmxi6UnpN0U9Scd+ld7VKksfHjklkW1TlYiG0wxjJpVCMstUECN18alfxfgMcSiksrpEooG5S+wpWQs9eblAnF/nvFc585w5JS8JdbI4OX8QMuxU9aMQXsguhIvqhFDmXCv/gnDhpChhZOc/jAkyMbLEUEOdfocsMNxLyOlfIdORP4csPTd5VjicXhj1R0CPy/KEoD8CTQWNcinPyARSKLFTwsB5vesjRreqwkryR4NxGE+SrxIM44SeupjSXy+c5llTI+sXLiTYYIC4fQoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;1&quot;
-        title=&quot;&quot;
-        src=&quot;/test_gatsbyWithReact/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-c83f1.png&quot;
-        srcset=&quot;/test_gatsbyWithReact/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-569e3.png 240w,
-/test_gatsbyWithReact/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-93400.png 480w,
-/test_gatsbyWithReact/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-c83f1.png 960w,
-/test_gatsbyWithReact/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-4c164.png 1075w&quot;
-        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;br&gt;
-그럼 위와 같이 develop 브랜치에 소스 push가 된다.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;4. gh-pages 설치 및 설정 파일 수정, 그리고 Deploy&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ yarn add --dev gh-pages&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;4.1. gatsby-config.js 수정
-
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/test_gatsbyWithReact/static/3-f3723b04f1a408584fcc580a3eeb9e16-5d25d.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 519px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 57.61078998073218%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABn0lEQVQoz3WT6W7qMBCFef+Hq+6PQlooXBBkJftKSDxfJ4toEU2sY08s++icmfFqt03ZH2Isy+J8vnDYH/j4sHh7s7D/XYmPEdcgJEsy0iglGZAkpOmw/o4T4jhhFUUQRgbPdXBdl6zI8AIP27MpkwICIFXkipDxv2t7lr5VoXfyvFfk3O8dJLqbgUkNxjdILMh1RqroFLKM1UBWlj11XdG2LV3RYSpVUE/KpNKDpaIRaHRPZimyoNBxzhwOe06nE/+PRzJV2kS1EjARqQPJZVQtN8GImfhmRS+EZVmyWa9Zbzbsvr5IwowuuI8W8fSiLyPwNS6E3vQPwj8VDpPreTiOq3nMyJuCu47J1c+lp3iB7EHoK+Hn9pMszimOBbXXjFUdCxKqzcaMORPzY3PR8jBdg4DtdkfohJhARmtDMRjyl6nNuU0eKuVZ8Qth294ozyXpOqX3+6mag+sbj3goEJWuvUxkwrJC275g6et4t96xNZfe1qd2mqkPw7ltdCXWpr51T7b/JrxcuNg2iT6hqqooKi1M340tIvN4sbxQmG9WF6YVGBpg5wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;3&quot;
-        title=&quot;&quot;
-        src=&quot;/test_gatsbyWithReact/static/3-f3723b04f1a408584fcc580a3eeb9e16-5d25d.png&quot;
-        srcset=&quot;/test_gatsbyWithReact/static/3-f3723b04f1a408584fcc580a3eeb9e16-8207d.png 240w,
-/test_gatsbyWithReact/static/3-f3723b04f1a408584fcc580a3eeb9e16-9c41c.png 480w,
-/test_gatsbyWithReact/static/3-f3723b04f1a408584fcc580a3eeb9e16-5d25d.png 519w&quot;
-        sizes=&quot;(max-width: 519px) 100vw, 519px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;url 수정&lt;/li&gt;
-&lt;li&gt;pathPrefix 추가
-4.2. package.json 필요시 수정&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;4.3. Deploy&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//build 및 master branch로 push
-$ yarn deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;5. 실행&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;http://sangbeo.github.io/devHistoryBlog&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[A Brief History of Typography]]></title><description><![CDATA[Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.]]></description><link>http://sangbeo.github.io/posts/a-brief-history-of-typography/</link><guid isPermaLink="false">http://sangbeo.github.io/posts/a-brief-history-of-typography/</guid><pubDate>Tue, 02 Feb 2016 22:40:32 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Pellentesque habitant morbi tristique&lt;/strong&gt; senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. &lt;em&gt;Aenean ultricies mi vitae est.&lt;/em&gt; Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. &lt;/p&gt;
+&lt;p&gt;Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[A Brief History of Typography]]></title><description><![CDATA[Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.]]></description><link>http://sangbeo.github.io/posts/a-brief-history-of-typography/</link><guid isPermaLink="false">http://sangbeo.github.io/posts/a-brief-history-of-typography/</guid><pubDate>Tue, 02 Feb 2016 22:40:32 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Pellentesque habitant morbi tristique&lt;/strong&gt; senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. &lt;em&gt;Aenean ultricies mi vitae est.&lt;/em&gt; Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. &lt;/p&gt;
 &lt;p&gt;Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.  &lt;a href=&quot;#&quot;&gt;Donec non enim&lt;/a&gt; in turpis pulvinar facilisis.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/test_gatsbyWithReact/static/1-07d3a9ebe902d793eab5fe701b12a6e2-5b032.jpg&quot;
+    href=&quot;/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-5b032.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -462,12 +461,12 @@ $ yarn deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Nulla faucibus vestibulum eros in tempus. Vestibulum tempor imperdiet velit nec dapibus&quot;
         title=&quot;&quot;
-        src=&quot;/test_gatsbyWithReact/static/1-07d3a9ebe902d793eab5fe701b12a6e2-d564d.jpg&quot;
-        srcset=&quot;/test_gatsbyWithReact/static/1-07d3a9ebe902d793eab5fe701b12a6e2-865fd.jpg 240w,
-/test_gatsbyWithReact/static/1-07d3a9ebe902d793eab5fe701b12a6e2-d40a0.jpg 480w,
-/test_gatsbyWithReact/static/1-07d3a9ebe902d793eab5fe701b12a6e2-d564d.jpg 960w,
-/test_gatsbyWithReact/static/1-07d3a9ebe902d793eab5fe701b12a6e2-c67c1.jpg 1440w,
-/test_gatsbyWithReact/static/1-07d3a9ebe902d793eab5fe701b12a6e2-5b032.jpg 1800w&quot;
+        src=&quot;/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-d564d.jpg&quot;
+        srcset=&quot;/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-865fd.jpg 240w,
+/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-d40a0.jpg 480w,
+/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-d564d.jpg 960w,
+/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-c67c1.jpg 1440w,
+/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-5b032.jpg 1800w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
