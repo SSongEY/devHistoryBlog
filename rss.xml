@@ -1,7 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Tue, 20 Aug 2019 16:05:34 GMT</lastBuildDate><item><title><![CDATA[[백준] 3085번 사탕게임]]></title><description><![CDATA[[백준] 3085번 사탕게임]]></description><link>http://sangbeo.github.io/algo/posts/1</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/1</guid><pubDate>Wed, 21 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;목차&lt;br&gt;
-&lt;a href=&quot;#%EA%B0%9C%EB%B0%9C%EC%9D%84-%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%96%B4%EC%9A%94&quot;&gt;1.개발을 하고 싶어요&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;#coding%EC%9D%84-%EC%9E%98%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%96%B4%EC%9A%94&quot;&gt;2.코딩을 잘하고 싶어요&lt;/a&gt;  &lt;/p&gt;
-&lt;h2&gt;개발을 하고 싶어요&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Tue, 20 Aug 2019 16:46:44 GMT</lastBuildDate><item><title><![CDATA[[백준] 3085번 사탕게임]]></title><description><![CDATA[[백준] 3085번 사탕게임]]></description><link>http://sangbeo.github.io/algo/posts/1</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/1</guid><pubDate>Wed, 21 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;gh-md-toc&lt;/h1&gt;
+&lt;br/&gt;
+&lt;h1&gt;Table of contents&lt;/h1&gt;
+&lt;!--ts--&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#gh-md-toc&quot;&gt;gh-md-toc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;Table of contents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#installation&quot;&gt;installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;#installation2&quot;&gt;installation2&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;!--te--&gt;&lt;/h2&gt;
+&lt;br/&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Installation&lt;/h1&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -35,9 +46,9 @@
   &lt;/span&gt;
   
   &lt;/a&gt;
-      &lt;/p&gt;
-&lt;h2&gt;Coding을 잘하고 싶어요&lt;/h2&gt;
-&lt;h3&gt;송은영&lt;/h3&gt;
+    &lt;br&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1&gt;Installation2&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;1. gatsby-cli 설치 및 프로젝트 생성 (lumen 테마 사용)&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ yarn add -g gatsby-cli
 $ gatsby new devHistoryBlog https://github.com/GatsbyCentral/gatsby-v2-starter-lumen&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
