@@ -1,7 +1,7 @@
 {
-  "version": "3.0.0",
-  "name": "gatsby-v2-starter-lumen",
-  "description": "Simple starter for Gatsby",
+  "version": "1.0.0",
+  "name": "SangBeoDevBlog",
+  "description": "my develop history blog for Gatsby",
   "main": "n/a",
   "scripts": {
     "develop": "gatsby develop",
@@ -13,7 +13,7 @@
     "format": "prettier --write './*.js' 'src/**/*.js' 'src/**/*.jsx'",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
-  "repository": "git+https://github.com/alxshelepenok/gatsby-starter-lumen.git",
+  "homepage": "http://sangbeo.github.io/devHistoryBlog/",
   "keywords": [
     "gatsby",
     "blog",
@@ -21,7 +21,7 @@
     "theme",
     "starter"
   ],
-  "author": "Alexander Shelepenok <alxshelepenok@gmail.com>",
+  "author": "",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.1",

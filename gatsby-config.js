@@ -1,18 +1,27 @@
 const lost = require('lost')
 const pxtorem = require('postcss-pxtorem')
 
-const url = 'https://lumen.netlify.com'
+const url = 'http://sangbeo.github.io'
 
 module.exports = {
+  pathPrefix: '/devHistoryBlog',
   siteMetadata: {
     url,
     siteUrl: url,
-    title: 'Blog by John Doe',
+    title: 'Blog by Eunyoung',
     subtitle:
-      'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
+      'EY\'s 개발 히스토리 블로그',
     copyright: '© All rights reserved.',
     disqusShortname: '',
     menu: [
+      {
+        label: 'Algo',
+        path: '/algo/',
+      },
+      {
+        label: 'Gatsby',
+        path: '/gatsby/',
+      },
       {
         label: 'Articles',
         path: '/',
@@ -27,7 +36,7 @@ module.exports = {
       },
     ],
     author: {
-      name: 'John Doe',
+      name: 'EunYoung',
       email: '#',
       telegram: '#',
       twitter: '#',
