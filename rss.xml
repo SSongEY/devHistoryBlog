@@ -1,4 +1,247 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Sat, 07 Sep 2019 02:31:55 GMT</lastBuildDate><item><title><![CDATA[[프로그래머스] K번째 수]]></title><description><![CDATA[[프로그래머스] K번째 수 (42748)]]></description><link>http://sangbeo.github.io/algo/posts/p42748</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p42748</guid><pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Sat, 07 Sep 2019 15:03:32 GMT</lastBuildDate><item><title><![CDATA[[프로그래머스] 가운데 글자 가져오기]]></title><description><![CDATA[[프로그래머스] 가운데 글자 가져오기 (12903)]]></description><link>http://sangbeo.github.io/algo/posts/p12903</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p12903</guid><pubDate>Sat, 07 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
+&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12903&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/12903&lt;/a&gt;&lt;/pre&gt;
+&lt;p&gt;
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 740px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 77.16216216216216%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABJ0AAASdAHeZh94AAABn0lEQVQ4y62TW0/CQBCF93dgTATaUsVQS29ILQUKlBaLykXxFi9PxvD/X4+zG9ogCtbow5fZzmxO58y0zItm0M5ClHUPUr2FYs3FfrVBOOKsWh0ohg+ZanuHFgoVEwV1OyyYPGN094bx4zuunpYIJi+QnRCV0wiKM4RkDyDboYDn1NOYYiziJrzOwvkrps9L6J1LlIwAktVH2exB4tA5I82J/EZcIdPLmT9+RCO+hdmfE9dwogXs4Q3MwRwn3SvUgykMqlnhjbjDnzni3JuJaPBI9yuNIZh3fg+TLjcpuskDmqN76MEEh81YcOSOMkTOjbOaKkYQZc8KjYp5CQkOrikRiZY5n6yukdZ3wczeFAq1ytvWyYrenQgbznAhrPFok4P0hbyLXTCf24wX0PwximIpAzGL7y7nEvRGtzDaF5BpSwZtWmslwl4qsE4eUWaSiKR1UDxuwfIvUaMh888mb0dfBI02deUmUI0+SrU2Dqpe7m6+75CWoNJfUD7p0G9G1miOfxK0+jOUuMXGama/WMAWwWk2M8UOf7WAnwX/gQ8hGPOlUrW9/wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;12903&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/12903-0e31cc2c8378985c29c1ce585bb0a3bb-48b8c.png&quot;
+        srcset=&quot;/devHistoryBlog/static/12903-0e31cc2c8378985c29c1ce585bb0a3bb-c1af1.png 240w,
+/devHistoryBlog/static/12903-0e31cc2c8378985c29c1ce585bb0a3bb-73770.png 480w,
+/devHistoryBlog/static/12903-0e31cc2c8378985c29c1ce585bb0a3bb-48b8c.png 740w&quot;
+        sizes=&quot;(max-width: 740px) 100vw, 740px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  &lt;br&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Arrays&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;String s&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; sLen &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+		&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sLen &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; divideIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; sLen&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+			&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; String&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;valueOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;copyOfRange&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toCharArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; divideIdx&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; divideIdx&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+			&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; String&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;valueOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sLen&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;
+&lt;p&gt;다른 풀이법&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;word&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;substring&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;word&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; word&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 최대공약수와 최소공배수]]></title><description><![CDATA[[프로그래머스] 최대공약수와 최소공배수 (12940)]]></description><link>http://sangbeo.github.io/algo/posts/p12940</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p12940</guid><pubDate>Sat, 07 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
+&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12940&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/12940&lt;/a&gt;&lt;/pre&gt;
+&lt;p&gt;
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 923px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 82.44853737811484%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAAB3ElEQVQ4y6VT227aQBDdf6haVVUbEAkYDAFfsE1scAh4uSfcUxQ1UZ/60P9/P5kZ1wqREpeqD0dz9nZmZvesut09oFR38eWigc8lE9+MJoo1C93hFEGcINZzWrfx4es5PhXK+HiWD+UnG4TjPQK9QTTZo9YZoWjFMPwEFS+BEWiUnD4KrR6KrTgXvEfNDr+wevyNgETD6QH1aI7zdkLQEktuggtPo+yPKOaA1ivBBCoY3yOcP6DVX8HsLmAPt3D1Hg7F9ugeHsFNtrBu1mjTPMNJdoStcJe4K+MdjA4J2oMNrkgwXv1Eb/kk3KMkvNkbfxfOyfiQT2NOxJyTCdcp5/0mdaec4QbOYI3L+E5QvZr+aTmFtEstpS3ro/b1q3EG5VEGn1DvzgkLNK+XaPaXEi8JnKAs9zP+K0SwRYetG76/F8FG7xZ1QoMq5ns5VZChuDrn+g41GlQJWZvH7WTZTxI0mVgD+P01PAILvtXKyRUaVEXB7KJsD1D10sv+V5FXgm165WC0g0VtZ2L/JRixB8l/bJ9K5/SD7yVUbEh/chCT8ksfP8h7yHsoFZBYtPgh7ufvlfnQpoqZp3Mr+Wr8q9hiuRXyd6mQ19jAzKvhVHgtmkkUHs5kjSMjT/AZw7sUluELxckAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;12940&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/12940-ead081e81129cbc9c37712b6238dbf1e-cde55.png&quot;
+        srcset=&quot;/devHistoryBlog/static/12940-ead081e81129cbc9c37712b6238dbf1e-80b37.png 240w,
+/devHistoryBlog/static/12940-ead081e81129cbc9c37712b6238dbf1e-e884f.png 480w,
+/devHistoryBlog/static/12940-ead081e81129cbc9c37712b6238dbf1e-cde55.png 923w&quot;
+        sizes=&quot;(max-width: 923px) 100vw, 923px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  &lt;br&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; n&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; m&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+		&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; x &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; n&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; y &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; m&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;y &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; temp &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; y&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+			y &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; x&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;y&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+			x &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; temp&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;x&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;m&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;x&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 예산]]></title><description><![CDATA[[프로그래머스] 예산 (12982)]]></description><link>http://sangbeo.github.io/algo/posts/p12982</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p12982</guid><pubDate>Sat, 07 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
+&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12982&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/12982&lt;/a&gt;&lt;/pre&gt;
+&lt;p&gt;
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 640px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 123.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAZCAYAAAAxFw7TAAAACXBIWXMAABJ0AAASdAHeZh94AAADbElEQVQ4y51VaVMaQRDdn5HKhYqgkUMWRPbgXBCQGwQ1IknUpPL/f8FLv55dXCmqksqHV9PdO93T3TP91lqtfyBfqeEoW8LBWQGHmSKSuQuc2g5yZQ/vDk7wIfkF749iSO6B2D8en8Fyuwski018zleRyNeQODc4LNRxZDfwKevhU84P4YWI6+Eq+xISwwrm3+Fd3+O43EWq0kPqsvsGadrUbtZIT7+R+7qeONew6uM1mrMNzvwhcvUJzpszRb4xRVb0XMOg0JqLbaJ78s2pfo/kTG2EbG2suuUOvsKfbFAdP8IdPsCX1bkW2+gR3nANd/AA7vFGa5S7t3BE9+RbRapyxF6bfjOy+JSulrAqvTtU+ne6mSd88QaabVZOpZ6pjgwkA67Z+tggzEhtMdliMJ7O09whs1hpFpX+vclQwIwuZR8rKLYXWi5x3pqZlrB0tkgCWxeSZlmzvJf1VtOnzAOos4yLqxVKnSWKnRvYwSLs5wyFYC52sbVvtO8a8FIyoiM32XK6wY0G4qYTp/96o+Gtx22UT93r7Wq57J84x59I3Fmd3L467DqfekY+Ll/pfsrWmT/QEoObF9Rn3xEsX9C5/YWW6O3VT1mf0RJbsHxGc/GkreCN1ibfBBt9BawurQf2GHCot8P+FKTJ7BFLzUmTKUc6+8Xv8XI1ewGzNRlKQJZrt6ZIXnSQsFs4LLVxWAy0DNp2sTtJcWhAVy4lL2WnSh04Ejzvj2DLU2DAeCZ/w7aHeSk5bbdxKgHLdRmjcg/n7kCzSe+Z7X14EzAjzhlngGM7QCJTM8jWkSp3/y9Dp7dCpbtEQYY8xetXdP8pszjYIu2hL+PUFAqzg9nr+9qD6B3G9+zuNxnKqPH9Re+Lo8fZ9uSgiujV8UaYZ612zjK/kZE43/QhK1H3ZR95wLqUsePgR/PLoCQHOpt1rUENSaz1e04ujxmRmYgoQ75pKyuPmrNMXuN0NOY/VO7c/Rb9CYFMC6enPn9Ca/GsjzwatX23bWUkKgmBVFWdhOVJtg0J4Gt5m22GXHPChdEb3ftsiiG7cPRIRaQqpTEJSpmjR+oqdYTCrgyUjTrLcCQXUm7/NaD+AqSpdDSMPFFe2zK1YrxlbfOfmW6Zmr17k6EtQ0/GLcqphgDm259V9COKZCVX7qEPGVvsu6X/AZawWTJTDa0EAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;12982&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/12982-6b252a7b395fac2dbe3b891eb5f56102-352db.png&quot;
+        srcset=&quot;/devHistoryBlog/static/12982-6b252a7b395fac2dbe3b891eb5f56102-6a23e.png 240w,
+/devHistoryBlog/static/12982-6b252a7b395fac2dbe3b891eb5f56102-4928e.png 480w,
+/devHistoryBlog/static/12982-6b252a7b395fac2dbe3b891eb5f56102-352db.png 640w&quot;
+        sizes=&quot;(max-width: 640px) 100vw, 640px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  &lt;br&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Arrays&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; d&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; budget&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; answer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;d&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; len&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;d&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;len&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;budget &lt;span class=&quot;token operator&quot;&gt;-=&lt;/span&gt; d&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      answer&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; answer&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 제일 작은 수 제거하기]]></title><description><![CDATA[[프로그래머스] 제일 작은 수 제거하기 (12935)]]></description><link>http://sangbeo.github.io/algo/posts/p12935</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p12935</guid><pubDate>Sat, 07 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
+&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12935&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/12935&lt;/a&gt;&lt;/pre&gt;
+&lt;p&gt;
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 870px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 78.39080459770115%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAACAElEQVQ4y5WSW2/aQBCF/ZxKVZWqahslDTgYisEYML7G5hKMjbkkBAKkISGp1Lf2/7+ezqxohdpi6MOnGczO2TOzI00Wj1ANF8enObw7z+PNSRYfZFX81i0fTitE1QkEr9+f4ej4I169PcHRDqSK34fmRcjVWyg5IcUmzjUPn8ouFKOFgtlBvtGmvI2zkoNT1U5F8scrTNbfES++4YZiMHqEYsUoOAkUOxa5gPKCm6RDNVKTBGcvP1B0+7hokEOzJ+JfGF3IBMd//cdwrVTrTuFfP8GMFrD692j07mAQjd5cRJu+Wf0lvOEK7vABdnIPM16IczZ9t+Il3MEDHKIUjCBVr6ZoTp4Fwc0al+MnytciD67XaE+/wiERJ/kixDmyiE/nOJoECzN6ZwKp6A1hhDM0ojlqJM4XsDMjvENdMBM3czuKFe1FskjIS5ZQqCBTu0K2TlDM1Doilzczy9HhvHikPYKf6THYLs/H3MzDG62o7RfhtHg5RMkfQaWobETTkPj2cjAW7XKb3Hq1cysehQcvcnowvT05TNAhd93pMzlIkOEWt1ZHzI3IbfjVcqqgRq1otJTZSgseudO8we/iP1G25rhTULX7qLgDXOgdeOEcZdr2NDd7HRbMCBqJyFoLRcplvX2Qk52CeS7imdH88iSYozXZXo//FtwuVA5sK42f9oYTvXVwyIsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;12935&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/12935-63a47fdac3c91fd7081777c17e5a13b9-5a1e3.png&quot;
+        srcset=&quot;/devHistoryBlog/static/12935-63a47fdac3c91fd7081777c17e5a13b9-076eb.png 240w,
+/devHistoryBlog/static/12935-63a47fdac3c91fd7081777c17e5a13b9-db786.png 480w,
+/devHistoryBlog/static/12935-63a47fdac3c91fd7081777c17e5a13b9-5a1e3.png 870w&quot;
+        sizes=&quot;(max-width: 870px) 100vw, 870px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  &lt;br&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Arrays&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; min &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getAsInt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;i&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;i&lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt;min&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 문자열 내림차순으로 배치하기]]></title><description><![CDATA[[프로그래머스] 문자열 내림차순으로 배치하기 (12917)]]></description><link>http://sangbeo.github.io/algo/posts/p12917</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p12917</guid><pubDate>Sat, 07 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
+&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12917&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/12917&lt;/a&gt;&lt;/pre&gt;
+&lt;p&gt;
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 58.21643286573146%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABk0lEQVQoz52RWU/CQBSF+66JSzTRQELsAkXLIhYKbenCWkBWUTAC4oP//ycc70wBMcE+8PDlLu09c+aOcCOmcRGXcXZ7h/OYhEvKU7kSLD+AbtdQtH1kiiZOrmI4ZVzHef4fghlMYXVeYTTG8J7n0Mw2xEcXqtFEqtQg6lB0H4msjUQugmyI0Jl9w+kvYPXe4Q6WyHsjSHoTcrFFNCERcqmFpNGGQiQ3sFwp/cL75QCCN1jwIS6yGVQrHaQqAY9pq8sjz82/+b3VC7F7vKfQvFDpfcAZfcImd95kTfka1eEKdn8Ji5x7k6+wHqzgUHSpLnfnyPtjFOoveGpOORlnEAoWamOkyptrUEPhLlvUI5d0BdZncZszJyyydch6g24WwmrWF4zWG7LuEFq1jxztj53M6v0DDpHc2+dur8zhIznUnD5U2gkTZdY1YvvDocGob4JOglKhhgwtV9mzvx2IEj0oKGV9iBkX1fYMGj2/SOLs+aOuFimYd0dQSUg1AjyY5HKz3GPEQofFxs6NvCemHCHG+AFZW4o/YnTu2wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;12917&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/12917-6e2b19020d8ba5b6c387f2add437384d-c83f1.png&quot;
+        srcset=&quot;/devHistoryBlog/static/12917-6e2b19020d8ba5b6c387f2add437384d-569e3.png 240w,
+/devHistoryBlog/static/12917-6e2b19020d8ba5b6c387f2add437384d-93400.png 480w,
+/devHistoryBlog/static/12917-6e2b19020d8ba5b6c387f2add437384d-c83f1.png 960w,
+/devHistoryBlog/static/12917-6e2b19020d8ba5b6c387f2add437384d-1bed3.png 998w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  &lt;br&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Comparator&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;String s&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;chars&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;mapToObj&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;item &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;item&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Comparator&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;reverseOrder&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;StringBuilder&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    StringBuilder&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;appendCodePoint&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    StringBuilder&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;append&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;a&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;chars&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;mapToObj&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;item &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;item&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Comparator&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;reverseOrder&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;String&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;valueOf&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Collectors&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;joining&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 문자열 내 마음대로 정렬하기]]></title><description><![CDATA[[프로그래머스] 문자열 내 마음대로 정렬하기 (12915)]]></description><link>http://sangbeo.github.io/algo/posts/p12915</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p12915</guid><pubDate>Sat, 07 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
+&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12915&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/12915&lt;/a&gt;&lt;/pre&gt;
+&lt;p&gt;
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 894px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 86.24161073825502%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABJ0AAASdAHeZh94AAACZUlEQVQ4y41Ua3PSUBDNP3B0dHR0tEIhQEsgJBDCK0AIjwBteVapz+o3///3456bpCBFxw9n7t29N+funt2NFsyWeJsr48X7PJ6/0/EyVcBZ3oTTCVD3hmgHIXJlB09eneHZmzSevk79E5o9WKAx3qIZ3sKb71ATO231odcC6M4QOUHG9pGq9P4DXWjj7U8svvyCM9yiEX6E5S9xXh3GCJAWcJ+pHWP0p+2MoNfH0GqjW7jTHcr9pWABa7CGLeTWYAWeEbRrY66bvS/YoBr765MPsII1Cs0QGjfV0VYRkaTir2AKOVHuLWJ/BNOPzuk3JRP1gBCS+KI1iyJkiraARoKcO0G+Eap92h4oPE55D0qTlZQJjR+54Q7e4ptKvXX1GZ2br+it7tVaF11NkYIfJh8lOAwigZaNCbvL74qAhAQfoO2IPkyz0JyqtA7BTA6JVYS8mOhWGcQrbT9ai50rGN2bB11Nf3+HshxHqtWlIO5oI73nC0Qr0SPH1yRF+mhna1GKx9olZIekWklCb0sbZEwhNLoKtncDSyLjPiXI2MFJvY7JFKEuly+cCYruFJeOVNXwkLMClJtzGI0pCmzqmPBUIR4RGu05qqJd2btWqeqSCteC6FNwQ+RFeP0vFT1Z5dbsDoP1PUrda5wLmXq1/rg9jqt5ylZV5hg1Z59Qku7nBFTiCSGKXlThUlxlNSH9pRpFjh7t5JwdwlbSSOavf6iLl5I+Dw2J1hAJeIE+7tk+pV50din7ovhKMVlyh30ps7xRE6IQRpPCPSfEkTllYzdEFq70udM79XOI+vP6gZDZ6O4YvwFa/j10Y5+l6QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;12915&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/12915-da6e44354dda9ece7a15f2e6ba0c7cdd-1687b.png&quot;
+        srcset=&quot;/devHistoryBlog/static/12915-da6e44354dda9ece7a15f2e6ba0c7cdd-479db.png 240w,
+/devHistoryBlog/static/12915-da6e44354dda9ece7a15f2e6ba0c7cdd-08d10.png 480w,
+/devHistoryBlog/static/12915-da6e44354dda9ece7a15f2e6ba0c7cdd-1687b.png 894w&quot;
+        sizes=&quot;(max-width: 894px) 100vw, 894px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  &lt;br&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Arrays&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; String&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;String&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; strings&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; n&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;asList&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;strings&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;b&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;token keyword&quot;&gt;char&lt;/span&gt; an &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; a&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+                    &lt;span class=&quot;token keyword&quot;&gt;char&lt;/span&gt; bn &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; b&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+                    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;an &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; bn&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; a&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;compareTo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;b&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+                    &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; an&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;bn&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;String&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] K번째 수]]></title><description><![CDATA[[프로그래머스] K번째 수 (42748)]]></description><link>http://sangbeo.github.io/algo/posts/p42748</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p42748</guid><pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
 &lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/42748&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/42748&lt;/a&gt;&lt;/pre&gt;
 &lt;p&gt;
   &lt;span
