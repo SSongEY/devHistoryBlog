@@ -1,27 +1,74 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Tue, 20 Aug 2019 16:46:44 GMT</lastBuildDate><item><title><![CDATA[[백준] 3085번 사탕게임]]></title><description><![CDATA[[백준] 3085번 사탕게임]]></description><link>http://sangbeo.github.io/algo/posts/1</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/1</guid><pubDate>Wed, 21 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;gh-md-toc&lt;/h1&gt;
-&lt;br/&gt;
-&lt;h1&gt;Table of contents&lt;/h1&gt;
-&lt;!--ts--&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#gh-md-toc&quot;&gt;gh-md-toc&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;Table of contents&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#installation&quot;&gt;installation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;#installation2&quot;&gt;installation2&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;!--te--&gt;&lt;/h2&gt;
-&lt;br/&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Installation&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Sat, 07 Sep 2019 02:31:55 GMT</lastBuildDate><item><title><![CDATA[[프로그래머스] K번째 수]]></title><description><![CDATA[[프로그래머스] K번째 수 (42748)]]></description><link>http://sangbeo.github.io/algo/posts/p42748</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p42748</guid><pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
+&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/42748&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/42748&lt;/a&gt;&lt;/pre&gt;
 &lt;p&gt;
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/Q-c0461ee94e67a1896b573608f6219184-abcd1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 944px; margin-left: auto; margin-right: auto;&quot;
   &gt;
-  
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 78.8135593220339%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAACDUlEQVQ4y5VT2XLaQBDcn0hSlUqRxBySbCRAB0gWwkLcElfAxsYmTuyH/P8fdGZWiMIYVSUPXdsa1fbO9MyI8XKDom6joNbwuVSFZrowmm18KJTx6ZuSi485ENHyGY1wga/1EBdWhKLdk7gwowO+H3EJKx8i2f7Bzfwnys0RLv0E2nUMlaAdIYtnUNwxKq3RWQgv3sLs36Le/XFArbuEcbOARXGzt0I9ohhVUQuX8j+LlpvDvchwj5QLZ3iH1uQB18kT3PgR7mSL5vgezmgjud6ZUyk9lJyBRNHuy5MFz0GY0QqtMQlOdwhXv9FZ/JKcxa/aU6jeREJasefZd4qj/8SFSyXzZZ985Eybo3t4yaPMkr89ytwe3MHYl5ziiHfTs9Fby1O06TL7VCGj+aXMcOZZMzh2rszjWMaFTWKNKAVnwSdnVA1mby7kdfVdlw0y3aEyw9UL/NlOIly9wicfZbb/ISYFXfLK6q+h05hcUhM0P8ZVMCWevMnuX7MUHfawM8MXzUe9PUNAjSg1uihUA1j0iE4+cumnF/MeEDqZXrH6qJh9qPYABgmoJKAQ15whFIcNfz9vmeipsAimT/CTLW3G/GS+4sPsZV3PoBByM/TiB1q9tZy9YPEsm+FP061pz3c0l5t0k/YxmzaLxylX0Bne0rgs5agweK+5SXzyCPEeM+dHTRpejnH385r1FwIXGerRGui9AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;42748&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/42748-bebfbdabcb65c436937f1b7bc72b1d9b-cbecf.png&quot;
+        srcset=&quot;/devHistoryBlog/static/42748-bebfbdabcb65c436937f1b7bc72b1d9b-4293f.png 240w,
+/devHistoryBlog/static/42748-bebfbdabcb65c436937f1b7bc72b1d9b-ac52a.png 480w,
+/devHistoryBlog/static/42748-bebfbdabcb65c436937f1b7bc72b1d9b-cbecf.png 944w&quot;
+        sizes=&quot;(max-width: 944px) 100vw, 944px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  &lt;br&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ArrayList&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Arrays&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;List&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; commands&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    List&lt;span class=&quot;token generics function&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;Integer&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt; list &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; len&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;commands&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;len&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; cmd &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; commands&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+      &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; sIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cmd&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; eIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cmd&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; fIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cmd&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; n &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;array&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;boxed&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sIdx&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;eIdx&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;sIdx&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;fIdx&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;mapToInt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;item &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; item&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getAsInt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      list&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; list&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;mapToInt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;item&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;item&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;
+&lt;p&gt;부분배열 구하는 방법&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; tmp &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;array&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;boxed&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;start&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;finish&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;start&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;mapToInt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;i&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+ OR
+Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;copyOfRange&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;array&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; start&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; finish&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[백준] 3085번 사탕게임]]></title><description><![CDATA[[백준] 3085번 사탕게임]]></description><link>http://sangbeo.github.io/algo/posts/3085</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/3085</guid><pubDate>Wed, 21 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;목차&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#Q&quot;&gt;문제&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#A&quot;&gt;풀이&lt;/a&gt;&lt;/li&gt;
+  &lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#A_송은영&quot;&gt;송은영&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;#문제&lt;/h2&gt;&lt;/pre&gt;
+&lt;p&gt;
   &lt;span
     class=&quot;gatsby-resp-image-wrapper&quot;
     style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
@@ -44,116 +91,9 @@
       /&gt;
     &lt;/span&gt;
   &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;br&gt;
+  &lt;br&gt;
 &lt;br/&gt;&lt;/p&gt;
-&lt;h1&gt;Installation2&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;1. gatsby-cli 설치 및 프로젝트 생성 (lumen 테마 사용)&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ yarn add -g gatsby-cli
-$ gatsby new devHistoryBlog https://github.com/GatsbyCentral/gatsby-v2-starter-lumen&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;2. gatsby 로컬 서버 구동 (기본포트 8000)&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; devHistoryBlog
-$ gatsby develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;3. github repository 연동&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//git remote add origin &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;repository_url&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote add origin https://github.com/SangBeo/devHistoryBlog.git&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;[브랜치 생성]&lt;br&gt;
-github 페이지는 최종적으로 master의 파일들이 배포된다.&lt;br&gt;
-master에서 gatsby 파일 관리와 gh-pages의 빌드를 같이 하니 난잡해서 보기 좋지 않다.&lt;br&gt;
-그래서 개발은 develop 브랜치에서 진행하고 master 브랜치는 gh-pages로 배포할때만 사용한다&lt;br&gt;
--&gt; develop branch : gatsby 파일 구조를 관리&lt;br&gt;
--&gt; master : build 된 파일들을 github 페이지에 배포&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;3.1. develop 브랜치 생성&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//-m 옵션을 이용하여 develop 브랜치로 이동
-$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; branch -m develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;3.2. 커밋과 푸쉬&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; add *
-$ commit -m &lt;span class=&quot;token string&quot;&gt;&quot;init commit&quot;&lt;/span&gt;
-//push 시 -u 옵션을 붙여 이후 push 할때마다 develop 브랜치로 푸쉬한다
-$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push -u origin develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-4c164.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 79.16279069767442%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAACe0lEQVQ4y41UPXPUMBD1/+9omKGhpmCoKGjp6NJQQYYZLsklubMtW5L1ZcmPt3u5gwQKNPNmpbX2rfbLnbUOj4cRBxNxcwy4HwJSzkRBTCd5Ri4rQky4fzzCzBYTbUVaH+CWoN+7HAOimxBCQCkkSAmeH8XQ+0VJZR9C1P1CKeQi11pRa1NZ1hXrWtHJJTM7EmX8/9qeyW3b4PkgkV1ZN0Ry5SweGpVQFHqL/FDbdtGlVBTn81r4urgCFRfibi0RwR/h5iNiMNRGtBZQ14UGDq0uem71pJPzxjvYElw2uPV7HOIBUzbqhTnsYfqv8PM18R057rCte3q9V8hewX3Nt8hhhxR+ku8O18MVXn97i1ff3uD97gPaxhxa57G7vcfDocc4WYVUqxCtNQ2jPYUdQtJ8z9ZrhRcb8WV/hXc/PuLTzWeUxiqPNuDm4LDvHXpbYJaKw5yxZ/sMvvLc4GKFzxuWggtcaujngN4EOsmY3Sm3nVsijsbD8pZjgj2NbSh4HCweemKgI+MwTJ73HL+xtVjIkOkkFvi0Us/IZq817zKbePFMfqtMeKWXptJay9DYtAxN0iIhTmxi6UnpN0U9Scd+ld7VKksfHjklkW1TlYiG0wxjJpVCMstUECN18alfxfgMcSiksrpEooG5S+wpWQs9eblAnF/nvFc585w5JS8JdbI4OX8QMuxU9aMQXsguhIvqhFDmXCv/gnDhpChhZOc/jAkyMbLEUEOdfocsMNxLyOlfIdORP4csPTd5VjicXhj1R0CPy/KEoD8CTQWNcinPyARSKLFTwsB5vesjRreqwkryR4NxGE+SrxIM44SeupjSXy+c5llTI+sXLiTYYIC4fQoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;1&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-c83f1.png&quot;
-        srcset=&quot;/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-569e3.png 240w,
-/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-93400.png 480w,
-/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-c83f1.png 960w,
-/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-4c164.png 1075w&quot;
-        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;br&gt;
-그럼 위와 같이 develop 브랜치에 소스 push가 된다.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;4. gh-pages 설치 및 설정 파일 수정, 그리고 Deploy&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ yarn add --dev gh-pages&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;4.1. gatsby-config.js 수정
-
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/3-9b9f7bf8ba35b6c0af38da64066cf443-ed1e0.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 416px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 67.3076923076923%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAAB3klEQVQ4y32T27qaMBCFfZl6AMIhkBByAEXQdn/tXd//VVZX4larPVwsJgnyz5rMuKkqj6X/CdtdYMJKXSBUQDl/R3n+gSpcoY4T5SGNR1appLymGs2osS867PI2xU1RGvRygWwmtGaCtjPUcMKOL3NzQu4WFHpGrQd0o0VtDKQd0AbHPeUd8rJ/AuPjUKibRMxEFW1yEfd7rg+CKm8u4tl9HbXN2gcsxk1ZWvjuA0rOyaGQzCg19CkkJ/UwYFhHmCUkR2pyfMfy3QDRPZ1FE8nh/eB22GEbs+bPrEniLT5+/+ouAVVtcGUTRjrz0mLtPCZGwXPROuw+S0rK2tf9GywBs6rHQMA3Qo8EnAlsKoO81TDnkMpLl89SzRrQessP1aPEl0ruQNUMuBJ0IXBhjGqoojGfTVCpEVkcFY5JbOA76AEUhBk3Q3NEIiTjofjtrl7u+D+lPoClZBfHFT3dhS7AMsFB9GjUhExobA+SavFlL9P6X86eQAJsWOAZz4R2jDJ4uHXmaFhUvUkD3Ubx/rJSvTh916YixJ8+MNHRoo50OUL1I4qOMOVQyBg9wZT2yKsIHTj4fxdLdnDHr2hqC+tGOH+7S30a0fC/K62ns0CohZ4mNAMHPzWrZ6P+1C9chp1NV1NyoQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;3&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/3-9b9f7bf8ba35b6c0af38da64066cf443-ed1e0.png&quot;
-        srcset=&quot;/devHistoryBlog/static/3-9b9f7bf8ba35b6c0af38da64066cf443-9a3b2.png 240w,
-/devHistoryBlog/static/3-9b9f7bf8ba35b6c0af38da64066cf443-ed1e0.png 416w&quot;
-        sizes=&quot;(max-width: 416px) 100vw, 416px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;url 수정&lt;/li&gt;
-&lt;li&gt;pathPrefix 추가
-4.2. package.json 필요시 수정&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;4.3. Deploy&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//build 및 master branch로 push
-$ yarn deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;5. 실행&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;http://sangbeo.github.io/devHistoryBlog&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Gatsby 구축]]></title><description><![CDATA[gatsby + gh-pages + github]]></description><link>http://sangbeo.github.io/gatsby/posts/1</link><guid isPermaLink="false">http://sangbeo.github.io/gatsby/posts/1</guid><pubDate>Sun, 18 Aug 2019 14:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;1. gatsby-cli 설치 및 프로젝트 생성 (lumen 테마 사용)&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[Gatsby 구축]]></title><description><![CDATA[gatsby + gh-pages + github]]></description><link>http://sangbeo.github.io/gatsby/posts/1</link><guid isPermaLink="false">http://sangbeo.github.io/gatsby/posts/1</guid><pubDate>Sun, 18 Aug 2019 14:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;1. gatsby-cli 설치 및 프로젝트 생성 (lumen 테마 사용)&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ yarn add -g gatsby-cli
 $ gatsby new devHistoryBlog https://github.com/GatsbyCentral/gatsby-v2-starter-lumen&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;2. gatsby 로컬 서버 구동 (기본포트 8000)&lt;/strong&gt;&lt;/p&gt;
