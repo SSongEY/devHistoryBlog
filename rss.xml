@@ -1,144 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 02 Sep 2020 17:09:46 GMT</lastBuildDate><item><title><![CDATA[[StringBoot] Profile에 따른 application.yml 설정하기]]></title><link>http://sangbeo.github.io/errors/posts/2020-09-02--02</link><guid isPermaLink="false">http://sangbeo.github.io/errors/posts/2020-09-02--02</guid><pubDate>Wed, 02 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;1. yml 설정&lt;/h3&gt;
-&lt;p&gt;수정 전&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;spring:
-  active: cron_alert,swagger
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
-  resources:
-    static-locations: &amp;quot;classpath:/static/,classpath:/public/&amp;quot;
-    add-mappings: true
-  datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://127.0.0.1:3306/autocrypt_v2g?autoReconnect=true
-    username: root
-    password: flatron123!
-    hikari:
-      idle-timeout: 10000
-      max-lifetime: 420000
-      connection-timeout: 10000
-      validation-timeout: 10000
-    dbcp2:
-      test-while-idle: true
-      validation-query: &amp;quot;SELECT 1&amp;quot;
-  jpa:
-    open-in-view: false
-    generate-ddl: true
-    properties:
-      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-    show-sql: false
-    hibernate:
-      ddl-auto: update&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;2. 수정 후&lt;/h3&gt;
-&lt;p&gt;
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/0f2bc/1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 742px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 95.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAIAAAAf7rriAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABoklEQVQ4y5VT7Y6cMAzkcZY4DontfMARloXbvV9t//f9H6QGuu211UplNCJBka3xZNK8B7h3poAZraPWtHACzUT0dRo/huHLfBtFzhWzcK1jP5RU+lx6tNaY1uz4uQCYV8UBoTIMjOJt9EAUvAhJpJgyS9HeiAzWobbdifi72ALEYJNwyjmmRMTEouQYH5JmlonkTlJEgnZkDsToHGyCoEELVawyZ1U+6LG1Fna9aMDt7F7JRsR5nmut13kex3GrfMJ84gvDmG+3+agPIcApt9F1Fp2OoU7s1p4pzs5Ea7q2VapicwbN9yl8K2EheqQieg16G/+Npk/5sazrdF2v81Qn7737C1138DOOk4Y91tQVdp2zwePm9sZNgk61/batuVxM+wcOd7aQlABZqETpk0YjSu6jsn9bc7+kMhFX4qunyBI0P8QhEO4520KSPRTCGLOm0vugenb7u+S6jJicy9vG+UO/2zQfcWh0uY2l9nEc3+p01a7w9Lz95/sLz4fh/fp+vy3rsiylZJ3nxD37EPQ95KxPSOAkmtQZj3B5GngKPwCZos/D26AFAwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;1&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/0f2bc/1.png&quot;
-        srcset=&quot;/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/8ff5a/1.png 240w,
-/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/e85cb/1.png 480w,
-/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/0f2bc/1.png 742w&quot;
-        sizes=&quot;(max-width: 742px) 100vw, 742px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;profiles 구분자 ---&lt;br&gt;
---- 를 이용하면 profiles 을 구분할 수 있다.
-맨 위에 작성된 내용이 default 가 된다.&lt;/li&gt;
-&lt;li&gt;profile 활성화
-
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/53ac9/2.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 2.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAABJ0AAASdAHeZh94AAAAR0lEQVQI1x3LUQrAMAgD0J1ng0Gps1pdHfT+Z8psv0IeyVHpBrcCfwXaH4hSJkG4IM4Lmn3ZnAPx2d6uj2jdbt4wooPSzBk/GY4g5c2iJ0IAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;2&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/d9199/2.png&quot;
-        srcset=&quot;/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/8ff5a/2.png 240w,
-/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/e85cb/2.png 480w,
-/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/d9199/2.png 960w,
-/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/53ac9/2.png 1287w&quot;
-        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    
-
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/9e3ea/3.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 24.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAyklEQVQY012Na27DIBCEuUqbxsaAeRlswOYRY+X+R+qk+RNV+rTSzs7Mkon98Hmc5cj5QOkNjPT7Hy+PGMTLRt9ghU7sIhen/KrtMtPpNoxfn8CBCZ3xO36IPxDGCp1swTqv0u691xO74ybVhLPSTEqKMOODNtwYYQzHA2sFgEcqSo68lRqvZ0MLMjG5I4fa9seZQUx+DbbW2Es6Szxr6jWVvK2bRRHZjzWX2K+K59oIJNF19lJb6ldDSy6hPQ4omDjVmlLyIToX3C9CSDmvmd2WZAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;3&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/d9199/3.png&quot;
-        srcset=&quot;/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/8ff5a/3.png 240w,
-/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/e85cb/3.png 480w,
-/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/d9199/3.png 960w,
-/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/07a9c/3.png 1440w,
-/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/9e3ea/3.png 1503w&quot;
-        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[ShellScript] Jenkins 빌드 후 실행 스크립트 작성]]></title><link>http://sangbeo.github.io/history/posts/2020-09-02--001</link><guid isPermaLink="false">http://sangbeo.github.io/history/posts/2020-09-02--001</guid><pubDate>Wed, 02 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;jenkins에서 github hook trigger 발생 후에
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 02 Sep 2020 17:17:11 GMT</lastBuildDate><item><title><![CDATA[[ShellScript] Jenkins 빌드 후 실행 스크립트 작성]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-09-02--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-09-02--001</guid><pubDate>Wed, 02 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;jenkins에서 github hook trigger 발생 후에
 빌드 단계에서 실행 되는 스크립트를 작성하였다.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
@@ -278,10 +138,147 @@ fi&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h5&gt;참고 사이트&lt;/h5&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://louky0714.tistory.com/entry/BASH-Shell-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4-%EA%B5%AC%ED%95%98%EA%B8%B0&quot;&gt;문자열 길이 구하기&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Tool] IntelliJ 커스텀 파일 템플릿 추가하기]]></title><link>http://sangbeo.github.io/history/posts/2020-08-31--002</link><guid isPermaLink="false">http://sangbeo.github.io/history/posts/2020-08-31--002</guid><pubDate>Mon, 31 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h5&gt;참고&lt;/h5&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[StringBoot] Profile에 따른 application.yml 설정하기]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2020-09-02--02</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2020-09-02--02</guid><pubDate>Wed, 02 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;1. yml 설정&lt;/h3&gt;
+&lt;p&gt;수정 전&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;spring:
+  active: cron_alert,swagger
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  resources:
+    static-locations: &amp;quot;classpath:/static/,classpath:/public/&amp;quot;
+    add-mappings: true
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:3306/autocrypt_v2g?autoReconnect=true
+    username: root
+    password: flatron123!
+    hikari:
+      idle-timeout: 10000
+      max-lifetime: 420000
+      connection-timeout: 10000
+      validation-timeout: 10000
+    dbcp2:
+      test-while-idle: true
+      validation-query: &amp;quot;SELECT 1&amp;quot;
+  jpa:
+    open-in-view: false
+    generate-ddl: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;2. 수정 후&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/0f2bc/1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 742px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 95.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAIAAAAf7rriAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABoklEQVQ4y5VT7Y6cMAzkcZY4DontfMARloXbvV9t//f9H6QGuu211UplNCJBka3xZNK8B7h3poAZraPWtHACzUT0dRo/huHLfBtFzhWzcK1jP5RU+lx6tNaY1uz4uQCYV8UBoTIMjOJt9EAUvAhJpJgyS9HeiAzWobbdifi72ALEYJNwyjmmRMTEouQYH5JmlonkTlJEgnZkDsToHGyCoEELVawyZ1U+6LG1Fna9aMDt7F7JRsR5nmut13kex3GrfMJ84gvDmG+3+agPIcApt9F1Fp2OoU7s1p4pzs5Ea7q2VapicwbN9yl8K2EheqQieg16G/+Npk/5sazrdF2v81Qn7737C1138DOOk4Y91tQVdp2zwePm9sZNgk61/batuVxM+wcOd7aQlABZqETpk0YjSu6jsn9bc7+kMhFX4qunyBI0P8QhEO4520KSPRTCGLOm0vugenb7u+S6jJicy9vG+UO/2zQfcWh0uY2l9nEc3+p01a7w9Lz95/sLz4fh/fp+vy3rsiylZJ3nxD37EPQ95KxPSOAkmtQZj3B5GngKPwCZos/D26AFAwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;1&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/0f2bc/1.png&quot;
+        srcset=&quot;/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/8ff5a/1.png 240w,
+/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/e85cb/1.png 480w,
+/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/0f2bc/1.png 742w&quot;
+        sizes=&quot;(max-width: 742px) 100vw, 742px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://jojoldu.tistory.com/128?category=678716&quot;&gt;[IntelliJ] 커스텀 파일 템플릿 추가하기&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Tool] IntelliJ IDEA 단축키]]></title><link>http://sangbeo.github.io/history/posts/2020-08-31-001</link><guid isPermaLink="false">http://sangbeo.github.io/history/posts/2020-08-31-001</guid><pubDate>Mon, 31 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Alt + Enter&lt;/h2&gt;
+&lt;li&gt;profiles 구분자 ---&lt;br&gt;
+--- 를 이용하면 profiles 을 구분할 수 있다.
+맨 위에 작성된 내용이 default 가 된다.&lt;/li&gt;
+&lt;li&gt;profile 활성화
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/53ac9/2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 2.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAABJ0AAASdAHeZh94AAAAR0lEQVQI1x3LUQrAMAgD0J1ng0Gps1pdHfT+Z8psv0IeyVHpBrcCfwXaH4hSJkG4IM4Lmn3ZnAPx2d6uj2jdbt4wooPSzBk/GY4g5c2iJ0IAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;2&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/d9199/2.png&quot;
+        srcset=&quot;/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/8ff5a/2.png 240w,
+/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/e85cb/2.png 480w,
+/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/d9199/2.png 960w,
+/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/53ac9/2.png 1287w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/9e3ea/3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 24.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAyklEQVQY012Na27DIBCEuUqbxsaAeRlswOYRY+X+R+qk+RNV+rTSzs7Mkon98Hmc5cj5QOkNjPT7Hy+PGMTLRt9ghU7sIhen/KrtMtPpNoxfn8CBCZ3xO36IPxDGCp1swTqv0u691xO74ybVhLPSTEqKMOODNtwYYQzHA2sFgEcqSo68lRqvZ0MLMjG5I4fa9seZQUx+DbbW2Es6Szxr6jWVvK2bRRHZjzWX2K+K59oIJNF19lJb6ldDSy6hPQ4omDjVmlLyIToX3C9CSDmvmd2WZAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;3&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/d9199/3.png&quot;
+        srcset=&quot;/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/8ff5a/3.png 240w,
+/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/e85cb/3.png 480w,
+/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/d9199/3.png 960w,
+/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/07a9c/3.png 1440w,
+/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/9e3ea/3.png 1503w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Tool] IntelliJ IDEA 단축키]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-08-31-001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-08-31-001</guid><pubDate>Mon, 31 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Alt + Enter&lt;/h2&gt;
 &lt;p&gt;코드에서 오류가 발견된 경우 해당 오류 위에 커서를 놓고 Alt+Enter를 누르면 문제에 대한 수정 제안 목록이 표시된다.&lt;/p&gt;
 &lt;h2&gt;Alt+1 / ESC&lt;/h2&gt;
 &lt;p&gt;프로젝트 창이 열리고 포커스 위치, ESC를 누르면 에디터에 다시 포커스가 간다.&lt;/p&gt;
@@ -293,7 +290,10 @@ fi&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://blog.jetbrains.com/ko/2020/03/11/top-15-intellij-idea-shortcuts_ko/&quot;&gt;가장 많이 사용되는 IntelliJ IDEA 단축키 15개&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://gmlwjd9405.github.io/2019/05/21/intellij-shortkey.html&quot;&gt;intellij 유용한 단축키 정리&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Node] gyp verb check python checking for Python executable "python" in the PATH]]></title><description><![CDATA[[Node] Node.js 종속성을 위해 Windows에서 Python 실행하기]]></description><link>http://sangbeo.github.io/errors/2020-08-29-001</link><guid isPermaLink="false">http://sangbeo.github.io/errors/2020-08-29-001</guid><pubDate>Sat, 29 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;문제&lt;/h2&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Tool] IntelliJ 커스텀 파일 템플릿 추가하기]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-08-31--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-08-31--002</guid><pubDate>Mon, 31 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h5&gt;참고&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://jojoldu.tistory.com/128?category=678716&quot;&gt;[IntelliJ] 커스텀 파일 템플릿 추가하기&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Node] gyp verb check python checking for Python executable "python" in the PATH]]></title><description><![CDATA[[Node] Node.js 종속성을 위해 Windows에서 Python 실행하기]]></description><link>https://eunyoung-autocrypt.github.io/errors/2020-08-29-001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/2020-08-29-001</guid><pubDate>Sat, 29 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;문제&lt;/h2&gt;
 &lt;p&gt;gatsby node_modules 설치 도중 문제 발생&lt;/p&gt;
 &lt;h2&gt;원인&lt;/h2&gt;
 &lt;p&gt;phthon 2.7 미설치 또는 PYTHON 환경변수 없음&lt;/p&gt;
@@ -321,13 +321,13 @@ C:\Users\ben.windows-build-tools\python27\python.exe
 &lt;p&gt;마지막으로 node module 재설치&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install &amp;lt;module&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;참고&lt;br&gt;
-&lt;a href=&quot;https://code.i-harness.com/ko-kr/q/e6ce22&quot;&gt;https://code.i-harness.com/ko-kr/q/e6ce22&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[JPA] No EntityManager with actual transaction available for current thread]]></title><link>http://sangbeo.github.io/errors/2020-08-31--001</link><guid isPermaLink="false">http://sangbeo.github.io/errors/2020-08-31--001</guid><pubDate>Sat, 29 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;문제&lt;/h3&gt;
+&lt;a href=&quot;https://code.i-harness.com/ko-kr/q/e6ce22&quot;&gt;https://code.i-harness.com/ko-kr/q/e6ce22&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[JPA] No EntityManager with actual transaction available for current thread]]></title><link>https://eunyoung-autocrypt.github.io/errors/2020-08-31--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/2020-08-31--001</guid><pubDate>Sat, 29 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;문제&lt;/h3&gt;
 &lt;p&gt;deleteBy.. 메소드 호출시 오류 발생&lt;/p&gt;
 &lt;h2&gt;원인&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/32269192/spring-no-entitymanager-with-actual-transaction-available-for-current-thread&quot;&gt;https://stackoverflow.com/questions/32269192/spring-no-entitymanager-with-actual-transaction-available-for-current-thread&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;해결&lt;/h3&gt;
 &lt;p&gt;메소드에 @transaction 을 추가하는 방법으로 해결하였다.&lt;br&gt;
-잘 모르겠는데… JPA delete transaction 을 찾아봐야겠다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[백준] 3085번 사탕게임]]></title><description><![CDATA[[백준] 3085번 사탕게임]]></description><link>http://sangbeo.github.io/algo/posts/1</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/1</guid><pubDate>Wed, 21 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;목차&lt;br&gt;
+잘 모르겠는데… JPA delete transaction 을 찾아봐야겠다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[백준] 3085번 사탕게임]]></title><description><![CDATA[[백준] 3085번 사탕게임]]></description><link>https://eunyoung-autocrypt.github.io/algo/posts/1</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/algo/posts/1</guid><pubDate>Wed, 21 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;목차&lt;br&gt;
 &lt;a href=&quot;#%EA%B0%9C%EB%B0%9C%EC%9D%84-%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%96%B4%EC%9A%94&quot;&gt;1.개발을 하고 싶어요&lt;/a&gt;&lt;br&gt;
 &lt;a href=&quot;#coding%EC%9D%84-%EC%9E%98%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%96%B4%EC%9A%94&quot;&gt;2.코딩을 잘하고 싶어요&lt;/a&gt;  &lt;/p&gt;
 &lt;h2&gt;개발을 하고 싶어요&lt;/h2&gt;
@@ -471,7 +471,7 @@ $ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push -u origin d
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//build 및 master branch로 push
 $ &lt;span class=&quot;token function&quot;&gt;yarn&lt;/span&gt; deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;5. 실행&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;http://sangbeo.github.io/devHistoryBlog&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Gatsby 구축]]></title><description><![CDATA[gatsby + gh-pages + github]]></description><link>http://sangbeo.github.io/gatsby/posts/1</link><guid isPermaLink="false">http://sangbeo.github.io/gatsby/posts/1</guid><pubDate>Sun, 18 Aug 2019 14:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;1. gatsby-cli 설치 및 프로젝트 생성 (lumen 테마 사용)&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;http://sangbeo.github.io/devHistoryBlog&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Gatsby 구축]]></title><description><![CDATA[gatsby + gh-pages + github]]></description><link>https://eunyoung-autocrypt.github.io/gatsby/posts/1</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/gatsby/posts/1</guid><pubDate>Sun, 18 Aug 2019 14:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;1. gatsby-cli 설치 및 프로젝트 생성 (lumen 테마 사용)&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;yarn&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; -g gatsby-cli
 $ gatsby new devHistoryBlog https://github.com/GatsbyCentral/gatsby-v2-starter-lumen&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;2. gatsby 로컬 서버 구동 (기본포트 8000)&lt;/strong&gt;&lt;/p&gt;
@@ -511,7 +511,7 @@ $ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push -u origin d
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//build 및 master branch로 push
 $ &lt;span class=&quot;token function&quot;&gt;yarn&lt;/span&gt; deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;5. 실행&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;http://sangbeo.github.io/devHistoryBlog&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Upgraded to Gatsby v2]]></title><description><![CDATA[This starter has been forked and upgraded to Gatsby v2]]></description><link>http://sangbeo.github.io/posts/upgraded-to-gatsby-v2/</link><guid isPermaLink="false">http://sangbeo.github.io/posts/upgraded-to-gatsby-v2/</guid><pubDate>Thu, 18 Oct 2018 16:51:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a Gatsby v2 compatible version of the
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;http://sangbeo.github.io/devHistoryBlog&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Upgraded to Gatsby v2]]></title><description><![CDATA[This starter has been forked and upgraded to Gatsby v2]]></description><link>https://eunyoung-autocrypt.github.io/posts/upgraded-to-gatsby-v2/</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/posts/upgraded-to-gatsby-v2/</guid><pubDate>Thu, 18 Oct 2018 16:51:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a Gatsby v2 compatible version of the
 &lt;a href=&quot;https://github.com/alxshelepenok/gatsby-starter-lumen&quot;&gt;lumen&lt;/a&gt; starter, started
 by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby Central&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Here’s a little recommended reading for Gatsby v2.&lt;/p&gt;
@@ -530,7 +530,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;Finally, here’s a cheat sheet we prepared to help during the upgrade:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.gatsbycentral.com/gatsby-v2-refactoring-cheat-sheet&quot;&gt;Gatsby v2 refactoring cheat sheet&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Humane Typography in the Digital Age]]></title><description><![CDATA[An Essay on Typography by Eric Gill takes the reader back to the year 1930. The year when a conflict between two worlds came to its term. The machines of the industrial world finally took over the handicrafts.]]></description><link>http://sangbeo.github.io/posts/humane-typography-in-the-digital-age/</link><guid isPermaLink="false">http://sangbeo.github.io/posts/humane-typography-in-the-digital-age/</guid><pubDate>Sat, 19 Aug 2017 22:40:32 GMT</pubDate><content:encoded>&lt;p&gt;An Essay on Typography by Eric Gill takes the reader back to the year 1930. The year when a conflict between two worlds came to its term. The machines of the industrial world finally took over the handicrafts.&lt;/p&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Humane Typography in the Digital Age]]></title><description><![CDATA[An Essay on Typography by Eric Gill takes the reader back to the year 1930. The year when a conflict between two worlds came to its term. The machines of the industrial world finally took over the handicrafts.]]></description><link>https://eunyoung-autocrypt.github.io/posts/humane-typography-in-the-digital-age/</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/posts/humane-typography-in-the-digital-age/</guid><pubDate>Sat, 19 Aug 2017 22:40:32 GMT</pubDate><content:encoded>&lt;p&gt;An Essay on Typography by Eric Gill takes the reader back to the year 1930. The year when a conflict between two worlds came to its term. The machines of the industrial world finally took over the handicrafts.&lt;/p&gt;
 &lt;p&gt;The typography of this industrial age was no longer handcrafted. Mass production and profit became more important. Quantity mattered more than the quality. The books and printed works in general lost a part of its humanity. The typefaces were not produced by craftsmen anymore. It was the machines printing and tying the books together now. The craftsmen had to let go of their craft and became a cog in the process. An extension of the industrial machine.&lt;/p&gt;
 &lt;p&gt;But the victory of the industrialism didn’t mean that the craftsmen were completely extinct. The two worlds continued to coexist independently. Each recognising the good in the other — the power of industrialism and the humanity of craftsmanship. This was the second transition that would strip typography of a part of its humanity. We have to go 500 years back in time to meet the first one.&lt;/p&gt;
 &lt;h2&gt;The first transition&lt;/h2&gt;
@@ -632,7 +632,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;We lost a part of ourselves because of this chase after perfection. We forgot about the craftsmanship along the way. And the worst part is that we don’t care. The transition to the digital age made that clear. We choose typefaces like clueless zombies. There’s no meaning in our work. Type sizes, leading, margins… It’s all just a few clicks or lines of code. The message isn’t important anymore. There’s no more “why” behind the “what”.&lt;/p&gt;
 &lt;h2&gt;Chasing perfection&lt;/h2&gt;
 &lt;p&gt;Human beings aren’t perfect. Perfection is something that will always elude us. There will always be a small part of humanity in everything we do. No matter how small that part, we should make sure that it transcends the limits of the medium. We have to think about the message first. What typeface should we use and why? Does the typeface match the message and what we want to communicate with it? What will be the leading and why? Will there be more typefaces in our design? On what ground will they be combined? What makes our design unique and why? This is the part of humanity that is left in typography. It might be the last part. Are we really going to give it up?&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Originally published by &lt;a href=&quot;http://matejlatin.co.uk/&quot;&gt;Matej Latin&lt;/a&gt; on &lt;a href=&quot;https://medium.com/design-notes/humane-typography-in-the-digital-age-9bd5c16199bd?ref=webdesignernews.com#.lygo82z0x&quot;&gt;Medium&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Johannes Gutenberg: The Birth of Movable Type]]></title><description><![CDATA[German inventor Johannes Gutenberg developed a method of movable type and used it to create one of the western world’s first major printed books, the “Forty–Two–Line” Bible.]]></description><link>http://sangbeo.github.io/posts/the-birth-of-movable-type/</link><guid isPermaLink="false">http://sangbeo.github.io/posts/the-birth-of-movable-type/</guid><pubDate>Fri, 18 Aug 2017 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;German inventor Johannes Gutenberg developed a method of movable type and used it to create one of the western world’s first major printed books, the “Forty–Two–Line” Bible.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Originally published by &lt;a href=&quot;http://matejlatin.co.uk/&quot;&gt;Matej Latin&lt;/a&gt; on &lt;a href=&quot;https://medium.com/design-notes/humane-typography-in-the-digital-age-9bd5c16199bd?ref=webdesignernews.com#.lygo82z0x&quot;&gt;Medium&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Johannes Gutenberg: The Birth of Movable Type]]></title><description><![CDATA[German inventor Johannes Gutenberg developed a method of movable type and used it to create one of the western world’s first major printed books, the “Forty–Two–Line” Bible.]]></description><link>https://eunyoung-autocrypt.github.io/posts/the-birth-of-movable-type/</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/posts/the-birth-of-movable-type/</guid><pubDate>Fri, 18 Aug 2017 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;German inventor Johannes Gutenberg developed a method of movable type and used it to create one of the western world’s first major printed books, the “Forty–Two–Line” Bible.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Johannes Gensfleisch zur Laden zum Gutenberg&lt;/strong&gt; (c. 1398 – 1468) was a German blacksmith, goldsmith, printer, and publisher who introduced printing to Europe. His invention of mechanical movable type printing started the Printing Revolution and is widely regarded as the most important event of the modern period. It played a key role in the development of the Renaissance, Reformation, the Age of Enlightenment, and the Scientific revolution and laid the material basis for the modern knowledge-based economy and the spread of learning to the masses.&lt;/p&gt;
 &lt;figure class=&quot;float-right&quot; style=&quot;width: 240px&quot;&gt;
 	
@@ -747,7 +747,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;Thus, they feel that “the decisive factor for the birth of typography”, the use of reusable moulds for casting type, might have been a more progressive process than was previously thought. They suggest that the additional step of using the punch to create a mould that could be reused many times was not taken until twenty years later, in the 1470s. Others have not accepted some or all of their suggestions, and have interpreted the evidence in other ways, and the truth of the matter remains very uncertain.&lt;/p&gt;
 &lt;p&gt;A 1568 history by Hadrianus Junius of Holland claims that the basic idea of the movable type came to Gutenberg from Laurens Janszoon Coster via Fust, who was apprenticed to Coster in the 1430s and may have brought some of his equipment from Haarlem to Mainz. While Coster appears to have experimented with moulds and castable metal type, there is no evidence that he had actually printed anything with this technology. He was an inventor and a goldsmith. However, there is one indirect supporter of the claim that Coster might be the inventor. The author of the Cologne Chronicle of 1499 quotes Ulrich Zell, the first printer of Cologne, that printing was performed in Mainz in 1450, but that some type of printing of lower quality had previously occurred in the Netherlands. However, the chronicle does not mention the name of Coster, while it actually credits Gutenberg as the “first inventor of printing” in the very same passage (fol. 312). The first securely dated book by Dutch printers is from 1471, and the Coster connection is today regarded as a mere legend.&lt;/p&gt;
 &lt;p&gt;The 19th century printer and typefounder Fournier Le Jeune suggested that Gutenberg might not have been using type cast with a reusable matrix, but possibly wooden types that were carved individually. A similar suggestion was made by Nash in 2004. This remains possible, albeit entirely unproven.&lt;/p&gt;
-&lt;p&gt;It has also been questioned whether Gutenberg used movable types at all. In 2004, Italian professor Bruno Fabbiani claimed that examination of the 42-line Bible revealed an overlapping of letters, suggesting that Gutenberg did not in fact use movable type (individual cast characters) but rather used whole plates made from a system somewhat like a modern typewriter, whereby the letters were stamped successively into the plate and then printed. However, most specialists regard the occasional overlapping of type as caused by paper movement over pieces of type of slightly unequal height.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[The Origins of Social Stationery Lettering]]></title><description><![CDATA[Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.]]></description><link>http://sangbeo.github.io/posts/the-origins-of-social-stationery-lettering</link><guid isPermaLink="false">http://sangbeo.github.io/posts/the-origins-of-social-stationery-lettering</guid><pubDate>Thu, 01 Dec 2016 22:40:32 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Pellentesque habitant morbi tristique&lt;/strong&gt; senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. &lt;em&gt;Aenean ultricies mi vitae est.&lt;/em&gt; Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. &lt;/p&gt;
+&lt;p&gt;It has also been questioned whether Gutenberg used movable types at all. In 2004, Italian professor Bruno Fabbiani claimed that examination of the 42-line Bible revealed an overlapping of letters, suggesting that Gutenberg did not in fact use movable type (individual cast characters) but rather used whole plates made from a system somewhat like a modern typewriter, whereby the letters were stamped successively into the plate and then printed. However, most specialists regard the occasional overlapping of type as caused by paper movement over pieces of type of slightly unequal height.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[The Origins of Social Stationery Lettering]]></title><description><![CDATA[Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.]]></description><link>https://eunyoung-autocrypt.github.io/posts/the-origins-of-social-stationery-lettering</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/posts/the-origins-of-social-stationery-lettering</guid><pubDate>Thu, 01 Dec 2016 22:40:32 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Pellentesque habitant morbi tristique&lt;/strong&gt; senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. &lt;em&gt;Aenean ultricies mi vitae est.&lt;/em&gt; Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. &lt;/p&gt;
 &lt;p&gt;Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.  &lt;a href=&quot;#&quot;&gt;Donec non enim&lt;/a&gt; in turpis pulvinar facilisis.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
@@ -809,7 +809,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
   &lt;span class=&quot;token property&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 300px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;token property&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 80px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Perfecting the Art of Perfection]]></title><description><![CDATA[Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum.]]></description><link>http://sangbeo.github.io/posts/perfecting-the-art-of-perfection/</link><guid isPermaLink="false">http://sangbeo.github.io/posts/perfecting-the-art-of-perfection/</guid><pubDate>Thu, 01 Sep 2016 23:46:37 GMT</pubDate><content:encoded>&lt;p&gt;Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum.&lt;/p&gt;
+&lt;p&gt;Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Perfecting the Art of Perfection]]></title><description><![CDATA[Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum.]]></description><link>https://eunyoung-autocrypt.github.io/posts/perfecting-the-art-of-perfection/</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/posts/perfecting-the-art-of-perfection/</guid><pubDate>Thu, 01 Sep 2016 23:46:37 GMT</pubDate><content:encoded>&lt;p&gt;Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -846,7 +846,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
   &lt;/a&gt;
     &lt;/p&gt;
 &lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. &lt;/p&gt;
-&lt;p&gt;Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[A Brief History of Typography]]></title><description><![CDATA[Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.]]></description><link>http://sangbeo.github.io/posts/a-brief-history-of-typography/</link><guid isPermaLink="false">http://sangbeo.github.io/posts/a-brief-history-of-typography/</guid><pubDate>Tue, 02 Feb 2016 22:40:32 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Pellentesque habitant morbi tristique&lt;/strong&gt; senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. &lt;em&gt;Aenean ultricies mi vitae est.&lt;/em&gt; Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. &lt;/p&gt;
+&lt;p&gt;Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[A Brief History of Typography]]></title><description><![CDATA[Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.]]></description><link>https://eunyoung-autocrypt.github.io/posts/a-brief-history-of-typography/</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/posts/a-brief-history-of-typography/</guid><pubDate>Tue, 02 Feb 2016 22:40:32 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Pellentesque habitant morbi tristique&lt;/strong&gt; senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. &lt;em&gt;Aenean ultricies mi vitae est.&lt;/em&gt; Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. &lt;/p&gt;
 &lt;p&gt;Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.  &lt;a href=&quot;#&quot;&gt;Donec non enim&lt;/a&gt; in turpis pulvinar facilisis.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
