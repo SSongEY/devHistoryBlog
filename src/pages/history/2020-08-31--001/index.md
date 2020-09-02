@@ -1,0 +1,33 @@
+---
+title: "[Tool] IntelliJ IDEA 단축키"
+date: "2020-08-31"
+layout: post
+draft: false
+path: "/history/posts/2020-08-31-001"
+category: "history"
+tags:
+  - "idea"
+  - "intelliJ"
+description: ""
+---
+
+## Alt + Enter
+코드에서 오류가 발견된 경우 해당 오류 위에 커서를 놓고 Alt+Enter를 누르면 문제에 대한 수정 제안 목록이 표시된다.
+
+## Alt+1 / ESC
+프로젝트 창이 열리고 포커스 위치, ESC를 누르면 에디터에 다시 포커스가 간다.
+
+## Ctrl + E
+최근 실행했던 파일 확인
+
+## Ctrl+Tab
+switcher 가 열림
+
+
+##### 참고  
+* [가장 많이 사용되는 IntelliJ IDEA 단축키 15개](https://blog.jetbrains.com/ko/2020/03/11/top-15-intellij-idea-shortcuts_ko/)
+* [intellij 유용한 단축키 정리](https://gmlwjd9405.github.io/2019/05/21/intellij-shortkey.html)
+  
+
+
+

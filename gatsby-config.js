@@ -19,6 +19,14 @@ module.exports = {
         path: '/algo/',
       },
       {
+        label: 'Errors',
+        path: '/errors/',
+      },
+      {
+        label: 'History',
+        path: '/history/',
+      },
+      {
         label: 'Gatsby',
         path: '/gatsby/',
       },
