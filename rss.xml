@@ -1,350 +1,381 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Sat, 07 Sep 2019 15:03:32 GMT</lastBuildDate><item><title><![CDATA[[프로그래머스] 가운데 글자 가져오기]]></title><description><![CDATA[[프로그래머스] 가운데 글자 가져오기 (12903)]]></description><link>http://sangbeo.github.io/algo/posts/p12903</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p12903</guid><pubDate>Sat, 07 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
-&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12903&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/12903&lt;/a&gt;&lt;/pre&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 02 Sep 2020 17:09:46 GMT</lastBuildDate><item><title><![CDATA[[StringBoot] Profile에 따른 application.yml 설정하기]]></title><link>http://sangbeo.github.io/errors/posts/2020-09-02--02</link><guid isPermaLink="false">http://sangbeo.github.io/errors/posts/2020-09-02--02</guid><pubDate>Wed, 02 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;1. yml 설정&lt;/h3&gt;
+&lt;p&gt;수정 전&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;spring:
+  active: cron_alert,swagger
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  resources:
+    static-locations: &amp;quot;classpath:/static/,classpath:/public/&amp;quot;
+    add-mappings: true
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:3306/autocrypt_v2g?autoReconnect=true
+    username: root
+    password: flatron123!
+    hikari:
+      idle-timeout: 10000
+      max-lifetime: 420000
+      connection-timeout: 10000
+      validation-timeout: 10000
+    dbcp2:
+      test-while-idle: true
+      validation-query: &amp;quot;SELECT 1&amp;quot;
+  jpa:
+    open-in-view: false
+    generate-ddl: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;2. 수정 후&lt;/h3&gt;
 &lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/0f2bc/1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
   &lt;span
     class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 740px; margin-left: auto; margin-right: auto;&quot;
+    style=&quot;position: relative; display: block;  max-width: 742px; margin-left: auto; margin-right: auto;&quot;
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 77.16216216216216%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABJ0AAASdAHeZh94AAABn0lEQVQ4y62TW0/CQBCF93dgTATaUsVQS29ILQUKlBaLykXxFi9PxvD/X4+zG9ogCtbow5fZzmxO58y0zItm0M5ClHUPUr2FYs3FfrVBOOKsWh0ohg+ZanuHFgoVEwV1OyyYPGN094bx4zuunpYIJi+QnRCV0wiKM4RkDyDboYDn1NOYYiziJrzOwvkrps9L6J1LlIwAktVH2exB4tA5I82J/EZcIdPLmT9+RCO+hdmfE9dwogXs4Q3MwRwn3SvUgykMqlnhjbjDnzni3JuJaPBI9yuNIZh3fg+TLjcpuskDmqN76MEEh81YcOSOMkTOjbOaKkYQZc8KjYp5CQkOrikRiZY5n6yukdZ3wczeFAq1ytvWyYrenQgbznAhrPFok4P0hbyLXTCf24wX0PwximIpAzGL7y7nEvRGtzDaF5BpSwZtWmslwl4qsE4eUWaSiKR1UDxuwfIvUaMh888mb0dfBI02deUmUI0+SrU2Dqpe7m6+75CWoNJfUD7p0G9G1miOfxK0+jOUuMXGama/WMAWwWk2M8UOf7WAnwX/gQ8hGPOlUrW9/wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 95.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAIAAAAf7rriAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABoklEQVQ4y5VT7Y6cMAzkcZY4DontfMARloXbvV9t//f9H6QGuu211UplNCJBka3xZNK8B7h3poAZraPWtHACzUT0dRo/huHLfBtFzhWzcK1jP5RU+lx6tNaY1uz4uQCYV8UBoTIMjOJt9EAUvAhJpJgyS9HeiAzWobbdifi72ALEYJNwyjmmRMTEouQYH5JmlonkTlJEgnZkDsToHGyCoEELVawyZ1U+6LG1Fna9aMDt7F7JRsR5nmut13kex3GrfMJ84gvDmG+3+agPIcApt9F1Fp2OoU7s1p4pzs5Ea7q2VapicwbN9yl8K2EheqQieg16G/+Npk/5sazrdF2v81Qn7737C1138DOOk4Y91tQVdp2zwePm9sZNgk61/batuVxM+wcOd7aQlABZqETpk0YjSu6jsn9bc7+kMhFX4qunyBI0P8QhEO4520KSPRTCGLOm0vugenb7u+S6jJicy9vG+UO/2zQfcWh0uY2l9nEc3+p01a7w9Lz95/sLz4fh/fp+vy3rsiylZJ3nxD37EPQ95KxPSOAkmtQZj3B5GngKPwCZos/D26AFAwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;12903&quot;
+        alt=&quot;1&quot;
         title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/12903-0e31cc2c8378985c29c1ce585bb0a3bb-48b8c.png&quot;
-        srcset=&quot;/devHistoryBlog/static/12903-0e31cc2c8378985c29c1ce585bb0a3bb-c1af1.png 240w,
-/devHistoryBlog/static/12903-0e31cc2c8378985c29c1ce585bb0a3bb-73770.png 480w,
-/devHistoryBlog/static/12903-0e31cc2c8378985c29c1ce585bb0a3bb-48b8c.png 740w&quot;
-        sizes=&quot;(max-width: 740px) 100vw, 740px&quot;
+        src=&quot;/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/0f2bc/1.png&quot;
+        srcset=&quot;/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/8ff5a/1.png 240w,
+/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/e85cb/1.png 480w,
+/devHistoryBlog/static/e5cb7b1169c920b536c92abd4872aea4/0f2bc/1.png 742w&quot;
+        sizes=&quot;(max-width: 742px) 100vw, 742px&quot;
       /&gt;
     &lt;/span&gt;
   &lt;/span&gt;
-  &lt;br&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Arrays&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;String s&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; sLen &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;profiles 구분자 ---&lt;br&gt;
+--- 를 이용하면 profiles 을 구분할 수 있다.
+맨 위에 작성된 내용이 default 가 된다.&lt;/li&gt;
+&lt;li&gt;profile 활성화
 
-		&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sLen &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; divideIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; sLen&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-			&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; String&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;valueOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;copyOfRange&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toCharArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; divideIdx&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; divideIdx&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
-			&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; String&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;valueOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sLen&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;
-&lt;p&gt;다른 풀이법&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;word&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;substring&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;word&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; word&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 최대공약수와 최소공배수]]></title><description><![CDATA[[프로그래머스] 최대공약수와 최소공배수 (12940)]]></description><link>http://sangbeo.github.io/algo/posts/p12940</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p12940</guid><pubDate>Sat, 07 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
-&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12940&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/12940&lt;/a&gt;&lt;/pre&gt;
-&lt;p&gt;
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 923px; margin-left: auto; margin-right: auto;&quot;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/53ac9/2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
   &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 82.44853737811484%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAAB3ElEQVQ4y6VT227aQBDdf6haVVUbEAkYDAFfsE1scAh4uSfcUxQ1UZ/60P9/P5kZ1wqREpeqD0dz9nZmZvesut09oFR38eWigc8lE9+MJoo1C93hFEGcINZzWrfx4es5PhXK+HiWD+UnG4TjPQK9QTTZo9YZoWjFMPwEFS+BEWiUnD4KrR6KrTgXvEfNDr+wevyNgETD6QH1aI7zdkLQEktuggtPo+yPKOaA1ivBBCoY3yOcP6DVX8HsLmAPt3D1Hg7F9ugeHsFNtrBu1mjTPMNJdoStcJe4K+MdjA4J2oMNrkgwXv1Eb/kk3KMkvNkbfxfOyfiQT2NOxJyTCdcp5/0mdaec4QbOYI3L+E5QvZr+aTmFtEstpS3ro/b1q3EG5VEGn1DvzgkLNK+XaPaXEi8JnKAs9zP+K0SwRYetG76/F8FG7xZ1QoMq5ns5VZChuDrn+g41GlQJWZvH7WTZTxI0mVgD+P01PAILvtXKyRUaVEXB7KJsD1D10sv+V5FXgm165WC0g0VtZ2L/JRixB8l/bJ9K5/SD7yVUbEh/chCT8ksfP8h7yHsoFZBYtPgh7ufvlfnQpoqZp3Mr+Wr8q9hiuRXyd6mQ19jAzKvhVHgtmkkUHs5kjSMjT/AZw7sUluELxckAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;12940&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/12940-ead081e81129cbc9c37712b6238dbf1e-cde55.png&quot;
-        srcset=&quot;/devHistoryBlog/static/12940-ead081e81129cbc9c37712b6238dbf1e-80b37.png 240w,
-/devHistoryBlog/static/12940-ead081e81129cbc9c37712b6238dbf1e-e884f.png 480w,
-/devHistoryBlog/static/12940-ead081e81129cbc9c37712b6238dbf1e-cde55.png 923w&quot;
-        sizes=&quot;(max-width: 923px) 100vw, 923px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  &lt;br&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; n&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; m&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-
-		&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; x &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; n&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; y &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; m&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;y &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; temp &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; y&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-			y &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; x&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;y&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-			x &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; temp&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-		&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;x&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;m&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;x&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 예산]]></title><description><![CDATA[[프로그래머스] 예산 (12982)]]></description><link>http://sangbeo.github.io/algo/posts/p12982</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p12982</guid><pubDate>Sat, 07 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
-&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12982&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/12982&lt;/a&gt;&lt;/pre&gt;
-&lt;p&gt;
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 640px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 123.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAZCAYAAAAxFw7TAAAACXBIWXMAABJ0AAASdAHeZh94AAADbElEQVQ4y51VaVMaQRDdn5HKhYqgkUMWRPbgXBCQGwQ1IknUpPL/f8FLv55dXCmqksqHV9PdO93T3TP91lqtfyBfqeEoW8LBWQGHmSKSuQuc2g5yZQ/vDk7wIfkF749iSO6B2D8en8Fyuwski018zleRyNeQODc4LNRxZDfwKevhU84P4YWI6+Eq+xISwwrm3+Fd3+O43EWq0kPqsvsGadrUbtZIT7+R+7qeONew6uM1mrMNzvwhcvUJzpszRb4xRVb0XMOg0JqLbaJ78s2pfo/kTG2EbG2suuUOvsKfbFAdP8IdPsCX1bkW2+gR3nANd/AA7vFGa5S7t3BE9+RbRapyxF6bfjOy+JSulrAqvTtU+ne6mSd88QaabVZOpZ6pjgwkA67Z+tggzEhtMdliMJ7O09whs1hpFpX+vclQwIwuZR8rKLYXWi5x3pqZlrB0tkgCWxeSZlmzvJf1VtOnzAOos4yLqxVKnSWKnRvYwSLs5wyFYC52sbVvtO8a8FIyoiM32XK6wY0G4qYTp/96o+Gtx22UT93r7Wq57J84x59I3Fmd3L467DqfekY+Ll/pfsrWmT/QEoObF9Rn3xEsX9C5/YWW6O3VT1mf0RJbsHxGc/GkreCN1ibfBBt9BawurQf2GHCot8P+FKTJ7BFLzUmTKUc6+8Xv8XI1ewGzNRlKQJZrt6ZIXnSQsFs4LLVxWAy0DNp2sTtJcWhAVy4lL2WnSh04Ejzvj2DLU2DAeCZ/w7aHeSk5bbdxKgHLdRmjcg/n7kCzSe+Z7X14EzAjzhlngGM7QCJTM8jWkSp3/y9Dp7dCpbtEQYY8xetXdP8pszjYIu2hL+PUFAqzg9nr+9qD6B3G9+zuNxnKqPH9Re+Lo8fZ9uSgiujV8UaYZ612zjK/kZE43/QhK1H3ZR95wLqUsePgR/PLoCQHOpt1rUENSaz1e04ujxmRmYgoQ75pKyuPmrNMXuN0NOY/VO7c/Rb9CYFMC6enPn9Ca/GsjzwatX23bWUkKgmBVFWdhOVJtg0J4Gt5m22GXHPChdEb3ftsiiG7cPRIRaQqpTEJSpmjR+oqdYTCrgyUjTrLcCQXUm7/NaD+AqSpdDSMPFFe2zK1YrxlbfOfmW6Zmr17k6EtQ0/GLcqphgDm259V9COKZCVX7qEPGVvsu6X/AZawWTJTDa0EAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;12982&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/12982-6b252a7b395fac2dbe3b891eb5f56102-352db.png&quot;
-        srcset=&quot;/devHistoryBlog/static/12982-6b252a7b395fac2dbe3b891eb5f56102-6a23e.png 240w,
-/devHistoryBlog/static/12982-6b252a7b395fac2dbe3b891eb5f56102-4928e.png 480w,
-/devHistoryBlog/static/12982-6b252a7b395fac2dbe3b891eb5f56102-352db.png 640w&quot;
-        sizes=&quot;(max-width: 640px) 100vw, 640px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  &lt;br&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Arrays&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; d&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; budget&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; answer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;d&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; len&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;d&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;len&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;budget &lt;span class=&quot;token operator&quot;&gt;-=&lt;/span&gt; d&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-      answer&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; answer&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 제일 작은 수 제거하기]]></title><description><![CDATA[[프로그래머스] 제일 작은 수 제거하기 (12935)]]></description><link>http://sangbeo.github.io/algo/posts/p12935</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p12935</guid><pubDate>Sat, 07 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
-&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12935&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/12935&lt;/a&gt;&lt;/pre&gt;
-&lt;p&gt;
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 870px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 78.39080459770115%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAACAElEQVQ4y5WSW2/aQBCF/ZxKVZWqahslDTgYisEYML7G5hKMjbkkBAKkISGp1Lf2/7+ezqxohdpi6MOnGczO2TOzI00Wj1ANF8enObw7z+PNSRYfZFX81i0fTitE1QkEr9+f4ej4I169PcHRDqSK34fmRcjVWyg5IcUmzjUPn8ouFKOFgtlBvtGmvI2zkoNT1U5F8scrTNbfES++4YZiMHqEYsUoOAkUOxa5gPKCm6RDNVKTBGcvP1B0+7hokEOzJ+JfGF3IBMd//cdwrVTrTuFfP8GMFrD692j07mAQjd5cRJu+Wf0lvOEK7vABdnIPM16IczZ9t+Il3MEDHKIUjCBVr6ZoTp4Fwc0al+MnytciD67XaE+/wiERJ/kixDmyiE/nOJoECzN6ZwKp6A1hhDM0ojlqJM4XsDMjvENdMBM3czuKFe1FskjIS5ZQqCBTu0K2TlDM1Doilzczy9HhvHikPYKf6THYLs/H3MzDG62o7RfhtHg5RMkfQaWobETTkPj2cjAW7XKb3Hq1cysehQcvcnowvT05TNAhd93pMzlIkOEWt1ZHzI3IbfjVcqqgRq1otJTZSgseudO8we/iP1G25rhTULX7qLgDXOgdeOEcZdr2NDd7HRbMCBqJyFoLRcplvX2Qk52CeS7imdH88iSYozXZXo//FtwuVA5sK42f9oYTvXVwyIsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;12935&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/12935-63a47fdac3c91fd7081777c17e5a13b9-5a1e3.png&quot;
-        srcset=&quot;/devHistoryBlog/static/12935-63a47fdac3c91fd7081777c17e5a13b9-076eb.png 240w,
-/devHistoryBlog/static/12935-63a47fdac3c91fd7081777c17e5a13b9-db786.png 480w,
-/devHistoryBlog/static/12935-63a47fdac3c91fd7081777c17e5a13b9-5a1e3.png 870w&quot;
-        sizes=&quot;(max-width: 870px) 100vw, 870px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  &lt;br&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Arrays&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; min &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getAsInt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;i&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;i&lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt;min&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 문자열 내림차순으로 배치하기]]></title><description><![CDATA[[프로그래머스] 문자열 내림차순으로 배치하기 (12917)]]></description><link>http://sangbeo.github.io/algo/posts/p12917</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p12917</guid><pubDate>Sat, 07 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
-&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12917&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/12917&lt;/a&gt;&lt;/pre&gt;
-&lt;p&gt;
+  
   &lt;span
     class=&quot;gatsby-resp-image-wrapper&quot;
     style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 58.21643286573146%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABk0lEQVQoz52RWU/CQBSF+66JSzTRQELsAkXLIhYKbenCWkBWUTAC4oP//ycc70wBMcE+8PDlLu09c+aOcCOmcRGXcXZ7h/OYhEvKU7kSLD+AbtdQtH1kiiZOrmI4ZVzHef4fghlMYXVeYTTG8J7n0Mw2xEcXqtFEqtQg6lB0H4msjUQugmyI0Jl9w+kvYPXe4Q6WyHsjSHoTcrFFNCERcqmFpNGGQiQ3sFwp/cL75QCCN1jwIS6yGVQrHaQqAY9pq8sjz82/+b3VC7F7vKfQvFDpfcAZfcImd95kTfka1eEKdn8Ji5x7k6+wHqzgUHSpLnfnyPtjFOoveGpOORlnEAoWamOkyptrUEPhLlvUI5d0BdZncZszJyyydch6g24WwmrWF4zWG7LuEFq1jxztj53M6v0DDpHc2+dur8zhIznUnD5U2gkTZdY1YvvDocGob4JOglKhhgwtV9mzvx2IEj0oKGV9iBkX1fYMGj2/SOLs+aOuFimYd0dQSUg1AjyY5HKz3GPEQofFxs6NvCemHCHG+AFZW4o/YnTu2wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 2.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAABJ0AAASdAHeZh94AAAAR0lEQVQI1x3LUQrAMAgD0J1ng0Gps1pdHfT+Z8psv0IeyVHpBrcCfwXaH4hSJkG4IM4Lmn3ZnAPx2d6uj2jdbt4wooPSzBk/GY4g5c2iJ0IAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;12917&quot;
+        alt=&quot;2&quot;
         title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/12917-6e2b19020d8ba5b6c387f2add437384d-c83f1.png&quot;
-        srcset=&quot;/devHistoryBlog/static/12917-6e2b19020d8ba5b6c387f2add437384d-569e3.png 240w,
-/devHistoryBlog/static/12917-6e2b19020d8ba5b6c387f2add437384d-93400.png 480w,
-/devHistoryBlog/static/12917-6e2b19020d8ba5b6c387f2add437384d-c83f1.png 960w,
-/devHistoryBlog/static/12917-6e2b19020d8ba5b6c387f2add437384d-1bed3.png 998w&quot;
+        src=&quot;/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/d9199/2.png&quot;
+        srcset=&quot;/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/8ff5a/2.png 240w,
+/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/e85cb/2.png 480w,
+/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/d9199/2.png 960w,
+/devHistoryBlog/static/7748e61489faef5b94ea36fb8857aeb0/53ac9/2.png 1287w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
   &lt;/span&gt;
-  &lt;br&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Comparator&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;String s&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;chars&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;mapToObj&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;item &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;item&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Comparator&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;reverseOrder&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;StringBuilder&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-                    StringBuilder&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;appendCodePoint&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-                    StringBuilder&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;append&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;a&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;chars&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;mapToObj&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;item &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;item&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Comparator&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;reverseOrder&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;String&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;valueOf&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Collectors&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;joining&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 문자열 내 마음대로 정렬하기]]></title><description><![CDATA[[프로그래머스] 문자열 내 마음대로 정렬하기 (12915)]]></description><link>http://sangbeo.github.io/algo/posts/p12915</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p12915</guid><pubDate>Sat, 07 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
-&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/12915&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/12915&lt;/a&gt;&lt;/pre&gt;
-&lt;p&gt;
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 894px; margin-left: auto; margin-right: auto;&quot;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/9e3ea/3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
   &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 86.24161073825502%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABJ0AAASdAHeZh94AAACZUlEQVQ4y41Ua3PSUBDNP3B0dHR0tEIhQEsgJBDCK0AIjwBteVapz+o3///3456bpCBFxw9n7t29N+funt2NFsyWeJsr48X7PJ6/0/EyVcBZ3oTTCVD3hmgHIXJlB09eneHZmzSevk79E5o9WKAx3qIZ3sKb71ATO231odcC6M4QOUHG9pGq9P4DXWjj7U8svvyCM9yiEX6E5S9xXh3GCJAWcJ+pHWP0p+2MoNfH0GqjW7jTHcr9pWABa7CGLeTWYAWeEbRrY66bvS/YoBr765MPsII1Cs0QGjfV0VYRkaTir2AKOVHuLWJ/BNOPzuk3JRP1gBCS+KI1iyJkiraARoKcO0G+Eap92h4oPE55D0qTlZQJjR+54Q7e4ptKvXX1GZ2br+it7tVaF11NkYIfJh8lOAwigZaNCbvL74qAhAQfoO2IPkyz0JyqtA7BTA6JVYS8mOhWGcQrbT9ai50rGN2bB11Nf3+HshxHqtWlIO5oI73nC0Qr0SPH1yRF+mhna1GKx9olZIekWklCb0sbZEwhNLoKtncDSyLjPiXI2MFJvY7JFKEuly+cCYruFJeOVNXwkLMClJtzGI0pCmzqmPBUIR4RGu05qqJd2btWqeqSCteC6FNwQ+RFeP0vFT1Z5dbsDoP1PUrda5wLmXq1/rg9jqt5ylZV5hg1Z59Qku7nBFTiCSGKXlThUlxlNSH9pRpFjh7t5JwdwlbSSOavf6iLl5I+Dw2J1hAJeIE+7tk+pV50din7ovhKMVlyh30ps7xRE6IQRpPCPSfEkTllYzdEFq70udM79XOI+vP6gZDZ6O4YvwFa/j10Y5+l6QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;12915&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/12915-da6e44354dda9ece7a15f2e6ba0c7cdd-1687b.png&quot;
-        srcset=&quot;/devHistoryBlog/static/12915-da6e44354dda9ece7a15f2e6ba0c7cdd-479db.png 240w,
-/devHistoryBlog/static/12915-da6e44354dda9ece7a15f2e6ba0c7cdd-08d10.png 480w,
-/devHistoryBlog/static/12915-da6e44354dda9ece7a15f2e6ba0c7cdd-1687b.png 894w&quot;
-        sizes=&quot;(max-width: 894px) 100vw, 894px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  &lt;br&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Arrays&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; String&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;String&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; strings&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; n&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;asList&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;strings&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;b&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;token keyword&quot;&gt;char&lt;/span&gt; an &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; a&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-                    &lt;span class=&quot;token keyword&quot;&gt;char&lt;/span&gt; bn &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; b&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-                    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;an &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; bn&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; a&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;compareTo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;b&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-                    &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; an&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;bn&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;String&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] K번째 수]]></title><description><![CDATA[[프로그래머스] K번째 수 (42748)]]></description><link>http://sangbeo.github.io/algo/posts/p42748</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/p42748</guid><pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;# 문제&lt;/h2&gt;&lt;/pre&gt;
-&lt;pre align=&quot;right&quot;&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/42748&quot;&gt;https://programmers.co.kr/learn/courses/30/lessons/42748&lt;/a&gt;&lt;/pre&gt;
-&lt;p&gt;
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 944px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 78.8135593220339%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAACDUlEQVQ4y5VT2XLaQBDcn0hSlUqRxBySbCRAB0gWwkLcElfAxsYmTuyH/P8fdGZWiMIYVSUPXdsa1fbO9MyI8XKDom6joNbwuVSFZrowmm18KJTx6ZuSi485ENHyGY1wga/1EBdWhKLdk7gwowO+H3EJKx8i2f7Bzfwnys0RLv0E2nUMlaAdIYtnUNwxKq3RWQgv3sLs36Le/XFArbuEcbOARXGzt0I9ohhVUQuX8j+LlpvDvchwj5QLZ3iH1uQB18kT3PgR7mSL5vgezmgjud6ZUyk9lJyBRNHuy5MFz0GY0QqtMQlOdwhXv9FZ/JKcxa/aU6jeREJasefZd4qj/8SFSyXzZZ985Eybo3t4yaPMkr89ytwe3MHYl5ziiHfTs9Fby1O06TL7VCGj+aXMcOZZMzh2rszjWMaFTWKNKAVnwSdnVA1mby7kdfVdlw0y3aEyw9UL/NlOIly9wicfZbb/ISYFXfLK6q+h05hcUhM0P8ZVMCWevMnuX7MUHfawM8MXzUe9PUNAjSg1uihUA1j0iE4+cumnF/MeEDqZXrH6qJh9qPYABgmoJKAQ15whFIcNfz9vmeipsAimT/CTLW3G/GS+4sPsZV3PoBByM/TiB1q9tZy9YPEsm+FP061pz3c0l5t0k/YxmzaLxylX0Bne0rgs5agweK+5SXzyCPEeM+dHTRpejnH385r1FwIXGerRGui9AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;42748&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/42748-bebfbdabcb65c436937f1b7bc72b1d9b-cbecf.png&quot;
-        srcset=&quot;/devHistoryBlog/static/42748-bebfbdabcb65c436937f1b7bc72b1d9b-4293f.png 240w,
-/devHistoryBlog/static/42748-bebfbdabcb65c436937f1b7bc72b1d9b-ac52a.png 480w,
-/devHistoryBlog/static/42748-bebfbdabcb65c436937f1b7bc72b1d9b-cbecf.png 944w&quot;
-        sizes=&quot;(max-width: 944px) 100vw, 944px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  &lt;br&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ArrayList&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Arrays&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;util&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;List&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; commands&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    List&lt;span class=&quot;token generics function&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;Integer&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt; list &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; len&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;commands&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;len&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; cmd &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; commands&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-      &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; sIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cmd&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; eIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cmd&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; fIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cmd&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; n &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;array&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;boxed&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sIdx&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;eIdx&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;sIdx&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;fIdx&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;mapToInt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;item &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; item&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getAsInt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-      list&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; list&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;mapToInt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;item&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;item&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#Commands&lt;/h2&gt;&lt;/pre&gt;
-&lt;p&gt;부분배열 구하는 방법&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; tmp &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
-Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;array&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;boxed&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;start&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;finish&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;start&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;mapToInt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;i&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
- OR
-Arrays&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;copyOfRange&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;array&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; start&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; finish&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[백준] 3085번 사탕게임]]></title><description><![CDATA[[백준] 3085번 사탕게임]]></description><link>http://sangbeo.github.io/algo/posts/3085</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/3085</guid><pubDate>Wed, 21 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;목차&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#Q&quot;&gt;문제&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#A&quot;&gt;풀이&lt;/a&gt;&lt;/li&gt;
-  &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#A_송은영&quot;&gt;송은영&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/ul&gt;
-&lt;br/&gt;
-&lt;pre&gt;&lt;h2 id=&quot;Q&quot;&gt;#문제&lt;/h2&gt;&lt;/pre&gt;
-&lt;p&gt;
+  
   &lt;span
     class=&quot;gatsby-resp-image-wrapper&quot;
     style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 83.28792007266121%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABJ0AAASdAHeZh94AAABeklEQVQ4y6VUi26EIBDk//+zSVMfgIAI6m13trfW846mTUkmsgjDzO6qSSlRP4y0LAvpuN1uzXnrHc6Dy8zzTABGzpm89zIvpRyX7Psue5TgfGZdV3LOHZeZWqssKglIMbAOKCHeKSHmembbtuMyIfQx0f6t/N/DxBhpHEey1pJjTNPEth0NwyCWoUShqs/AOhQDiE0MgbquE8K+74UIFyg0Rp40nvwklyk0p5iLQs+qEj+hDjGAisVjLVAMUQqmOW5adrxx46T/dWgRrjCBLcMqlMAS4jAFUQIL2j7X+X4X8UQI78iPd56fXmxJfLenCb/iTPhgeeQEl7pKP8E6qob5/os0vLSc0leFSllEEYAYRal1familT8hHKyjt4+BfMpP/XZWGfji995SyJV++g5MmjNvZmUFZNsDoLDc1+e8cHslSjNyWJswdrTcrJbKUtkmmvQZOX99BVrhnNswA/+6un4UJTjYwjWPTcvoP8t5RHFiTE20+u6KT36jNP9Bh/egAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 24.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAyklEQVQY012Na27DIBCEuUqbxsaAeRlswOYRY+X+R+qk+RNV+rTSzs7Mkon98Hmc5cj5QOkNjPT7Hy+PGMTLRt9ghU7sIhen/KrtMtPpNoxfn8CBCZ3xO36IPxDGCp1swTqv0u691xO74ybVhLPSTEqKMOODNtwYYQzHA2sFgEcqSo68lRqvZ0MLMjG5I4fa9seZQUx+DbbW2Es6Szxr6jWVvK2bRRHZjzWX2K+K59oIJNF19lJb6ldDSy6hPQ4omDjVmlLyIToX3C9CSDmvmd2WZAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;3&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/d9199/3.png&quot;
+        srcset=&quot;/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/8ff5a/3.png 240w,
+/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/e85cb/3.png 480w,
+/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/d9199/3.png 960w,
+/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/07a9c/3.png 1440w,
+/devHistoryBlog/static/2820cb800de168c8d21f0b356bb0efad/9e3ea/3.png 1503w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[ShellScript] Jenkins 빌드 후 실행 스크립트 작성]]></title><link>http://sangbeo.github.io/history/posts/2020-09-02--001</link><guid isPermaLink="false">http://sangbeo.github.io/history/posts/2020-09-02--001</guid><pubDate>Wed, 02 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;jenkins에서 github hook trigger 발생 후에
+빌드 단계에서 실행 되는 스크립트를 작성하였다.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/f538019b6bb183f55b927b2e3f38fd88/36bb5/1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 611px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 126.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAZCAYAAAAxFw7TAAAACXBIWXMAABYlAAAWJQFJUiTwAAACJElEQVQ4y51Vi5KiMBD0/z/Q2ivxSr3iHQjhjQpz05NNylt3Bc+qZgLBTs+kJ+z6vqcoiihJEiqKgtI0pTiO/f35fKbL5UJlWVIYhjKnlPonAvgf3tlN00RN0whMZfy4bVvCYsAwDD6uYYeLMYZXSPyqeZ5TluWktZaV0yyTRa7XK40sYHoBTwgCkCHNnCOI7H0pL47juAlC2NSa1SWUMUnEKk1dyyTmEEXZVsKuH+gQd5xmQSWrU6oQlVCNIldVRSWnPq2k6lPumTBStRA5AkeIMYBabtkQvyl9WwtZXdvCA1jNjd9KGS9rbVVgE36yx2bC++1GQRDQkbHf72ngh7cHZU7tZkJcYGL4rOs6Ttswag/UEKod6bTFh1qX3H623eI48hF1xQZhoa0qhRCq8s8OAZTYJ5fazfP8tCmv1AphVWnulMwScoQyjGEdKUXbPdXzZcogtP2bScvlyo5t6lwK7vOmaall8keFP6aMGqL1QAR1Au2itpF7GtZaTRkTKHpl7O66tL4a26e8xdgwNOAOhFdY3eUbG/v38UgBw6naehB8mzII3MnszAyjowz/A/kEaC766XSiXx8fFBwObB0ldgE5rPMOhFCOqLL87I6CsrCmPxFbSGXynXEGv9/vq7AK2Q5Q4+IwjIRz0hIt9M7PEz5+7Yi+I1m+gK/LIsrnZbaR8USIOsDkYcwp84crYWAcJ5mMowTPFT9L5ZQ3pvInO/AXvE+I5ITBlVsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;1&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/f538019b6bb183f55b927b2e3f38fd88/36bb5/1.png&quot;
+        srcset=&quot;/devHistoryBlog/static/f538019b6bb183f55b927b2e3f38fd88/8ff5a/1.png 240w,
+/devHistoryBlog/static/f538019b6bb183f55b927b2e3f38fd88/e85cb/1.png 480w,
+/devHistoryBlog/static/f538019b6bb183f55b927b2e3f38fd88/36bb5/1.png 611w&quot;
+        sizes=&quot;(max-width: 611px) 100vw, 611px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+     &lt;/p&gt;
+&lt;p&gt;한 서버에 dev/ prod 두개의 서비스가 다 올라가야해서 스크립트 실행 시 parameter를 받는 방식으로 진행하였다.&lt;/p&gt;
+&lt;p&gt;if문 작성이 왜이리 오래 걸렸는지…
+관련 내용을 기록 좀 해두고 써먹어야겠다. &lt;/p&gt;
+&lt;h3&gt;작성내용&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;#!/bin/bash
+
+cd frontend
+npm install
+npm run build
+cd ..
+
+gradle build
+gradle bootjar
+if [ &amp;quot;$1&amp;quot; == &amp;quot;dev&amp;quot; ]; then
+        PORT=15000
+elif [ &amp;quot;$1&amp;quot; == &amp;quot;prod&amp;quot; ]; then
+        PORT=15118
+else
+        echo bad parameter
+        exit 1
+fi
+
+PID=`ps -ef | grep V2G | grep ${PORT} | grep -v grep | awk &amp;#39;{print $2}&amp;#39;`
+PID_LENGTH=${#PID}
+if [ ${PID_LENGTH} -gt 0 ]
+then
+        kill $PID
+fi
+
+BUILD_ID=dontKillMe nohup java -jar -Duser.timezone=Asia/Seoul ./build/libs/AutoCrypt-V2G-0.0.1-SNAPSHOT.jar --server.port=${PORT} --spring.profiles.active=$1,swagger &amp;gt;&amp;gt; ./logs/server.log &amp;amp;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;참고 내용&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;문자열 길이 구하기&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;${#PID}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;변수의 값을 참조할때는 ${변수이름} 처럼 중괄호로 감싸주는 습관을 들이면 좋다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;if 문 사용법&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;FILENAME=&amp;quot;/home/test/temp&amp;quot;
+VALUE=10
+if [ ${VALUE} -eq 10 ] ; then
+echo &amp;quot;VALUE is 10!&amp;quot;
+fi
+# 아래 -a (&amp;amp;&amp;amp;) 조건문은 아래와 같이 변경 가능합니다.
+# if [ ${VALUE} -gt 5 ] &amp;amp;&amp;amp; [ ${VALUE} -lt 15 ] ; then
+if [ ${VALUE} -gt 5 -a ${VALUE} -lt 15 ] ; then
+echo &amp;quot;VALUE is greater than 5 and less than 15!&amp;quot;
+fi
+if [ -e ${FILENAME} ] ; then
+echo &amp;quot;${FILENAME} exists&amp;quot;
+fi&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;조건문 종류&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;비교식
+[ -z ${A} ] : A 문자열의 길이가 0이면 TRUE
+[ -n ${A} ] : A 문자열의 길이가 0이 아니면 TRUE
+[ ${A} -eq ${B} ] : A와 B값이 같으면 TRUE
+[ ${A} -ne ${B} ] : A와 B값이 다르면 TRUE
+[ ${A} -gt ${B} ] : A가 B보다 크면 TRUE
+[ ${A} -ge ${B} ] : A가 B보다 크거나 같으면 TRUE
+[ ${A} -lt ${B} ] : A가 B보다 작으면 TRUE
+[ ${A} -le ${B} ] : A가 B보다 작거나 같으면 TRUE
+--
+[ 조건식A -a 조건식B ] : 조건식 A와 B가 모두 TRUE이면 TRUE (&amp;amp;&amp;amp; 와 동일)
+[ 조건식A -o 조건식B ] : 조건식 A가 TRUE거나 조건식B가 TRUE면 TRUE (|| 와 동일)
+--
+파일관련
+[ -d ${A} ] : A 파일이 디렉토리면 TRUE
+[ -e ${A} ] : A 파일이(노드, 디렉토리, 소켓 등등 모두) 존재하면 TRUE
+[ -L ${A} ] : A 파일이 심볼릭 링크면 TRUE
+[ -r ${A} ] : A 파일이 읽기 가능하면 TRUE
+[ -s ${A} ] : A 파일의 크기가 0 보다 크면 TRUE
+[ -w ${A} ] : A 파일이 쓰기 가능하면 TRUE
+[ -x ${A} ] : A 파일이 실행 가능하면 TRUE
+[ -c ${A} ] : A 파일이 Special character file 이면 TRUE
+[ -f ${A} ] : A 파일이 디렉토리가 아닌 일반 regular 파일이면 TRUE
+[ -S ${A} ] : A 파일이 소켓이면 TRUE
+[ ${A} -nt ${B} ] : A 파일 B 파일보다 최신파일이면 참
+[ ${A} -ot ${B} ]  : A 파일이 B 파일보다 이전파일이면 참
+[ ${A} -ef ${B} ] : A 파일과 B 파일이 같은 파일이면 참&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;비교식 옵션 설명&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;-eq : EQual
+-ne : NEgative
+-gt : Greater Than
+-ge : Greater than Equal
+-lt : Less Than
+-le : Less than Equal
+-d : Directory
+-e : Exist
+-L : symbolic Link
+-r : Readable
+-w : Writeable
+-x : eXecute
+-nt : Newer Than
+-ot : Older Than
+-ef : Equal File&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;참고 사이트&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://louky0714.tistory.com/entry/BASH-Shell-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B8%B8%EC%9D%B4-%EA%B5%AC%ED%95%98%EA%B8%B0&quot;&gt;문자열 길이 구하기&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Tool] IntelliJ 커스텀 파일 템플릿 추가하기]]></title><link>http://sangbeo.github.io/history/posts/2020-08-31--002</link><guid isPermaLink="false">http://sangbeo.github.io/history/posts/2020-08-31--002</guid><pubDate>Mon, 31 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h5&gt;참고&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://jojoldu.tistory.com/128?category=678716&quot;&gt;[IntelliJ] 커스텀 파일 템플릿 추가하기&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Tool] IntelliJ IDEA 단축키]]></title><link>http://sangbeo.github.io/history/posts/2020-08-31-001</link><guid isPermaLink="false">http://sangbeo.github.io/history/posts/2020-08-31-001</guid><pubDate>Mon, 31 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Alt + Enter&lt;/h2&gt;
+&lt;p&gt;코드에서 오류가 발견된 경우 해당 오류 위에 커서를 놓고 Alt+Enter를 누르면 문제에 대한 수정 제안 목록이 표시된다.&lt;/p&gt;
+&lt;h2&gt;Alt+1 / ESC&lt;/h2&gt;
+&lt;p&gt;프로젝트 창이 열리고 포커스 위치, ESC를 누르면 에디터에 다시 포커스가 간다.&lt;/p&gt;
+&lt;h2&gt;Ctrl + E&lt;/h2&gt;
+&lt;p&gt;최근 실행했던 파일 확인&lt;/p&gt;
+&lt;h2&gt;Ctrl+Tab&lt;/h2&gt;
+&lt;p&gt;switcher 가 열림&lt;/p&gt;
+&lt;h5&gt;참고&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.jetbrains.com/ko/2020/03/11/top-15-intellij-idea-shortcuts_ko/&quot;&gt;가장 많이 사용되는 IntelliJ IDEA 단축키 15개&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://gmlwjd9405.github.io/2019/05/21/intellij-shortkey.html&quot;&gt;intellij 유용한 단축키 정리&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Node] gyp verb check python checking for Python executable "python" in the PATH]]></title><description><![CDATA[[Node] Node.js 종속성을 위해 Windows에서 Python 실행하기]]></description><link>http://sangbeo.github.io/errors/2020-08-29-001</link><guid isPermaLink="false">http://sangbeo.github.io/errors/2020-08-29-001</guid><pubDate>Sat, 29 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;문제&lt;/h2&gt;
+&lt;p&gt;gatsby node_modules 설치 도중 문제 발생&lt;/p&gt;
+&lt;h2&gt;원인&lt;/h2&gt;
+&lt;p&gt;phthon 2.7 미설치 또는 PYTHON 환경변수 없음&lt;/p&gt;
+&lt;h2&gt;해결&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;python 미 설치시&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;(관리자 권한으로 실행)
+npm install --global --production windows-build-tools&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;설치 경로
+C:\Users\ben.windows-build-tools\python27\python.exe
+참고 - 지원되지 않으므로 3.x가 아닌 python 2.7을 사용  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/39739626/what-is-node-gyp&quot;&gt;node-gyp&lt;/a&gt; 설치  &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install --global node-gyp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;일단 설치되면 모든 노드 - gyp 종속성이 다운로드되지만 여전히 환경 변수가 필요합니다.
+유효성 검사 Python은 실제로 올바른 폴더에 있습니다.&lt;/p&gt;
+&lt;p&gt;환경변수 세팅&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;setx PYTHON &amp;quot;%USERPROFILE%\.windows-build-tools\python27\python.exe&amp;quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;cmd를 재시작하고  후 PYTHON 변수 존재 여부 확인&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;set PYTHON&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;마지막으로 node module 재설치&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install &amp;lt;module&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;참고&lt;br&gt;
+&lt;a href=&quot;https://code.i-harness.com/ko-kr/q/e6ce22&quot;&gt;https://code.i-harness.com/ko-kr/q/e6ce22&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[JPA] No EntityManager with actual transaction available for current thread]]></title><link>http://sangbeo.github.io/errors/2020-08-31--001</link><guid isPermaLink="false">http://sangbeo.github.io/errors/2020-08-31--001</guid><pubDate>Sat, 29 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;문제&lt;/h3&gt;
+&lt;p&gt;deleteBy.. 메소드 호출시 오류 발생&lt;/p&gt;
+&lt;h2&gt;원인&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/32269192/spring-no-entitymanager-with-actual-transaction-available-for-current-thread&quot;&gt;https://stackoverflow.com/questions/32269192/spring-no-entitymanager-with-actual-transaction-available-for-current-thread&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;해결&lt;/h3&gt;
+&lt;p&gt;메소드에 @transaction 을 추가하는 방법으로 해결하였다.&lt;br&gt;
+잘 모르겠는데… JPA delete transaction 을 찾아봐야겠다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[백준] 3085번 사탕게임]]></title><description><![CDATA[[백준] 3085번 사탕게임]]></description><link>http://sangbeo.github.io/algo/posts/1</link><guid isPermaLink="false">http://sangbeo.github.io/algo/posts/1</guid><pubDate>Wed, 21 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;목차&lt;br&gt;
+&lt;a href=&quot;#%EA%B0%9C%EB%B0%9C%EC%9D%84-%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%96%B4%EC%9A%94&quot;&gt;1.개발을 하고 싶어요&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;#coding%EC%9D%84-%EC%9E%98%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%96%B4%EC%9A%94&quot;&gt;2.코딩을 잘하고 싶어요&lt;/a&gt;  &lt;/p&gt;
+&lt;h2&gt;개발을 하고 싶어요&lt;/h2&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/c0461ee94e67a1896b573608f6219184/67fe0/Q.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 83.33333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABJ0AAASdAHeZh94AAABeklEQVQ4y6VUi26EIBDk//+zSVMfgIAI6m13trfW846mTUkmsgjDzO6qSSlRP4y0LAvpuN1uzXnrHc6Dy8zzTABGzpm89zIvpRyX7Psue5TgfGZdV3LOHZeZWqssKglIMbAOKCHeKSHmembbtuMyIfQx0f6t/N/DxBhpHEey1pJjTNPEth0NwyCWoUShqs/AOhQDiE0MgbquE8K+74UIFyg0Rp40nvwklyk0p5iLQs+qEj+hDjGAisVjLVAMUQqmOW5adrxx46T/dWgRrjCBLcMqlMAS4jAFUQIL2j7X+X4X8UQI78iPd56fXmxJfLenCb/iTPhgeeQEl7pKP8E6qob5/os0vLSc0leFSllEEYAYRal1familT8hHKyjt4+BfMpP/XZWGfji995SyJV++g5MmjNvZmUFZNsDoLDc1+e8cHslSjNyWJswdrTcrJbKUtkmmvQZOX99BVrhnNswA/+6un4UJTjYwjWPTcvoP8t5RHFiTE20+u6KT36jNP9Bh/egAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Q&quot;
         title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/Q-c0461ee94e67a1896b573608f6219184-c83f1.png&quot;
-        srcset=&quot;/devHistoryBlog/static/Q-c0461ee94e67a1896b573608f6219184-569e3.png 240w,
-/devHistoryBlog/static/Q-c0461ee94e67a1896b573608f6219184-93400.png 480w,
-/devHistoryBlog/static/Q-c0461ee94e67a1896b573608f6219184-c83f1.png 960w,
-/devHistoryBlog/static/Q-c0461ee94e67a1896b573608f6219184-abcd1.png 1101w&quot;
+        src=&quot;/devHistoryBlog/static/c0461ee94e67a1896b573608f6219184/d9199/Q.png&quot;
+        srcset=&quot;/devHistoryBlog/static/c0461ee94e67a1896b573608f6219184/8ff5a/Q.png 240w,
+/devHistoryBlog/static/c0461ee94e67a1896b573608f6219184/e85cb/Q.png 480w,
+/devHistoryBlog/static/c0461ee94e67a1896b573608f6219184/d9199/Q.png 960w,
+/devHistoryBlog/static/c0461ee94e67a1896b573608f6219184/67fe0/Q.png 1101w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
   &lt;/span&gt;
-  &lt;br&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;h2 id=&quot;A&quot;&gt;#풀이&lt;/h2&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[Gatsby 구축]]></title><description><![CDATA[gatsby + gh-pages + github]]></description><link>http://sangbeo.github.io/gatsby/posts/1</link><guid isPermaLink="false">http://sangbeo.github.io/gatsby/posts/1</guid><pubDate>Sun, 18 Aug 2019 14:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;1. gatsby-cli 설치 및 프로젝트 생성 (lumen 테마 사용)&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ yarn add -g gatsby-cli
+  
+  &lt;/a&gt;
+      &lt;/p&gt;
+&lt;h2&gt;Coding을 잘하고 싶어요&lt;/h2&gt;
+&lt;h3&gt;송은영&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;1. gatsby-cli 설치 및 프로젝트 생성 (lumen 테마 사용)&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;yarn&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; -g gatsby-cli
 $ gatsby new devHistoryBlog https://github.com/GatsbyCentral/gatsby-v2-starter-lumen&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;2. gatsby 로컬 서버 구동 (기본포트 8000)&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; devHistoryBlog
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; devHistoryBlog
 $ gatsby develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;3. github repository 연동&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//git remote add origin &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;repository_url&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote add origin https://github.com/SangBeo/devHistoryBlog.git&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//git remote &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; origin &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;repository_url&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; origin https://github.com/SangBeo/devHistoryBlog.git&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;[브랜치 생성]&lt;br&gt;
 github 페이지는 최종적으로 master의 파일들이 배포된다.&lt;br&gt;
@@ -357,14 +388,14 @@ master에서 gatsby 파일 관리와 gh-pages의 빌드를 같이 하니 난잡�
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//-m 옵션을 이용하여 develop 브랜치로 이동
 $ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; branch -m develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;3.2. 커밋과 푸쉬&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; add *
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; *
 $ commit -m &lt;span class=&quot;token string&quot;&gt;&quot;init commit&quot;&lt;/span&gt;
 //push 시 -u 옵션을 붙여 이후 push 할때마다 develop 브랜치로 푸쉬한다
 $ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push -u origin develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-4c164.png&quot;
+    href=&quot;/devHistoryBlog/static/f6762a3447b66ffb0bcdd9c10bcb04a8/38a65/1.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -376,18 +407,18 @@ $ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push -u origin d
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 79.16279069767442%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAACe0lEQVQ4y41UPXPUMBD1/+9omKGhpmCoKGjp6NJQQYYZLsklubMtW5L1ZcmPt3u5gwQKNPNmpbX2rfbLnbUOj4cRBxNxcwy4HwJSzkRBTCd5Ri4rQky4fzzCzBYTbUVaH+CWoN+7HAOimxBCQCkkSAmeH8XQ+0VJZR9C1P1CKeQi11pRa1NZ1hXrWtHJJTM7EmX8/9qeyW3b4PkgkV1ZN0Ry5SweGpVQFHqL/FDbdtGlVBTn81r4urgCFRfibi0RwR/h5iNiMNRGtBZQ14UGDq0uem71pJPzxjvYElw2uPV7HOIBUzbqhTnsYfqv8PM18R057rCte3q9V8hewX3Nt8hhhxR+ku8O18MVXn97i1ff3uD97gPaxhxa57G7vcfDocc4WYVUqxCtNQ2jPYUdQtJ8z9ZrhRcb8WV/hXc/PuLTzWeUxiqPNuDm4LDvHXpbYJaKw5yxZ/sMvvLc4GKFzxuWggtcaujngN4EOsmY3Sm3nVsijsbD8pZjgj2NbSh4HCweemKgI+MwTJ73HL+xtVjIkOkkFvi0Us/IZq817zKbePFMfqtMeKWXptJay9DYtAxN0iIhTmxi6UnpN0U9Scd+ld7VKksfHjklkW1TlYiG0wxjJpVCMstUECN18alfxfgMcSiksrpEooG5S+wpWQs9eblAnF/nvFc585w5JS8JdbI4OX8QMuxU9aMQXsguhIvqhFDmXCv/gnDhpChhZOc/jAkyMbLEUEOdfocsMNxLyOlfIdORP4csPTd5VjicXhj1R0CPy/KEoD8CTQWNcinPyARSKLFTwsB5vesjRreqwkryR4NxGE+SrxIM44SeupjSXy+c5llTI+sXLiTYYIC4fQoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 79.16666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAACe0lEQVQ4y41UPXPUMBD1/+9omKGhpmCoKGjp6NJQQYYZLsklubMtW5L1ZcmPt3u5gwQKNPNmpbX2rfbLnbUOj4cRBxNxcwy4HwJSzkRBTCd5Ri4rQky4fzzCzBYTbUVaH+CWoN+7HAOimxBCQCkkSAmeH8XQ+0VJZR9C1P1CKeQi11pRa1NZ1hXrWtHJJTM7EmX8/9qeyW3b4PkgkV1ZN0Ry5SweGpVQFHqL/FDbdtGlVBTn81r4urgCFRfibi0RwR/h5iNiMNRGtBZQ14UGDq0uem71pJPzxjvYElw2uPV7HOIBUzbqhTnsYfqv8PM18R057rCte3q9V8hewX3Nt8hhhxR+ku8O18MVXn97i1ff3uD97gPaxhxa57G7vcfDocc4WYVUqxCtNQ2jPYUdQtJ8z9ZrhRcb8WV/hXc/PuLTzWeUxiqPNuDm4LDvHXpbYJaKw5yxZ/sMvvLc4GKFzxuWggtcaujngN4EOsmY3Sm3nVsijsbD8pZjgj2NbSh4HCweemKgI+MwTJ73HL+xtVjIkOkkFvi0Us/IZq817zKbePFMfqtMeKWXptJay9DYtAxN0iIhTmxi6UnpN0U9Scd+ld7VKksfHjklkW1TlYiG0wxjJpVCMstUECN18alfxfgMcSiksrpEooG5S+wpWQs9eblAnF/nvFc585w5JS8JdbI4OX8QMuxU9aMQXsguhIvqhFDmXCv/gnDhpChhZOc/jAkyMbLEUEOdfocsMNxLyOlfIdORP4csPTd5VjicXhj1R0CPy/KEoD8CTQWNcinPyARSKLFTwsB5vesjRreqwkryR4NxGE+SrxIM44SeupjSXy+c5llTI+sXLiTYYIC4fQoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;1&quot;
         title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-c83f1.png&quot;
-        srcset=&quot;/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-569e3.png 240w,
-/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-93400.png 480w,
-/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-c83f1.png 960w,
-/devHistoryBlog/static/1-f6762a3447b66ffb0bcdd9c10bcb04a8-4c164.png 1075w&quot;
+        src=&quot;/devHistoryBlog/static/f6762a3447b66ffb0bcdd9c10bcb04a8/d9199/1.png&quot;
+        srcset=&quot;/devHistoryBlog/static/f6762a3447b66ffb0bcdd9c10bcb04a8/8ff5a/1.png 240w,
+/devHistoryBlog/static/f6762a3447b66ffb0bcdd9c10bcb04a8/e85cb/1.png 480w,
+/devHistoryBlog/static/f6762a3447b66ffb0bcdd9c10bcb04a8/d9199/1.png 960w,
+/devHistoryBlog/static/f6762a3447b66ffb0bcdd9c10bcb04a8/38a65/1.png 1075w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
@@ -397,12 +428,12 @@ $ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push -u origin d
     &lt;br&gt;
 그럼 위와 같이 develop 브랜치에 소스 push가 된다.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;4. gh-pages 설치 및 설정 파일 수정, 그리고 Deploy&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ yarn add --dev gh-pages&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;yarn&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; --dev gh-pages&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;4.1. gatsby-config.js 수정
 
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/3-9b9f7bf8ba35b6c0af38da64066cf443-ed1e0.png&quot;
+    href=&quot;/devHistoryBlog/static/9b9f7bf8ba35b6c0af38da64066cf443/b0122/3.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -414,16 +445,16 @@ $ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push -u origin d
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 67.3076923076923%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAAB3klEQVQ4y32T27qaMBCFfZl6AMIhkBByAEXQdn/tXd//VVZX4larPVwsJgnyz5rMuKkqj6X/CdtdYMJKXSBUQDl/R3n+gSpcoY4T5SGNR1appLymGs2osS867PI2xU1RGvRygWwmtGaCtjPUcMKOL3NzQu4WFHpGrQd0o0VtDKQd0AbHPeUd8rJ/AuPjUKibRMxEFW1yEfd7rg+CKm8u4tl9HbXN2gcsxk1ZWvjuA0rOyaGQzCg19CkkJ/UwYFhHmCUkR2pyfMfy3QDRPZ1FE8nh/eB22GEbs+bPrEniLT5+/+ouAVVtcGUTRjrz0mLtPCZGwXPROuw+S0rK2tf9GywBs6rHQMA3Qo8EnAlsKoO81TDnkMpLl89SzRrQessP1aPEl0ruQNUMuBJ0IXBhjGqoojGfTVCpEVkcFY5JbOA76AEUhBk3Q3NEIiTjofjtrl7u+D+lPoClZBfHFT3dhS7AMsFB9GjUhExobA+SavFlL9P6X86eQAJsWOAZz4R2jDJ4uHXmaFhUvUkD3Ubx/rJSvTh916YixJ8+MNHRoo50OUL1I4qOMOVQyBg9wZT2yKsIHTj4fxdLdnDHr2hqC+tGOH+7S30a0fC/K62ns0CohZ4mNAMHPzWrZ6P+1C9chp1NV1NyoQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 67.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABJ0AAASdAHeZh94AAACBUlEQVQ4y31U2XLbMAzUx7RJZN0USfHS4St2JjN96f9/y3YFH3XSpA87AEl5ASwAZ/vhN6I+YUgH+OmESidU8xnN8Req8Qw97WC3CX0aUSmHvNbYNAab1qDoaGuDl1LjuejFZk69QncLerfAhj1cOiKv+KGZUNIvwxE1g5g5QMWAznsGiQK7jVAukcj8Jbw5tyhyrtZzf71T4svb5vJ28wXF7bvLfTbqdwxqD+1mNHpkKVZKNMygGZz48TxLRmaOGHZJ/C54Kf0xoUuGpb2kzMg/+fhjjV71olXOO9GKEN0IuadueXUlKfRHDQ86InYetnVYVMSsAtp6IFFgSQzyoj7g6VrmXZ4HMiFMfcTZjFhojyzZdQE5M7HbkSWyu2OUZpglSckFJXkuHjX+VLJmZm/s4omEe9oVnfJoXUTVW9TGoVytdbyj3w5fEt0Jh2FGsDM8s1S1hWOApuGPKivlPV27KX7+fal3wjBzDklo7ETtSFKsolND+vfR+DQi/0Pmx6M05cCSt31CYzzCcuDAjtLRUlnZiNWu58eGfIUscs0Sm7EjNBuifJQG6CmhXf1phN1NcPsZ3bBuBYmr75Gl3TuCnnFwW+z9DsEsKBT3mSNUEgWDFO2KtUkJZRc5j7e7f8EMX2Wwa25FO87YqIGbMWGQP4QAf5xoI/xhEr913BBq/J2efwBqtL1h4lKbbQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;3&quot;
         title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/3-9b9f7bf8ba35b6c0af38da64066cf443-ed1e0.png&quot;
-        srcset=&quot;/devHistoryBlog/static/3-9b9f7bf8ba35b6c0af38da64066cf443-9a3b2.png 240w,
-/devHistoryBlog/static/3-9b9f7bf8ba35b6c0af38da64066cf443-ed1e0.png 416w&quot;
+        src=&quot;/devHistoryBlog/static/9b9f7bf8ba35b6c0af38da64066cf443/b0122/3.png&quot;
+        srcset=&quot;/devHistoryBlog/static/9b9f7bf8ba35b6c0af38da64066cf443/8ff5a/3.png 240w,
+/devHistoryBlog/static/9b9f7bf8ba35b6c0af38da64066cf443/b0122/3.png 416w&quot;
         sizes=&quot;(max-width: 416px) 100vw, 416px&quot;
       /&gt;
     &lt;/span&gt;
@@ -438,7 +469,47 @@ $ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push -u origin d
 &lt;/ul&gt;
 &lt;p&gt;4.3. Deploy&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//build 및 master branch로 push
-$ yarn deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+$ &lt;span class=&quot;token function&quot;&gt;yarn&lt;/span&gt; deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;5. 실행&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;http://sangbeo.github.io/devHistoryBlog&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Gatsby 구축]]></title><description><![CDATA[gatsby + gh-pages + github]]></description><link>http://sangbeo.github.io/gatsby/posts/1</link><guid isPermaLink="false">http://sangbeo.github.io/gatsby/posts/1</guid><pubDate>Sun, 18 Aug 2019 14:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;1. gatsby-cli 설치 및 프로젝트 생성 (lumen 테마 사용)&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;yarn&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; -g gatsby-cli
+$ gatsby new devHistoryBlog https://github.com/GatsbyCentral/gatsby-v2-starter-lumen&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;2. gatsby 로컬 서버 구동 (기본포트 8000)&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; devHistoryBlog
+$ gatsby develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;3. github repository 연동&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//git remote &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; origin &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;repository_url&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; origin https://github.com/SangBeo/devHistoryBlog.git&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;[브랜치 생성]&lt;br&gt;
+github 페이지는 최종적으로 master의 파일들이 배포된다.&lt;br&gt;
+master에서 gatsby 파일 관리와 gh-pages의 빌드를 같이 하니 난잡해서 보기 좋지 않다.&lt;br&gt;
+그래서 개발은 develop 브랜치에서 진행하고 master 브랜치는 gh-pages로 배포할때만 사용한다&lt;br&gt;
+-&gt; develop branch : gatsby 파일 구조를 관리&lt;br&gt;
+-&gt; master : build 된 파일들을 github 페이지에 배포&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3.1. develop 브랜치 생성&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//-m 옵션을 이용하여 develop 브랜치로 이동
+$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; branch -m develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;3.2. 커밋과 푸쉬&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; *
+$ commit -m &lt;span class=&quot;token string&quot;&gt;&quot;init commit&quot;&lt;/span&gt;
+//push 시 -u 옵션을 붙여 이후 push 할때마다 develop 브랜치로 푸쉬한다
+$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push -u origin develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;/devHistoryBlog/f6762a3447b66ffb0bcdd9c10bcb04a8/1.png&quot;&gt;&lt;br&gt;
+그럼 위와 같이 develop 브랜치에 소스 push가 된다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. gh-pages 설치 및 설정 파일 수정, 그리고 Deploy&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;yarn&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; --dev gh-pages&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;4.1. gatsby-config.js 수정
+&lt;img src=&quot;/devHistoryBlog/9b9f7bf8ba35b6c0af38da64066cf443/3.png&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;url 수정&lt;/li&gt;
+&lt;li&gt;pathPrefix 추가
+4.2. package.json 필요시 수정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;4.3. Deploy&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;//build 및 master branch로 push
+$ &lt;span class=&quot;token function&quot;&gt;yarn&lt;/span&gt; deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;5. 실행&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;http://sangbeo.github.io/devHistoryBlog&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Upgraded to Gatsby v2]]></title><description><![CDATA[This starter has been forked and upgraded to Gatsby v2]]></description><link>http://sangbeo.github.io/posts/upgraded-to-gatsby-v2/</link><guid isPermaLink="false">http://sangbeo.github.io/posts/upgraded-to-gatsby-v2/</guid><pubDate>Thu, 18 Oct 2018 16:51:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a Gatsby v2 compatible version of the
 &lt;a href=&quot;https://github.com/alxshelepenok/gatsby-starter-lumen&quot;&gt;lumen&lt;/a&gt; starter, started
@@ -468,7 +539,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-00f86.jpg&quot;
+    href=&quot;/devHistoryBlog/static/6d93cbc4956a854d4c4369f0e281e7f3/4b190/42-line-bible.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -480,17 +551,17 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 68.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAOABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIEAQP/xAAVAQEBAAAAAAAAAAAAAAAAAAABAP/aAAwDAQACEAMQAAABvbVKo5i//8QAGhAAAgIDAAAAAAAAAAAAAAAAAAIBEhARMf/aAAgBAQABBQLhdiL42osM0f/EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABoQAAICAwAAAAAAAAAAAAAAAAABEUECEHH/2gAIAQEABj8CWqFJZKzhcP/EABoQAAIDAQEAAAAAAAAAAAAAAAERAEFRMSH/2gAIAQEAAT8hLBXfIABM+CEQ4tMxBFTDDjiMKoCT/9oADAMBAAIAAwAAABBsz//EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAgBAwEBPxCsj//EABURAQEAAAAAAAAAAAAAAAAAAAEQ/9oACAECAQE/ECf/xAAaEAEBAAMBAQAAAAAAAAAAAAABEQAhQVEx/9oACAEBAAE/EFUiqRfcikha+3HCJ0SpO69uBAq1hAkddHuFGLStJr7n/9k=&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 68.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAOABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIEA//EABUBAQEAAAAAAAAAAAAAAAAAAAEA/9oADAMBAAIQAxAAAAG9hSrMxf/EABoQAAICAwAAAAAAAAAAAAAAAAACARIQETH/2gAIAQEAAQUC4XYi2NqLZo//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAaEAACAgMAAAAAAAAAAAAAAAAAARFBAhBx/9oACAEBAAY/AlqhSWSsoXD/xAAcEAEAAgIDAQAAAAAAAAAAAAABABEhQTFRYZH/2gAIAQEAAT8hbFV3ACrcETOK6tmKVsdRp+YPKwn/2gAMAwEAAgADAAAAEH/P/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAER/9oACAEDAQE/EKyP/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQIBAT8QJ//EABoQAQEAAgMAAAAAAAAAAAAAAAERACExQVH/2gAIAQEAAT8QUSVSDzkUkLU7uPEbsWpO9e3AkarliEANePcMDTSBSa5uf//Z&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;42-line-bible.jpg&quot;
         title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-00f86.jpg&quot;
-        srcset=&quot;/devHistoryBlog/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-6a66e.jpg 240w,
-/devHistoryBlog/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-bc76f.jpg 480w,
-/devHistoryBlog/static/42-line-bible-6d93cbc4956a854d4c4369f0e281e7f3-00f86.jpg 800w&quot;
+        src=&quot;/devHistoryBlog/static/6d93cbc4956a854d4c4369f0e281e7f3/4b190/42-line-bible.jpg&quot;
+        srcset=&quot;/devHistoryBlog/static/6d93cbc4956a854d4c4369f0e281e7f3/09b79/42-line-bible.jpg 240w,
+/devHistoryBlog/static/6d93cbc4956a854d4c4369f0e281e7f3/7cc5e/42-line-bible.jpg 480w,
+/devHistoryBlog/static/6d93cbc4956a854d4c4369f0e281e7f3/4b190/42-line-bible.jpg 800w&quot;
         sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
       /&gt;
     &lt;/span&gt;
@@ -526,7 +597,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-b89bf.jpg&quot;
+    href=&quot;/devHistoryBlog/static/eaa988471fd2b61a1d4d313d0d9a5d23/66fdb/type-through-time.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -538,18 +609,18 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 20%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAEABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAT/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAABrqJaRR//xAAXEAEAAwAAAAAAAAAAAAAAAAABAAIQ/9oACAEBAAEFAhlc/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQIBAT8BJ//EABYQAAMAAAAAAAAAAAAAAAAAAAABEP/aAAgBAQAGPwIc/8QAGRAAAQUAAAAAAAAAAAAAAAAAAQAQESFx/9oACAEBAAE/ITCVU6b/2gAMAwEAAgADAAAAEIgP/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8QZ//EABURAQEAAAAAAAAAAAAAAAAAABAx/9oACAECAQE/EJP/xAAaEAEAAgMBAAAAAAAAAAAAAAABESEAEEFh/9oACAEBAAE/EAFK31cnbX06/9k=&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 20%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAEABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAT/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAABtoJaRR//xAAWEAEBAQAAAAAAAAAAAAAAAAAAAjH/2gAIAQEAAQUClOv/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAgEBPwEn/8QAFhAAAwAAAAAAAAAAAAAAAAAAAAEQ/9oACAEBAAY/Ahz/xAAYEAACAwAAAAAAAAAAAAAAAAABIQAQUf/aAAgBAQABPyEi2Zsr/9oADAMBAAIAAwAAABAID//EABURAQEAAAAAAAAAAAAAAAAAAAEQ/9oACAEDAQE/EGf/xAAVEQEBAAAAAAAAAAAAAAAAAAAQMf/aAAgBAgEBPxCD/8QAGRABAAMBAQAAAAAAAAAAAAAAAQARQSEx/9oACAEBAAE/EAerusaDZp1lz//Z&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;type-through-time.jpg&quot;
         title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-d564d.jpg&quot;
-        srcset=&quot;/devHistoryBlog/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-865fd.jpg 240w,
-/devHistoryBlog/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-d40a0.jpg 480w,
-/devHistoryBlog/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-d564d.jpg 960w,
-/devHistoryBlog/static/type-through-time-eaa988471fd2b61a1d4d313d0d9a5d23-b89bf.jpg 1250w&quot;
+        src=&quot;/devHistoryBlog/static/eaa988471fd2b61a1d4d313d0d9a5d23/6a068/type-through-time.jpg&quot;
+        srcset=&quot;/devHistoryBlog/static/eaa988471fd2b61a1d4d313d0d9a5d23/09b79/type-through-time.jpg 240w,
+/devHistoryBlog/static/eaa988471fd2b61a1d4d313d0d9a5d23/7cc5e/type-through-time.jpg 480w,
+/devHistoryBlog/static/eaa988471fd2b61a1d4d313d0d9a5d23/6a068/type-through-time.jpg 960w,
+/devHistoryBlog/static/eaa988471fd2b61a1d4d313d0d9a5d23/66fdb/type-through-time.jpg 1250w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
@@ -565,12 +636,12 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;&lt;strong&gt;Johannes Gensfleisch zur Laden zum Gutenberg&lt;/strong&gt; (c. 1398 – 1468) was a German blacksmith, goldsmith, printer, and publisher who introduced printing to Europe. His invention of mechanical movable type printing started the Printing Revolution and is widely regarded as the most important event of the modern period. It played a key role in the development of the Renaissance, Reformation, the Age of Enlightenment, and the Scientific revolution and laid the material basis for the modern knowledge-based economy and the spread of learning to the masses.&lt;/p&gt;
 &lt;figure class=&quot;float-right&quot; style=&quot;width: 240px&quot;&gt;
 	
-  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/devHistoryBlog/static/Gutenberg-3e20438298edd3a3fa746766d803f379-a74ca.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/devHistoryBlog/static/3e20438298edd3a3fa746766d803f379/bf505/Gutenberg.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
   
   &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block;  max-width: 374px; margin-left: auto; margin-right: auto;&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 128.3422459893048%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAaABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAQP/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAFxLehXJYBWnDYwH//EABsQAAIDAQEBAAAAAAAAAAAAAAECAAMRBBIT/9oACAEBAAEFAui4iBrK2rf2hI3YjFZdV5JyV14rDV5wPpP/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAeEAACAgAHAAAAAAAAAAAAAAAAAREhAhASIlGhsf/aAAgBAQAGPwLThFfZI5N3g4Hw7HZY5HWX/8QAHxABAAICAgIDAAAAAAAAAAAAAQARITFBURCRYXGB/9oACAEBAAE/IWlarGOWd5HgPsgEf06iru79xbpoz0gw1u5c/gfcw02CFiZcwgASuZpDGseP/9oADAMBAAIAAwAAABDgCDz/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/EB//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAfEAEAAgICAgMAAAAAAAAAAAABABEhMUFREGFxgaH/2gAIAQEAAT8QYiVZ26JrksdBuhYA1LjsGyEy5FThXV/cQErxTJvN83GEbavghHYez2bSCl7ZOS/YeMBX5LKKYFkai6FwYfXj/9k=&amp;apos;); background-size: cover; display: block;&quot;&gt;
-      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;Gutenberg&quot; title=&quot;&quot; src=&quot;/devHistoryBlog/static/Gutenberg-3e20438298edd3a3fa746766d803f379-a74ca.jpg&quot; srcset=&quot;/devHistoryBlog/static/Gutenberg-3e20438298edd3a3fa746766d803f379-79241.jpg 240w,
-/devHistoryBlog/static/Gutenberg-3e20438298edd3a3fa746766d803f379-a74ca.jpg 374w&quot; sizes=&quot;(max-width: 374px) 100vw, 374px&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 128.33333333333331%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAaABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAQP/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAFxLehWIgM5WmDI4H//xAAcEAADAAMAAwAAAAAAAAAAAAABAgMAERIEEyH/2gAIAQEAAQUC8mxGBqTab9oSOt4WINpcn5iRHLDawA9uf//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EAB4QAAEEAQUAAAAAAAAAAAAAAAABESExQQIQIlFh/9oACAEBAAY/Am0iTfo5JywQL0peCRXK2//EAB4QAQADAQABBQAAAAAAAAAAAAEAESExURBBYXGh/9oACAEBAAE/IUlqrr5Z5QKwP5DLl4kUr9u5Zqmjc5E26dyXPmp9xy+UNsdYAAJXvLzGfHp//9oADAMBAAIAAwAAABCgAzz/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/EB//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAeEAEAAgICAwEAAAAAAAAAAAABESEAMUFREGFxgf/aAAgBAQABPxBF5qG+j5iRR2gE3MnKYSWtOFtaKOFmF/cZ0pES8uZ5XCR9grCOtLezKZFHqTOAHbI6IMaClQkxcj2SRT4//9k=&amp;apos;); background-size: cover; display: block;&quot;&gt;
+      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;Gutenberg&quot; title src=&quot;/devHistoryBlog/static/3e20438298edd3a3fa746766d803f379/bf505/Gutenberg.jpg&quot; srcset=&quot;/devHistoryBlog/static/3e20438298edd3a3fa746766d803f379/09b79/Gutenberg.jpg 240w,
+/devHistoryBlog/static/3e20438298edd3a3fa746766d803f379/bf505/Gutenberg.jpg 374w&quot; sizes=&quot;(max-width: 374px) 100vw, 374px&quot;&gt;
     &lt;/span&gt;
   &lt;/span&gt;
   
@@ -586,13 +657,13 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;Around 1439, Gutenberg was involved in a financial misadventure making polished metal mirrors (which were believed to capture holy light from religious relics) for sale to pilgrims to Aachen: in 1439 the city was planning to exhibit its collection of relics from Emperor Charlemagne but the event was delayed by one year due to a severe flood and the capital already spent could not be repaid. When the question of satisfying the investors came up, Gutenberg is said to have promised to share a “secret”. It has been widely speculated that this secret may have been the idea of printing with movable type. Also around 1439–1440, the Dutch Laurens Janszoon Coster came up with the idea of printing. Legend has it that the idea came to him “like a ray of light”.&lt;/p&gt;
 &lt;figure class=&quot;float-left&quot; style=&quot;width: 240px&quot;&gt;
 	
-  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/devHistoryBlog/static/Printing-press-9ec265253f068855f00558a9be7f3e03-e45ee.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/devHistoryBlog/static/9ec265253f068855f00558a9be7f3e03/7527b/Printing-press.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
   
   &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block;  max-width: 754px; margin-left: auto; margin-right: auto;&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 128.91246684350133%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAIAAAA44esqAAAACXBIWXMAAAsSAAALEgHS3X78AAAEVElEQVQ4yyWUxUt/WxTFzx/hTJAn/hAnDhQcWKCI2B1gByZ2d3d3d3d3dxe+gQqK4sCHPEUeFujE9/lez+By7zln7732Wmtf8fT0tLm5eX5+/re0jo+P9/b2dnZ2tre3Dw4O+Dw9PeW5tbXFDs/9/f3FxcXp6em7uzuxvr7u4+MTEBAQFxeXkpISERGRmJiYm5vr5+fn7u7u5ubm7++fkJAQFhbGi4eHBzs5OTm2trYdHR1iZWUlJibG19eXs+jo6ODgYGK4yqadnZ29vX11dXVUVBS3XV1dPT09TU1NCwoKeG9raxPz8/NeXl6RkZHcMzMzU1VVVVJS+kta8vLyampqJiYmFDEwMDA2NgYUn9ra2rq6urLKZ2dnNNnQ0AB40ru4uABYT09PS0tLXV09MzMzTFpFRUXUh4vs7Ow/0qqrqxOXl5c9PT2A7Orq4hhI9fX1NFZYWEiHoaGhEObs7Ezw7u4uGNPT062trRUVFWWwCa6qquJsdHQUzioqKshFb8nJyURCBBLQFCSZm5sLIchuZWWloKDQ2dkpbm9vR0ZGiouL+/v7YZvEpaWlUAVsQ0PD8PBwdAJqSEiIioqKt7c3rUKEnJwcNcT9/f3ExERTUxMfwKZhJycnT2nRs6OjY21tbXl5OYgyMjIAAkbuoOjg4KC4vr4eHh4GGCmpQE2CU1NTIcnS0pL6SAXUsrIyjjQ0NCorK9PS0uLj48fHx2U9DwwM/Lba3t4OvTgEMiiC5rQ9NjZGJAEktbCwgE5qgBG8ssoLCwuTk5OwWlJSUlNTAxMc0D8kLS8vA9vGxobg2NhYkLe0tGA4TiFYIAANEwZt3d3dEAZmbIfyQAAkOhkZGREM/pmZGXawFy2ASBwdHV1dXeGTubm51dXV1tZWKiMeUuXn50MPzkNestM/PDc2NoKfWZAFE3ZxcYEeh4eHcEYk78wTgqETWTAPAXCB+cAPOnzKC0gFV1Hr5OQEM0xNTUEysAHc3Nycl5cHi2Thk8oMjI6ODlwyP4GBgdAkmyqoxiQ8ScYBPvsdQETGFexQlp6TkpJoBGgQhn/QSMzOzv4yzBZ1IJOhB0hvby+NkIJ4pv/n5+f5+fnm5gZHQjVWBb+ApL6+Po6ZEnrGNyRic2NjA/IwA6pSlrwoimxDQ0Mooq+vT4jgz4IATDW/laWlJc7Azz0oQFVNTU2oZuZohG7xIuJjHgcHB0IEICGcbrEO3WLaoKAgjEWrDCbyMP3ojFX523BE/zTPnMhMQjCdkEZZWRk/cJwgrd8xBDNlgcB48w5sVKASVgGj7Af4+fkJSFTFldidtjEA8nKP9L3S4oh39kG+trYGHTAleHt/f6c4TiAZrmCXF8YbLmCBJxTgP3631IQ5EjGksp8B1qc4KYAEGHzOLvHU/71KFp4IgduxN7rCXFZWFnnF19fX4+MjGr69vQHh4+OD55u0Xl9f/5PWy8vLv9Li5j/Senh4+P7+/h90c24Ix/79SwAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;
-      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;Early Printing Press&quot; title=&quot;&quot; src=&quot;/devHistoryBlog/static/Printing-press-9ec265253f068855f00558a9be7f3e03-e45ee.png&quot; srcset=&quot;/devHistoryBlog/static/Printing-press-9ec265253f068855f00558a9be7f3e03-309d8.png 240w,
-/devHistoryBlog/static/Printing-press-9ec265253f068855f00558a9be7f3e03-1d2a3.png 480w,
-/devHistoryBlog/static/Printing-press-9ec265253f068855f00558a9be7f3e03-e45ee.png 754w&quot; sizes=&quot;(max-width: 754px) 100vw, 754px&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 128.75%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAIAAAA44esqAAAACXBIWXMAAAsSAAALEgHS3X78AAAEUklEQVQ4yzWUR0tlSxSF60c4cvBQxIE6UXGiOBBBERXFCKY2Yc4555zbnHPOOeecUXyImBFp9KHy0BZ1Zn/nXroGhzpVtfdea+1VJZ6entbW1k5OTv6VjYODg+3t7a2trY2Njb29vcPDw6OjI77r6+ubm5ss7uzszM3NTUxM3N7eipWVFS8vL39//5iYmMTExNDQ0Pj4+KysLBZ/yIaPjw8rISEhTNzc3FxcXDIzM62trVtbW8Xi4mJkZCRHvb29IyIiAgMDCeAoizY2Nra2thUVFeHh4cydnZ0JNjU1zcvLY97c3CxmZmZYYptzZmZmGhoaSkpK/8iGoqKipqamiYlJW1uboaEhk7i4OL66urr6+vpSZShBsra2luKAcXJyAoKBgYGenp62tnZ6ejpEAFJQUAAWaINZVVVVRUWlurpanJ2ddXZ2RkdHt7e3s52bm8sqqMDm6uoaHByMWmQkGM3c3d3T0tIsLS2VlZUl2ASXl5ezNzg4iGalpaUdHR0cQjz4IxKNQAskNDc3F0KQlGBIwUXc3NwQVlhY2NPTk5SUlJqaWlxcDH5YGRsbA5jmATUoKEhdXZ2kLS0tWlpaCgoK4BV3d3ejo6N1dXX8ABvCDg4OHEJFONvZ2cHip2yQl10w8kWIvr4+cXFxMTAwADBSZmRk0BJHR8fk5GRqWlhYIFtlZWV+fj7BbOno6JSVlbEbGxs7MjIice7t7YUqlYlH3uzsbMQgPZxBCy4iU1JSQATtmpoaWFCMdXF5eTk7Ozs+Pk7PioqKqEMDyQp/RFpYWGDFysqKYDqC1E1NTXQbOYeGhgQ2rq+vJwzZ6BbEOIft6DzBIKJtGIN15tQANis4anh4WOzv75+fn+MTrLa8vExiUmBJctNz5OEc+tECjIXOVAK/r6+vFEzl09NTUuzu7tI6aHOZuDqcDgsLow4sCEBLCqIZLgAIREAqaCPdwkaYgYuGyLBFs4aGBipzlCw5OTl8uTA0Hy2joqL8/PzGxsakW4WY8maQDBkRBpFRG8AeHh40H53ImJCQQDqAIJiRkRE9ElNTU+gJT5boVmNjIx4GSHd3N/ixp6enJ+34/v7m2bi6usKR9Jn7ByipMud4HKqqqshKPpgvLS2trq4iHm6n8+hPXlLgtv7+fpTnhvIrqENxZqTki+nAj/LHx8egRWGkhiRawJZI5OCq2dvbc0bwLCE4bGkspuNVCAgIQGeYoxD25OlAXm6S3HMA4VXijGQSgq+vr0mjpqZGM9hmD/7ya4gT5cai4fxCjbZxFzAMKKQH8OPjgz5xUbArxgQ5BkBCukX6rq4uCLPOnHUi5V5CKcHs/f0dGbmVJMMVnCaevcnJyfn5eb5oMT09jQuIRGQSlZSUSG8Y1iceeWkYYEjBKpG8DfKjzPmiFveJNwfn0k6Y0yDx+fn5+Pj4/Pz8+vr6++94e3t7lY3/ZePl5eU/2Xh4ePglG/f3919fX38AEQttJBy4KAgAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;
+      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;Early Printing Press&quot; title src=&quot;/devHistoryBlog/static/9ec265253f068855f00558a9be7f3e03/7527b/Printing-press.png&quot; srcset=&quot;/devHistoryBlog/static/9ec265253f068855f00558a9be7f3e03/8ff5a/Printing-press.png 240w,
+/devHistoryBlog/static/9ec265253f068855f00558a9be7f3e03/e85cb/Printing-press.png 480w,
+/devHistoryBlog/static/9ec265253f068855f00558a9be7f3e03/7527b/Printing-press.png 754w&quot; sizes=&quot;(max-width: 754px) 100vw, 754px&quot;&gt;
     &lt;/span&gt;
   &lt;/span&gt;
   
@@ -627,7 +698,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-94ac0.jpg&quot;
+    href=&quot;/devHistoryBlog/static/0d1540b9a8fca9db753ad10ae0a3427e/fa8cd/movable-type.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -639,20 +710,20 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 66.43356643356644%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMBAgT/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAABlT8ktxAf/8QAGBABAQEBAQAAAAAAAAAAAAAAAQARAkH/2gAIAQEAAQUC8tkNJ7x//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGRAAAgMBAAAAAAAAAAAAAAAAARAAETFR/9oACAEBAAY/AiZSzr//xAAZEAEAAwEBAAAAAAAAAAAAAAABABEhUUH/2gAIAQEAAT8hGrN1h24oZx8mOSoaGKjnJY0XdiIVP//aAAwDAQACAAMAAAAQ0A//xAAVEQEBAAAAAAAAAAAAAAAAAAAAEf/aAAgBAwEBPxCq/8QAFhEBAQEAAAAAAAAAAAAAAAAAAQAR/9oACAECAQE/EAsG/8QAHhABAQACAgIDAAAAAAAAAAAAAREAITFRQeFhkfD/2gAIAQEAAT8QRoMbTkZZ9uJVVIOZOveAE8erjpgwMIk9vnLdwCFp+3gRGnP/2Q==&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 66.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMBAgT/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAABlT8ktxAf/8QAGBABAQEBAQAAAAAAAAAAAAAAAQARAkH/2gAIAQEAAQUC8tkNJ7x//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGRAAAgMBAAAAAAAAAAAAAAAAARAAETFR/9oACAEBAAY/AidlLOv/xAAZEAEAAwEBAAAAAAAAAAAAAAABABEhUUH/2gAIAQEAAT8hGrOMO3FDOPkxyVDQxUc5LGi7sRCp/9oADAMBAAIAAwAAABDQD//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/EKr/xAAWEQEBAQAAAAAAAAAAAAAAAAABABH/2gAIAQIBAT8QCwb/xAAeEAEBAAICAgMAAAAAAAAAAAABEQAhMVFB4WGR8P/aAAgBAQABPxBGghtORln24lVU05k694Azw6uOmDAwiT2+ct3AIWn7eBEac//Z&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Movable metal type, and composing stick, descended from Gutenberg&apos;s press. Photo by Willi Heidelbach. Licensed under CC BY 2.5&quot;
         title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-d564d.jpg&quot;
-        srcset=&quot;/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-865fd.jpg 240w,
-/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-d40a0.jpg 480w,
-/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-d564d.jpg 960w,
-/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-c67c1.jpg 1440w,
-/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-667be.jpg 1920w,
-/devHistoryBlog/static/movable-type-0d1540b9a8fca9db753ad10ae0a3427e-94ac0.jpg 2288w&quot;
+        src=&quot;/devHistoryBlog/static/0d1540b9a8fca9db753ad10ae0a3427e/6a068/movable-type.jpg&quot;
+        srcset=&quot;/devHistoryBlog/static/0d1540b9a8fca9db753ad10ae0a3427e/09b79/movable-type.jpg 240w,
+/devHistoryBlog/static/0d1540b9a8fca9db753ad10ae0a3427e/7cc5e/movable-type.jpg 480w,
+/devHistoryBlog/static/0d1540b9a8fca9db753ad10ae0a3427e/6a068/movable-type.jpg 960w,
+/devHistoryBlog/static/0d1540b9a8fca9db753ad10ae0a3427e/644c5/movable-type.jpg 1440w,
+/devHistoryBlog/static/0d1540b9a8fca9db753ad10ae0a3427e/0f98f/movable-type.jpg 1920w,
+/devHistoryBlog/static/0d1540b9a8fca9db753ad10ae0a3427e/fa8cd/movable-type.jpg 2288w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
@@ -681,7 +752,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-5b032.jpg&quot;
+    href=&quot;/devHistoryBlog/static/2c2b7012cc7a218b86a2e5f4fdd1b9c7/d9c39/1.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -693,19 +764,19 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAEDBP/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHflc0iMr//xAAaEAEAAwADAAAAAAAAAAAAAAACAAESAyEy/9oACAEBAAEFAmsz1HyEpKtDuIav/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGhAAAgIDAAAAAAAAAAAAAAAAAAEQESFRYf/aAAgBAQAGPwLpkqixPTj/xAAbEAACAwEBAQAAAAAAAAAAAAAAARExQSFxsf/aAAgBAQABPyFCxY614c+lidG2lZWafRMjzh//2gAMAwEAAgADAAAAEM8P/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAERIf/aAAgBAwEBPxBRGH//xAAWEQEBAQAAAAAAAAAAAAAAAAABEBH/2gAIAQIBAT8QdZ//xAAbEAEBAQADAQEAAAAAAAAAAAABEQAhMVFBof/aAAgBAQABPxA0CnR5gPVEC8EPzOoUFS6xFa1OjJ+ctDjjEqA108Xf/9k=&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAEDBP/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHflc0iMP/EABoQAQADAAMAAAAAAAAAAAAAAAIAARIDITL/2gAIAQEAAQUCazPUfISkq0O4hq//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAaEAACAgMAAAAAAAAAAAAAAAAAARARIVFh/9oACAEBAAY/AumSqLE9OP/EABsQAAIDAQEBAAAAAAAAAAAAAAABESExQXGx/9oACAEBAAE/IULGi23Dn00T0lJaxqnT6JkfKP/aAAwDAQACAAMAAAAQzy//xAAXEQADAQAAAAAAAAAAAAAAAAAAAREh/9oACAEDAQE/EFEYf//EABYRAQEBAAAAAAAAAAAAAAAAAAEQEf/aAAgBAgEBPxB1n//EABsQAQEBAAMBAQAAAAAAAAAAAAERACExUUGh/9oACAEBAAE/EDQKdHmA9UQLwQ/M6hQVLmsVZqdGb5y0OOMSoDXTxd//2Q==&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Nulla faucibus vestibulum eros in tempus. Vestibulum tempor imperdiet velit nec dapibus&quot;
         title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-d564d.jpg&quot;
-        srcset=&quot;/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-865fd.jpg 240w,
-/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-d40a0.jpg 480w,
-/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-d564d.jpg 960w,
-/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-c67c1.jpg 1440w,
-/devHistoryBlog/static/1-2c2b7012cc7a218b86a2e5f4fdd1b9c7-5b032.jpg 1800w&quot;
+        src=&quot;/devHistoryBlog/static/2c2b7012cc7a218b86a2e5f4fdd1b9c7/6a068/1.jpg&quot;
+        srcset=&quot;/devHistoryBlog/static/2c2b7012cc7a218b86a2e5f4fdd1b9c7/09b79/1.jpg 240w,
+/devHistoryBlog/static/2c2b7012cc7a218b86a2e5f4fdd1b9c7/7cc5e/1.jpg 480w,
+/devHistoryBlog/static/2c2b7012cc7a218b86a2e5f4fdd1b9c7/6a068/1.jpg 960w,
+/devHistoryBlog/static/2c2b7012cc7a218b86a2e5f4fdd1b9c7/644c5/1.jpg 1440w,
+/devHistoryBlog/static/2c2b7012cc7a218b86a2e5f4fdd1b9c7/d9c39/1.jpg 1800w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
@@ -742,7 +813,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-5b032.jpg&quot;
+    href=&quot;/devHistoryBlog/static/a3057b79175cdcf4a107e8cc2c8f8325/d9c39/1.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -754,19 +825,19 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 66.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQBAgMF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAaa8hyIERf/EABoQAAIDAQEAAAAAAAAAAAAAAAECAAMSBBP/2gAIAQEAAQUCPOXmbM+hSK5BbqszP//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/AVf/xAAVEQEBAAAAAAAAAAAAAAAAAAAAEf/aAAgBAgEBPwFH/8QAHRAAAAYDAQAAAAAAAAAAAAAAAAECEBESISJxof/aAAgBAQAGPwKbkNIVwVWWWr63/8QAGhAAAgMBAQAAAAAAAAAAAAAAAREAITFh8P/aAAgBAQABPyHb6CbqFUIALwzeF3JpLhdwHAuOf//aAAwDAQACAAMAAAAQBA//xAAXEQEBAQEAAAAAAAAAAAAAAAABABEx/9oACAEDAQE/EBO2r//EABcRAQEBAQAAAAAAAAAAAAAAAAEAETH/2gAIAQIBAT8QR5Zv/8QAHBABAAIDAQEBAAAAAAAAAAAAAQARIUFRcWGh/9oACAEBAAE/ENaRSGh5mKaJNdVRpGY+sMJ/IIS3XfeygHuMAHzkVatq5V3P/9k=&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 66.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQBAgMF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAaa8hyWBEP/EABoQAAIDAQEAAAAAAAAAAAAAAAECAAMSBBP/2gAIAQEAAQUCPOXmbM+hSK5BbqszP//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/AVf/xAAVEQEBAAAAAAAAAAAAAAAAAAAAEf/aAAgBAgEBPwFH/8QAHRAAAAYDAQAAAAAAAAAAAAAAAAECEBESISJxof/aAAgBAQAGPwKbkNIVwVWWWr63/8QAGxAAAgIDAQAAAAAAAAAAAAAAAREAIRAxYfD/2gAIAQEAAT8h3bQTdQqhABeGb4Xc6SF3AcC8f//aAAwDAQACAAMAAAAQAA//xAAXEQEBAQEAAAAAAAAAAAAAAAABABEx/9oACAEDAQE/EBO2r//EABcRAAMBAAAAAAAAAAAAAAAAAAABETH/2gAIAQIBAT8Qdwk//8QAHBABAAIDAQEBAAAAAAAAAAAAAQARIUFRcWGh/9oACAEBAAE/ENbRSGh5mKaJNdVRpGY+sMF/kEI3133soB7jAB85FbVyuVdz/9k=&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Nulla faucibus vestibulum eros in tempus. Vestibulum tempor imperdiet velit nec dapibus&quot;
         title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-d564d.jpg&quot;
-        srcset=&quot;/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-865fd.jpg 240w,
-/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-d40a0.jpg 480w,
-/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-d564d.jpg 960w,
-/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-c67c1.jpg 1440w,
-/devHistoryBlog/static/1-a3057b79175cdcf4a107e8cc2c8f8325-5b032.jpg 1800w&quot;
+        src=&quot;/devHistoryBlog/static/a3057b79175cdcf4a107e8cc2c8f8325/6a068/1.jpg&quot;
+        srcset=&quot;/devHistoryBlog/static/a3057b79175cdcf4a107e8cc2c8f8325/09b79/1.jpg 240w,
+/devHistoryBlog/static/a3057b79175cdcf4a107e8cc2c8f8325/7cc5e/1.jpg 480w,
+/devHistoryBlog/static/a3057b79175cdcf4a107e8cc2c8f8325/6a068/1.jpg 960w,
+/devHistoryBlog/static/a3057b79175cdcf4a107e8cc2c8f8325/644c5/1.jpg 1440w,
+/devHistoryBlog/static/a3057b79175cdcf4a107e8cc2c8f8325/d9c39/1.jpg 1800w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
@@ -780,7 +851,7 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-5b032.jpg&quot;
+    href=&quot;/devHistoryBlog/static/07d3a9ebe902d793eab5fe701b12a6e2/d9c39/1.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -792,19 +863,19 @@ by the folks at &lt;a href=&quot;https://www.gatsbycentral.com/&quot;&gt;Gatsby 
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 66.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAwAE/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQL/2gAMAwEAAhADEAAAAVhO4azw/wD/xAAcEAABAwUAAAAAAAAAAAAAAAABAAIhAxESMkH/2gAIAQEAAQUCBQkPxvKp6d//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAZEAACAwEAAAAAAAAAAAAAAAAAARAhYXH/2gAIAQEABj8CmhaPp//EABwQAAMBAAIDAAAAAAAAAAAAAAERIQAxQWFxkf/aAAgBAQABPyFql7wy4DI95FkPziaZIrc400fuKMxCG//aAAwDAQACAAMAAAAQcy//xAAWEQADAAAAAAAAAAAAAAAAAAAAASH/2gAIAQMBAT8QShD/xAAWEQADAAAAAAAAAAAAAAAAAAAAASH/2gAIAQIBAT8QbpT/xAAdEAEAAgICAwAAAAAAAAAAAAABESEAQTFhUXGx/9oACAEBAAE/EBiFW4a0mBCU6nbnrHFpLs4hVsNS8d/MBCklLGZGELzArv3n/9k=&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 66.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAwAE/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgED/9oADAMBAAIQAxAAAAFYTebWei//xAAcEAABAwUAAAAAAAAAAAAAAAABAAIhAxESMkH/2gAIAQEAAQUCBQkPxvKp6d//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAZEAACAwEAAAAAAAAAAAAAAAAAARAhYXH/2gAIAQEABj8CmhaPp//EABwQAAMBAAIDAAAAAAAAAAAAAAERIQAxQWFxgf/aAAgBAQABPyFql7wy4DI95FkPziaZIrc400T9xRmIQ3//2gAMAwEAAgADAAAAEHcv/8QAFhEAAwAAAAAAAAAAAAAAAAAAAAEh/9oACAEDAQE/EEoQ/8QAFhEAAwAAAAAAAAAAAAAAAAAAAAEh/9oACAECAQE/EG6U/8QAHRABAAICAgMAAAAAAAAAAAAAAQARITFBYVFxsf/aAAgBAQABPxAajTkHHCQKTVidt9R1VUy2YhWWHFuu/kBSlnIG7EIXmC3n3P/Z&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Nulla faucibus vestibulum eros in tempus. Vestibulum tempor imperdiet velit nec dapibus&quot;
         title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-d564d.jpg&quot;
-        srcset=&quot;/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-865fd.jpg 240w,
-/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-d40a0.jpg 480w,
-/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-d564d.jpg 960w,
-/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-c67c1.jpg 1440w,
-/devHistoryBlog/static/1-07d3a9ebe902d793eab5fe701b12a6e2-5b032.jpg 1800w&quot;
+        src=&quot;/devHistoryBlog/static/07d3a9ebe902d793eab5fe701b12a6e2/6a068/1.jpg&quot;
+        srcset=&quot;/devHistoryBlog/static/07d3a9ebe902d793eab5fe701b12a6e2/09b79/1.jpg 240w,
+/devHistoryBlog/static/07d3a9ebe902d793eab5fe701b12a6e2/7cc5e/1.jpg 480w,
+/devHistoryBlog/static/07d3a9ebe902d793eab5fe701b12a6e2/6a068/1.jpg 960w,
+/devHistoryBlog/static/07d3a9ebe902d793eab5fe701b12a6e2/644c5/1.jpg 1440w,
+/devHistoryBlog/static/07d3a9ebe902d793eab5fe701b12a6e2/d9c39/1.jpg 1800w&quot;
         sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
       /&gt;
     &lt;/span&gt;
