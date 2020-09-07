@@ -1,7 +1,7 @@
 const lost = require('lost')
 const pxtorem = require('postcss-pxtorem')
 
-const url = 'http://sangbeo.github.io'
+const url = 'https://eunyoung-autocrypt.github.io'
 
 module.exports = {
   pathPrefix: '/devHistoryBlog',
