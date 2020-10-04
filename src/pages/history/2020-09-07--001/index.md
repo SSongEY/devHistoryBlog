@@ -43,6 +43,28 @@ static 키워드를 추가하여 사용한다.
  private final static List<String> ALPA_LIST = Arrays.asList("a", "b", "c")
 ```
 
+<hr>
+
+#### [ 200914 추가내용 ]
+```
+Arrays.asList()
+# remove(), add()를 지원하지 않음. 사용시 java.lang.UnsupportedOperationException 발생
+# ArrayList와 마찬가지로 set(), get(), contains() 제공
+```
+즉 value가 변할 수 있는 객체이므로, 상수로서 적합하지 않다.
+따라서 immutable 하도록 아래와 같이 사용한다.
+```
+ private final static List<String> ALPA_LIST = Collections.unmodifiableList(Arrays.asList("a", "b", "c"))
+``` 
+
+Java 9부터는 List <E> .of (E… elements) 정적 팩토리 메서드를 사용
+```
+@Test(expected = UnsupportedOperationException.class)
+public final void givenUsingTheJava9_whenUnmodifiableListIsCreated_thenNotModifiable() {
+    final List<String> list = new ArrayList<>(Arrays.asList("one", "two", "three"));
+    final List<String> unmodifiableList = List.of(list.toArray(new String[]{}));
+    unmodifiableList.add("four");
+```
 
 #### 참고
 - https://djkeh.github.io/articles/Why-should-final-member-variables-be-conventionally-static-in-Java-kor/

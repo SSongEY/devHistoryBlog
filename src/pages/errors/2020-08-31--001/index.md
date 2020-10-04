@@ -15,7 +15,7 @@ description: ""
 ### 문제
 deleteBy.. 메소드 호출시 오류 발생
 
-## 원인  
+### 원인  
 https://stackoverflow.com/questions/32269192/spring-no-entitymanager-with-actual-transaction-available-for-current-thread
 
 ### 해결  
