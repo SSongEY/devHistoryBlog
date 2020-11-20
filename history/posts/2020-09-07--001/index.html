@@ -56,6 +56,20 @@ static 키워드를 추가하여 사용한다.</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">private final static List&lt;String&gt; ALPA_LIST = Arrays.asList(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)</code></pre></div>
 </li>
 </ul>
+<hr>
+<h4>[ 200914 추가내용 ]</h4>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Arrays.asList()
+# remove(), add()를 지원하지 않음. 사용시 java.lang.UnsupportedOperationException 발생
+# ArrayList와 마찬가지로 set(), get(), contains() 제공</code></pre></div>
+<p>즉 value가 변할 수 있는 객체이므로, 상수로서 적합하지 않다.
+따라서 immutable 하도록 아래와 같이 사용한다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"> private final static List&lt;String&gt; ALPA_LIST = Collections.unmodifiableList(Arrays.asList(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))</code></pre></div>
+<p>Java 9부터는 List <E> .of (E… elements) 정적 팩토리 메서드를 사용</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">@Test(expected = UnsupportedOperationException.class)
+public final void givenUsingTheJava9_whenUnmodifiableListIsCreated_thenNotModifiable() {
+    final List&lt;String&gt; list = new ArrayList&lt;&gt;(Arrays.asList(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;));
+    final List&lt;String&gt; unmodifiableList = List.of(list.toArray(new String[]{}));
+    unmodifiableList.add(&quot;four&quot;);</code></pre></div>
 <h4>참고</h4>
 <ul>
 <li><a href="https://djkeh.github.io/articles/Why-should-final-member-variables-be-conventionally-static-in-Java-kor/">https://djkeh.github.io/articles/Why-should-final-member-variables-be-conventionally-static-in-Java-kor/</a></li>
