@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 04 Dec 2020 11:33:28 GMT</lastBuildDate><item><title><![CDATA[[PKI] issuer private key로 서명]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</guid><pubDate>Thu, 26 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token comment&quot;&gt;// private key 로 직접 서명&lt;/span&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 04 Dec 2020 12:52:11 GMT</lastBuildDate><item><title><![CDATA[[PKI] issuer private key로 서명]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</guid><pubDate>Thu, 26 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token comment&quot;&gt;// private key 로 직접 서명&lt;/span&gt;
     &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; base64EncodedMoSub2PrivKey &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;n2iWb4B7ES9Hc7HmAHvW5RMAAGUhwAJ3hOIUuqH9r9y5l4IGzg9nQfXxocKwJDIBSC/x67JcxNA6aALuz0gd+IQby7TTTfB74sxWSNjZUV67Xup0kPOx3wOWrxmO1R2/qGUkwflm3shSbz3YoWaavzipuYKen/6pBQ5kmKzONPFh+1Nprq34hY2lccf38QRp/aGXNbXvxRZcPsYGU5HIIw==&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; caServerKey &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;_u5PJineTniFyvQmHkWP6g&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;byte&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; moSub2PrivateKeyByte &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;aesDecode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Base64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;base64EncodedMoSub2PrivKey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; caServerKey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
@@ -1697,7 +1697,50 @@ $ tcpdump -i any port 23&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded><
   
   &lt;/a&gt;
     &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Vue] Keep Alive]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-28--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-28--001</guid><pubDate>Wed, 28 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;keep-alive&lt;/h2&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[PKI] PKCS 표준]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-28--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-28--001</guid><pubDate>Wed, 28 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;공개 키 암호 표준&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;PKCS #7
+— 암호화 데이터/ 전자서명&lt;/li&gt;
+&lt;li&gt;PKCS #10 : CSR&lt;/li&gt;
+&lt;li&gt;PKCS #12 : p12 or pfx&lt;br&gt;
+— 개인키와 인증서를 합쳐 암호화하고 인증서 소유자에게 송부 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/0cf21031fb549ff7531b04283fd8c415/70881/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 27.500000000000004%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA8ElEQVQY021Ry3KEMAzj//+yQEIg7zfbi2p7y04PPWiUiWPJcpYQE0qpCCGhE9c2kGtHpjOj9ylcSsOYNxrVa+uYdB7/YDmugMsRrIMn8dYHnA9YN4VdaWy7gtIH1GFwXhaW3noyT7kSiiAKV+HFnJYajDRtu0ZMGSEVEjugSUSbE+a8RITN7tc3JuN+fTAYz4TctG67CBiagCNb5/G10h0ZKGLzK8wTcPxKhql0WUORNXUR6ywYUpXI7zheihyLjaz1Aicr8QJ+49ybOW4fU/CZMOYGR3F4bz5EEeSPYgPeKzfKx9Umkblen4/5E/vBDx2uyIlERd/YAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/0cf21031fb549ff7531b04283fd8c415/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/0cf21031fb549ff7531b04283fd8c415/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/0cf21031fb549ff7531b04283fd8c415/e85cb/001-01.png 480w,
+/devHistoryBlog/static/0cf21031fb549ff7531b04283fd8c415/d9199/001-01.png 960w,
+/devHistoryBlog/static/0cf21031fb549ff7531b04283fd8c415/07a9c/001-01.png 1440w,
+/devHistoryBlog/static/0cf21031fb549ff7531b04283fd8c415/29114/001-01.png 1920w,
+/devHistoryBlog/static/0cf21031fb549ff7531b04283fd8c415/70881/001-01.png 3236w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Vue] Keep Alive]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-27--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-27--001</guid><pubDate>Tue, 27 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;keep-alive&lt;/h2&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -4293,7 +4336,592 @@ C:\Users\ben.windows-build-tools\python27\python.exe
 &lt;p&gt;마지막으로 node module 재설치&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install &amp;lt;module&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;참고&lt;br&gt;
-&lt;a href=&quot;https://code.i-harness.com/ko-kr/q/e6ce22&quot;&gt;https://code.i-harness.com/ko-kr/q/e6ce22&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Linux] DRBD 작업 내역]]></title><description><![CDATA[DRBD 사용하여 DB 이중화 작업]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2019-12-17--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2019-12-17--001</guid><pubDate>Tue, 17 Dec 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;DRBD 사용하여 DB 이중화 작업 내역&lt;/h1&gt;
+&lt;a href=&quot;https://code.i-harness.com/ko-kr/q/e6ce22&quot;&gt;https://code.i-harness.com/ko-kr/q/e6ce22&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[TLS] Cipher Suite]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-05-21--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-05-21--001</guid><pubDate>Thu, 21 May 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Cipher Suite&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;TLS에서는 암호화하는 방법을 표준으로 특정하지 않고, server와 client가 합의해서 결정한다. &lt;/li&gt;
+&lt;li&gt;서로 합의해야 하는 알고리즘은 4가지이다.&lt;br&gt;
+— 대칭키 전달 방식,&lt;br&gt;
+— 인증서 서명 방식,&lt;br&gt;
+— 대칭키 알고리즘,&lt;br&gt;
+— HMAC 알고리즘&lt;/li&gt;
+&lt;li&gt;TLS에서는 서버와 클라이언트가 이 4가지 알고리즘을 세트로 합의하고, 합의된 알고리즘으로 application layer의 내용을 암호화해서 전송한다.&lt;/li&gt;
+&lt;li&gt;cipher suite는 TLS&lt;em&gt;ECDHE&lt;/em&gt;RSA&lt;em&gt;WITH&lt;/em&gt;AES&lt;em&gt;256&lt;/em&gt;GCM_SHA384와 같이 표기한다. 이 cipher suite를 읽어보면, 다음과 같이 해석할 수 있다.&lt;br&gt;
+— 대칭키 전달 방식은 ECDHE(Elliptic Curve Diffie Hellman Ephermeral)을 사용하며,&lt;br&gt;
+— 인증서 서명 방식은 RSA로 서명된 인증서로 상호간의 신원을 확인하고,&lt;br&gt;
+— 대칭키 암호화 알고리즘은 AES 256bit와 GCM를 채택하고,&lt;br&gt;
+— HMAC 알고리즘으로는 SHA 384를 사용해서 메시지의 무결성을 확인한다.&lt;/li&gt;
+&lt;li&gt;cipher suite는 여러가지 있다. 그중에서 client가 지원하면서 취약하지 않은 cipher suite의 리스트를 서버에게 알려주면, 서버는 그중에 지원하는 cipher suite를 선택해서 보내 합의한다.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[작업로그] vue 빌드 사이즈 줄이기]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-05-08--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-05-08--001</guid><pubDate>Fri, 08 May 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h4&gt;how to enable GZIP compression in stringboot&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://frontbackend.com/spring/how-to-enable-gzip-compression-in-spring-boot&quot;&gt;https://frontbackend.com/spring/how-to-enable-gzip-compression-in-spring-boot&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;how to compress static files in vue&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@aetherus.zhou/vue-cli-3-performance-optimization-55316dcd491c&quot;&gt;https://medium.com/@aetherus.zhou/vue-cli-3-performance-optimization-55316dcd491c&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;vue js bundle 줄이기&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://ui.toast.com/weekly-pick/ko_20190603/&quot;&gt;https://ui.toast.com/weekly-pick/ko_20190603/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] 이벤트 버블링, 이벤트 캡처 그리고 이벤트 위임]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-05-08--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-05-08--002</guid><pubDate>Fri, 08 May 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/&quot;&gt;https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[PKI] 인증서 파일 형식 및 확장자]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-05-03--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-05-03--001</guid><pubDate>Sun, 03 May 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;1. 인코딩 (확장자로 쓰이기도 한다.)&lt;/h3&gt;
+&lt;h4&gt;# der&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Distinguished Encoding Representation (DER)&lt;/li&gt;
+&lt;li&gt;바이너리 DER 형식으로 인코딩된 인증서. 텍스트 편집기에서 열었는데 읽어들일 수 없다면 이 인코딩일 확률이 높다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;# pem&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;X.509 v3 파일의 한 형태&lt;/li&gt;
+&lt;li&gt;PEM (Privacy Enhanced Mail)은 Base64인코딩된 ASCII text file이다.&lt;/li&gt;
+&lt;li&gt;원래는 secure email에 사용되는 인코딩 포멧이었는데 더이상 email쪽에서는 잘 쓰이지 않고 인증서 또는 키값을 저장하는데 많이 사용된다.&lt;/li&gt;
+&lt;li&gt;-----BEGIN XXX-----, -----END XXX----- 로 묶여있는 text file을 보면 이 형식으로 인코딩 되어있다고 생각하면 된다. (담고있는 내용이 무엇인지에 따라 XXX 위치에 CERTIFICATE, RSA PRIVATE KEY 등의 키워드가 들어있다)&lt;/li&gt;
+&lt;li&gt;인증서(Certificate = public key), 비밀키(private key), 인증서 발급 요청을 위해 생성하는 CSR (certificate signing request) 등을 저장하는데 사용된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;2. 확장자&lt;/h3&gt;
+&lt;h4&gt;# crt, cer&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;인증서를 나타내는 확장자인 cer과 crt는 거의 동일하다고 생각하면 된다. &lt;/li&gt;
+&lt;li&gt;cer은 Microsoft 제품군에서 많이 사용되고, crt는 unix, linux 계열에서 많이 사용된다.&lt;/li&gt;
+&lt;li&gt;확장자인 cer이나 crt만 가지고는 파일을 열어보기 전에 인코딩이 어떻게되어있는지 판단하긴 힘들다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;# key&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;개인 또는 공개 PKCS#8 키를 의미&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;# p12&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;PKCS#12 형식으로 하나 또는 그이상의 certificate(public)과 그에 대응하는 private key를 포함하고 있는 key store 파일이며 패스워드로 암호화 되어있다. &lt;/li&gt;
+&lt;li&gt;열어서 내용을 확인하려면 패스워드가 필요하다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;# pfx&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;PKCS#12는 Microsoft의 PFX파일을 계승하여 만들어진 포멧이라 pfx와 p12를 구분없이 동일하게 사용하기도 한다.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[PKI] 인증서 유효성 검사]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-04-26--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-04-26--001</guid><pubDate>Sun, 26 Apr 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/9ece20b4c4d24cb8560d1d0bb7abd312/aaf7f/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 31.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsSAAALEgHS3X78AAAAsUlEQVQY05WQ6QqEMAyEff+XE/8VPFA8EETReiBeIzPgwror7AaGhHb6NYmzLAuCIIDv+0jTFHEcwxiDqqokxnEc0i/h7PuOrusEo4qiEHQYBvR9/z/wKqy1AjZNg7quX4YL9qTL8wbk2G3bIs9zaRzHD+NT3D0Ccux1XTUiNc+zPtm2TTW7Z6aP91wRz/jma4d8WJYlsixDGIbao+d5iKJIteu6ytM0IUkSebgefnIHngI+0dYFAtYqAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/9ece20b4c4d24cb8560d1d0bb7abd312/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/9ece20b4c4d24cb8560d1d0bb7abd312/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/9ece20b4c4d24cb8560d1d0bb7abd312/e85cb/001-01.png 480w,
+/devHistoryBlog/static/9ece20b4c4d24cb8560d1d0bb7abd312/d9199/001-01.png 960w,
+/devHistoryBlog/static/9ece20b4c4d24cb8560d1d0bb7abd312/07a9c/001-01.png 1440w,
+/devHistoryBlog/static/9ece20b4c4d24cb8560d1d0bb7abd312/aaf7f/001-01.png 1668w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/cc8ecf73d154eb4a882941d8303f9fea/aaf7f/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 65.83333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsSAAALEgHS3X78AAABYklEQVQ4y41SCXKDMBDj/08MR1LA3OZywk3Uyh1nIIVOmFl8rC2vpLWapsHlcoHneZjnGZ9+z+fzcN8ahgFxHMP3fUgpUVWVjrZtURQF6rrWa5PL8/z18BGoxd80TQiCAEIIpGmKMAyRJAls29Zrx3F07vF44H6/Y1mWc0CzyYOk33UdkjjBOI7Iskzvs9J1XT+jbJJ8XVMrJUQioFoFWUhEUaQlYdWccyRtc8+EWb8qJG1DyRE2fPWFRMVo1G/Vfd/r4DlD+ahi66z8n3dP3SUggWkO47BCukinr9erNihLM7iuB6WUpkodXdfVcxrGkUGzjL47QL5KQB4mOEFvt5vWi04z2GJb3d712wEaHakTL1I36smR2pZlqfNHEm3XO5dJi61Dt0mnrmpEItLNTWrMv7v7r8vUKAgD5DKHiARCEaLru10l28uHfbg9tKwL5JSjXRrIucC0jhjW/g/AGRi/b1wz8jlLR44yAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/cc8ecf73d154eb4a882941d8303f9fea/d9199/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/cc8ecf73d154eb4a882941d8303f9fea/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/cc8ecf73d154eb4a882941d8303f9fea/e85cb/001-02.png 480w,
+/devHistoryBlog/static/cc8ecf73d154eb4a882941d8303f9fea/d9199/001-02.png 960w,
+/devHistoryBlog/static/cc8ecf73d154eb4a882941d8303f9fea/07a9c/001-02.png 1440w,
+/devHistoryBlog/static/cc8ecf73d154eb4a882941d8303f9fea/aaf7f/001-02.png 1668w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/a1f0a1e1eff0ec4aebc5327e602e2eb3/cc155/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 886px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 44.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAABYlAAAWJQFJUiTwAAABT0lEQVQoz22RO2+DUAyF+f9rt+5dKnWp1EpVhw6NFHXIkoCCgpRCeCRAeN1cIECAfuEOLPVgfG2f42OjjeNY1/XlchFCxHF8PB4dx/F9f7fbrdfr/X7fNE3btviqqqSUeJ5pmiZJogE+HA6WZZ1OJ2C2bf9ORjIMQ7iUD4LA87zz+Xy9XhlGErw2DANjx8n6vqcGC/TkmYCcoiiYDymlKIrKsqQEkngG53meZRmsINHPnK7rQHqToQUiXdfxqhk52u12g4w3ffCBVJLuhxAijCKQhmEgBy7YkaOaWUTjEvTxziYjpg/iOE0cz0VcWdfcSR3VNE01iQbXde9gllFkSCIu8lxImXl++PLqPj1nP6tuHBnIZKrc5R/wbMNw98tVs7UW+iZ9/+w32zk/GWB+5wwmQBI7V3yIDVN8fdtvH/nDo1wsy7YtpUR5MRkLsvMfPnP3+EEddsgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/a1f0a1e1eff0ec4aebc5327e602e2eb3/cc155/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/a1f0a1e1eff0ec4aebc5327e602e2eb3/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/a1f0a1e1eff0ec4aebc5327e602e2eb3/e85cb/001-03.png 480w,
+/devHistoryBlog/static/a1f0a1e1eff0ec4aebc5327e602e2eb3/cc155/001-03.png 886w&quot;
+        sizes=&quot;(max-width: 886px) 100vw, 886px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/fe2b0842a97221382e164b9c1ad3731a/3c051/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 760px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 121.66666666666669%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAYCAIAAAB1KUohAAAACXBIWXMAABYlAAAWJQFJUiTwAAADJklEQVQ4y1WU53LjMAyE9f6vlZnzTOIq2ZFsNdvq1UU9LncfRV8uxx8cisQCiwUg5Xa79V3XNI3nHX3P6/v+a1z3+/33/6truyIv8jyv61reKHVVuY6TJIlp7lzX5a0syyAI4jjebDbcF0WBddu2XdcNw0Cw5/P5AnPiyiPu4YDR9Xpl947HtaY5tp1lWRiGtm0Zur5er3e7LTdZmj0eDwGWPkBi2o6LCL7vG7qBxzRN8yzbrNewWK1WqqpWVTX0/fMnGGv98/NyuQzjiqLINE0hR99zCVLTNHa8OI7tOA73P8HBbDYj51N54oHMt9stQWBBIlvDWCwW4LM0RZHT6cT9C+x7Pjofj0cCpklCZMDz+VzXdRzVTYMjOC+XS3VkTmmweYGxOJ/P0ENh5CEgvgVHTUNtnizTWi4WuEd5bCQjlBZghJdIUtI0FTl5JiyO9vs9cliWAEObKtMCREbXF5iFNRiY713XO3pNXaMKMIyQzXEdiBiGTpXqcYHnXpEVlzyJkBC2aaq6Jk9CIQ+tBnlyJgBhZTnBcxaRabIkjr3DIUuSW9vd0aNto1gsmQJpTyYTikfZcUSO4NFMgDESbKfzq+Xc4mQwna80C6LIGRfBsTYMgw6jzzRV5RMUTSbAdJKuGxSf20tdneuKUgLTVI0KE5bKqSt1Np1SbVQ8laUcAQGGA9WCBpnTjHma/v7b+jICTyhEeV6W/dCNBwGm7qjFJCESmu12O7qKVOUOBs0e40JdREYquSvSq6j2GI3z98RxIBR0YIgueA8D0UIkRy4IrsiiYyq9YMStbGmmX6gtwlcwent7I21uQJI5Bv/AdAiVYLctGxfWOFWi86LocDjQISzTMplciIhRzXNF1l1qjktEJogcQz7hjCNey7KYfnzMZzOaAvskTgLfV5BB/pNoYzCQwXHf9RQ2CkNcA6ZbSViONJ/ozIQwiIpsbHbXccuiIL5t2wTUP/WyKMmIluK/Q29Mfon18f6+d/cybQEmGnsYBP6I5JfC9EEeCzmw378+8VsdBj65bJtGgGVusEVJDpDnDDF5lgW/Xq6yQmLwz2fZAn8AfFkwuLoOOWoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/fe2b0842a97221382e164b9c1ad3731a/3c051/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/fe2b0842a97221382e164b9c1ad3731a/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/fe2b0842a97221382e164b9c1ad3731a/e85cb/001-04.png 480w,
+/devHistoryBlog/static/fe2b0842a97221382e164b9c1ad3731a/3c051/001-04.png 760w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/aa4925298449fecc0b7cd426f2a0db13/aaf7f/001-05.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 27.083333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsSAAALEgHS3X78AAAAtUlEQVQY022QhwrEMAxD+/8/2b1pOukM1fEMheN6hhBHlmU5wTRNyrJMeZ6rqioty6KmaQTe972KolDXdfaGM46j4jhWkiRWJ+771hPBMAxWLMvSBI/jsBwytbqu7T7PU9u2ad93zfOsdV2N+xJ8gLZtzQmHRtwglKapiTPEe6/f+BYzQYDrumwV1kIMN7hgfUTJGUgNDjicR/DlkDVo4L+iKJJzzhrAWJmbfyMPw9BcM+Sfww867ICjHgWNAQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 05&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/aa4925298449fecc0b7cd426f2a0db13/d9199/001-05.png&quot;
+        srcset=&quot;/devHistoryBlog/static/aa4925298449fecc0b7cd426f2a0db13/8ff5a/001-05.png 240w,
+/devHistoryBlog/static/aa4925298449fecc0b7cd426f2a0db13/e85cb/001-05.png 480w,
+/devHistoryBlog/static/aa4925298449fecc0b7cd426f2a0db13/d9199/001-05.png 960w,
+/devHistoryBlog/static/aa4925298449fecc0b7cd426f2a0db13/07a9c/001-05.png 1440w,
+/devHistoryBlog/static/aa4925298449fecc0b7cd426f2a0db13/aaf7f/001-05.png 1668w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+&lt;img src=&quot;./001-06.png&quot;&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/7e03bdedad72e9942d1854c2c2efab4e/aaf7f/001-07.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 55.00000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAACXklEQVQozyWTyZKiYBCEff+XmZiZ6FFbRfZVQLZmF/hBRNS2t3tOiYcKOFR8ZGUmMxYHKNMA0d6CayowFR6mKsB3LWRJiKauwK03eJ3/hWubKPIERZaA1SU6Vk3PcWjx831DYG8x6+oMeeLD1ERoIgeJW0IR1jB1Cc7OQBHHEAURi39/EHgOLucTga3p/djW8BwLXXvAx33EIdtjdmIlMt+BKXCQCaRKHBxLhe/ZSOMQLEogbHlopDyOfLyFHk5HNs3QP6ZF3zW4jD3OfYXZuauQairc+QI7cQtL4rEz1ElBkkRgLSOFElR5iywNkaYRzkOH4dSiLFPkWYy2qSbwx/tACklu7JhwNis46xVsnoNtaQhIdVlm6I8dZFmFyK+RksKKIM0hR0ve1UWGA+2w5vAEXgnY0ELk29i7Op1J4B2d65q0VGAgs2/XEZqmg3udw1YkxK5NFnnIvD3yMEAWPUKNcWLNE1hSkrrMk7kGstjD8t9vGJTyzlQnlV+fdyiKBn5JQFFAGnhgZY6akq5SmuQ5x6bG++WMWUgpSfwKuspDkTaIQxesyiBT4glV6uf7E7pmYLtZknod8ZuPPI/BCML8cPKP0Zz6joAjZpYqQtwsIFJduNULgr2JqkggEZDVxQQ0DBMCRx7bxvSRgoA1+dhUBXWxRkfAjhTexwkowKOaCOs5Fi+/4NPpSeRNChsCfn1+wDQsqhSHPQHz7I2CeYZxoFCqRzD5I6gCtzOdLG9fp79jR8V+jEveJaFPFsgoafF2uZCfNvksksfhVObx3FPB++k5Ds+5U3hf1yv+A/Cd/0f4+hYHAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 07&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/7e03bdedad72e9942d1854c2c2efab4e/d9199/001-07.png&quot;
+        srcset=&quot;/devHistoryBlog/static/7e03bdedad72e9942d1854c2c2efab4e/8ff5a/001-07.png 240w,
+/devHistoryBlog/static/7e03bdedad72e9942d1854c2c2efab4e/e85cb/001-07.png 480w,
+/devHistoryBlog/static/7e03bdedad72e9942d1854c2c2efab4e/d9199/001-07.png 960w,
+/devHistoryBlog/static/7e03bdedad72e9942d1854c2c2efab4e/07a9c/001-07.png 1440w,
+/devHistoryBlog/static/7e03bdedad72e9942d1854c2c2efab4e/aaf7f/001-07.png 1668w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;(계속)&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] 서명 생성/검증]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-04-13--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-04-13--001</guid><pubDate>Mon, 13 Apr 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. 서명 생성&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;[param]  &lt;/li&gt;
+&lt;li&gt;algo: &lt;/li&gt;
+&lt;li&gt;privKey:  the private key of the identity whose signature is going to be generated.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[code]&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token class-name&quot;&gt;Signature&lt;/span&gt; signer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Signature&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;algo&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;BC&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+signer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;initSign&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;privKey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+signer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;plainText&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; signer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sign&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#2. 서명 검증&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;[param] &lt;/li&gt;
+&lt;li&gt;algo : the name of the algorithm requested.&lt;/li&gt;
+&lt;li&gt;pubKey: the public key of the identity whose signature is going to be verified.&lt;/li&gt;
+&lt;li&gt;plainText&lt;/li&gt;
+&lt;li&gt;signed: the signature bytes to be verified.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[code]&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token class-name&quot;&gt;Signature&lt;/span&gt; signer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Signature&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;algo&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;BC&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+signer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;initVerify&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pubKey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+signer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;plainText&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; signer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;verify&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;signed&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[작업로그] 인증서 생성 요청 Flow]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-04-13--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-04-13--002</guid><pubDate>Mon, 13 Apr 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/dfe18bba00117b6ca2026dca4580b24b/aaf7f/002-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 97.91666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAACxUlEQVQ4y51UiXLaMBD1//9dM82kE0gCxhifyPel4/WtDCQlSTtTwSJ58a72eG+Duq5xPp8RxzHyPIcs5xz+teSdq3xcgSistRiGAcuy3P4Qndba7/KOMWY98z9zjGCTBCbcwxxC2LaFbWo42gdlWeJ0OkEphTRN/VkiPhwOXjbbLX4+PuJ5s8Gvpyf8eHhAk2VwzEbvd3BFBhMdYHPq5hlB13XegaQu57ZpMHAvigKKlyVRhCQMkRyPXpfR2dj3wDQh354wlRXPAywzlEyCT8Whc1QVbKWgkxPcuQSYDpjW/WrKDslewdi7Gv4hvFmcWTq2aeLr4vVSP54t05LUXK0wtz2OmxzJa4E6Xy8MPnbN7wzdMi0TH2GyFIZRisglpixglVxWwshl44D4pUB+UBjb6T3lj+13y+yjdOPoDdw0ok3pZBiBZY0OmmgwmmKoMpj6+T3le2x9tYy2yKMKaahQZR3qgrV7K6HS1keXhWfq229qeK3XHXAFg0W0GouUce2dqbTxZ9m/7vIXEV/3eVgwj4vfzWJ83STdic8iztJhQ9xVhIkAW/AoZ8GaRPQ/KxD+ClsUnWVkyvnCnEtofy3FVxJIZBKVOBnZ3YHdVXwOyZAsL/Cy2yPlpa9vOzyThvZuONw303O5pEFyijGQEYaw6Omwo84NPXSRk/yNPwv+rCLgic/vkLE2hS97atHAsaYcPUDfoc8UloIOyF1DHC5V43fd9b4py6Q/RRvIyNIEqKRqLo243tm3M87EXbwt0aoRWcQBUrEk1DVFf8OeN3DydWtTXt9esNk8o7gNWOvl6lo7zsVL9awzWE3dOhup1/x1q0cEta0Q6RCVI9n5Ge2AsybZTYVKk790UA4x0maHxUyoDHlrR/Qzgd2FUB3n58AxZoY1ZTHwYhmFW2Fx3W/pk3oQbt90TkKlnjWcyGOZX26N+DdIiRNrfRQNHAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/dfe18bba00117b6ca2026dca4580b24b/d9199/002-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/dfe18bba00117b6ca2026dca4580b24b/8ff5a/002-01.png 240w,
+/devHistoryBlog/static/dfe18bba00117b6ca2026dca4580b24b/e85cb/002-01.png 480w,
+/devHistoryBlog/static/dfe18bba00117b6ca2026dca4580b24b/d9199/002-01.png 960w,
+/devHistoryBlog/static/dfe18bba00117b6ca2026dca4580b24b/07a9c/002-01.png 1440w,
+/devHistoryBlog/static/dfe18bba00117b6ca2026dca4580b24b/aaf7f/002-01.png 1668w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/803a44831de81b81f789891538b2f680/aaf7f/002-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 96.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsSAAALEgHS3X78AAACLklEQVQ4y5WU65KaQBSEff/nSuWPlUqVlV0rXlCQFRUEBWHwgp35phaybtxdM9TIXJg+3afP2GuaRmVZKk1TxXGs8/ms/X6vKIrc2na71WKxcOMwDLXZbGSM0W6302q10nQ6dedp1+tVvcvlosPh4HqWZSJAnufdQcDZOx6PDoQ9zjBnHzDmHSADFkajkXzfd6Dj8dgBep6nJEncHKafNcBovXZCJDpRq9eosDidTo4lqeC7j3rHkJ/2Yw63c+QVReHW3rL4EpCcIWsymbgOEHKHz88KgqBL+D15H0oWkq1UE2/08vRLRbqVsXIBJK9IJrfz+dw5DgEC4TDOQ+JGMu1opZ2sm6U3lZmMVQW+ym0iU9fOWVObzmUMqu06qaHfuNwCUhp5cXARU8vAWAahZdMyOeQHBX7gam8drXU6nv+RfMvQSmzrj04hw4gCh8Es8VSY3AWYr2d6SUKVRSl/HihLs1dU3TJECgwDmzfeBFiEC5mq1jB6UpD6+h0P9d37pp/RD2VVqlnqaVslKppc+0v2tw4faY19HA0ug8466Wif2o7tc72obswtQ9yEJY7iJnJZ544PBgOtopXdT7VcLhVv4k6m3vDpACnitjQABQwD2nvOnH2Ckl9cv1fsHSD2cyt4c/3aMYXfsn+kwDtADlCws9nMyYUNHfd5I/s9o3ugPf1He8Q8939IbVVV5aTCCInMkc3+e0afAfc4RCFTd9zb1l1c7ff7rhYfAWrbH0KJv71QHCUaAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/803a44831de81b81f789891538b2f680/d9199/002-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/803a44831de81b81f789891538b2f680/8ff5a/002-02.png 240w,
+/devHistoryBlog/static/803a44831de81b81f789891538b2f680/e85cb/002-02.png 480w,
+/devHistoryBlog/static/803a44831de81b81f789891538b2f680/d9199/002-02.png 960w,
+/devHistoryBlog/static/803a44831de81b81f789891538b2f680/07a9c/002-02.png 1440w,
+/devHistoryBlog/static/803a44831de81b81f789891538b2f680/aaf7f/002-02.png 1668w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[PKI] 공개키 인증서 형식]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-04-13--003</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-04-13--003</guid><pubDate>Mon, 13 Apr 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/e53ac6b659328f36ac971d618bff4d0e/aaf7f/003-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 122.91666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAZCAYAAAAxFw7TAAAACXBIWXMAAAsSAAALEgHS3X78AAADHElEQVQ4y5VU2XLaQBDk/9/yK3nNo1MVl12VB4yDHcxhG4TQge4LrdSZHiHFBlxOtmpYaYVaPd0zM1qv1wjDPXa7HXzfh+O4qKsIrvUdRbIAV9u2Z8FV1zWWyyUm9/eyr/R8ZNsO0rwVMILaEj6ag4PV5Ati5zs6RFxcxjRw5H135yGOYj0bZYkFf/MVhypFUZTCNkAQRMhLoBKkwuQomwJVU6JuD7JXqNpKz8q2QI4UmYRB3QEmsY3E/QbfXQs7F5vNBp7ryvUWeZsiqWME9R6xiQSwFqAShYAlJtbrnB80BUxrOsCefhjG2O/3qiN1NbU5z/GD1IfH1JA/TVPDFVY92Ovrq5jjwDRGzVos5litVpg+POh/sjxDlmWYzX7j8fERLy8vgtH8ZcibKIpEuwD36thS9yRJMJvP8eP6GpPJBD9vb2FZFsbjsQI9yAfSNNUYAPsS6Cm/S0HYwPeARBx0HdEloLVYi86z2UyzOUv5bZ29qzkyF4Zma8HYW9TWBmbvo5VUqXUUhprVaW2O3h6Q9hC8z1IFMVKfjeeiIUBZXDSjXyN8to5sTwFOmQ0MD4eDpkADbHunjjGen5+1neimviCsLwGcrgGQ7j09zdXdu7uJ7L9wN77TQj8zq/24IIeyYX2xFLbbrbKrqlJe7M45BPI81/L4lCF/yrJEHHfNzUK2bRue5ylzgrM8yJQfJPg/AZIJF4v16uoKNzc3qmV//l8pF0UxtBvZzKU7eM/gNdkzaFwv0UcGDYBk0gOT5XQ61f5mytSV55TjM7ZDytSIoi8WC3W8N4pA1DMVduwM6sr/BrJfqkcFpIP91zkg+msCUEembQlLl0bxuUgTHSf0xV6mc3SWXydgKH3qCQveN1Knx3nfBV3mZJG9ZWlV1bCfTZt3KwoBGQqNTBgjWhpJX/uau5x3QJX2NodIKzPybNoMU+b4ZwXYrGUohGicXTcgAmEtI62R9Js46p5xCokPbM/RJce0b4tc7zm+upf2HThf5nORohUJlATTl8l0cdr0oA2nsKSiYFKDnIMaUlpMU6M4hpja1p3WfwBRg42ltzxy2QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/e53ac6b659328f36ac971d618bff4d0e/d9199/003-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/e53ac6b659328f36ac971d618bff4d0e/8ff5a/003-01.png 240w,
+/devHistoryBlog/static/e53ac6b659328f36ac971d618bff4d0e/e85cb/003-01.png 480w,
+/devHistoryBlog/static/e53ac6b659328f36ac971d618bff4d0e/d9199/003-01.png 960w,
+/devHistoryBlog/static/e53ac6b659328f36ac971d618bff4d0e/07a9c/003-01.png 1440w,
+/devHistoryBlog/static/e53ac6b659328f36ac971d618bff4d0e/aaf7f/003-01.png 1668w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/da2790f3d5b4466ac62ca3a5533397bb/aaf7f/003-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 95.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsSAAALEgHS3X78AAACS0lEQVQ4y41Ui46bMBDk/7+taqWrUlVpTpcnb0x42BDATHesGuUO7lRLG/CazO7MDgRt2+J0OiEMQ2RZhuv1isfjgc/WPM/vrnGcYLf7hcPhFdZaBNM04X6/oygKVFXlgkX6vkdd1zDGuJxSJYZhWMA8IItrbdzzzAVMckPQOI5RliWiKEKapm7Prt/ejnh5+ekKbHX5vAJ/kOc58ixHlmYopRutNeqqdjQoh/S0Cea79RH4A9JUd4Va18iKDKpSyMoM4zChqRu5jisdt1bAyose6FHaAgYaem7lt8EwDxgxuGtve4x2XOm4SZnLYnJAg0CbWcNYLSU6KaKg5b6Za0KD7D9S9TjvNGybFp3pnIZ916M3PRKxhW41JqFOfeMo/tJOi4a0BqcaRiH2+z2iOILpDM7ns5s0z2gt3nt7JUnicpsdctFznC4f7rpuGRbtwkn7c1qMOaXUYqUF8BmdJqcnx3F0gATwZ7QPjc0gqDd80zSu6CYgdfQ0eKW5WYRG3+12uN1uTgLm2Zl/AfgyLBr+j7cIcjweHe3L5eJASJtMVkP5CPbRBgzSImWCkCq1IxuvM89WlFmN+vCQOd577Xx4DakZg1r6Lle2IQ3S4adsmkZnk1R0pE5XyWdyTstQX0rAPPfPg1sA/YYVcxH4VfQ6ElxCyQfi958Dvn3/gVabL029ApyFzpil6KSylg66UuGRxDDy0TXS7Sh7K51PouEkxh8vZ/efTzsENavumAXUhSpgwxtmeXtmGYKVmOTeElieszKk+d9gPMZfc03DjNt6WU4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/da2790f3d5b4466ac62ca3a5533397bb/d9199/003-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/da2790f3d5b4466ac62ca3a5533397bb/8ff5a/003-02.png 240w,
+/devHistoryBlog/static/da2790f3d5b4466ac62ca3a5533397bb/e85cb/003-02.png 480w,
+/devHistoryBlog/static/da2790f3d5b4466ac62ca3a5533397bb/d9199/003-02.png 960w,
+/devHistoryBlog/static/da2790f3d5b4466ac62ca3a5533397bb/07a9c/003-02.png 1440w,
+/devHistoryBlog/static/da2790f3d5b4466ac62ca3a5533397bb/aaf7f/003-02.png 1668w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/5b083ac0584774c8090103885eaf459a/720e3/003-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 122.49999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAZCAIAAAC+dZmEAAAACXBIWXMAAAsSAAALEgHS3X78AAADeElEQVQ4y12U2ZqiMBCFef93mu1qBhVGVkXZVHYVEFERW3v+QHdfTD6MJORUnVNLpOYkBnPbtv0wns/n4/HGS9uej4fDYb/fFwVPnmXH47FpmtfrtXKcn9+/Se/v7/f7Pc+z8ngsiiJN0ziOwyDwfT8IgjzP42i3CcMoina7LQ/vnGH+9eO7AOMZSxxfrVYjhpOcDsNAGMJS4GdZGg1WwsCPo8hz1+psIsA43Gw2VV1XVVXkOVR5ac5nGN5utx4NnwOO9XAMApauSWwBuLQt6pIkQVhVlo/H43q9grxe+NKez8ISEwv2gaRJ8nc2ld6eT2e5XNh2EsfEA5HgAcNodDUicVefarh0XTeCp/JvQRsNpmkS1KrEqwgbXNI0QSQafc/LsqwsS9gKGm0LnhNT+Y9EYjDNN9/3TEMXFJJE0+aWZdqWqSqKrusw2223qAUGGD3YV6YTAWaNItdd67pGwMkHYACLha0qqm3bhLgT4yZ+hLDvCaoykUXAUEK2PM9drRxmsuWu11ixbctxHNd1o2HsRJY3IqJVyfzh+dbdCAwfEU9gCBtpd1YOQizLgjayTcOAGrBT0yCetKuA8TymwfM8PO+HgVSYa/O5ZQrZCCAjnkvk0svl0t9F5c5GMLRJpaHrxBwB+MchzJfLJebwjBk+bbebvchEUQ9DnU6l7n6nquuqNom1rlEqJEnTNF3YMpA9mciKosiyzOZElqeTiaLMKIa5MpPuXTfm0HNdz/foIDSjlrBR2NkwKBz6ihLAtGiVOOJFpcJoOUINmF4hmZQHvQO99/8HjcjvY4FLQ5tLWMIz3vCMyO12ux8qjIckoYQH2uxDga4yDINA4MxZLqSxvABQWIQBFsM10A4W8nDo3kzktoKqSArqPI8DgedKdKuqqgSTGgCMIVEzzYkyIPn00Lk9UwtkCPDr+YQC/csy9H1pZLIeEkNWGRQTeI723DBZxhIr7MAFUqG4DwKKdBMEEhcIGMC0BHzGehCRKwoYUKTUOFoICjIoJ87DnB0Bfjz625WevwiSdD93wPXaDIMTl8/L4Gvmn9+prqEsIRK1VO9Y/TQEu9QACSdOJJK+RwLHuEaxR1xgwV1Ep0gEmaSDhzaFgR7WY+s9+p4XdEKK9dfdNCb9eNiTqgYxwqoISQ5V4UQUaSputaHI4uHeZZ8lJUHwAeP8H4dmT0J1Hke0AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/5b083ac0584774c8090103885eaf459a/d9199/003-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/5b083ac0584774c8090103885eaf459a/8ff5a/003-03.png 240w,
+/devHistoryBlog/static/5b083ac0584774c8090103885eaf459a/e85cb/003-03.png 480w,
+/devHistoryBlog/static/5b083ac0584774c8090103885eaf459a/d9199/003-03.png 960w,
+/devHistoryBlog/static/5b083ac0584774c8090103885eaf459a/07a9c/003-03.png 1440w,
+/devHistoryBlog/static/5b083ac0584774c8090103885eaf459a/29114/003-03.png 1920w,
+/devHistoryBlog/static/5b083ac0584774c8090103885eaf459a/720e3/003-03.png 1962w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[PKI] CSR(Certificate Singing Request)]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-04-13--004</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-04-13--004</guid><pubDate>Mon, 13 Apr 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/3d192c833d63bf37f9b0dc817f604b3f/aaf7f/004-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAABtklEQVQ4y5VUy07DMBDM/38CP8GZE4ILSJyoAKktAkT6SGPHTvNw08TO4F1IaEqKYNrtJnV2PDveNsjzHJvNBlmWQQiBNE35XkoBnW6RiRus5meIl7dI4zuo6BIE5xxnISSurq4xmUzQti2CoigQRWusVktMp1OEYciE8/kc7+ECs8cLhM/nyNNnH68o9AMTUTHBGOPrIySJ4vsAX9jvba+QHiJiY0okKkdtMUBH1uUOSikE1jok0R20eEJZ7rzSFbdPKumBTzhf7JiA8jFpF2RDQB+VWSNav2FXVayurmuQt2THWPEYuu+D7kJ6D7RWiON4cEDHRGOEh2s9IbVIirb+ZMui/FUFb4BxpT0hqVJe4cvyBYso7AubtvFRwx14dyr6Uz5so8YeBiVSq5HbDJndcjbOnCQ87CD4Ybh/kxoiSBqBwpOVrvAbqJ50zIrBofCrHS7sfHFhc1ZHmch0kzC59BvJJsbWpn5TCeWDbPkmPA7XwraW/SO1dE3Zfc0iFXdrrp/PdvhLGe8F/wJ7SEMspeS5o2FeLJa4v58MhvqvwQqJkAaYCLXW/g9ixlFV+5OD/Bs+AMnNkvQhNDLVAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;004 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/3d192c833d63bf37f9b0dc817f604b3f/d9199/004-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/3d192c833d63bf37f9b0dc817f604b3f/8ff5a/004-01.png 240w,
+/devHistoryBlog/static/3d192c833d63bf37f9b0dc817f604b3f/e85cb/004-01.png 480w,
+/devHistoryBlog/static/3d192c833d63bf37f9b0dc817f604b3f/d9199/004-01.png 960w,
+/devHistoryBlog/static/3d192c833d63bf37f9b0dc817f604b3f/07a9c/004-01.png 1440w,
+/devHistoryBlog/static/3d192c833d63bf37f9b0dc817f604b3f/aaf7f/004-01.png 1668w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] CertInstallationRes 구현]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-01-27--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-01-27--001</guid><pubDate>Mon, 27 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/d46ebc8e71b6f7be29feff08dfc1e6e4/efeb1/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 68.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAACL0lEQVQ4y3WTS2/aUBCF+f/r7rqpuqla9ZFIpAECDrhgQkxYJFJbKVEfvGzAT7ANJjYnM0MwhrSLwdfcuWfOfHNdSFY6HpfXErv1OuogjjQsQxVhUMfcV7AKr7J9fm7jOvdkDR2FQ8EuHWzCcT/DcU7guiew7C+wnTMSv0JKuWmsY39Gx5oijrqyZtHCscM4bOPX/Sl+3xdpzXvb5GXQhjGs4MfdJ/x5KFIhRQpOZu+o4AfK0eR8YSeUxl1xEMxbJFiEMaggCjQ6cIGRWYLvqfCsBob9EsU5woVGOKq09xp94xWJfyWN3tbhklyFixY8r0HVLuUdjz1xzez4nbmmhCQIWrAcBVOrSq2ymRbtK7RuCTIRZJEhueAkdhXT4Z3zTXwj7rmAZSr4fvsRt733VKgtBjh3Q8526Aos4Lh1mNQaJ4AE8hN3HJ7yN/g+tWw3MB6VYZuXlKtiZtVgTRREc20vyD8yvefWhSXFLmExb8pAAkISUrtRqGG96oiziDi2m2/Q0d4KEhlKdvcoPHsL3p3V5UDyXIifgdfE1KxiMDzH0CjBoI4si1iOaxj1y1lX2ZTXYQdGv4KHn6cYD8rSKiPgdpnxZFwVfqO/JSzcJpJYl6LMFkmOIS94ki5xHFFl31XF/ozu2cyuCVtzegHfUeGSe99Ws/byd/iFQ+bHw2E3zI2HwOz4/vHeZn1Dccg3P7wXglte3Wwzzf47dHEstP+u9cOh5BOTf4gcO/lfPAGq+wOfV23VBAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/d46ebc8e71b6f7be29feff08dfc1e6e4/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/d46ebc8e71b6f7be29feff08dfc1e6e4/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/d46ebc8e71b6f7be29feff08dfc1e6e4/e85cb/001-01.png 480w,
+/devHistoryBlog/static/d46ebc8e71b6f7be29feff08dfc1e6e4/d9199/001-01.png 960w,
+/devHistoryBlog/static/d46ebc8e71b6f7be29feff08dfc1e6e4/07a9c/001-01.png 1440w,
+/devHistoryBlog/static/d46ebc8e71b6f7be29feff08dfc1e6e4/efeb1/001-01.png 1593w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;[ Error &amp;#x26; Solv ]&lt;/h3&gt;
+&lt;h4&gt;#1. signature marshalling error&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;에러 메시지&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;[com.sun.istack.internal.SAXException2:
+     @XmlRootElement 주석이 누락되어 &amp;quot;com.autocrypt.v2g.common.message.type.SignatureType&amp;quot; 유형을 요소로 마셜링할 수 없습니다.]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;원인&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// 작업 시 , SignatureType에 @XmlRootElement 누락
+val signatureByteArray = MsgDigest.generateXMLToByteArray(signature, SignatureType::class.java)?: return null&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;해결&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// SignatureType에 anotation 추가
+@XmlRootElement(name = &amp;quot;Signature&amp;quot;, namespace = &amp;quot;http://www.w3.org/2000/09/xmldsig#&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;#2. grammarMsgDef로 EXI Encoding 후 Decoding 시 메시지가 짤려서 나오는 현상&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;원인&lt;br&gt;
+certChain의 namespace 잘못됨&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;해결&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;msgBody에서 MsgDataTypes 로 변경&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[PKI] 용어정리]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-01-27--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-01-27--002</guid><pubDate>Mon, 27 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h4&gt;발행자 UID (akID)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;발급자의 공개키의 해쉬값&lt;/li&gt;
+&lt;li&gt;issure DN이 동일할 수 있음&lt;/li&gt;
+&lt;li&gt;동일한경우 발행자 UID 를 확인하여 발급자를 찾는다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;대상자 UID (skID)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;내 공캐키의 해쉬값&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;self sign 인증서의 경우 (RootCA)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;subjectDN == issureDN&lt;/li&gt;
+&lt;li&gt;발행자 UID == 대상자 UID&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[PKI] 인증서 확장]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-01-27--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-01-27--001</guid><pubDate>Mon, 27 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. 키 사용&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;키 사용 용도 9가지에 대해서 인지 필요 (0~9 까지 있지만 실사용은 1~9 까지)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#2. 확장 키사용&lt;/h3&gt;
+&lt;p&gt;    - OID 
+       - OID Info 사이트 존재
+       - derEncoding 
+       - 서명용으로 사용하는데 키사용, 확장 키사용으로 표시를 한 부분은 개발자 몫?&lt;/p&gt;
+&lt;h3&gt;#3. CRL 분배 포인트, OCSP 둘 중 하나만 선택해서 인증서 유효성 검증(3가지) 를 한다&lt;/h3&gt;
+&lt;p&gt;    - 유효일자 검사, ?, ?&lt;/p&gt;
+&lt;h3&gt;#4. 주체대체이름&lt;/h3&gt;
+&lt;p&gt;    - subject에 대한 &lt;/p&gt;
+&lt;p&gt;(계속 정리 필요)&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Linux] DRBD 작업 내역]]></title><description><![CDATA[DRBD 사용하여 DB 이중화 작업]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2019-12-17--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2019-12-17--001</guid><pubDate>Tue, 17 Dec 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;DRBD 사용하여 DB 이중화 작업 내역&lt;/h1&gt;
 &lt;h3&gt;DRBD&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Distribute Replication Block Device&lt;/li&gt;
