@@ -20,15 +20,10 @@ class Sidebar extends React.Component {
     /* eslint-disable jsx-a11y/img-redundant-alt */
     const authorBlock = (
       <div>
-        <Link to="/">
-          <img
-            src={profilePic}
-            className="sidebar__author-photo"
-            width="75"
-            height="75"
-            alt={author.name}
-          />
-        </Link>
+        <img
+          src={profilePic}
+          alt={author.name}
+        />
         {isHomePage ? (
           <h1 className="sidebar__author-title">
             <Link className="sidebar__author-title-link" to="/">
@@ -53,7 +48,7 @@ class Sidebar extends React.Component {
           <div className="sidebar__author">{authorBlock}</div>
           <div>
             <Menu data={menu} />
-            <Links data={author} />
+            {/*<Links data={author} />*/}
             <p className="sidebar__copyright">{copyright}</p>
           </div>
         </div>

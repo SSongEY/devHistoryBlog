@@ -15,32 +15,28 @@ module.exports = {
     disqusShortname: '',
     menu: [
       {
-        label: 'Algo',
-        path: '/algo/',
-      },
-      {
-        label: 'Errors',
-        path: '/errors/',
+        label: 'All Articles',
+        path: '/',
       },
       {
         label: 'History',
         path: '/history/',
       },
       {
+        label: 'Errors',
+        path: '/errors/',
+      },
+      {
+        label: 'Algo',
+        path: '/algo/',
+      },
+      {
         label: 'Gatsby',
         path: '/gatsby/',
       },
       {
-        label: 'Articles',
-        path: '/',
-      },
-      {
         label: 'About me',
         path: '/about/',
-      },
-      {
-        label: 'Contact me',
-        path: '/contact/',
       },
     ],
     author: {
