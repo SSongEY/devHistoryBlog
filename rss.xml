@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 04 Dec 2020 10:59:03 GMT</lastBuildDate><item><title><![CDATA[[PKI] issuer private key로 서명]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</guid><pubDate>Thu, 26 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token comment&quot;&gt;// private key 로 직접 서명&lt;/span&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 04 Dec 2020 11:00:45 GMT</lastBuildDate><item><title><![CDATA[[PKI] issuer private key로 서명]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</guid><pubDate>Thu, 26 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token comment&quot;&gt;// private key 로 직접 서명&lt;/span&gt;
     &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; base64EncodedMoSub2PrivKey &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;n2iWb4B7ES9Hc7HmAHvW5RMAAGUhwAJ3hOIUuqH9r9y5l4IGzg9nQfXxocKwJDIBSC/x67JcxNA6aALuz0gd+IQby7TTTfB74sxWSNjZUV67Xup0kPOx3wOWrxmO1R2/qGUkwflm3shSbz3YoWaavzipuYKen/6pBQ5kmKzONPFh+1Nprq34hY2lccf38QRp/aGXNbXvxRZcPsYGU5HIIw==&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; caServerKey &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;_u5PJineTniFyvQmHkWP6g&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;byte&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; moSub2PrivateKeyByte &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;aesDecode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Base64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;base64EncodedMoSub2PrivKey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; caServerKey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
@@ -997,8 +997,10 @@ call AppConfig.memberRepository&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &lt;/p&gt;
 &lt;h4&gt;#3-2. @Getter, @Builder 설정&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;변환과정에서 꺼내오는 객체(source)에는 Getter가 있어야 하고, 변환해서 저장하고자 하는 객체(target)에는 Builder 혹은 Setter가 있어야 하는데 Setter는 지양한다.&lt;br&gt;
-&lt;a
+&lt;li&gt;변환과정에서 꺼내오는 객체(source)에는 Getter가 있어야 하고, 변환해서 저장하고자 하는 객체(target)에는 Builder 혹은 Setter가 있어야 하는데 Setter는 지양한다.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/devHistoryBlog/static/bb9e9e4e6fcc0f2a3d120848bf434620/9d576/003-13.png&quot;
     style=&quot;display: block&quot;
@@ -1029,8 +1031,8 @@ call AppConfig.memberRepository&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
   &lt;/span&gt;
   
   &lt;/a&gt;
-    
-
+    &lt;/p&gt;
+&lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/devHistoryBlog/static/77b064f1f1b366f0858f879197b871f0/ca12d/003-14.png&quot;
@@ -1062,8 +1064,8 @@ call AppConfig.memberRepository&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
   &lt;/span&gt;
   
   &lt;/a&gt;
-    
-
+    &lt;/p&gt;
+&lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/devHistoryBlog/static/ed749df7538d664edec5d824a180da2d/977f7/003-15.png&quot;
@@ -1095,8 +1097,7 @@ call AppConfig.memberRepository&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
   &lt;/span&gt;
   
   &lt;/a&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
+    &lt;/p&gt;
 &lt;br&gt;
 &lt;h5&gt;201203 수정사항&lt;/h5&gt;
 &lt;ul&gt;
