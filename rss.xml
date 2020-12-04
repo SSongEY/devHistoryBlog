@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 04 Dec 2020 00:23:33 GMT</lastBuildDate><item><title><![CDATA[[PKI] issuer private key로 서명]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</guid><pubDate>Thu, 26 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token comment&quot;&gt;// private key 로 직접 서명&lt;/span&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 04 Dec 2020 00:58:59 GMT</lastBuildDate><item><title><![CDATA[[PKI] issuer private key로 서명]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</guid><pubDate>Thu, 26 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token comment&quot;&gt;// private key 로 직접 서명&lt;/span&gt;
     &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; base64EncodedMoSub2PrivKey &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;n2iWb4B7ES9Hc7HmAHvW5RMAAGUhwAJ3hOIUuqH9r9y5l4IGzg9nQfXxocKwJDIBSC/x67JcxNA6aALuz0gd+IQby7TTTfB74sxWSNjZUV67Xup0kPOx3wOWrxmO1R2/qGUkwflm3shSbz3YoWaavzipuYKen/6pBQ5kmKzONPFh+1Nprq34hY2lccf38QRp/aGXNbXvxRZcPsYGU5HIIw==&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; caServerKey &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;_u5PJineTniFyvQmHkWP6g&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;byte&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; moSub2PrivateKeyByte &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;aesDecode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Base64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;base64EncodedMoSub2PrivKey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; caServerKey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
@@ -109,7 +109,121 @@
           &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;issuerKeyHash&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Base64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toBase64String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getIssuerKeyHash&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
           &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;serialNumber&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getSerialNumber&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
           &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[Gradle] 테스트 없이 빌드]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-24--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-24--001</guid><pubDate>Tue, 24 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ gradle build --exclude-task test&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[Spring] Container Bean 생성]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-14--001.md</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-14--001.md</guid><pubDate>Sat, 14 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;# 스프링 컨테이너 생성&lt;/h3&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[Gradle] 테스트 없이 빌드]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-24--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-24--001</guid><pubDate>Tue, 24 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ gradle build --exclude-task test&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[Spring] Singleton Container]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-14--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-14--002</guid><pubDate>Sat, 14 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;스프링 없는 순수한 DI 컨테이너&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;요청시마다 객체를 새로 생성한다
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/efeb1/002-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB20lEQVQoz21SuY7TUBTN18AvMNTwC/AFQw0llCCk6RCa0KSkpECJIgqkoQhNpLQmthOcxc7meImXeHecQ84bORCJKx09yXo+232NqqpwPB5RliUOh8N/kWUZ8jyHaZqQJAmj0QjKUIEsy5B+SZjNZiiKAmmaorHf7xFFEf4ditRCnO12C9/3BQI/wG63w2wxE98d24FlWSAPBRvdbhetVks40HUd4/EYk8kE8/kc6/UanufBtm0cqgPKooRhGbj+co3HH6/w/PMzmJF5NhIEARrD4RCDwQBhGMJxHKG+2WywXC6xWCxgGIaIRGLf82E7Nnq/e+hIHfwY3SEtUuA+iLgjCIl62AWJ6Y5RKOS67kUlbuxCNmWYoYnq+LcaViIiN5tN4YyRVVUVmE6nIirJ6DZJE2RJBnWu4umnJ3j4/gGuPjyCvpufhQQhSQiqsFhuiojjWHRCMDZPP/CRp7n4Oc7jiyWeCXu9Ux+dzv2lEwk3xbir1Uq4Jjm7qSdMQ9z+vMWrry9xc3cj4tcjOuz3+2i32yIat0s3JCRIXi8oSRL4Ox+aruHd97d4cdr0m2+vLwjFlknA8hmZ4COu3yZPulYUBZqmncjXsC0bkRchdEPEXgzHcoQo3yS5/gDV0t+jDGSbiwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/d9199/002-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/8ff5a/002-01.png 240w,
+/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/e85cb/002-01.png 480w,
+/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/d9199/002-01.png 960w,
+/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/07a9c/002-01.png 1440w,
+/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/efeb1/002-01.png 1593w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppConfig&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;dataService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DataServiceImpl&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token annotation punctuation&quot;&gt;@Test&lt;/span&gt;
+  &lt;span class=&quot;token annotation punctuation&quot;&gt;@DisplayName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;스프링 없는 순수한 DI 컨테이너&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;pureContainer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token class-name&quot;&gt;AppConfig&lt;/span&gt; appConfig &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppConfig&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// 호출시마다 객체를 생성&lt;/span&gt;
+    &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt; dataService1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; appConfig&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;dataService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt; dataService2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; appConfig&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;dataService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// 참조값이 다른 것을 확인&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dataService1&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;isNotSameAs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dataService2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;싱글톤 컨테이너&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;스프링 컨테이너 덕분에 요청시마다 객체를 생성하는 것이 아니라, 이미 만들어진 객체를 재사용한다.&lt;/li&gt;
+&lt;li&gt;스프링 컨테이너는 싱글톤 컨테이너 역할을 한다.&lt;/li&gt;
+&lt;li&gt;이렇게 싱글톤 객체를 생성하고 관리하는 기능을 싱글톤 레지스트리라 한다.
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/7bf53/002-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABf0lEQVQoz41Sy26CUBTke9p1+xntZzVu6rZr/8C9iQt2NHGhkihGiKBeEXwCKiBMO6eBxKZpe5PhPuDMnJmLdr1eUZYl8jwXcP8daZrifD7LvFwuYZomJpMJBoMBbNvG6XTC5XKRbzQ+ePDbCIIA2+0Wh8MBm81G9mEYCrjf7/c4Ho/wfR9at9tFs9mUg9lsBsuyMBwOMR6PsVgspGC9XuM/I4oiaCzUdR1FUdwoEyQiaJPEVZdJlCBN0pqItRx8p02nU/T7/RslZsrsmCkHCSlGS4TjO3h3DNiBjbz4/Kb8qqNLrdPpoNFoSLu0PBqNxDKtz+dzrFYreJ4n5FmaQQUKz29PuH+5w+PrA0xl1o0IIXOi7SzLsNvtEMcxkiQRAYZNG67ryprvZK9cWL6FMA5rRzWhYRhot9tywBunNVokKMDOOLOIIlxXFiuymwx7vR5arZYEToskUkpJVrTLNXMmEf+1P2+ZBCSiSmWVoBpnnjmOI0K8cYr8BDbAaD4Asc7voXsjyT0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/d9199/002-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/8ff5a/002-02.png 240w,
+/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/e85cb/002-02.png 480w,
+/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/d9199/002-02.png 960w,
+/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/07a9c/002-02.png 1440w,
+/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/7bf53/002-02.png 1595w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Test&lt;/span&gt;
+  &lt;span class=&quot;token annotation punctuation&quot;&gt;@DisplayName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;스프링 컨테이너와 싱글톤&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;springContainer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token class-name&quot;&gt;ApplicationContext&lt;/span&gt; ac &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AnnotationConfigApplicationContext&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;AppConfig&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt; dataService1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ac&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dataService&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt; dataService2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ac&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dataService&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// 참조값이 동일한 것을 확인&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dataService1&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;isSameAs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dataService2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;싱글톤 방식의 주의점&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;무상태(stateless)로 설계해야 한다.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Spring] Container Bean 생성]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-14--001.md</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-14--001.md</guid><pubDate>Sat, 14 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;# 스프링 컨테이너 생성&lt;/h3&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token class-name&quot;&gt;ApplicationContext&lt;/span&gt; applicationContext 
       &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AnnotationConfigApplicationContext&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;AppConfig&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
@@ -312,121 +426,7 @@
     &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; key &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; beansOfType&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;keySet&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
       &lt;span class=&quot;token class-name&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;out&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;key = &quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; key &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot; value = &quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; beansOfType&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;key&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[Spring] Singleton Container]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-14--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-14--002</guid><pubDate>Sat, 14 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;스프링 없는 순수한 DI 컨테이너&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;요청시마다 객체를 새로 생성한다
-
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/efeb1/002-01.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB20lEQVQoz21SuY7TUBTN18AvMNTwC/AFQw0llCCk6RCa0KSkpECJIgqkoQhNpLQmthOcxc7meImXeHecQ84bORCJKx09yXo+232NqqpwPB5RliUOh8N/kWUZ8jyHaZqQJAmj0QjKUIEsy5B+SZjNZiiKAmmaorHf7xFFEf4ditRCnO12C9/3BQI/wG63w2wxE98d24FlWSAPBRvdbhetVks40HUd4/EYk8kE8/kc6/UanufBtm0cqgPKooRhGbj+co3HH6/w/PMzmJF5NhIEARrD4RCDwQBhGMJxHKG+2WywXC6xWCxgGIaIRGLf82E7Nnq/e+hIHfwY3SEtUuA+iLgjCIl62AWJ6Y5RKOS67kUlbuxCNmWYoYnq+LcaViIiN5tN4YyRVVUVmE6nIirJ6DZJE2RJBnWu4umnJ3j4/gGuPjyCvpufhQQhSQiqsFhuiojjWHRCMDZPP/CRp7n4Oc7jiyWeCXu9Ux+dzv2lEwk3xbir1Uq4Jjm7qSdMQ9z+vMWrry9xc3cj4tcjOuz3+2i32yIat0s3JCRIXi8oSRL4Ox+aruHd97d4cdr0m2+vLwjFlknA8hmZ4COu3yZPulYUBZqmncjXsC0bkRchdEPEXgzHcoQo3yS5/gDV0t+jDGSbiwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;002 01&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/d9199/002-01.png&quot;
-        srcset=&quot;/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/8ff5a/002-01.png 240w,
-/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/e85cb/002-01.png 480w,
-/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/d9199/002-01.png 960w,
-/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/07a9c/002-01.png 1440w,
-/devHistoryBlog/static/7ba29536b82a71776fec267ced6c97ec/efeb1/002-01.png 1593w&quot;
-        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppConfig&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
-    &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;dataService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DataServiceImpl&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-  &lt;span class=&quot;token annotation punctuation&quot;&gt;@Test&lt;/span&gt;
-  &lt;span class=&quot;token annotation punctuation&quot;&gt;@DisplayName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;스프링 없는 순수한 DI 컨테이너&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;pureContainer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token class-name&quot;&gt;AppConfig&lt;/span&gt; appConfig &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppConfig&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;token comment&quot;&gt;// 호출시마다 객체를 생성&lt;/span&gt;
-    &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt; dataService1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; appConfig&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;dataService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt; dataService2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; appConfig&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;dataService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;token comment&quot;&gt;// 참조값이 다른 것을 확인&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dataService1&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;isNotSameAs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dataService2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;싱글톤 컨테이너&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;스프링 컨테이너 덕분에 요청시마다 객체를 생성하는 것이 아니라, 이미 만들어진 객체를 재사용한다.&lt;/li&gt;
-&lt;li&gt;스프링 컨테이너는 싱글톤 컨테이너 역할을 한다.&lt;/li&gt;
-&lt;li&gt;이렇게 싱글톤 객체를 생성하고 관리하는 기능을 싱글톤 레지스트리라 한다.
-
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/7bf53/002-02.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABf0lEQVQoz41Sy26CUBTke9p1+xntZzVu6rZr/8C9iQt2NHGhkihGiKBeEXwCKiBMO6eBxKZpe5PhPuDMnJmLdr1eUZYl8jwXcP8daZrifD7LvFwuYZomJpMJBoMBbNvG6XTC5XKRbzQ+ePDbCIIA2+0Wh8MBm81G9mEYCrjf7/c4Ho/wfR9at9tFs9mUg9lsBsuyMBwOMR6PsVgspGC9XuM/I4oiaCzUdR1FUdwoEyQiaJPEVZdJlCBN0pqItRx8p02nU/T7/RslZsrsmCkHCSlGS4TjO3h3DNiBjbz4/Kb8qqNLrdPpoNFoSLu0PBqNxDKtz+dzrFYreJ4n5FmaQQUKz29PuH+5w+PrA0xl1o0IIXOi7SzLsNvtEMcxkiQRAYZNG67ryprvZK9cWL6FMA5rRzWhYRhot9tywBunNVokKMDOOLOIIlxXFiuymwx7vR5arZYEToskUkpJVrTLNXMmEf+1P2+ZBCSiSmWVoBpnnjmOI0K8cYr8BDbAaD4Asc7voXsjyT0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;002 02&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/d9199/002-02.png&quot;
-        srcset=&quot;/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/8ff5a/002-02.png 240w,
-/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/e85cb/002-02.png 480w,
-/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/d9199/002-02.png 960w,
-/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/07a9c/002-02.png 1440w,
-/devHistoryBlog/static/e1969ad39cc239852f33e1ec5c1aa642/7bf53/002-02.png 1595w&quot;
-        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Test&lt;/span&gt;
-  &lt;span class=&quot;token annotation punctuation&quot;&gt;@DisplayName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;스프링 컨테이너와 싱글톤&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;springContainer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token class-name&quot;&gt;ApplicationContext&lt;/span&gt; ac &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AnnotationConfigApplicationContext&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;AppConfig&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt; dataService1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ac&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dataService&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt; dataService2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ac&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dataService&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DataService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;token comment&quot;&gt;// 참조값이 동일한 것을 확인&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dataService1&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;isSameAs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dataService2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;싱글톤 방식의 주의점&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;무상태(stateless)로 설계해야 한다.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Spring] @Configuration]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-14--003</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-14--003</guid><pubDate>Sat, 14 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;# @Configuration과 바이트코드 조작의 마법&lt;/h3&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[Spring] @Configuration]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-14--003</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-14--003</guid><pubDate>Sat, 14 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;# @Configuration과 바이트코드 조작의 마법&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;@Configuration 사용 시 ‘CGLIB’ 라는 바이트코드 조작 라이브러리를 사용하여 클래스 구성한다.&lt;/li&gt;
 &lt;li&gt;때문에 여러 곳에서 특정 Bean의 객체 생성을 유도하더라도 싱글톤이 보장되도록 해준다.&lt;/li&gt;
@@ -516,153 +516,6 @@ call AppConfig.orderService
 call AppConfig.memberRepository
 call AppConfig.memberRepository&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[DTO Class Code Convention]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--003</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--003</guid><pubDate>Tue, 10 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;DTO Class&lt;/h2&gt;
-&lt;p&gt;
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/a25380f8166d2ee194745f63d48dbce4/b490f/003-01.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 64.58333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAABS0lEQVQ4y5VTW3LDIBDLcWxey4IBu5P7X0sVpE3sjpvHh2aNwbK0Wi66VKwloOUZtQjauiFGfSAorLUwxoz6CpdEwpQCNBo45+C9fxzg2lr3GaHmirIEXDeDSpUlC2rdkPMC6QpF4Z3/TGEIAetikFSoMMBwY54NMRPTqJ3wHZCwDcIcSEhVtWRsRdlTqlOFpsSW9BoRRIhA5TK+uUMez5dcGnwQiLPso5A0I9GqSrwTaoyQ4Ha9fWq5jVCiGky0OU0zMf3Y3eNNy5obWmUoXwaZpCnaoUzkZqvX2BXubHX0aTgLaoQSefjaesqeVsOYP9fDMTuLJzb/IWwj2SyGRJ0scUwcgjcQb1kd59PzB/5O8ov9+qDQ08LClAvHpraVSfP2LAvWRqwNhe9Kbaeq/q5vc8hEx+buULd7gzlV9XSwu8Lj4SP2BK9uzDfTf4zKWvHjdAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;003 01&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/a25380f8166d2ee194745f63d48dbce4/d9199/003-01.png&quot;
-        srcset=&quot;/devHistoryBlog/static/a25380f8166d2ee194745f63d48dbce4/8ff5a/003-01.png 240w,
-/devHistoryBlog/static/a25380f8166d2ee194745f63d48dbce4/e85cb/003-01.png 480w,
-/devHistoryBlog/static/a25380f8166d2ee194745f63d48dbce4/d9199/003-01.png 960w,
-/devHistoryBlog/static/a25380f8166d2ee194745f63d48dbce4/b490f/003-01.png 1142w&quot;
-        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/p&gt;
-&lt;h3&gt;1. Domain 또는 Resource 에 매핑되는 DTO Class 생성&lt;/h3&gt;
-&lt;p&gt;패키지 구조 이미지 첨부 필요&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;해당 클래스는 객체 생성을 못하도록 default constructor 접근자를 private 로 제한&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;2. static inner class로 각 Request, Response에 맞는 DTO 정의&lt;/h3&gt;
-&lt;h3&gt;.  @Data 사용 지양&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;@Data는 @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor을 한번에 사용하는 강력한 어노테이션&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;문제점)  &lt;/p&gt;
-&lt;h4&gt;1. 무분별한 Setter 남용&lt;/h4&gt;
-&lt;p&gt;— Setter는 그 의도가 분명하지 않고 객체를 언제든지 변경할 수 있는 상태가 되어서 객체의 안전성이 보장받기 힘들다.  &lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;2. ToString으로 인한 양방향 연관관계시 순환 참조 문제&lt;/h4&gt;
-&lt;p&gt;  — memeber.toString() 호출 시 StackOverFlowError 발생&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@Table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;member&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@Data&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
-  &lt;span class=&quot;token annotation punctuation&quot;&gt;@OneToMany&lt;/span&gt;
-  &lt;span class=&quot;token annotation punctuation&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;coupon_id&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Coupon&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt; coupons &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@Table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;coupon&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@Data&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Coupon&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token annotation punctuation&quot;&gt;@Id&lt;/span&gt;
-  &lt;span class=&quot;token annotation punctuation&quot;&gt;@GeneratedValue&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;strategy &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;GenerationType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;IDENTITY&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;long&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-  &lt;span class=&quot;token annotation punctuation&quot;&gt;@ManyToOne&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; member&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Coupon&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; member&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;member &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; member&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;— 해결방법&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@ToString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;exclude &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;coupons&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;#.@NoArgsConstructor 접근 권한은 PROTECTED&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;JPA에서는 프록시 생성을 위해 기본 생성자가 필요하다.&lt;/li&gt;
-&lt;li&gt;프록시 객체는 원본 엔티티를 상속 받으므로 엔티티 클래스의 접근 권한은 PROTECTED 이상이여야 한다. &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;#. 클래스의 멤버 변수가 2개 이상 일 경우 @Builder 를 사용한다.&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[[SpringBoot]RequestBody Validation]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--004</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--004</guid><pubDate>Tue, 10 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Bean Validation (Hibernate Validation) 에서 제공하는 표준 Validation&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;사용법 : @AnnotationName(message=“Exception Message”)&lt;/li&gt;
-&lt;li&gt;validation 이 실패 할 경우, MethodArgumentNotValidException 의 예외가 발생.&lt;/li&gt;
-&lt;li&gt;이처럼 이러한 Validation 을 용도 및 상황에 맞게 사용한다면 사용자의 오류나 시스템의 오류를 최소화 할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Bean Validator&lt;/th&gt;
-&lt;th&gt;설명&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;@NotNull&lt;/td&gt;
-&lt;td&gt;Null만 허용안함, &quot;&quot; 이나 ” ” 일 경우 예외&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;@NotEmpty&lt;/td&gt;
-&lt;td&gt;Null, &quot;&quot; 허용 안함, ” ” 일 경우 예외&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;@NotBlank&lt;/td&gt;
-&lt;td&gt;Null, &quot;&quot;, ” ” 일 경우 예외 (String 객체에서 주로 사용)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;@Min(숫자)&lt;/td&gt;
-&lt;td&gt;최소값&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;@Max(숫자)&lt;/td&gt;
-&lt;td&gt;최대값&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;@Size(min=숫자, max=숫자)&lt;/td&gt;
-&lt;td&gt;Max, Min 모두 포함&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;@Email&lt;/td&gt;
-&lt;td&gt;이메일 형식이 아닌 경우 예외 발생&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;@Pattern(regexp = “정규식”)&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;참고)
-&lt;a href=&quot;https://beanvalidation.org/2.0/spec/&quot;&gt;https://beanvalidation.org/2.0/spec/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[DTO 클래스?]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--002</guid><pubDate>Tue, 10 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;DTO&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Data Transfer Object&lt;/li&gt;
-&lt;li&gt;각 레이어 사이에 데이터를 전달하기 위한 목적으로 사용하는 Object&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;View Layer와 DB Layer의 역할 분리를 하기위함으로 사용&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;API의 req와 res에 맞게 domain이 수정될 필요 없다.&lt;/li&gt;
-&lt;li&gt;req, res에 불필요한 properties 가 들어가지 않는다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;필수 값에 대한 조건 체크하는 것이나 DTO 에서 Domain 으로 변환하거나, Domain 에서 DTO 로 변환하는 로직은 Domain 이 아닌 DTO 에 담겨야 한다.&lt;/li&gt;
-&lt;li&gt;@NotNull 과 같은 Data 의 Validation 도 DTO 의 역할 이기 때문에 DTO 에 넣어주게 되면 역할과 책임이 좀 더 명백해지게 된다.&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Lombok - Can not find symbol]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2020-11-10--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2020-11-10--001</guid><pubDate>Tue, 10 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -795,7 +648,194 @@ Byte Data ---------------&amp;gt; Java Object ---------------&amp;gt; Byte Data&
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h2&gt;@RequestBody DTO 클래스는 NoArgConstructor 가 필요하다&lt;/h2&gt;</content:encoded></item><item><title><![CDATA[/etc/logrotate.d 설정하기]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-06--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-06--001</guid><pubDate>Fri, 06 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;/home/jenkins/workspace/V2G-Prod-Server/logs/*log 
+&lt;h2&gt;@RequestBody DTO 클래스는 NoArgConstructor 가 필요하다&lt;/h2&gt;</content:encoded></item><item><title><![CDATA[DTO 클래스?]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--002</guid><pubDate>Tue, 10 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;DTO&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Data Transfer Object&lt;/li&gt;
+&lt;li&gt;각 레이어 사이에 데이터를 전달하기 위한 목적으로 사용하는 Object&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;View Layer와 DB Layer의 역할 분리를 하기위함으로 사용&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;API의 req와 res에 맞게 domain이 수정될 필요 없다.&lt;/li&gt;
+&lt;li&gt;req, res에 불필요한 properties 가 들어가지 않는다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;필수 값에 대한 조건 체크하는 것이나 DTO 에서 Domain 으로 변환하거나, Domain 에서 DTO 로 변환하는 로직은 Domain 이 아닌 DTO 에 담겨야 한다.&lt;/li&gt;
+&lt;li&gt;@NotNull 과 같은 Data 의 Validation 도 DTO 의 역할 이기 때문에 DTO 에 넣어주게 되면 역할과 책임이 좀 더 명백해지게 된다.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[SpringBoot]RequestBody Validation]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--004</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--004</guid><pubDate>Tue, 10 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Bean Validation (Hibernate Validation) 에서 제공하는 표준 Validation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;사용법 : @AnnotationName(message=“Exception Message”)&lt;/li&gt;
+&lt;li&gt;validation 이 실패 할 경우, MethodArgumentNotValidException 의 예외가 발생.&lt;/li&gt;
+&lt;li&gt;이처럼 이러한 Validation 을 용도 및 상황에 맞게 사용한다면 사용자의 오류나 시스템의 오류를 최소화 할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Bean Validator&lt;/th&gt;
+&lt;th&gt;설명&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;@NotNull&lt;/td&gt;
+&lt;td&gt;Null만 허용안함, &quot;&quot; 이나 ” ” 일 경우 예외&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@NotEmpty&lt;/td&gt;
+&lt;td&gt;Null, &quot;&quot; 허용 안함, ” ” 일 경우 예외&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@NotBlank&lt;/td&gt;
+&lt;td&gt;Null, &quot;&quot;, ” ” 일 경우 예외 (String 객체에서 주로 사용)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Min(숫자)&lt;/td&gt;
+&lt;td&gt;최소값&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Max(숫자)&lt;/td&gt;
+&lt;td&gt;최대값&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Size(min=숫자, max=숫자)&lt;/td&gt;
+&lt;td&gt;Max, Min 모두 포함&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Email&lt;/td&gt;
+&lt;td&gt;이메일 형식이 아닌 경우 예외 발생&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Pattern(regexp = “정규식”)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;참고)
+&lt;a href=&quot;https://beanvalidation.org/2.0/spec/&quot;&gt;https://beanvalidation.org/2.0/spec/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[DTO Class Code Convention]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--003</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--003</guid><pubDate>Tue, 10 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;DTO Class&lt;/h2&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/a25380f8166d2ee194745f63d48dbce4/b490f/003-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 64.58333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAABS0lEQVQ4y5VTW3LDIBDLcWxey4IBu5P7X0sVpE3sjpvHh2aNwbK0Wi66VKwloOUZtQjauiFGfSAorLUwxoz6CpdEwpQCNBo45+C9fxzg2lr3GaHmirIEXDeDSpUlC2rdkPMC6QpF4Z3/TGEIAetikFSoMMBwY54NMRPTqJ3wHZCwDcIcSEhVtWRsRdlTqlOFpsSW9BoRRIhA5TK+uUMez5dcGnwQiLPso5A0I9GqSrwTaoyQ4Ha9fWq5jVCiGky0OU0zMf3Y3eNNy5obWmUoXwaZpCnaoUzkZqvX2BXubHX0aTgLaoQSefjaesqeVsOYP9fDMTuLJzb/IWwj2SyGRJ0scUwcgjcQb1kd59PzB/5O8ov9+qDQ08LClAvHpraVSfP2LAvWRqwNhe9Kbaeq/q5vc8hEx+buULd7gzlV9XSwu8Lj4SP2BK9uzDfTf4zKWvHjdAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/a25380f8166d2ee194745f63d48dbce4/d9199/003-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/a25380f8166d2ee194745f63d48dbce4/8ff5a/003-01.png 240w,
+/devHistoryBlog/static/a25380f8166d2ee194745f63d48dbce4/e85cb/003-01.png 480w,
+/devHistoryBlog/static/a25380f8166d2ee194745f63d48dbce4/d9199/003-01.png 960w,
+/devHistoryBlog/static/a25380f8166d2ee194745f63d48dbce4/b490f/003-01.png 1142w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;1. Domain 또는 Resource 에 매핑되는 DTO Class 생성&lt;/h3&gt;
+&lt;p&gt;패키지 구조 이미지 첨부 필요&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;해당 클래스는 객체 생성을 못하도록 default constructor 접근자를 private 로 제한&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;2. static inner class로 각 Request, Response에 맞는 DTO 정의&lt;/h3&gt;
+&lt;h3&gt;.  @Data 사용 지양&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;@Data는 @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor을 한번에 사용하는 강력한 어노테이션&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;문제점)  &lt;/p&gt;
+&lt;h4&gt;1. 무분별한 Setter 남용&lt;/h4&gt;
+&lt;p&gt;— Setter는 그 의도가 분명하지 않고 객체를 언제든지 변경할 수 있는 상태가 되어서 객체의 안전성이 보장받기 힘들다.  &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;2. ToString으로 인한 양방향 연관관계시 순환 참조 문제&lt;/h4&gt;
+&lt;p&gt;  — memeber.toString() 호출 시 StackOverFlowError 발생&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;member&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Data&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;token annotation punctuation&quot;&gt;@OneToMany&lt;/span&gt;
+  &lt;span class=&quot;token annotation punctuation&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;coupon_id&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Coupon&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt; coupons &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;coupon&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Data&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Coupon&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token annotation punctuation&quot;&gt;@Id&lt;/span&gt;
+  &lt;span class=&quot;token annotation punctuation&quot;&gt;@GeneratedValue&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;strategy &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;GenerationType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;IDENTITY&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;long&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;token annotation punctuation&quot;&gt;@ManyToOne&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; member&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Coupon&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; member&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;member &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; member&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;— 해결방법&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@ToString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;exclude &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;coupons&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;#.@NoArgsConstructor 접근 권한은 PROTECTED&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;JPA에서는 프록시 생성을 위해 기본 생성자가 필요하다.&lt;/li&gt;
+&lt;li&gt;프록시 객체는 원본 엔티티를 상속 받으므로 엔티티 클래스의 접근 권한은 PROTECTED 이상이여야 한다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#. 클래스의 멤버 변수가 2개 이상 일 경우 @Builder 를 사용한다.&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[logrotate: because parent directory has insecure permissions]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2020-11-06--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2020-11-06--001</guid><pubDate>Fri, 06 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/1e093/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 5.833333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAABYlAAAWJQFJUiTwAAAARElEQVQI1x2MyxXAIAzDOhIUkhDy+LT77+SanmTp4KuHYq3A3oExHc87MEnzArWMKgnWCkQT/Yb3CmFrTmr+2/k4btwfLeAg/F18PvgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/e85cb/001-01.png 480w,
+/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/d9199/001-01.png 960w,
+/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/1e093/001-01.png 1376w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;문제&lt;/h3&gt;
+&lt;p&gt;logrotate 설정 후 강제 수행 시 오류 발생&lt;/p&gt;
+&lt;h3&gt;원인&lt;/h3&gt;
+&lt;p&gt;디렉토리의 권한이 너무 많아 insecure 하여 생긴 오류&lt;/p&gt;
+&lt;h3&gt;해결&lt;/h3&gt;
+&lt;p&gt;group, other write 권한을 제거&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ chmod 755 /home/jenkins/workspace/V2G-Dev-Server/logs&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[/etc/logrotate.d 설정하기]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-06--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-06--001</guid><pubDate>Fri, 06 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;/home/jenkins/workspace/V2G-Prod-Server/logs/*log 
 /home/jenkins/workspace/V2G-Dev-Server/logs/*log &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     daily                                         
     compress                                      
@@ -915,47 +955,7 @@ $ mysqldump -u root -p v2g --ignore-table=v2g.ca_cert --ignore-table=v2g.leaf_ce
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;복구(Import)&lt;/h2&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;// mysqldump -u [DB계정명] -p [DB명] &amp;lt; [불러올 파일명]
-$ mysqldump -u root -p v2g &amp;lt; v2g.sql&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[logrotate: because parent directory has insecure permissions]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2020-11-06--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2020-11-06--001</guid><pubDate>Fri, 06 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/1e093/001-01.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 5.833333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAABYlAAAWJQFJUiTwAAAARElEQVQI1x2MyxXAIAzDOhIUkhDy+LT77+SanmTp4KuHYq3A3oExHc87MEnzArWMKgnWCkQT/Yb3CmFrTmr+2/k4btwfLeAg/F18PvgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;001 01&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/d9199/001-01.png&quot;
-        srcset=&quot;/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/8ff5a/001-01.png 240w,
-/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/e85cb/001-01.png 480w,
-/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/d9199/001-01.png 960w,
-/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/1e093/001-01.png 1376w&quot;
-        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/p&gt;
-&lt;h3&gt;문제&lt;/h3&gt;
-&lt;p&gt;logrotate 설정 후 강제 수행 시 오류 발생&lt;/p&gt;
-&lt;h3&gt;원인&lt;/h3&gt;
-&lt;p&gt;디렉토리의 권한이 너무 많아 insecure 하여 생긴 오류&lt;/p&gt;
-&lt;h3&gt;해결&lt;/h3&gt;
-&lt;p&gt;group, other write 권한을 제거&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ chmod 755 /home/jenkins/workspace/V2G-Dev-Server/logs&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[CURL] curl 사용법]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-05--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-05--001</guid><pubDate>Thu, 05 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;CURL ?&lt;/h2&gt;
+$ mysqldump -u root -p v2g &amp;lt; v2g.sql&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[CURL] curl 사용법]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-05--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-05--001</guid><pubDate>Thu, 05 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;CURL ?&lt;/h2&gt;
 &lt;p&gt;다양한 프로토콜을 지원하는 데이터 전송용 Command Line Tool 이다.
 (Http, Https, FTP, SFTP, SMTP 등을 지원)&lt;/p&gt;
 &lt;h3&gt;GET&lt;/h3&gt;
@@ -1488,27 +1488,6 @@ http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class
 &lt;li&gt;HttpOnly는 Set-Cookie HTTP 응답 헤더에 포함 된 추가 플래그   &lt;/li&gt;
 &lt;li&gt;쿠키를 생성 할 때 HttpOnly 플래그를 사용하면 보호 된 쿠키에 액세스하는 클라이언트 측 스크립트의 위험을 완화하는 데 도움이됩니다&lt;/li&gt;
 &lt;li&gt;XSS ( 교차 사이트 스크립팅 ) 결함이 존재하고 사용자가이 결함을 악용하는 링크에 실수로 액세스하더라도 브라우저 (주로 Internet Explorer)는 쿠키를 제 3 자에게 공개하지 않는다.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[아이템77) 예외를 무시하지 말라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--09</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--09</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템77) 예외를 무시하지 말라&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;API 설계자가 메서드 선언에 예외를 명시하는 까닭은, 그 메서드를 사용할 때 적절한 조취를 취해달라고 말하는 것이다.&lt;/li&gt;
-&lt;li&gt;예외는 문제 상황에 잘 대처하기 위해서 존재하는데 catch 블록을 비워두면 예외가 존재할 이유가 없어진다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; 
-  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; 
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;SomeException&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h4&gt;예외를 무시해야 할 떄&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;FileInputStream을 닫을 때
-(입력 전용 스트림이므로) 파일의 상태를 변경하지 않았으니 복구할 것이 없음
-(스트림을 닫는다는 건) 필요한 정보는 이미 다 읽었다는 뜻이니 남은 작업을 중단할 이유도 없음&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;예외를 무시하기로 했다면 catch 블록 안에 그렇게 결정한 이유를 주석으로 남기고 예외 변수 이름도 ignore로 바꿔놓도록 하자 .&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token class-name&quot;&gt;Future&lt;/span&gt;&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt; f &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; exec&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;submit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;planarMap&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;chromaticNumber&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; 
-&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; numColors &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; 
-&lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; 
-numColors &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; f&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1L&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TimeUnit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;SECONDS&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; 
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;TimeoutException&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ExecutionException&lt;/span&gt; ignored&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[아이템69) 예외는 진짜 예외 상황에만 사용하라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--01</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--01</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템69) 예외는 진짜 예외 상황에만 사용하라&lt;/h2&gt;
 &lt;p&gt;예외는 예외 상황에서 쓸 의도로 설계되었다.&lt;br&gt;
 정상적인 제어 프름에서 사용해서는 안되며, 이를 프로그래머에게 강요하는 API를 만들어서도 안된다.&lt;/p&gt;
@@ -1568,84 +1547,7 @@ numColors &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; f&lt;span 
 &lt;ul&gt;
 &lt;li&gt;Optional, 특정 값(null)
 ---계속&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[아이템76) 가능한 한 실패 원자적으로 만들라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--08</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--08</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템76) 가능한 한 실패 원자적으로 만들라&lt;/h2&gt;
-&lt;p&gt;일반화 해서 말하자면 호출된 메서드가 실패 하더라도 해당 객체는 메서드 호출 전 상태를 유지해야 한다.
-이러한 특성을 실패 원자적(failure atomic)이라고 한다.&lt;/p&gt;
-&lt;h4&gt;메서드를 원자적으로 만드는 방법&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;불변객체로 설계&lt;/li&gt;
-&lt;li&gt;작업 수행중에 매개변수의 유효성을 검사&lt;/li&gt;
-&lt;li&gt;객체의 임시 복사본에서 작업을한 후에 성공시 원래 객체와 교환&lt;/li&gt;
-&lt;li&gt;작업도중 실패를 가로채는 복구코드를 작성하여 작업전으로 돌리는것&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;substring&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; beginIndex&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;beginIndex &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;StringIndexOutOfBoundsException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;beginIndex&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; subLen &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; beginIndex&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;subLen &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;StringIndexOutOfBoundsException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;subLen&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;beginIndex &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;isLatin1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;StringLatin1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;newString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; beginIndex&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; subLen&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-                      &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;StringUTF16&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;newString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; beginIndex&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; subLen&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--01&quot;&gt;아이템69) 예외는 진짜 예외 상황에만 사용하라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--02&quot;&gt;아이템70) 복구할 수 있는 상황에는 검사 예외를, 프로그래밍 오류에는 런타임 예외를 사용하라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--03&quot;&gt;아이템71) 필요 없는 검사 예외 사용은 피하라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--04&quot;&gt;아이템72) 표준 예외를 사용하라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--05&quot;&gt;아이템73) 추상화 수준에 맞는 예외를 던져라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--06&quot;&gt;아이템74) 메서드가 던지는 모든 예외를 문서화하라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--07&quot;&gt;아이템75) 예외의 상세 메시지에 실패 관련 정보를 담으라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--08&quot;&gt;아이템76) 가능한 한 실패 원자적으로 만들라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--09&quot;&gt;아이템77) 예외를 무시하지 말라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--10&quot;&gt;나의 결론&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://jeong-pro.tistory.com/195&quot;&gt;https://jeong-pro.tistory.com/195&lt;/a&gt;
-&lt;a href=&quot;https://cheese10yun.github.io/spring-guide-exception/&quot;&gt;https://cheese10yun.github.io/spring-guide-exception/&lt;/a&gt;
-&lt;a href=&quot;https://wbluke.tistory.com/15&quot;&gt;https://wbluke.tistory.com/15&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[아이템75) 예외의 상세 메시지에 실패 관련 정보를 담으라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--07</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--07</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템75) 예외의 상세 메시지에 실패 관련 정보를 담으라&lt;/h2&gt;
-&lt;h3&gt;스택추적&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;실패 원인을 분석할 때 얻을 수 있는 정보는 스택 정보인 경우가 많다.&lt;/li&gt;
-&lt;li&gt;예외의 toString 메서드에 실패 원인에 관한 정보를 가능한 많이 담아 반환하는 일은 아주 중요하다. &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;실패 순간을 포착하려면 발생한 예외에 관여된 모든 매개변수와 필드의 값을 실패 메시지에 담아야 한다.&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;관련 데이터를 모두 담아야 하지만 장황할 필요는 없다.&lt;/li&gt;
-&lt;li&gt;예외의 상세 메시지와 최종 사용자에게 보여줄 오류 메시지를 혼동해서는 안된다.&lt;/li&gt;
-&lt;li&gt;예외는 실패와 관련된 정보를 얻을 수 있는 접근자 메서드를 적절히 제공하는 것이 좋다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;java9에서 제공하는 IndexOutOfBoundsException &lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;IndexOutOfBoundsException&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;RuntimeException&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;long&lt;/span&gt; serialVersionUID &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;234122996006267687L&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;IndexOutOfBoundsException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;IndexOutOfBoundsException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;IndexOutOfBoundsException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Index out of range: &quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;저자가 권하는 방법&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
- * IndexOutOfBoundsException을 생성한다
- * @param lowerBound 인덱스의 최솟값
- * @param upperBound 인덱스의 최댓값 + 1
- * @param index 인덱스의 실젯값
- */&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;IndexOutOfBoundsException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; lowerBound&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; upperBound&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;// 실패를 포착하는 상세 메시지를 생성한다.&lt;/span&gt;
-   &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;최솟값: %d , 최댓값: %d, 인덱스: %d&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; lowerBound&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; upperBound&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-   
-   &lt;span class=&quot;token comment&quot;&gt;// 프로그램에서 이용할 수 있도록 실패 정보를 저장해둔다.&lt;/span&gt;
-   &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;lowerBound &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; lowerBound&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;upperBound &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; upperBound&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;index &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[아이템70) 복구할 수 있는 상황에는 검사 예외를, 프로그래밍 오류에는 런타임 예외를 사용하라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--02</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--02</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템70) 복구할 수 있는 상황에는 검사 예외를, 프로그래밍 오류에는 런타임 예외를 사용하라&lt;/h2&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[아이템70) 복구할 수 있는 상황에는 검사 예외를, 프로그래밍 오류에는 런타임 예외를 사용하라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--02</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--02</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템70) 복구할 수 있는 상황에는 검사 예외를, 프로그래밍 오류에는 런타임 예외를 사용하라&lt;/h2&gt;
 &lt;p&gt;복구할 수 있는 상황이면 Checked Exception, 프로그래밍 오류거나 확실하지 않다면 Runtime Exception 을 예외로 던지자.  &lt;/p&gt;
 &lt;h3&gt;Exception vs Error&lt;/h3&gt;
 &lt;p&gt;오류(Error)는 시스템에 비정상적인 상황이 생겼을 때 발생한다(JVM 자원 부족 등).&lt;br&gt;
@@ -1813,65 +1715,7 @@ numColors &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; f&lt;span 
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;SQLException&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;  
    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
    &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DuplicateUserIdException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[나의결론]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--10</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--10</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;예외 처리에 대한 내 결론이올시다&lt;/h2&gt;
-&lt;h3&gt;Parameter Validation in Controller&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;parameter validation 은 controller 내에서 진행&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Service (Business)&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;service 로직에서 발생한 예외에 대해서는 cause, stacktrace 가 필요함.&lt;/li&gt;
-&lt;li&gt;표준 예외를 적극적으로 사용 (정의된 메시지 사용)&lt;/li&gt;
-&lt;li&gt;특정 로직에 대한 예외처리가 필요한 경우 custom exception 사용&lt;/li&gt;
-&lt;li&gt;custom exception handling 은 controller 에서 정의&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;NoSuchMethodException&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyServiceException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Some information: &quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;//Incorrect way&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;NoSuchMethodException&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyServiceException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Some information: &quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;//Correct way&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;Method (API)&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;checked exception 에 대해 throws 선언&lt;/li&gt;
-&lt;li&gt;빈 catch 블록을 생성하거나 예외를 무시하지 말 것 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;NoSuchMethodException&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//Incorrect way&lt;/span&gt;
-   &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//Incorrect way&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SpecificException1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SpecificException2&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//Correct way&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;ref)&lt;br&gt;
-&lt;a href=&quot;https://woowacourse.github.io/javable/2020-08-17/custom-exception&quot;&gt;standard exception vs custom exception&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;https://howtodoinjava.com/best-practices/java-exception-handling-best-practices/#exception-types&quot;&gt;exception handling best practice&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;https://howtodoinjava.com/java/exception-handling/best-practices-for-for-exception-handling/&quot;&gt;custom exception handling best practice&lt;/a&gt;  &lt;/p&gt;
-&lt;h4&gt;Ref [standard exception vs custom exception] 에 대한 소견&lt;/h4&gt;
-&lt;p&gt;표준 예외를 적극적으로 사용하자!&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;예외 메시지로도 충분히 의미를 전달할 수 있다.&lt;/li&gt;
-&lt;li&gt;표준 예외를 사용하면 가독성이 높아진다.&lt;/li&gt;
-&lt;li&gt;일일히 예외 클래스를 만들다보면 지나치게 커스텀 예외가 많아질 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;사용자 정의 예외가 필요하다?&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;이름으로도 정보 전달이 가능하다.
-— 반론) message에서도 충분히 가능하다&lt;/li&gt;
-&lt;li&gt;상세한 예외 정보를 제공할 수 있다.
-— 반론) back 에서는 message로 충분히 커버가 가능하며, front에서 예외에 대한 상세 내용이 필요하다면
-ErrorResponse에 대한 클래스가 정의를 한다&lt;/li&gt;
-&lt;li&gt;예외에 대한 응집도가 향상된다.
-— 전달하는 정보의 양이 많아질수록? 이건 오케이
-— 책임소재? stacktrace 활용하면 되지 않나?
-— 같은 예외가 여러 곳에서 사용? standard exception 으로 충분히 커버 가능하지 않나?&lt;/li&gt;
-&lt;li&gt;예외 발생 후처리가 용이하다.
-— 발생위치 파악이 힘듬? stacktrace&lt;/li&gt;
-&lt;li&gt;예외 생성 비용을 절감
-— stacktrace는 필요하다고 본다.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[아이템71) 필요 없는 검사 예외 사용은 피하라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--03</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--03</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템71) 필요 없는 검사 예외 사용은 피하라&lt;/h2&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[아이템71) 필요 없는 검사 예외 사용은 피하라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--03</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--03</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템71) 필요 없는 검사 예외 사용은 피하라&lt;/h2&gt;
 &lt;p&gt;API 호출자가 예외 상황에서 복구할 방법이 없다면 비검사 예외를 던지자.&lt;br&gt;
 복구가 가능하고 호출자가 그 처리를 해주길 바란다면, 우선 옵셔널을 반환해도 될지 고민하자.&lt;br&gt;
 옵셔널만으로는 상황을 처리하기에 충분한 정보를 제공할 수 없을 때만 검사 에외를 던지자.  &lt;/p&gt;
@@ -2042,17 +1886,220 @@ ErrorResponse에 대한 클래스가 정의를 한다&lt;/li&gt;
   &lt;/span&gt;
   
   &lt;/a&gt;
-    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 객체 생성과 파괴]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--01&quot;&gt;아이템1) 생성자 대신 정적 팩터리 메서드를 고려해라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--02&quot;&gt;아이템2) 생성자에 매개변수가 많다면 빌더를 고려하라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--03&quot;&gt;아이템3) private 생성자나 열거 타입으로 싱글턴임을 보증하라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--04&quot;&gt;아이템4) 인스턴스화를 막으려거든 private 생성자를 사용하라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--05&quot;&gt;아이템5) 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--06&quot;&gt;아이템6) 불필요한 객체 생성을 피해라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--07&quot;&gt;아이템7) 다 쓴 객체 참조를 해제하라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--08&quot;&gt;아이템8) finalizer 와 cleaner 사용을 피해라&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--09&quot;&gt;아이템9) try-finally 보다는 try-with-resources를 사용하라&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Java] Enum]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--001.md</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--001.md</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;열거 타입(Enumeration Type)&lt;/h2&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[아이템75) 예외의 상세 메시지에 실패 관련 정보를 담으라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--07</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--07</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템75) 예외의 상세 메시지에 실패 관련 정보를 담으라&lt;/h2&gt;
+&lt;h3&gt;스택추적&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;실패 원인을 분석할 때 얻을 수 있는 정보는 스택 정보인 경우가 많다.&lt;/li&gt;
+&lt;li&gt;예외의 toString 메서드에 실패 원인에 관한 정보를 가능한 많이 담아 반환하는 일은 아주 중요하다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;실패 순간을 포착하려면 발생한 예외에 관여된 모든 매개변수와 필드의 값을 실패 메시지에 담아야 한다.&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;관련 데이터를 모두 담아야 하지만 장황할 필요는 없다.&lt;/li&gt;
+&lt;li&gt;예외의 상세 메시지와 최종 사용자에게 보여줄 오류 메시지를 혼동해서는 안된다.&lt;/li&gt;
+&lt;li&gt;예외는 실패와 관련된 정보를 얻을 수 있는 접근자 메서드를 적절히 제공하는 것이 좋다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;java9에서 제공하는 IndexOutOfBoundsException &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;IndexOutOfBoundsException&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;RuntimeException&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;long&lt;/span&gt; serialVersionUID &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;234122996006267687L&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;IndexOutOfBoundsException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;IndexOutOfBoundsException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;IndexOutOfBoundsException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Index out of range: &quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;저자가 권하는 방법&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
+ * IndexOutOfBoundsException을 생성한다
+ * @param lowerBound 인덱스의 최솟값
+ * @param upperBound 인덱스의 최댓값 + 1
+ * @param index 인덱스의 실젯값
+ */&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;IndexOutOfBoundsException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; lowerBound&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; upperBound&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 실패를 포착하는 상세 메시지를 생성한다.&lt;/span&gt;
+   &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;최솟값: %d , 최댓값: %d, 인덱스: %d&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; lowerBound&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; upperBound&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+   
+   &lt;span class=&quot;token comment&quot;&gt;// 프로그램에서 이용할 수 있도록 실패 정보를 저장해둔다.&lt;/span&gt;
+   &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;lowerBound &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; lowerBound&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;upperBound &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; upperBound&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;index &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[아이템76) 가능한 한 실패 원자적으로 만들라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--08</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--08</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템76) 가능한 한 실패 원자적으로 만들라&lt;/h2&gt;
+&lt;p&gt;일반화 해서 말하자면 호출된 메서드가 실패 하더라도 해당 객체는 메서드 호출 전 상태를 유지해야 한다.
+이러한 특성을 실패 원자적(failure atomic)이라고 한다.&lt;/p&gt;
+&lt;h4&gt;메서드를 원자적으로 만드는 방법&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;불변객체로 설계&lt;/li&gt;
+&lt;li&gt;작업 수행중에 매개변수의 유효성을 검사&lt;/li&gt;
+&lt;li&gt;객체의 임시 복사본에서 작업을한 후에 성공시 원래 객체와 교환&lt;/li&gt;
+&lt;li&gt;작업도중 실패를 가로채는 복구코드를 작성하여 작업전으로 돌리는것&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;substring&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; beginIndex&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;beginIndex &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;StringIndexOutOfBoundsException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;beginIndex&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; subLen &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; beginIndex&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;subLen &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;StringIndexOutOfBoundsException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;subLen&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;beginIndex &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;isLatin1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;StringLatin1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;newString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; beginIndex&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; subLen&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+                      &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;StringUTF16&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;newString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; beginIndex&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; subLen&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[아이템77) 예외를 무시하지 말라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--09</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--09</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템77) 예외를 무시하지 말라&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;API 설계자가 메서드 선언에 예외를 명시하는 까닭은, 그 메서드를 사용할 때 적절한 조취를 취해달라고 말하는 것이다.&lt;/li&gt;
+&lt;li&gt;예외는 문제 상황에 잘 대처하기 위해서 존재하는데 catch 블록을 비워두면 예외가 존재할 이유가 없어진다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; 
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;SomeException&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;예외를 무시해야 할 떄&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;FileInputStream을 닫을 때
+(입력 전용 스트림이므로) 파일의 상태를 변경하지 않았으니 복구할 것이 없음
+(스트림을 닫는다는 건) 필요한 정보는 이미 다 읽었다는 뜻이니 남은 작업을 중단할 이유도 없음&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;예외를 무시하기로 했다면 catch 블록 안에 그렇게 결정한 이유를 주석으로 남기고 예외 변수 이름도 ignore로 바꿔놓도록 하자 .&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token class-name&quot;&gt;Future&lt;/span&gt;&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt; f &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; exec&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;submit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;planarMap&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;chromaticNumber&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; numColors &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; 
+numColors &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; f&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1L&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TimeUnit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;SECONDS&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;TimeoutException&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ExecutionException&lt;/span&gt; ignored&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><description><![CDATA[나의결론]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--10</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001--10</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;예외 처리에 대한 내 결론이올시다&lt;/h2&gt;
+&lt;h3&gt;Parameter Validation in Controller&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;parameter validation 은 controller 내에서 진행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Service (Business)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;service 로직에서 발생한 예외에 대해서는 cause, stacktrace 가 필요함.&lt;/li&gt;
+&lt;li&gt;표준 예외를 적극적으로 사용 (정의된 메시지 사용)&lt;/li&gt;
+&lt;li&gt;특정 로직에 대한 예외처리가 필요한 경우 custom exception 사용&lt;/li&gt;
+&lt;li&gt;custom exception handling 은 controller 에서 정의&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;NoSuchMethodException&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyServiceException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Some information: &quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;//Incorrect way&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;NoSuchMethodException&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyServiceException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Some information: &quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;//Correct way&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Method (API)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;checked exception 에 대해 throws 선언&lt;/li&gt;
+&lt;li&gt;빈 catch 블록을 생성하거나 예외를 무시하지 말 것 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;NoSuchMethodException&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//Incorrect way&lt;/span&gt;
+   &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//Incorrect way&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SpecificException1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SpecificException2&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//Correct way&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;ref)&lt;br&gt;
+&lt;a href=&quot;https://woowacourse.github.io/javable/2020-08-17/custom-exception&quot;&gt;standard exception vs custom exception&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://howtodoinjava.com/best-practices/java-exception-handling-best-practices/#exception-types&quot;&gt;exception handling best practice&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://howtodoinjava.com/java/exception-handling/best-practices-for-for-exception-handling/&quot;&gt;custom exception handling best practice&lt;/a&gt;  &lt;/p&gt;
+&lt;h4&gt;Ref [standard exception vs custom exception] 에 대한 소견&lt;/h4&gt;
+&lt;p&gt;표준 예외를 적극적으로 사용하자!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;예외 메시지로도 충분히 의미를 전달할 수 있다.&lt;/li&gt;
+&lt;li&gt;표준 예외를 사용하면 가독성이 높아진다.&lt;/li&gt;
+&lt;li&gt;일일히 예외 클래스를 만들다보면 지나치게 커스텀 예외가 많아질 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;사용자 정의 예외가 필요하다?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;이름으로도 정보 전달이 가능하다.
+— 반론) message에서도 충분히 가능하다&lt;/li&gt;
+&lt;li&gt;상세한 예외 정보를 제공할 수 있다.
+— 반론) back 에서는 message로 충분히 커버가 가능하며, front에서 예외에 대한 상세 내용이 필요하다면
+ErrorResponse에 대한 클래스가 정의를 한다&lt;/li&gt;
+&lt;li&gt;예외에 대한 응집도가 향상된다.
+— 전달하는 정보의 양이 많아질수록? 이건 오케이
+— 책임소재? stacktrace 활용하면 되지 않나?
+— 같은 예외가 여러 곳에서 사용? standard exception 으로 충분히 커버 가능하지 않나?&lt;/li&gt;
+&lt;li&gt;예외 발생 후처리가 용이하다.
+— 발생위치 파악이 힘듬? stacktrace&lt;/li&gt;
+&lt;li&gt;예외 생성 비용을 절감
+— stacktrace는 필요하다고 본다.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 예외]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-12--001</guid><pubDate>Mon, 12 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--01&quot;&gt;아이템69) 예외는 진짜 예외 상황에만 사용하라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--02&quot;&gt;아이템70) 복구할 수 있는 상황에는 검사 예외를, 프로그래밍 오류에는 런타임 예외를 사용하라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--03&quot;&gt;아이템71) 필요 없는 검사 예외 사용은 피하라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--04&quot;&gt;아이템72) 표준 예외를 사용하라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--05&quot;&gt;아이템73) 추상화 수준에 맞는 예외를 던져라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--06&quot;&gt;아이템74) 메서드가 던지는 모든 예외를 문서화하라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--07&quot;&gt;아이템75) 예외의 상세 메시지에 실패 관련 정보를 담으라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--08&quot;&gt;아이템76) 가능한 한 실패 원자적으로 만들라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--09&quot;&gt;아이템77) 예외를 무시하지 말라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-12--001--10&quot;&gt;나의 결론&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeong-pro.tistory.com/195&quot;&gt;https://jeong-pro.tistory.com/195&lt;/a&gt;
+&lt;a href=&quot;https://cheese10yun.github.io/spring-guide-exception/&quot;&gt;https://cheese10yun.github.io/spring-guide-exception/&lt;/a&gt;
+&lt;a href=&quot;https://wbluke.tistory.com/15&quot;&gt;https://wbluke.tistory.com/15&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/이것이 자바다] Class]]></title><description><![CDATA[Annotation]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--002--01</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--002--01</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Annotation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;프로그램에게 추가적인 정보를 제공해주는 메타데이터(metadata)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;어노테이션 용도&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;컴파일러에게 코드 작성 문법 에러 체크하도록 정보 제공&lt;br&gt;
+ex) 메소드가 재정의 되었는지 확인할 수 있다. (@Override)&lt;/li&gt;
+&lt;li&gt;소프트웨어 개발 툴이 빌드나 배치 시 코드를 자동 생성하게 정보 제공&lt;br&gt;
+ex)xml 설정 파일을 자동 생성하거나 배포를 위한 JAR 압축 파일을 자동 생성할 수 있다.&lt;/li&gt;
+&lt;li&gt;실행 시(런타임시) 특정 기능 실행하도록 정보 제공&lt;br&gt;
+ex) 객체가 애플리케이션 내부에서 해야할 역할을 정의할 수 있다. (컨트롤러, 서비스 등)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Annotation 정의 및 적용&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// 정의&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token annotation punctuation&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AnnotationName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//default 엘리먼트&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;elementName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;//적용&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@AnnotationName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;value 값&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@AnnotationName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;value 값&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; elementName&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;Annotation 적용 대상&lt;/h4&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/86762c8a5a58a19c3cbd470dc100aa0f/a0209/002--01-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 725px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 46.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABhUlEQVQoz4WRW3OCMBCF+f8/qy+dvjhTq4KQhLsIAYOIAl7mdDfW6dRppw9nNpfdb88mzlYbuDLFKohtdEWKtcoh4i1UVsEPc7vnddH0yKo98qojUdQd0rK1iguD9jDAibMCL68zAiWkGJ7KIJItZFoiiAq8zT7wvpJYrCOsqBk38uk8oOhRI4ZtLHiPrh/h9IcDIiWhqxK1rmB2DZpa43o5ozUNpAiQ5xmSOEKeJvaOczmWxQbD6YjzNGIaB1yvFzhVVWE+nyNNUyRJQsUbuz6eTqjrGlIpbIoCBWmcJozj+C3anyiPc49HAp/PcMxuB8/10FA0xlg9CrTWCIIAHU0xkQsuYsBDz3sL3BHIdVdYLBZQYYgsy20iAxtyuPY863oYhh/Fv+kObBoLk1KRoxrsuOs6cjTRyBq+76MsSxzI5X/Q+8g04nK5pNEEOXXv41MTvuQ3ZKAQ0p6xay5k8LP4/HKhT2nbFooeXgiBvu9xu92+kkb6ZYMwCqHJ6QP2l7iGn+oTzTKlA08B+R4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002  01 1&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/86762c8a5a58a19c3cbd470dc100aa0f/a0209/002--01-1.png&quot;
+        srcset=&quot;/devHistoryBlog/static/86762c8a5a58a19c3cbd470dc100aa0f/8ff5a/002--01-1.png 240w,
+/devHistoryBlog/static/86762c8a5a58a19c3cbd470dc100aa0f/e85cb/002--01-1.png 480w,
+/devHistoryBlog/static/86762c8a5a58a19c3cbd470dc100aa0f/a0209/002--01-1.png 725w&quot;
+        sizes=&quot;(max-width: 725px) 100vw, 725px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;&lt;/h4&gt;</content:encoded></item><item><title><![CDATA[[Java] Enum]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--001.md</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--001.md</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;열거 타입(Enumeration Type)&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;한정된 값만을 갖는 데이터 타입&lt;/li&gt;
 &lt;li&gt;한정된 값은 열거 상수(Enumeration Constant)로 정의&lt;/li&gt;
@@ -2160,7 +2207,226 @@ today.name(); // SUNDAY
 today.ordinal(); // 0 (enum 순서는 0부터 시작)
 today.valueOf(&amp;quot;SUNDAY&amp;quot;) // Week.SUNDAY&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 객체 생성과 파괴]]></title><description><![CDATA[아이템1) 생성자 대신 정적 팩터리 메서드를 고려해라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003--01</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003--01</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템1) 생성자 대신 정적 팩터리 메서드를 고려해라&lt;/h2&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Java] Class]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--002</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;객체(Object) 란?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;자신의 속성과 동작을 가진 모든 것&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;객체 vs 인스턴스&lt;br&gt;
+— 객체는 선언을 의미
+— 인스턴스는 연산자를 통해 클래스로부터 실체화가 됨을 의미&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;class Car { ... }
+Car tico, morning, matiz; // 객체
+tico = new Car(); // 인스턴스&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h5&gt;참고&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&quot;https://dbnsecu.tistory.com/8&quot;&gt;https://dbnsecu.tistory.com/8&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://gmlwjd9405.github.io/2018/09/17/class-object-instance.html&quot;&gt;https://gmlwjd9405.github.io/2018/09/17/class-object-instance.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;객체간의 관계&lt;/h2&gt;
+&lt;h4&gt;관계의 종류&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;집합 관계: 완성품과 부품의 관계&lt;/li&gt;
+&lt;li&gt;사용 관계: 객체가 다른 객체를 사용하는 관계&lt;/li&gt;
+&lt;li&gt;상속 관계: 종류 객체와  구체적인 사물 객체 관계
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/e1dea42cb4af4f90f96507f339214fe4/d0e73/002--1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 671px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 79.58333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAACQklEQVQ4y5VTa4+iQBD0//+hu90Pe9nkPPU0u75FRFAURUBAmIHhZd0wnM/VS66TCZOepqaruqaG/4zj8ShWtS8QEgJK6fmsdl10Kbzsn4GW4ROGnx9TvNTHcINE5O4A8RD0tC+KS46lOUaaA3NnQVmaaI63yIsCtUedXHf8rFsaM7x1VKj6FmvTwed0gzTNqg5jlmAsLyBrGxyfUJwqC/QnKrwDQZ5noCSEbnp4bUzQ7M0RUFZRLgG0rY92X8FrU4ZmhuKAcLFdz8OR09gHDJ2Rhh+tiaAWBgEcxxE19xfX3CBGc6AjJgfsHA+N4QpRFMPd72FZFhz+bU+2XCsbLArR4LW2X0214JfdyyIotyUTb/z2zmgJww6+UF7wrr/VJ2gPVEyXjhD/mTsqDZMMc32HjeWJST6KhWFjIKmI4uSfVno4ZcYYHxQT39PKsxQ708RqpcP3fSRJUtXFsaD+xdjFuf0CMSXIOECW5XxlyPIcjP9IaSiGlOdVvihyxBFFmsQXwHsdTNtFX1rAdPybrnVjh4G8hOMdbvLzpcHrtbMUtWv+cVJgNDfR6sl47/JpJ7nIH2iKnrxG/XPGbWPiJHNpp66k470jo6s4Fw1PgOVTmqjc3ClFf7aBtKyK2tIWq42FjBG0uK02f53QHK5h2XtuJ4J6X8f+EN0Clp28NGeof0joTg2QqKKxtomwze+egiFnkPAnVsbM8PH9V2mnOaSFXb3l+7FbbgiFW8gL6E1e37rCWiRiN1ZR1zbUlSWsV8YfzfzOwruG/jMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002  1&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/e1dea42cb4af4f90f96507f339214fe4/d0e73/002--1.png&quot;
+        srcset=&quot;/devHistoryBlog/static/e1dea42cb4af4f90f96507f339214fe4/8ff5a/002--1.png 240w,
+/devHistoryBlog/static/e1dea42cb4af4f90f96507f339214fe4/e85cb/002--1.png 480w,
+/devHistoryBlog/static/e1dea42cb4af4f90f96507f339214fe4/d0e73/002--1.png 671w&quot;
+        sizes=&quot;(max-width: 671px) 100vw, 671px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;클래스 변수&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;new 연산자에 의해 리턴 된 객체의 번지 저장 (참조 타입 변수)&lt;/li&gt;
+&lt;li&gt;힙 영역의 객체를 사용하기 위해 사용
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/997e6001c610902d915bc718a2946957/7de01/002--2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 794px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 24.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAABGklEQVQY002Q626CQBSEef+natpoq8ZrxCsIiiy7AgquiKL4dWs06UlmMuf8mMwci9c8/mCoNvR44a3/z3vXp4xICvaHmLq+cK8rqluJ5a4FXx2b3sRn4ik8qXFFjhvlRh/J8zNSKJSMSeMDb/9TmaGLPX4Y4gnJ9VZQmJvlhzu6ts/YETS6E1qD+dNoE5/xoiMySknihCRJiULFSReUZUmS+6wij7XYM1pGTDcuydHFEiplNPOYOAFzT7BcS/q2g73cEO409mDFoDWl9zPm+6NPtj9SVRXO9pum/clwEeIGO9qzJivZwNLFGWWqpJkmP13IdIlKDk/o89XUNCmDlK0niYKE+l4/K6vMMW9p01sMGDkjk7bDWg35BeFCdTa1ZBnVAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002  2&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/997e6001c610902d915bc718a2946957/7de01/002--2.png&quot;
+        srcset=&quot;/devHistoryBlog/static/997e6001c610902d915bc718a2946957/8ff5a/002--2.png 240w,
+/devHistoryBlog/static/997e6001c610902d915bc718a2946957/e85cb/002--2.png 480w,
+/devHistoryBlog/static/997e6001c610902d915bc718a2946957/7de01/002--2.png 794w&quot;
+        sizes=&quot;(max-width: 794px) 100vw, 794px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;인스턴스 멤버&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;인스턴스 생성 시 아래와 같은 메모리 구조를 갖는다.
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/fa559797bc9942acb2507cb85da0e734/0f79a/002--3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 689px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 54.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAACFklEQVQoz22TDW+iAAyG/f+/6HLbLrtt2Uemc5siiCAIisL4EhRF0ecKizt3uSZvCil9274trZkfMzCm6JaH7cUs4gIvWhOkBYfDkdqOx+9+mRdo4xmm+4E1C9HtObOPHD8paBluyM+7Lu+GjzqJGbopqpNgehnVGeEJtS3CJZf3b9w8q9y/GryO5miSN5otablBTnc4lZcUc55jCFEdsBZ/Cc9Ja4uWBS/alK7m8ty3UKyPJs/0hNDxM247WhNU7ZCBBAfiPwkP7PZb9tWuphQJ9uIPBHHO0/u4aaRnLHhRHZRxIDk5LWue8tizmg/aiiMVbTrqtKm22+9IkogkTYiSlHJXCmHFLIi4euhx0x40Y3dUt5HKqEcutjvW20qwZ9U8f/pCfCUd7faFEMQ890w0e0F1LCS2IVmupMiSIIyJ04xNWQn2tE4aVdUWb+4QRj5luabY5KyLTBbg8NQfY1hz3kYuYRqQrTKRoeJ/1joJna1D/GBO4Id8yEiWo7PaJMQrG32qct1uM/ZUrDBEcX30RYgtWo6jDD/ffC3tizDMHPRJB3PSx3T69Ea3sk1PhO4wdAa0+zrt4Rt35oAfvREXislljeEEQ0hPl/BFWG8yX0cN6m6LbcZ6k/I+vuLuVcGWG31SNNTpb4oyb3IOklsJDmeH3zr/A/61UhaiTX/xMLjkuvtIR79CmVywLVen4/x2p7X9Ae4DOfGzaH2HAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002  3&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/fa559797bc9942acb2507cb85da0e734/0f79a/002--3.png&quot;
+        srcset=&quot;/devHistoryBlog/static/fa559797bc9942acb2507cb85da0e734/8ff5a/002--3.png 240w,
+/devHistoryBlog/static/fa559797bc9942acb2507cb85da0e734/e85cb/002--3.png 480w,
+/devHistoryBlog/static/fa559797bc9942acb2507cb85da0e734/0f79a/002--3.png 689w&quot;
+        sizes=&quot;(max-width: 689px) 100vw, 689px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;this 키워드&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;인스턴스 자신의 주소를 가지고 있는 키워드
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/965ac43876ec650ff6c4ed7f06a9fdc7/cecac/002--4.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 728px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 54.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAAB60lEQVQoz22R627aQBCFebU+Y/9X6kP0T9OI0pI0gboYAtgBYxAGjHEAg/ENX76uF0FC05GOzs7s6Oyc2UroeziWQRRDngPFibOsIBeQnJ/OZb0o79KCNM1l7zmKopB55ZhmuK5GvfGRL80G31oq9/0u1U6bG0Xl5rfKV6XNrdLhUdO56/WptZ/41dVYrvf4QUQQJRfRSnlI/AeU+w/cNlrUWgbN/ohmT6A/5oc65LuAok14Glm0hxaP3TF1UaurJp2BRW+0wPMjKVopVctpDcvFcjyEO47CnoSwFSeZ5CLPpd1UOAqTWPIxTUV/uZZc4iJYhmlteBAvNjsmSm+KMQuYuhkT54gfnpq9wGPsTthHvsyflwMhHp63eLJ8FpwsDqjPa7rGRljY0jN3jOyE4Sxmd8hkz9Jz0O0BhjOSwuZqzGq3whHwgt31hCNrS/NphtKd86e/oKUvUXUHYx6LxeckaUScJoTHEHfvUtVqvPhribzIXz/lLDie+0JwLkXaJQYrMWHMYBYJwQLVUqnqNbSFLqwO0Wwd0x2z8GwOSXD9y6X/IMo4RILjgjAuOecQZmJ/mVg4rP0X7K3N+rBhF+5Qpx0+/fwsuE2ape8nPAu/gn/q15EI++XugjfTnQRP2aXwf/CudvXcm/wvHMhCXu370sEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002  4&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/965ac43876ec650ff6c4ed7f06a9fdc7/cecac/002--4.png&quot;
+        srcset=&quot;/devHistoryBlog/static/965ac43876ec650ff6c4ed7f06a9fdc7/8ff5a/002--4.png 240w,
+/devHistoryBlog/static/965ac43876ec650ff6c4ed7f06a9fdc7/e85cb/002--4.png 480w,
+/devHistoryBlog/static/965ac43876ec650ff6c4ed7f06a9fdc7/cecac/002--4.png 728w&quot;
+        sizes=&quot;(max-width: 728px) 100vw, 728px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;정적 멤버와 static&lt;/h2&gt;
+&lt;h4&gt;정적(static) 멤버란?&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;클래스에 고정된 필드와 메소드 - 정적 필드, 정적 메소드&lt;/li&gt;
+&lt;li&gt;정적 멤버는 클래스에 소속된 멤버&lt;br&gt;
+— 객체 내부에 존재하지 않고, 메소드 영역에 존재&lt;br&gt;
+— 정적 멤버는 객체를 생성하지 않고 클래스로 바로 접근해 사용
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/fd66c6c2551992959f6abddb8bea5bb4/7fee5/002--5.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 781px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 27.500000000000004%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAABQUlEQVQY02WRW0+DQBCF+f9v/hMTnzQ+GO9NGhRtpVqwLQhlubgssNjWtp8LamLiJN+cyTycnN2xvCBh9pYy8UOWeU2uVmTlB6mhUyFbGr1i09RopVg3DStDHMfIUrLbf7Jbt+x0xXatsY7PbU6vHG4cn9EsY/Sa8TQvmISlQTIOSoSQZO4YbzAgcu6pjVkiBEWRUeuSchmbXUSrSqzr+ym2u2A4nvPgLXt99BK8uGIaqd44Vx+0jSZYhFSq4rf2bFnELrYzxJ2OUbrAsiehMQxMMoG/rA1Vb+bFqqdLKetPMuVj+0e4s5tvs/3esCOVc6L02fBCKFysk8s7zgajnu7Zg8cZF8MJl/YLd88RjifIyw1BPuT04YDb0WEXjZ/2r6zu0zPVHaHtD5DKb+1ns0veNXq1Zb3RJMUrhRR/Ev7nC5blvkSYOhNdAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002  5&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/fd66c6c2551992959f6abddb8bea5bb4/7fee5/002--5.png&quot;
+        srcset=&quot;/devHistoryBlog/static/fd66c6c2551992959f6abddb8bea5bb4/8ff5a/002--5.png 240w,
+/devHistoryBlog/static/fd66c6c2551992959f6abddb8bea5bb4/e85cb/002--5.png 480w,
+/devHistoryBlog/static/fd66c6c2551992959f6abddb8bea5bb4/7fee5/002--5.png 781w&quot;
+        sizes=&quot;(max-width: 781px) 100vw, 781px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;정적 초기화 블록&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;클래스가 메소드 영역으로 로딩될 때 자동으로 실행하는 블록&lt;/li&gt;
+&lt;li&gt;정적 필드 초기화 및 정적 메소드 호출 가능&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;인스턴스 멤버나 메소드 호출 불가능&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;static {
+...
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Annotation&lt;/h4&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 객체 생성과 파괴]]></title><description><![CDATA[아이템1) 생성자 대신 정적 팩터리 메서드를 고려해라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003--01</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003--01</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템1) 생성자 대신 정적 팩터리 메서드를 고려해라&lt;/h2&gt;
 &lt;p&gt;정적 팩터리 메서드와 public 생성자는 각자의 쓰임새가 있으니 상대적인 장단점을 이해하고 사용하는 것이 좋다.
 그렇다고 하더라고 정적 팩터리를 사용하는 게 유리한 경우가 더 많으므로 무작정 public 생성자를 제공하던 습관이 있다면 고치자.&lt;/p&gt;
 &lt;h3&gt;정적 팩터리 메서드가 생성자보다 좋은 장점&lt;/h3&gt;
@@ -2597,9 +2863,17 @@ pop() 메소드에서 size를 감소시키나, 해당 값은 그대로 두고 �
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://blog.breakingthat.com/2018/08/26/java-collection-map-weakhashmap/&quot;&gt;WeakHashMap (약한 참조 해시맵)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://javafactory.tistory.com/735&quot;&gt;LinkedHashMap.removeEldestEntry()&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Design Pattern] Flyweight pattern]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--004</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--004</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h5&gt;참고&lt;/h5&gt;
-&lt;p&gt;&lt;a href=&quot;https://beomseok95.tistory.com/259&quot;&gt;https://beomseok95.tistory.com/259&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;https://nowonbun.tistory.com/447&quot;&gt;https://nowonbun.tistory.com/447&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 객체 생성과 파괴]]></title><description><![CDATA[아이템9) try-finally 보다는 try-with-resources를 사용하라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003--09</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003--09</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템9) try-finally 보다는 try-with-resources를 사용하라&lt;/h2&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 객체 생성과 파괴]]></title><description><![CDATA[아이템8) finalizer 와 cleaner 사용을 피해라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003--08</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003--08</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템8) finalizer 와 cleaner 사용을 피해라&lt;/h2&gt;
+&lt;p&gt;cleaner(자바 8까지는 finalizer) 는 안전망 역할이나 중요하지 않는 네이티브 자원 회수 용으로만 사용하자.&lt;br&gt;
+물론 이런 경우라도 불확실성과 성능 저하에 주의해야 한다.&lt;/p&gt;
+&lt;h4&gt;참고&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://jaehun2841.github.io/2019/01/08/effective-java-item8/#%EC%84%9C%EB%A1%A0&quot;&gt;https://jaehun2841.github.io/2019/01/08/effective-java-item8/#%EC%84%9C%EB%A1%A0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://lelecoder.com/21&quot;&gt;https://lelecoder.com/21&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 객체 생성과 파괴]]></title><description><![CDATA[아이템9) try-finally 보다는 try-with-resources를 사용하라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003--09</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003--09</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템9) try-finally 보다는 try-with-resources를 사용하라&lt;/h2&gt;
 &lt;p&gt;꼭 회수해야 하는 자원을 다룰 때는 try-finally 말고 try-with-resources 를 사용하면 정확하고 쉽게 회수할 수 있다.&lt;/p&gt;
 &lt;h4&gt;try-finally&lt;/h4&gt;
 &lt;ul&gt;
@@ -2638,293 +2912,19 @@ pop() 메소드에서 size를 감소시키나, 해당 값은 그대로 두고 �
       out&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;buf&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; n&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 객체 생성과 파괴]]></title><description><![CDATA[아이템8) finalizer 와 cleaner 사용을 피해라]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003--08</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003--08</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;아이템8) finalizer 와 cleaner 사용을 피해라&lt;/h2&gt;
-&lt;p&gt;cleaner(자바 8까지는 finalizer) 는 안전망 역할이나 중요하지 않는 네이티브 자원 회수 용으로만 사용하자.&lt;br&gt;
-물론 이런 경우라도 불확실성과 성능 저하에 주의해야 한다.&lt;/p&gt;
-&lt;h4&gt;참고&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://jaehun2841.github.io/2019/01/08/effective-java-item8/#%EC%84%9C%EB%A1%A0&quot;&gt;https://jaehun2841.github.io/2019/01/08/effective-java-item8/#%EC%84%9C%EB%A1%A0&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://lelecoder.com/21&quot;&gt;https://lelecoder.com/21&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;/h3&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Java] Class]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--002</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;객체(Object) 란?&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;자신의 속성과 동작을 가진 모든 것&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;객체 vs 인스턴스&lt;br&gt;
-— 객체는 선언을 의미
-— 인스턴스는 연산자를 통해 클래스로부터 실체화가 됨을 의미&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;class Car { ... }
-Car tico, morning, matiz; // 객체
-tico = new Car(); // 인스턴스&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;참고&lt;/h5&gt;
-&lt;p&gt;&lt;a href=&quot;https://dbnsecu.tistory.com/8&quot;&gt;https://dbnsecu.tistory.com/8&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;https://gmlwjd9405.github.io/2018/09/17/class-object-instance.html&quot;&gt;https://gmlwjd9405.github.io/2018/09/17/class-object-instance.html&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;객체간의 관계&lt;/h2&gt;
-&lt;h4&gt;관계의 종류&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;집합 관계: 완성품과 부품의 관계&lt;/li&gt;
-&lt;li&gt;사용 관계: 객체가 다른 객체를 사용하는 관계&lt;/li&gt;
-&lt;li&gt;상속 관계: 종류 객체와  구체적인 사물 객체 관계
-
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/e1dea42cb4af4f90f96507f339214fe4/d0e73/002--1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 671px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 79.58333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAACQklEQVQ4y5VTa4+iQBD0//+hu90Pe9nkPPU0u75FRFAURUBAmIHhZd0wnM/VS66TCZOepqaruqaG/4zj8ShWtS8QEgJK6fmsdl10Kbzsn4GW4ROGnx9TvNTHcINE5O4A8RD0tC+KS46lOUaaA3NnQVmaaI63yIsCtUedXHf8rFsaM7x1VKj6FmvTwed0gzTNqg5jlmAsLyBrGxyfUJwqC/QnKrwDQZ5noCSEbnp4bUzQ7M0RUFZRLgG0rY92X8FrU4ZmhuKAcLFdz8OR09gHDJ2Rhh+tiaAWBgEcxxE19xfX3CBGc6AjJgfsHA+N4QpRFMPd72FZFhz+bU+2XCsbLArR4LW2X0214JfdyyIotyUTb/z2zmgJww6+UF7wrr/VJ2gPVEyXjhD/mTsqDZMMc32HjeWJST6KhWFjIKmI4uSfVno4ZcYYHxQT39PKsxQ708RqpcP3fSRJUtXFsaD+xdjFuf0CMSXIOECW5XxlyPIcjP9IaSiGlOdVvihyxBFFmsQXwHsdTNtFX1rAdPybrnVjh4G8hOMdbvLzpcHrtbMUtWv+cVJgNDfR6sl47/JpJ7nIH2iKnrxG/XPGbWPiJHNpp66k470jo6s4Fw1PgOVTmqjc3ClFf7aBtKyK2tIWq42FjBG0uK02f53QHK5h2XtuJ4J6X8f+EN0Clp28NGeof0joTg2QqKKxtomwze+egiFnkPAnVsbM8PH9V2mnOaSFXb3l+7FbbgiFW8gL6E1e37rCWiRiN1ZR1zbUlSWsV8YfzfzOwruG/jMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;002  1&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/e1dea42cb4af4f90f96507f339214fe4/d0e73/002--1.png&quot;
-        srcset=&quot;/devHistoryBlog/static/e1dea42cb4af4f90f96507f339214fe4/8ff5a/002--1.png 240w,
-/devHistoryBlog/static/e1dea42cb4af4f90f96507f339214fe4/e85cb/002--1.png 480w,
-/devHistoryBlog/static/e1dea42cb4af4f90f96507f339214fe4/d0e73/002--1.png 671w&quot;
-        sizes=&quot;(max-width: 671px) 100vw, 671px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;클래스 변수&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;new 연산자에 의해 리턴 된 객체의 번지 저장 (참조 타입 변수)&lt;/li&gt;
-&lt;li&gt;힙 영역의 객체를 사용하기 위해 사용
-
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/997e6001c610902d915bc718a2946957/7de01/002--2.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 794px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 24.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAABGklEQVQY002Q626CQBSEef+natpoq8ZrxCsIiiy7AgquiKL4dWs06UlmMuf8mMwci9c8/mCoNvR44a3/z3vXp4xICvaHmLq+cK8rqluJ5a4FXx2b3sRn4ik8qXFFjhvlRh/J8zNSKJSMSeMDb/9TmaGLPX4Y4gnJ9VZQmJvlhzu6ts/YETS6E1qD+dNoE5/xoiMySknihCRJiULFSReUZUmS+6wij7XYM1pGTDcuydHFEiplNPOYOAFzT7BcS/q2g73cEO409mDFoDWl9zPm+6NPtj9SVRXO9pum/clwEeIGO9qzJivZwNLFGWWqpJkmP13IdIlKDk/o89XUNCmDlK0niYKE+l4/K6vMMW9p01sMGDkjk7bDWg35BeFCdTa1ZBnVAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;002  2&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/997e6001c610902d915bc718a2946957/7de01/002--2.png&quot;
-        srcset=&quot;/devHistoryBlog/static/997e6001c610902d915bc718a2946957/8ff5a/002--2.png 240w,
-/devHistoryBlog/static/997e6001c610902d915bc718a2946957/e85cb/002--2.png 480w,
-/devHistoryBlog/static/997e6001c610902d915bc718a2946957/7de01/002--2.png 794w&quot;
-        sizes=&quot;(max-width: 794px) 100vw, 794px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;인스턴스 멤버&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;인스턴스 생성 시 아래와 같은 메모리 구조를 갖는다.
-
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/fa559797bc9942acb2507cb85da0e734/0f79a/002--3.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 689px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 54.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAACFklEQVQoz22TDW+iAAyG/f+/6HLbLrtt2Uemc5siiCAIisL4EhRF0ecKizt3uSZvCil9274trZkfMzCm6JaH7cUs4gIvWhOkBYfDkdqOx+9+mRdo4xmm+4E1C9HtObOPHD8paBluyM+7Lu+GjzqJGbopqpNgehnVGeEJtS3CJZf3b9w8q9y/GryO5miSN5otablBTnc4lZcUc55jCFEdsBZ/Cc9Ja4uWBS/alK7m8ty3UKyPJs/0hNDxM247WhNU7ZCBBAfiPwkP7PZb9tWuphQJ9uIPBHHO0/u4aaRnLHhRHZRxIDk5LWue8tizmg/aiiMVbTrqtKm22+9IkogkTYiSlHJXCmHFLIi4euhx0x40Y3dUt5HKqEcutjvW20qwZ9U8f/pCfCUd7faFEMQ890w0e0F1LCS2IVmupMiSIIyJ04xNWQn2tE4aVdUWb+4QRj5luabY5KyLTBbg8NQfY1hz3kYuYRqQrTKRoeJ/1joJna1D/GBO4Id8yEiWo7PaJMQrG32qct1uM/ZUrDBEcX30RYgtWo6jDD/ffC3tizDMHPRJB3PSx3T69Ea3sk1PhO4wdAa0+zrt4Rt35oAfvREXislljeEEQ0hPl/BFWG8yX0cN6m6LbcZ6k/I+vuLuVcGWG31SNNTpb4oyb3IOklsJDmeH3zr/A/61UhaiTX/xMLjkuvtIR79CmVywLVen4/x2p7X9Ae4DOfGzaH2HAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;002  3&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/fa559797bc9942acb2507cb85da0e734/0f79a/002--3.png&quot;
-        srcset=&quot;/devHistoryBlog/static/fa559797bc9942acb2507cb85da0e734/8ff5a/002--3.png 240w,
-/devHistoryBlog/static/fa559797bc9942acb2507cb85da0e734/e85cb/002--3.png 480w,
-/devHistoryBlog/static/fa559797bc9942acb2507cb85da0e734/0f79a/002--3.png 689w&quot;
-        sizes=&quot;(max-width: 689px) 100vw, 689px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;this 키워드&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;인스턴스 자신의 주소를 가지고 있는 키워드
-
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/965ac43876ec650ff6c4ed7f06a9fdc7/cecac/002--4.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 728px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 54.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAAB60lEQVQoz22R627aQBCFebU+Y/9X6kP0T9OI0pI0gboYAtgBYxAGjHEAg/ENX76uF0FC05GOzs7s6Oyc2UroeziWQRRDngPFibOsIBeQnJ/OZb0o79KCNM1l7zmKopB55ZhmuK5GvfGRL80G31oq9/0u1U6bG0Xl5rfKV6XNrdLhUdO56/WptZ/41dVYrvf4QUQQJRfRSnlI/AeU+w/cNlrUWgbN/ohmT6A/5oc65LuAok14Glm0hxaP3TF1UaurJp2BRW+0wPMjKVopVctpDcvFcjyEO47CnoSwFSeZ5CLPpd1UOAqTWPIxTUV/uZZc4iJYhmlteBAvNjsmSm+KMQuYuhkT54gfnpq9wGPsTthHvsyflwMhHp63eLJ8FpwsDqjPa7rGRljY0jN3jOyE4Sxmd8hkz9Jz0O0BhjOSwuZqzGq3whHwgt31hCNrS/NphtKd86e/oKUvUXUHYx6LxeckaUScJoTHEHfvUtVqvPhribzIXz/lLDie+0JwLkXaJQYrMWHMYBYJwQLVUqnqNbSFLqwO0Wwd0x2z8GwOSXD9y6X/IMo4RILjgjAuOecQZmJ/mVg4rP0X7K3N+rBhF+5Qpx0+/fwsuE2ape8nPAu/gn/q15EI++XugjfTnQRP2aXwf/CudvXcm/wvHMhCXu370sEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;002  4&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/965ac43876ec650ff6c4ed7f06a9fdc7/cecac/002--4.png&quot;
-        srcset=&quot;/devHistoryBlog/static/965ac43876ec650ff6c4ed7f06a9fdc7/8ff5a/002--4.png 240w,
-/devHistoryBlog/static/965ac43876ec650ff6c4ed7f06a9fdc7/e85cb/002--4.png 480w,
-/devHistoryBlog/static/965ac43876ec650ff6c4ed7f06a9fdc7/cecac/002--4.png 728w&quot;
-        sizes=&quot;(max-width: 728px) 100vw, 728px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;정적 멤버와 static&lt;/h2&gt;
-&lt;h4&gt;정적(static) 멤버란?&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;클래스에 고정된 필드와 메소드 - 정적 필드, 정적 메소드&lt;/li&gt;
-&lt;li&gt;정적 멤버는 클래스에 소속된 멤버&lt;br&gt;
-— 객체 내부에 존재하지 않고, 메소드 영역에 존재&lt;br&gt;
-— 정적 멤버는 객체를 생성하지 않고 클래스로 바로 접근해 사용
-
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/fd66c6c2551992959f6abddb8bea5bb4/7fee5/002--5.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 781px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 27.500000000000004%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAABQUlEQVQY02WRW0+DQBCF+f9v/hMTnzQ+GO9NGhRtpVqwLQhlubgssNjWtp8LamLiJN+cyTycnN2xvCBh9pYy8UOWeU2uVmTlB6mhUyFbGr1i09RopVg3DStDHMfIUrLbf7Jbt+x0xXatsY7PbU6vHG4cn9EsY/Sa8TQvmISlQTIOSoSQZO4YbzAgcu6pjVkiBEWRUeuSchmbXUSrSqzr+ym2u2A4nvPgLXt99BK8uGIaqd44Vx+0jSZYhFSq4rf2bFnELrYzxJ2OUbrAsiehMQxMMoG/rA1Vb+bFqqdLKetPMuVj+0e4s5tvs/3esCOVc6L02fBCKFysk8s7zgajnu7Zg8cZF8MJl/YLd88RjifIyw1BPuT04YDb0WEXjZ/2r6zu0zPVHaHtD5DKb+1ns0veNXq1Zb3RJMUrhRR/Ev7nC5blvkSYOhNdAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;002  5&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/fd66c6c2551992959f6abddb8bea5bb4/7fee5/002--5.png&quot;
-        srcset=&quot;/devHistoryBlog/static/fd66c6c2551992959f6abddb8bea5bb4/8ff5a/002--5.png 240w,
-/devHistoryBlog/static/fd66c6c2551992959f6abddb8bea5bb4/e85cb/002--5.png 480w,
-/devHistoryBlog/static/fd66c6c2551992959f6abddb8bea5bb4/7fee5/002--5.png 781w&quot;
-        sizes=&quot;(max-width: 781px) 100vw, 781px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;정적 초기화 블록&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;클래스가 메소드 영역으로 로딩될 때 자동으로 실행하는 블록&lt;/li&gt;
-&lt;li&gt;정적 필드 초기화 및 정적 메소드 호출 가능&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;인스턴스 멤버나 메소드 호출 불가능&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;static {
-...
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;Annotation&lt;/h4&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/이것이 자바다] Class]]></title><description><![CDATA[Annotation]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--002--01</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--002--01</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Annotation&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;프로그램에게 추가적인 정보를 제공해주는 메타데이터(metadata)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;어노테이션 용도&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;컴파일러에게 코드 작성 문법 에러 체크하도록 정보 제공&lt;br&gt;
-ex) 메소드가 재정의 되었는지 확인할 수 있다. (@Override)&lt;/li&gt;
-&lt;li&gt;소프트웨어 개발 툴이 빌드나 배치 시 코드를 자동 생성하게 정보 제공&lt;br&gt;
-ex)xml 설정 파일을 자동 생성하거나 배포를 위한 JAR 압축 파일을 자동 생성할 수 있다.&lt;/li&gt;
-&lt;li&gt;실행 시(런타임시) 특정 기능 실행하도록 정보 제공&lt;br&gt;
-ex) 객체가 애플리케이션 내부에서 해야할 역할을 정의할 수 있다. (컨트롤러, 서비스 등)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;Annotation 정의 및 적용&lt;/h4&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// 정의&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token annotation punctuation&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AnnotationName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//default 엘리먼트&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;elementName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;//적용&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@AnnotationName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;value 값&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@AnnotationName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;value 값&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; elementName&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h4&gt;Annotation 적용 대상&lt;/h4&gt;
-&lt;p&gt;
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/86762c8a5a58a19c3cbd470dc100aa0f/a0209/002--01-1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 725px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 46.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABhUlEQVQoz4WRW3OCMBCF+f8/qy+dvjhTq4KQhLsIAYOIAl7mdDfW6dRppw9nNpfdb88mzlYbuDLFKohtdEWKtcoh4i1UVsEPc7vnddH0yKo98qojUdQd0rK1iguD9jDAibMCL68zAiWkGJ7KIJItZFoiiAq8zT7wvpJYrCOsqBk38uk8oOhRI4ZtLHiPrh/h9IcDIiWhqxK1rmB2DZpa43o5ozUNpAiQ5xmSOEKeJvaOczmWxQbD6YjzNGIaB1yvFzhVVWE+nyNNUyRJQsUbuz6eTqjrGlIpbIoCBWmcJozj+C3anyiPc49HAp/PcMxuB8/10FA0xlg9CrTWCIIAHU0xkQsuYsBDz3sL3BHIdVdYLBZQYYgsy20iAxtyuPY863oYhh/Fv+kObBoLk1KRoxrsuOs6cjTRyBq+76MsSxzI5X/Q+8g04nK5pNEEOXXv41MTvuQ3ZKAQ0p6xay5k8LP4/HKhT2nbFooeXgiBvu9xu92+kkb6ZYMwCqHJ6QP2l7iGn+oTzTKlA08B+R4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;002  01 1&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/86762c8a5a58a19c3cbd470dc100aa0f/a0209/002--01-1.png&quot;
-        srcset=&quot;/devHistoryBlog/static/86762c8a5a58a19c3cbd470dc100aa0f/8ff5a/002--01-1.png 240w,
-/devHistoryBlog/static/86762c8a5a58a19c3cbd470dc100aa0f/e85cb/002--01-1.png 480w,
-/devHistoryBlog/static/86762c8a5a58a19c3cbd470dc100aa0f/a0209/002--01-1.png 725w&quot;
-        sizes=&quot;(max-width: 725px) 100vw, 725px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/p&gt;
-&lt;h4&gt;&lt;/h4&gt;</content:encoded></item><item><title><![CDATA[[Java] Date 포맷팅]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-09-28--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-09-28--001</guid><pubDate>Mon, 28 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;String date_s = &amp;quot; 2011-01-18 00:00:00.0&amp;quot;; 
+&lt;h3&gt;&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[[책리뷰/Effective Java] 객체 생성과 파괴]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--003</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--01&quot;&gt;아이템1) 생성자 대신 정적 팩터리 메서드를 고려해라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--02&quot;&gt;아이템2) 생성자에 매개변수가 많다면 빌더를 고려하라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--03&quot;&gt;아이템3) private 생성자나 열거 타입으로 싱글턴임을 보증하라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--04&quot;&gt;아이템4) 인스턴스화를 막으려거든 private 생성자를 사용하라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--05&quot;&gt;아이템5) 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--06&quot;&gt;아이템6) 불필요한 객체 생성을 피해라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--07&quot;&gt;아이템7) 다 쓴 객체 참조를 해제하라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--08&quot;&gt;아이템8) finalizer 와 cleaner 사용을 피해라&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2020-10-04--003--09&quot;&gt;아이템9) try-finally 보다는 try-with-resources를 사용하라&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Design Pattern] Flyweight pattern]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--004</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-10-04--004</guid><pubDate>Sun, 04 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h5&gt;참고&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&quot;https://beomseok95.tistory.com/259&quot;&gt;https://beomseok95.tistory.com/259&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://nowonbun.tistory.com/447&quot;&gt;https://nowonbun.tistory.com/447&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Java] Date 포맷팅]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-09-28--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-09-28--001</guid><pubDate>Mon, 28 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;String date_s = &amp;quot; 2011-01-18 00:00:00.0&amp;quot;; 
 SimpleDateFormat dt = new SimpleDateFormat(&amp;quot;yyyyy-mm-dd hh:mm:ss&amp;quot;); 
 Date date = dt.parse(date_s); 
 SimpleDateFormat dt1 = new SimpleDateFormat(&amp;quot;yyyyy-mm-dd&amp;quot;);
@@ -3251,7 +3251,7 @@ static 키워드 없이 사용하였는데,&lt;br&gt;
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 67.08333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAABmklEQVQ4y4VSiW6DMAzl//9x61qglEJCLu6C52dI16JKi/Tk+4jtZBgGquuaqqoipbTwxhhaluUNj8fjiSjP88x0EbosK+ElklApappGkoEisYbM+jsX0lpLwYrtWsOuBJDhAzviUChp25YuaUr59UpZllFRFJSmGX19n+jKOvBZntP5ktLp50xpllOeb74X1qV7DJrpuo6SaZrIWiuC956cc2QZjvkoO+d5DJa7MKI37A8d7BjPOI7y3XVdKUGbxnfUuJZs6Mm4IF/oQqCx72U+8zzt9J1HIqBnPzSE8SUwNGarLODKVjpw0sGzy8jvgA+SxQXF5fGXR2k7cEeA938JX3WxwKsOiY5PtgwHJAUkmBNiy6JnPtog//dkhiG05NnZ+SBUOmk3Ha4ARSP6HcMHYMHJxDPMS0VFpelWNVRWzBe35xY9F8HAj0ChI7AcWcpdGbprQ0XNycrteOV89vOwOy/nJLyTBMcCsmUMFmeCwy7Lu1y+YjkGu0+bdttyjh1KQswQFdAuzkDubNpuDTN5xXyQAcSAxvhfC1Xp/3t7SJkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 67.08333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAABsklEQVQ4y4VTi46jMAzk/7/wdmmBlSodBAIJBFoe7ZzHhD220umQphM/MPbETaxtYNsWdd2gaayggTEGVWWUy6pSX1mWMHWNRsBcY2qN0cc8a1tszyeSoiiQZTnyPMf1mqH4+sKvj098fKbiz3AVZHmB9HIVZMgl/3K5aG4qnKYX3G43KWgxThOSdV0xLwsW4UV4nmflTew1Yp4XTR7H8Tt+xHh+vV7gQ07CeEfjBnQ+wPUjGmm9EwlC3+N+v+PxeChYiDhsgnFiih+jL+FhGEJ0TghijxFMPjo7mPEQgr6zbZt29RTtyNqhc07n74Rb6azrOhWaPo2Jj35eGO1Biu0FB72E9ydhIAh6GZFgF8518TzB9x7e93De60j/exLqEgJHmXaE07hRl/V0YWdd38GcpHU9bpVFWbeK36WRPat1LHZJHk+6UutpGn/4DuiluD6gsp1AihmLyjSqFYv5KAPZy8j9yd4L/8V3QRrc+LLk1u//mi4WJKjxoBoL4pn4Z4f8YQILU595fkT83Ll3+x18nzkJNTpaPr7s/D4WP6AaSpwjc/eOldHtCPsOe+n+2MM/cYnnWY3JxikAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
@@ -3913,7 +3913,10 @@ check point :&lt;/p&gt;
 &lt;p&gt; -. check mounted state&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# df -h&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt; -. service start : DB, WAS, Primary Script?&lt;/p&gt;
-&lt;p&gt; -. Secondary Script exit&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[AWS] private key permission in Windows]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2019-08-28--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2019-08-28--001</guid><pubDate>Wed, 28 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt; -. Secondary Script exit&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Spring] Filter, Interceptor, AOP]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2019-09-30--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2019-09-30--001</guid><pubDate>Mon, 30 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;호출 순서&lt;/h3&gt;
+&lt;p&gt;Filter -&gt; Interceptor -&gt; aop -&gt; aop -&gt; Interceptor -&gt; Filter&lt;/p&gt;
+&lt;h3&gt;전체 순서&lt;/h3&gt;
+&lt;p&gt;ServletRequest -&gt; Filter -&gt; dispatcherServlet -&gt; Interceptor -&gt; aop -&gt; 함수 -&gt; aop -&gt;Interceptor -&gt; dispatcherServlet -&gt; Filter -&gt; ServletResponse&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[AWS] private key permission in Windows]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2019-08-28--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2019-08-28--001</guid><pubDate>Wed, 28 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Problem&lt;/h2&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
