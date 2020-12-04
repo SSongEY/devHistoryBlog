@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 04 Dec 2020 01:38:53 GMT</lastBuildDate><item><title><![CDATA[[PKI] issuer private key로 서명]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</guid><pubDate>Thu, 26 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token comment&quot;&gt;// private key 로 직접 서명&lt;/span&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 04 Dec 2020 10:59:03 GMT</lastBuildDate><item><title><![CDATA[[PKI] issuer private key로 서명]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</guid><pubDate>Thu, 26 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token comment&quot;&gt;// private key 로 직접 서명&lt;/span&gt;
     &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; base64EncodedMoSub2PrivKey &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;n2iWb4B7ES9Hc7HmAHvW5RMAAGUhwAJ3hOIUuqH9r9y5l4IGzg9nQfXxocKwJDIBSC/x67JcxNA6aALuz0gd+IQby7TTTfB74sxWSNjZUV67Xup0kPOx3wOWrxmO1R2/qGUkwflm3shSbz3YoWaavzipuYKen/6pBQ5kmKzONPFh+1Nprq34hY2lccf38QRp/aGXNbXvxRZcPsYGU5HIIw==&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; caServerKey &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;_u5PJineTniFyvQmHkWP6g&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;byte&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; moSub2PrivateKeyByte &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;aesDecode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Base64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;base64EncodedMoSub2PrivKey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; caServerKey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
@@ -516,6 +516,596 @@ call AppConfig.orderService
 call AppConfig.memberRepository
 call AppConfig.memberRepository&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Code Convention] DTO Class]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--003</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--003</guid><pubDate>Tue, 10 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;DTO Class Code Convention&lt;/h2&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/cc6f89aaf1252ee4350cc615b916ff3c/c7dcc/003-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 641px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 120.41666666666669%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAYCAYAAAD6S912AAAACXBIWXMAABJ0AAASdAHeZh94AAAC+ElEQVQ4y6VVW5KjMBCb22xs47cxj5Bkpub+Z9KqDSRkkt392I8uEwqE1FJ3PnI/IKQe59nictYYqpTBMBiMU8U4XhBjRkwZpa8odUBOBTVNyLFAGw2tNYwxrT4aYO4xZIcpGZRAsGhQh4rpvKCvI5xz6LoO1tpWcr2XgLwARgJavhSj5ssGJ6VxOkkp1i8odWovyalOLKW2Ot3B9nMFpOSUHL6/FaVrSmMVKYO+H3kOjWUufZPdztijTyO88+8Zeu9wk/5lg6UnENmOSaMvGcO0sGZ+NDcl1rI6B2fXVrwFNHxgIrMbjVmmDiF4ePbL2a13BNql/axXyQ3QotCU60CWxSFRljjrvUdHJ5V+dvNYPxiOd8CaNT4lOsUiMCo+hNXV9tIOoA/Xr/VR6gZoLAZK/loI2FuCRbILlGwbQ73LvYO+Z7tJLo1hZgbPBO0Tr+nmaoJvwDEmOmob2J/YPQAZC3nR8eHQ6SazMSRAcDTI27ubax7XHOo9jweDGmBiH60jC6txZR/HkjglVyznEd+3AZe5opYJ0Sc4miRshX3gGROv/frh50lpI2URhRGB5eHE+6lUhjo0sMQS5pKAvKUg5dwAk/8BKF+WwCq9Oqq1ekgTmfJbq6f76iBZHSU3QAbXOenf35v+r7rPcowOnzeFWldApVamSunG6mhIM+POmM+LIrMzZA5lH4Zo8fmpMM/rYghcYVEqRcSQ787HzYzEezkUJiA2MKMPDKXxMrtf47ocrrJc6fZcThgHLt/LF12/IDOvLY+cIE+g4CLb5DfAwyxLyfBn7sKR4a7Rc00N6Nnb7IVd1xJwzGDbjbvk12BXdGIKQx0J6qxhqLvmukzJGim9ra51a4uJpvX44fzbYC+UPLJ3c/H8Gxgo98b/ljOWYcQyX7kXzxjnBeflygyyh3Gd+cD+Wk7TU7DNFuxIhnIvk3npuXzlYy63nokxAiIAAigBl1M2uSySw8b2TcYaav2YU7VHRj1KvQ/4U7Dly62x+v+C/RtILOWimHTB8QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/cc6f89aaf1252ee4350cc615b916ff3c/c7dcc/003-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/cc6f89aaf1252ee4350cc615b916ff3c/8ff5a/003-01.png 240w,
+/devHistoryBlog/static/cc6f89aaf1252ee4350cc615b916ff3c/e85cb/003-01.png 480w,
+/devHistoryBlog/static/cc6f89aaf1252ee4350cc615b916ff3c/c7dcc/003-01.png 641w&quot;
+        sizes=&quot;(max-width: 641px) 100vw, 641px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;#1.클래스 정의 방법&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;도메인 또는 리소스 별 DTO 클래스 생성 후(CouponDto), 각 API(Controller 에 정의된 메소드: CreateReq, CreateRes) 에 해당하는 DTO를 InnerClass 로 정의&lt;/li&gt;
+&lt;li&gt;CouponDto의 객체 생성을 하지 않으므로 InnerClass는 static 키워드를 명시한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;#2.생성자의 접근자는 최소한으로&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;객체 생성이 불필요한 클래스의 기본 생성자 접근자는 Private로 지정&lt;br&gt;
+—&gt; 개별 DTO는 InnerClass로 정의하기 때문에 객체 생성이 불필요하다.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/074fcf83cf622a547fa49db7e0942133/85ff8/003-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 467px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 14.166666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAlklEQVQI10XMURLCIAwE0N7GgVBSKgVC0Dp6/zOtKR/68SY7SWaX83To3UPVo4lppt5QarCsdnuhFgFvCdIHSuv2p5YV5RBIHujHgJQBIsLyEbIF2YGg2aNkRusV+lA8z7cVC1LaEUIA84bIPLFZ14g48TQLKxO2QEgrIUcPtof9fiAfFXvOiDHOMu89vHM/7prXbvrnL36yXrDoT8t/AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/074fcf83cf622a547fa49db7e0942133/85ff8/003-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/074fcf83cf622a547fa49db7e0942133/8ff5a/003-02.png 240w,
+/devHistoryBlog/static/074fcf83cf622a547fa49db7e0942133/85ff8/003-02.png 467w&quot;
+        sizes=&quot;(max-width: 467px) 100vw, 467px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;#3. Request Dto 클래스&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/8da319325ee3518a439824e6331866c8/6114d/003-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 623px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 64.16666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAABm0lEQVQ4y4WSWXLjMBBDfRyzuYiLqH08k9z/TgjYslRyOZN8oERKpUegwVsqFSl12FaDYRA4J7D2kFWJ7Gvn3EVen9fvTbcD+PnX4M8imAmdR0sZzNOAdf2Hvg6o48TnqOvCf2oaUcuo0DdgCHTYC5ZqVUMUlGBQokchYJxmlL6ejq6upCWR9rwArQsoWbDNu7tcEnyIGsuKwf1+hzFGIYdOaNtfDjiBQxF8rHQ5WMRUGKtHjBHB+9PV//QW2RHYJ8FjbJGdxmwRu64BX2d0XX+n02HlDB+bYCLU0ZVXsc0TZF+j/gRsgBTYbGYhyWqbdZg4xw6BLlPKyCkpXH6Kz4NuuR/hWzTXmrVs3HOGmXHbGAhPXt8JyzFNLMdoSXtRu55lNYe5TnSR0BG40eFUAqZlw7ws+HjMeKwjJrotiTNl8ylnLSyXwnXRfd85fvMK1cg+BM7Ro/O8Ml7oruMPvPBlQIgZMSTeyYrIgxvkKC03MPd93IH2AGqbhLYTTBu+xthj6Vqe+7fIe+y7af89Ix8O9+bk1ztnfynlC39rj6FhO9ZbAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/8da319325ee3518a439824e6331866c8/6114d/003-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/8da319325ee3518a439824e6331866c8/8ff5a/003-03.png 240w,
+/devHistoryBlog/static/8da319325ee3518a439824e6331866c8/e85cb/003-03.png 480w,
+/devHistoryBlog/static/8da319325ee3518a439824e6331866c8/6114d/003-03.png 623w&quot;
+        sizes=&quot;(max-width: 623px) 100vw, 623px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;##3-1. @NoArgsConstructor 의 접근자는 Private로 한다.&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;@RequestBody 를 사용하면 Spring 내부에서 Jackson 라이브러리를 사용하여 Deserialize (JSON 데이터와 Request 객체 사이의 변환) 을 한다.&lt;/li&gt;
+&lt;li&gt;이때 기본 전략으로 Default Constructor + Reflection 을 사용한다. 이때 최소 접근자는 Private 이다.
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/0edbaa6e53d8d82ac1948d8cbd2130d5/a0209/003-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 725px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 11.249999999999998%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAcUlEQVQI1z2MQRKDMAwD+Q7JJIAd7BBo4f+f2ro99LCjlQ6adHekGeum9D5zjsQI3BNmX+Zwj+1GdWcTwfwIOtYPmhgm4doppTA16//D0RKPZ46Wf+mSee0p+sq4Hq73w3ndiCp1Wah1iZNKLeGROWc+Mk1AI2OA0P4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/0edbaa6e53d8d82ac1948d8cbd2130d5/a0209/003-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/0edbaa6e53d8d82ac1948d8cbd2130d5/8ff5a/003-04.png 240w,
+/devHistoryBlog/static/0edbaa6e53d8d82ac1948d8cbd2130d5/e85cb/003-04.png 480w,
+/devHistoryBlog/static/0edbaa6e53d8d82ac1948d8cbd2130d5/a0209/003-04.png 725w&quot;
+        sizes=&quot;(max-width: 725px) 100vw, 725px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;##3-2. Data Validation&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Bean Validation에서 제공하는 @NotNull, @NotBlank, @Pattern 등을 사용하여 Request Data에 대한 오류를 최소화 한다.&lt;/li&gt;
+&lt;li&gt;꼭 @RequestBody 옆에 @Valid 를 명시해줘야 한다.&lt;br&gt;
+&lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/83f137a7f7568267a24cd8ac6094b064/33a7b/003-05.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 12.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAlklEQVQI102OWQ7DIBBDc5wEMsOwEyiJ2vvfySW0qvrx5OXHXmrdkbNAvMAGCxctRBiG9IRJgVnBsJ56Q3fPZsDDM9iYj45uqSWg9wulNBxHQ+snHq3gdWY8e8Z1ZbRKSElNYlTwnhBiRkwJzgekfIwujJyxkB5ru4w3AtI0V8R5GHFgGW+tB+2MdVXYNv3l9tsf68+/AbAsXfgbOtFeAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 05&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/83f137a7f7568267a24cd8ac6094b064/d9199/003-05.png&quot;
+        srcset=&quot;/devHistoryBlog/static/83f137a7f7568267a24cd8ac6094b064/8ff5a/003-05.png 240w,
+/devHistoryBlog/static/83f137a7f7568267a24cd8ac6094b064/e85cb/003-05.png 480w,
+/devHistoryBlog/static/83f137a7f7568267a24cd8ac6094b064/d9199/003-05.png 960w,
+/devHistoryBlog/static/83f137a7f7568267a24cd8ac6094b064/33a7b/003-05.png 1119w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+      &lt;/li&gt;
+&lt;li&gt;Validation이 실패할 경우, MethodArgumentNotValidException 의 예외가 발생한다.
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/9d0c349132ff7b8265c54c3ec18f8b51/eba85/003-07.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 28.333333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAAA8klEQVQY022Q3bKDIBCDfZ0q7g8gVp3W0/d/qJws9LIXmcDM7kfCVJvhagvOK+M4K/3C/TrweZ/43Bf+6PfV8N4NbSvIdUOlcqnwXLpEFcuSMM8zJs0KU8d+vLC1A23fse8NtWRsBITn7CiloNQK84y6NagZUlqxris9EbgMoBCoagSeaM8AHqjtyeWNw4JVpHssJC7HPRZ/KWZ6QhGD82Vzp6xXMKfyuKsGNPWZzIrpm+aXRsIkcHNoLJvQdSjOlDBVtIj/UlNWXLB81VN3Sa8+WSEoPQjUvmABptzLSM3/dRneYZLYgIAQz2M2979VNvsHOkq7d095jcEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 07&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/9d0c349132ff7b8265c54c3ec18f8b51/d9199/003-07.png&quot;
+        srcset=&quot;/devHistoryBlog/static/9d0c349132ff7b8265c54c3ec18f8b51/8ff5a/003-07.png 240w,
+/devHistoryBlog/static/9d0c349132ff7b8265c54c3ec18f8b51/e85cb/003-07.png 480w,
+/devHistoryBlog/static/9d0c349132ff7b8265c54c3ec18f8b51/d9199/003-07.png 960w,
+/devHistoryBlog/static/9d0c349132ff7b8265c54c3ec18f8b51/eba85/003-07.png 1054w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;#4. Response Dto 클래스&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/dd4f2ddab4b21bea77b93a35005efb67/27524/003-08.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 646px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 46.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABMUlEQVQoz52RWW7DMBBDcxxrt7VLcZve/1IspRiOgwD96AcxEkZDc55vIRWsPsF7g/0uEYOElOoi+YfErEq93t1irnBbRAgaj4dE7xLWKRjzlLUWRps5ZAzP9hDP1jhorU/TodtIuIWMwIQPmrWqsFeJmgS1oLWO+/6DXCoi34aYEBLfM0TyBc6un4ZDI0lfaeYVWlhRS0HjcAmJSDw2H6A4KIR409XskjBBGwOtuK5mQ4/1eB8rKn2wEhyQJ9crNynEyXMa+tygrUO0EncmzEzaI+9cre/fKFy3l4zWv5Ayk/cdhSjWzc/NrHOs7jOhIeCyKQSn52CpDZnyW0D2ZOjJLiX26mQ5amQdbBM/PuZPQ3v8PcGVxMFqWRaIoclrOSRe9ey9eJ6Gbl0no6fUv/ULZeoWWeM+Od0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 08&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/dd4f2ddab4b21bea77b93a35005efb67/27524/003-08.png&quot;
+        srcset=&quot;/devHistoryBlog/static/dd4f2ddab4b21bea77b93a35005efb67/8ff5a/003-08.png 240w,
+/devHistoryBlog/static/dd4f2ddab4b21bea77b93a35005efb67/e85cb/003-08.png 480w,
+/devHistoryBlog/static/dd4f2ddab4b21bea77b93a35005efb67/27524/003-08.png 646w&quot;
+        sizes=&quot;(max-width: 646px) 100vw, 646px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;##4-1. 객체 생성을 위해 필드가 3개 이상일 경우는 @Builder를 사용한다.&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;@Builder 사용 시 All Arguments Constructor 가 자동으로 생성된다.  &lt;/li&gt;
+&lt;li&gt;생성자를 이용한 객체 생성을 막기 위해 생성자를 따로 정의한 후(@AllArgsConstructor) 접근제어자를 Private로 정의한다.&lt;br&gt;
+&lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/c7baa199350d983fb243c2b869cc1743/4d08a/003-09.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 709px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 15.416666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAjklEQVQI13XOQRLCIAxA0R5HCR2FtIQCbe14/zN9qaMLFy7eZJWfDDolNGVu90BZrrTqMHOI/HLuPxHfydtwBqdciD3ayoV9FY7dUYsj9/CSr/3AjVoPWnsQQiTZgvWdU7LMHA3TjMaZIX4+DKqU6NhnIYUeTYL12VQo6sllZTue1LYRdWIcR7z3b9/vTi+E417th/n3MAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 09&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/c7baa199350d983fb243c2b869cc1743/4d08a/003-09.png&quot;
+        srcset=&quot;/devHistoryBlog/static/c7baa199350d983fb243c2b869cc1743/8ff5a/003-09.png 240w,
+/devHistoryBlog/static/c7baa199350d983fb243c2b869cc1743/e85cb/003-09.png 480w,
+/devHistoryBlog/static/c7baa199350d983fb243c2b869cc1743/4d08a/003-09.png 709w&quot;
+        sizes=&quot;(max-width: 709px) 100vw, 709px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;##4-2. 객체 생성을 위해 필드가 3개 이상일 경우는 @Builder를 사용한다.&lt;/h4&gt;
+&lt;h4&gt;##4-3. @Getter 필요 이유&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;@ResponseBody 를 사용하면 Spring 내부에서 Jackson 라이브러리를 사용하여 Response 객체를 Serialize(ByteCode로 변환) 하는데 이때 getter 메소드를 사용한다.  &lt;/li&gt;
+&lt;li&gt;따라서 response 객체는 @Getter 를 사용해야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;br&gt;
+&lt;h2&gt;MapStruct&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;DTO -&gt; Entity, Entity -&gt; DTO의 객체 매핑을 위한 라이브러리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#1. gradle 추가&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;롬복과 함께 사용 시, lombok annotationProcessor 보다 mapstruct annotationProcessor가 먼저 선언이 되야 한다.&lt;/li&gt;
+&lt;li&gt;SpringBoot 버전에 호환하는 MapStruct 버전이 존재, 해당부분 확인 필요
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/17bbbd0c849a5fb8341395ca3b978c3f/fbf08/003-10.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 20.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAlUlEQVQY012PURLDIAhEPY8iKsYY7f3PtUVMOm0/dnZHQB6u9YEsFSEElFIgIqYYSd88iILVgvonhzurvPc/cuc17UMiwhgDrznNe++oTVCvgnpm1F62NJcjQVqGaOYUEZnAebvbhIdtZWaklJRuFxeluQ7Rnemm+qH+cvec/BBOJVx0Z29GKA+d+jFEe9m0Fvyfu/QGPa18N9XMaegAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 10&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/17bbbd0c849a5fb8341395ca3b978c3f/d9199/003-10.png&quot;
+        srcset=&quot;/devHistoryBlog/static/17bbbd0c849a5fb8341395ca3b978c3f/8ff5a/003-10.png 240w,
+/devHistoryBlog/static/17bbbd0c849a5fb8341395ca3b978c3f/e85cb/003-10.png 480w,
+/devHistoryBlog/static/17bbbd0c849a5fb8341395ca3b978c3f/d9199/003-10.png 960w,
+/devHistoryBlog/static/17bbbd0c849a5fb8341395ca3b978c3f/fbf08/003-10.png 962w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;#2. Mapper Interface 생성&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/aec804f2711a670a547440659818a3ef/7b1dc/003-11.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 956px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 23.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA9ElEQVQY0z2QWXIEIQxD+zphNRhommWYSe5/JsXwMR+UqUKWnrg4Jby6Qi0K/elYc2GMN+brD70vMGekciPlgrs2RE4InlFihTEGP0pBydF6T40riKBnj/FkfMaDeSe00jH6L/pYmOuDECM4ZWQxDpHPfQdQCGCnJMAeM63FkERgHCEISZTFFAlMDuwdnDXYgfuNYgKLySGUnU2972QVvNVf0osCH4KnTzxCt3rC36ryDYx3i5i9Ygp5lwatNdQ2DmETfRFT75xUt3AyrbW44k4P8ZvsfBAiqUOEHC1yMLjZoiaLGOhoiILopZnRx8h7f/R7/gOgxp/HPs+HagAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 11&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/aec804f2711a670a547440659818a3ef/7b1dc/003-11.png&quot;
+        srcset=&quot;/devHistoryBlog/static/aec804f2711a670a547440659818a3ef/8ff5a/003-11.png 240w,
+/devHistoryBlog/static/aec804f2711a670a547440659818a3ef/e85cb/003-11.png 480w,
+/devHistoryBlog/static/aec804f2711a670a547440659818a3ef/7b1dc/003-11.png 956w&quot;
+        sizes=&quot;(max-width: 956px) 100vw, 956px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;##2-1. @Mapper 사용&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;매핑 정책(Policy)과 전략(Strategy)를 설정할 수 있다.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;정책&lt;/th&gt;
+&lt;th&gt;값&lt;/th&gt;
+&lt;th&gt;설명&lt;/th&gt;
+&lt;th&gt;예시&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;unmappedSourcePolicy&lt;/td&gt;
+&lt;td&gt;IGNORE(default), WARN, ERROR&lt;/td&gt;
+&lt;td&gt;Source의 필드가 Target에 매핑되지 않을 때 정책이다.&lt;/td&gt;
+&lt;td&gt;ERROR로 설정하면 매핑 시 Source.aField가 사용되지 않는다면 컴파일 오류가 발생시킨다.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;unmappedTargetPolicy&lt;/td&gt;
+&lt;td&gt;IGNORE, WARN(default), ERROR&lt;/td&gt;
+&lt;td&gt;Target의 필드가 매핑되지 않을 때 정책이다.&lt;/td&gt;
+&lt;td&gt;ERROR로 설정하면 매핑 시 Target.aField에 값이 매핑되지 않는다면 컴파일 오류가 발생시킨다.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;typeConversionPolicy&lt;/td&gt;
+&lt;td&gt;IGNORE(default), WARN, ERROR&lt;/td&gt;
+&lt;td&gt;타입 변환 시 유실이 발생할 수 있을 때 정책이다.&lt;/td&gt;
+&lt;td&gt;ERROR로 설정하면 long에서 int로 값을 넘길 때 값에 유실이 발생할 수 있다. 이런 경우에 컴파일 오류를 발생시킨다.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;전략&lt;/th&gt;
+&lt;th&gt;값&lt;/th&gt;
+&lt;th&gt;설명&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;nullValueMappingStrategy&lt;/td&gt;
+&lt;td&gt;RETURN&lt;em&gt;NULL(default), RETURN&lt;/em&gt;DEFAULT&lt;/td&gt;
+&lt;td&gt;Source가 null일 때 정책이다.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;nullValuePropertyMappingStrategy&lt;/td&gt;
+&lt;td&gt;SET&lt;em&gt;TO&lt;/em&gt;NULL(default), SET&lt;em&gt;TO&lt;/em&gt;DEFAULT, IGNORE&lt;/td&gt;
+&lt;td&gt;Source의 필드가 null일 때 정책이다.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;##2-2. INSTANCE 생성&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;빌드 시점에 CouponMapper 를 상속받은 CouponMapperImpl(구현체) 클래스가 생성된다.&lt;/li&gt;
+&lt;li&gt;따라서 이 구현체를 사용할 수 있는 객체를 생성한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;#3. Mapper 사용&lt;/h3&gt;
+&lt;h4&gt;#3-1. Dto to Entity 또는 Entity to Dto 선언부 생성&lt;/h4&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/e12d18b9ab88729fb7fee6f030ace81a/5bf79/003-12.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 8.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAdElEQVQI1yXOURLDIAgE0NxHZyrRiLLYNNPe/0pbmn4wfABv2R6lUCfYe6dr4Xs1vlB5QQjdOc1oAIcqVQfNn2xHpw7jhLPWypQSc853bUX2e2BYcdS5HEQAPv7oicbLD34iCKYBnjc4Y18jROIhEWGJ/sO/mE9BjaqO7VwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 12&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/e12d18b9ab88729fb7fee6f030ace81a/d9199/003-12.png&quot;
+        srcset=&quot;/devHistoryBlog/static/e12d18b9ab88729fb7fee6f030ace81a/8ff5a/003-12.png 240w,
+/devHistoryBlog/static/e12d18b9ab88729fb7fee6f030ace81a/e85cb/003-12.png 480w,
+/devHistoryBlog/static/e12d18b9ab88729fb7fee6f030ace81a/d9199/003-12.png 960w,
+/devHistoryBlog/static/e12d18b9ab88729fb7fee6f030ace81a/5bf79/003-12.png 966w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;#3-2. @Getter, @Builder 설정&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;변환과정에서 꺼내오는 객체(source)에는 Getter가 있어야 하고, 변환해서 저장하고자 하는 객체(target)에는 Builder 혹은 Setter가 있어야 하는데 Setter는 지양한다.&lt;br&gt;
+&lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/bb9e9e4e6fcc0f2a3d120848bf434620/9d576/003-13.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 541px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 16.249999999999996%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAlUlEQVQI122OSw7DMAhEc5wGfxrHYGOniaze/05TnG666OJpBhADS5aKlAVbyuBM6I2QTdfV/TDrh7GCiG79x5wtXBSJBc+N0SxsDMJxEKoSpBiyotQE1cu8IsSIuSNVrd/AUlBzh3JH2vZv4M7l/lIS4V0d6u5wikPLDmr+xd4OdBznQOsXzqH2QEQIk4DgI6J57wM+G0xeZtlSeYoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 13&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/bb9e9e4e6fcc0f2a3d120848bf434620/9d576/003-13.png&quot;
+        srcset=&quot;/devHistoryBlog/static/bb9e9e4e6fcc0f2a3d120848bf434620/8ff5a/003-13.png 240w,
+/devHistoryBlog/static/bb9e9e4e6fcc0f2a3d120848bf434620/e85cb/003-13.png 480w,
+/devHistoryBlog/static/bb9e9e4e6fcc0f2a3d120848bf434620/9d576/003-13.png 541w&quot;
+        sizes=&quot;(max-width: 541px) 100vw, 541px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/77b064f1f1b366f0858f879197b871f0/ca12d/003-14.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 647px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 131.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAYAAAC3g3x9AAAACXBIWXMAABYlAAAWJQFJUiTwAAACsUlEQVRIx51V2XarMAzM5+B9BbOn6f//k+7IJDRp0pbcBx1zsD1oNNJwSm0hH1saR0PjIMkYRUJIklIheBXX9edQSu3r6QY4z4bWRVIIkrRWAGZwjbD1oNb8bEgjjLY1LPa00jvYA+CyGjqfBTKVNfq+oWmeaJouVPqRyjDSMM40TAuV3NGEe20qFfQJMODAXCytBUBJ0dQpXBxoXlfqhkwhJvIhkPeIEMmhLNGCrvqBcuSIgdZppJwSaDBFu1G2qGlzV0chan2FVHtWTxkyoLWO+mgo+VjrdS/G7fCr+L7/BegMxdCQdwIb4uHgX6BPgCFDmODocskQJFIOG+3v9TkMyBkai/bQHmtA0R02X/fZsQy5dYKlj6WhsRfkHPcb95p5AJPvZGiRYeclQlNMmXLbgXpGtvb/KFtnKWWJTGWlK9AeQm5RqfOFA6rvgN5bumBClqKQpaLgAqXQUhuxj+e3angTxehtjrXiy7rOKYdBX24ivdU2lj5XZDgoNDcyhDnwnFoovql9rCcfREmYz4RR42gdnMd6UI814yPZPQA61DBnQSlJaltMC+g3LMx1dpWSh+p4pzJmeSiwrBEuA5PIGdRbtE67Tc3T5dfgpwjrCldAC5rsLrda3RxbiBfBjvPtHZ8/ZYCV5RPCRDqPgoYOYlhd3cd5X/0vRHggPlif2Q/ZFyGav76L8Et+zzqcctdTP6/IzFFBhn1g18k4lKkfJ0xNquEBzkYbq9nG2gWhvkNpclvPMMvdsRVahJUdEmqZ53ppXlbUT1DTNFdazQ+Umy/KDJi6Us2Abb1DP7IYHF0aQCsQl6UrYIJ/Sgy/T82uMgM6tIqH7Tv0Hze1x7/DaHW4B3fAW4YBCgcIws1srhlbfET88V++j1MBlYiirh+bAFVdt4V1HquvglTFD8Q/joQgDuNFKycAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 14&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/77b064f1f1b366f0858f879197b871f0/ca12d/003-14.png&quot;
+        srcset=&quot;/devHistoryBlog/static/77b064f1f1b366f0858f879197b871f0/8ff5a/003-14.png 240w,
+/devHistoryBlog/static/77b064f1f1b366f0858f879197b871f0/e85cb/003-14.png 480w,
+/devHistoryBlog/static/77b064f1f1b366f0858f879197b871f0/ca12d/003-14.png 647w&quot;
+        sizes=&quot;(max-width: 647px) 100vw, 647px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/ed749df7538d664edec5d824a180da2d/977f7/003-15.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 547px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 22.083333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAoUlEQVQY042PQQ7DIAwE85xiSAghYBwS1P9/ausCvfcwWstoR3iJiXGcGZvfwWwgQgiBQGRhLU3s3yxnLl3o1h3tMWiNUMoQGmNnkmJ0/jJn5bczk+/b0n+o0i0k3PWF5yHUOqTMhJyNEiClaYpe4pFZkDKDy4WkfY4CSRW7XjmEJ6sw4oqEliz4sCOD7TuOXssVd3uD5YLXonPrxHXWOX8A/TF81gfBs/sAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 15&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/ed749df7538d664edec5d824a180da2d/977f7/003-15.png&quot;
+        srcset=&quot;/devHistoryBlog/static/ed749df7538d664edec5d824a180da2d/8ff5a/003-15.png 240w,
+/devHistoryBlog/static/ed749df7538d664edec5d824a180da2d/e85cb/003-15.png 480w,
+/devHistoryBlog/static/ed749df7538d664edec5d824a180da2d/977f7/003-15.png 547w&quot;
+        sizes=&quot;(max-width: 547px) 100vw, 547px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h5&gt;201203 수정사항&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Dto 클래스 내 Mapper 호출 메소드 명 변경&lt;br&gt;
+—&gt; createReqToEntity() -&gt; toEntity()&lt;br&gt;
+—&gt; entityToCreateRes() -&gt; of()  &lt;/li&gt;
+&lt;li&gt;Response Dto 클래스 내 Validation 제거&lt;br&gt;
+— res Dto 클래스 serialize 전 validation 로직 없음  &lt;/li&gt;
+&lt;li&gt;MethodArgumentNotValidException 이미지 추가&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Lombok - Can not find symbol]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2020-11-10--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2020-11-10--001</guid><pubDate>Tue, 10 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -709,149 +1299,7 @@ Byte Data ---------------&amp;gt; Java Object ---------------&amp;gt; Byte Data&
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;참고)
-&lt;a href=&quot;https://beanvalidation.org/2.0/spec/&quot;&gt;https://beanvalidation.org/2.0/spec/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Code Convention] DTO Class]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--003</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-10--003</guid><pubDate>Tue, 10 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;DTO Class Code Convention&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;./001.PNG&quot;&gt;&lt;/p&gt;
-&lt;h3&gt;#1.클래스 정의 방법&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;도메인 또는 리소스 별 DTO 클래스 생성 후(CouponDto), 각 API(Controller 에 정의된 메소드: CreateReq, CreateRes) 에 해당하는 DTO를 InnerClass 로 정의&lt;/li&gt;
-&lt;li&gt;CouponDto의 객체 생성을 하지 않으므로 InnerClass는 static 키워드를 명시한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
-&lt;h3&gt;#2.생성자의 접근자는 최소한으로&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;객체 생성이 불필요한 클래스의 기본 생성자 접근자는 Private로 지정&lt;br&gt;
-—&gt; 개별 DTO는 InnerClass로 정의하기 때문에 객체 생성이 불필요하다.  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;./002.PNG&quot;&gt;&lt;/p&gt;
-&lt;br&gt;
-&lt;h3&gt;#3. Request Dto 클래스&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;./003.PNG&quot;&gt;&lt;/p&gt;
-&lt;h4&gt;##3-1. @NoArgsConstructor 의 접근자는 Private로 한다.&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;@RequestBody 를 사용하면 Spring 내부에서 Jackson 라이브러리를 사용하여 Deserialize (JSON 데이터와 Request 객체 사이의 변환) 을 한다.&lt;/li&gt;
-&lt;li&gt;이때 기본 전략으로 Default Constructor + Reflection 을 사용한다. 이때 최소 접근자는 Private 이다.
-&lt;img src=&quot;./004.PNG&quot;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;##3-2. Data Validation&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Bean Validation에서 제공하는 @NotNull, @NotBlank, @Pattern 등을 사용하여 Request Data에 대한 오류를 최소화 한다.&lt;/li&gt;
-&lt;li&gt;꼭 @RequestBody 옆에 @Valid 를 명시해줘야 한다.&lt;br&gt;
-&lt;img src=&quot;./005.PNG&quot;&gt;  &lt;/li&gt;
-&lt;li&gt;Validation이 실패할 경우, MethodArgumentNotValidException 의 예외가 발생한다.
-&lt;img src=&quot;./007.PNG&quot;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
-&lt;h3&gt;#4. Response Dto 클래스&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;./008.PNG&quot;&gt;&lt;/p&gt;
-&lt;h4&gt;##4-1. 객체 생성을 위해 필드가 3개 이상일 경우는 @Builder를 사용한다.&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;@Builder 사용 시 All Arguments Constructor 가 자동으로 생성된다.  &lt;/li&gt;
-&lt;li&gt;생성자를 이용한 객체 생성을 막기 위해 생성자를 따로 정의한 후(@AllArgsConstructor) 접근제어자를 Private로 정의한다.&lt;br&gt;
-&lt;img src=&quot;./009.PNG&quot;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;##4-2. 객체 생성을 위해 필드가 3개 이상일 경우는 @Builder를 사용한다.&lt;/h4&gt;
-&lt;h4&gt;##4-3. @Getter 필요 이유&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;@ResponseBody 를 사용하면 Spring 내부에서 Jackson 라이브러리를 사용하여 Response 객체를 Serialize(ByteCode로 변환) 하는데 이때 getter 메소드를 사용한다.  &lt;/li&gt;
-&lt;li&gt;따라서 response 객체는 @Getter 를 사용해야 한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
-&lt;hr&gt;
-&lt;br&gt;
-&lt;h2&gt;MapStruct&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;DTO -&gt; Entity, Entity -&gt; DTO의 객체 매핑을 위한 라이브러리&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;#1. gradle 추가&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;롬복과 함께 사용 시, lombok annotationProcessor 보다 mapstruct annotationProcessor가 먼저 선언이 되야 한다.&lt;/li&gt;
-&lt;li&gt;SpringBoot 버전에 호환하는 MapStruct 버전이 존재, 해당부분 확인 필요
-&lt;img src=&quot;./010.PNG&quot;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
-&lt;h3&gt;#2. Mapper Interface 생성&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;./011.PNG&quot;&gt;&lt;/p&gt;
-&lt;h4&gt;##2-1. @Mapper 사용&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;매핑 정책(Policy)과 전략(Strategy)를 설정할 수 있다.  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;정책&lt;/th&gt;
-&lt;th&gt;값&lt;/th&gt;
-&lt;th&gt;설명&lt;/th&gt;
-&lt;th&gt;예시&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;unmappedSourcePolicy&lt;/td&gt;
-&lt;td&gt;IGNORE(default), WARN, ERROR&lt;/td&gt;
-&lt;td&gt;Source의 필드가 Target에 매핑되지 않을 때 정책이다.&lt;/td&gt;
-&lt;td&gt;ERROR로 설정하면 매핑 시 Source.aField가 사용되지 않는다면 컴파일 오류가 발생시킨다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;unmappedTargetPolicy&lt;/td&gt;
-&lt;td&gt;IGNORE, WARN(default), ERROR&lt;/td&gt;
-&lt;td&gt;Target의 필드가 매핑되지 않을 때 정책이다.&lt;/td&gt;
-&lt;td&gt;ERROR로 설정하면 매핑 시 Target.aField에 값이 매핑되지 않는다면 컴파일 오류가 발생시킨다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;typeConversionPolicy&lt;/td&gt;
-&lt;td&gt;IGNORE(default), WARN, ERROR&lt;/td&gt;
-&lt;td&gt;타입 변환 시 유실이 발생할 수 있을 때 정책이다.&lt;/td&gt;
-&lt;td&gt;ERROR로 설정하면 long에서 int로 값을 넘길 때 값에 유실이 발생할 수 있다. 이런 경우에 컴파일 오류를 발생시킨다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;전략&lt;/th&gt;
-&lt;th&gt;값&lt;/th&gt;
-&lt;th&gt;설명&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;nullValueMappingStrategy&lt;/td&gt;
-&lt;td&gt;RETURN&lt;em&gt;NULL(default), RETURN&lt;/em&gt;DEFAULT&lt;/td&gt;
-&lt;td&gt;Source가 null일 때 정책이다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;nullValuePropertyMappingStrategy&lt;/td&gt;
-&lt;td&gt;SET&lt;em&gt;TO&lt;/em&gt;NULL(default), SET&lt;em&gt;TO&lt;/em&gt;DEFAULT, IGNORE&lt;/td&gt;
-&lt;td&gt;Source의 필드가 null일 때 정책이다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4&gt;##2-2. INSTANCE 생성&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;빌드 시점에 CouponMapper 를 상속받은 CouponMapperImpl(구현체) 클래스가 생성된다.&lt;/li&gt;
-&lt;li&gt;따라서 이 구현체를 사용할 수 있는 객체를 생성한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
-&lt;h3&gt;#3. Mapper 사용&lt;/h3&gt;
-&lt;h4&gt;#3-1. Dto to Entity 또는 Entity to Dto 선언부 생성&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;./012.PNG&quot;&gt;&lt;/p&gt;
-&lt;h4&gt;#3-2. @Getter, @Builder 설정&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;변환과정에서 꺼내오는 객체(source)에는 Getter가 있어야 하고, 변환해서 저장하고자 하는 객체(target)에는 Builder 혹은 Setter가 있어야 하는데 Setter는 지양한다.&lt;br&gt;
-&lt;img src=&quot;./013.PNG&quot;&gt;
-&lt;img src=&quot;./014.PNG&quot;&gt;
-&lt;img src=&quot;./015.PNG&quot;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
-&lt;h5&gt;201203 수정사항&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;Dto 클래스 내 Mapper 호출 메소드 명 변경&lt;br&gt;
-—&gt; createReqToEntity() -&gt; toEntity()&lt;br&gt;
-—&gt; entityToCreateRes() -&gt; of()  &lt;/li&gt;
-&lt;li&gt;Response Dto 클래스 내 Validation 제거&lt;br&gt;
-— res Dto 클래스 serialize 전 validation 로직 없음  &lt;/li&gt;
-&lt;li&gt;MethodArgumentNotValidException 이미지 추가&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[logrotate: because parent directory has insecure permissions]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2020-11-06--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2020-11-06--001</guid><pubDate>Fri, 06 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
+&lt;a href=&quot;https://beanvalidation.org/2.0/spec/&quot;&gt;https://beanvalidation.org/2.0/spec/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[logrotate: because parent directory has insecure permissions]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2020-11-06--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2020-11-06--001</guid><pubDate>Fri, 06 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/devHistoryBlog/static/8a9e121d7ea7426672e413aefa7b924d/1e093/001-01.png&quot;
