@@ -1,4 +1,107 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 04 Dec 2020 12:52:11 GMT</lastBuildDate><item><title><![CDATA[[PKI] issuer private key로 서명]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</guid><pubDate>Thu, 26 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token comment&quot;&gt;// private key 로 직접 서명&lt;/span&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 09 Dec 2020 17:59:10 GMT</lastBuildDate><item><title><![CDATA[[Linux] 리소스 모니터링 오픈소스]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-12-09--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-12-09--001</guid><pubDate>Wed, 09 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h4&gt;Zabbix&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.zabbix.com/download&quot;&gt;https://www.zabbix.com/download&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Graphite&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://logz.io/blog/grafana-vs-graphite/&quot;&gt;https://logz.io/blog/grafana-vs-graphite/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] DB Data Migration]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-12-08--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-12-08--001</guid><pubDate>Tue, 08 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 동일한 구조의 테이블 또는 다른 구조의 테이블에  select 한 내용을 insert 하는 방법&lt;/h3&gt;
+&lt;h4&gt;1. select 한 내용의  전체 컬럼 insert&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;select 테이블과 insert할 테이블의 구조가 일치해야 한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;조건&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;2. 원하는 컬럼만  select 해서 insert&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;특정 컬럼을 직접 선택해서 insert하는 방법&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;column1&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; colum2&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; colum3&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; 
+&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; column1&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; colum2&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; colum3 &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;조건&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h3&gt;#. 조건에 따라 값을 지정해주는 Case 문&lt;/h3&gt;
+&lt;h4&gt;1. 여러 조건 비교&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;//Case&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//    WHEN 조건1 THEN 출력1 &lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//    WHEN 조건2 THEN 출력2&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//    ELSE 출력3&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//END&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; 
+    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; 
+        &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; sal &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; sal &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;E&apos;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; sal &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; sal &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2000&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;D&apos;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; sal &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2000&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; sal &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;C&apos;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; sal &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; sal &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4000&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;B&apos;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; sal &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4000&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; sal &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5000&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;A&apos;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; sal_rank 
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; table_name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h4&gt;2. 특정 컬럼의 값으로 비교&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;//Case 컬럼명&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//    WHEN 값1 THEN 출력1 &lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//    WHEN 값2 THEN 출력2&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//    ELSE 출력3&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//END&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; 
+    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; department
+        &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;back-end&apos;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;BE&apos;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;front-end&apos;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;FE&apos;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;user-interface&apos;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;UI&apos;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;ETC&apos;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; department_alias 
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; table_name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h3&gt;#. 작업내용&lt;/h3&gt;
+&lt;p&gt;변경사항이 없는 테이블의 경우 &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;insert&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;into&lt;/span&gt; autocrypt_v2g_prod&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;table_name 
+&lt;span class=&quot;token keyword&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; autocrypt_v2g_1208&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;table_name &lt;span class=&quot;token keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;by&lt;/span&gt; created
+&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;p&gt;CA_CERT 테이블 Migration&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;컬럼에 변경사항이 있는 경우, 각 컬럼을 명시&lt;/li&gt;
+&lt;li&gt;case 문으로 타입이 변경 된 컬럼 해결&lt;/li&gt;
+&lt;li&gt;bulk insert 가 되므로 한 row가 insert 될때마다 commit이 되지 않으므로 자신 테이블의 id를 참조하는 issuer_id는 NULL로 insert/commit 후 update문 실행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;insert&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;into&lt;/span&gt; autocrypt_v2g_prod&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ca_cert
+	&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;created&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; created_by&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; updated&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; updated_by&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	actor&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; cert&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; not_after&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; not_before&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;serial&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; subject_dn&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; ak_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; sk_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; path_length&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; provider_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; 
+	
+	wca_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	
+	valid&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	last_issued&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	
+	issuer_id &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;select&lt;/span&gt;
+	s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;created&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; created_by&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;updated&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; updated_by&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;actor&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cert&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;not_after&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;not_before&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;serial&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;subject_dn&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ak_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;sk_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;path_length&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;provider_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	
+    s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;id &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; wca_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	
+	&lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;VALID&apos;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; valid &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;last_issued &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;1&apos;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; last_issued&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;	
+	
+    &lt;span class=&quot;token boolean&quot;&gt;NULL&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; issuer_id
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; autocrypt_v2g_1208&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ca_cert s &lt;span class=&quot;token keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;by&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;created
+&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;update&lt;/span&gt; 
+autocrypt_v2g_prod&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ca_cert target&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;select&lt;/span&gt;
+	s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;id &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;select&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;id &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; autocrypt_v2g_prod&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ca_cert t &lt;span class=&quot;token keyword&quot;&gt;where&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;wca_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;issuer_id&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; issuer_id
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; autocrypt_v2g_1208&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ca_cert s &lt;span class=&quot;token keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;by&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;created&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; result
+&lt;span class=&quot;token keyword&quot;&gt;set&lt;/span&gt; target&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;issuer_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; result&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;issuer_id
+&lt;span class=&quot;token keyword&quot;&gt;where&lt;/span&gt; target&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;wca_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; result&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;id
+&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;p&gt;값이 잘못 들어 갔을 경우 id의 sequence 까지 (autoincrement) 초기화 하기 위해 truncate문 사용&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;truncate&lt;/span&gt; autocrypt_v2g_prod&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tableName&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[PKI] issuer private key로 서명]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-26--001</guid><pubDate>Thu, 26 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token comment&quot;&gt;// private key 로 직접 서명&lt;/span&gt;
     &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; base64EncodedMoSub2PrivKey &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;n2iWb4B7ES9Hc7HmAHvW5RMAAGUhwAJ3hOIUuqH9r9y5l4IGzg9nQfXxocKwJDIBSC/x67JcxNA6aALuz0gd+IQby7TTTfB74sxWSNjZUV67Xup0kPOx3wOWrxmO1R2/qGUkwflm3shSbz3YoWaavzipuYKen/6pBQ5kmKzONPFh+1Nprq34hY2lccf38QRp/aGXNbXvxRZcPsYGU5HIIw==&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; caServerKey &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;_u5PJineTniFyvQmHkWP6g&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;byte&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; moSub2PrivateKeyByte &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;aesDecode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Base64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;base64EncodedMoSub2PrivKey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; caServerKey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
@@ -4832,7 +4935,20 @@ signer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
   &lt;/span&gt;
   
   &lt;/a&gt;
-    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] CertInstallationRes 구현]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-01-27--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-01-27--001</guid><pubDate>Mon, 27 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[PKI] 인증서 확장]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-01-28--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-01-28--001</guid><pubDate>Tue, 28 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. 키 사용&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;키 사용 용도 9가지에 대해서 인지 필요 (0~9 까지 있지만 실사용은 1~9 까지)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#2. 확장 키사용&lt;/h3&gt;
+&lt;p&gt;    - OID 
+       - OID Info 사이트 존재
+       - derEncoding 
+       - 서명용으로 사용하는데 키사용, 확장 키사용으로 표시를 한 부분은 개발자 몫?&lt;/p&gt;
+&lt;h3&gt;#3. CRL 분배 포인트, OCSP 둘 중 하나만 선택해서 인증서 유효성 검증(3가지) 를 한다&lt;/h3&gt;
+&lt;p&gt;    - 유효일자 검사, ?, ?&lt;/p&gt;
+&lt;h3&gt;#4. 주체대체이름&lt;/h3&gt;
+&lt;p&gt;    - subject에 대한 &lt;/p&gt;
+&lt;p&gt;(계속 정리 필요)&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] CertInstallationRes 구현]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-01-27--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-01-27--001</guid><pubDate>Mon, 27 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/devHistoryBlog/static/d46ebc8e71b6f7be29feff08dfc1e6e4/efeb1/001-01.png&quot;
@@ -4908,20 +5024,7 @@ certChain의 namespace 잘못됨&lt;/li&gt;
 &lt;ul&gt;
 &lt;li&gt;subjectDN == issureDN&lt;/li&gt;
 &lt;li&gt;발행자 UID == 대상자 UID&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[PKI] 인증서 확장]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-01-27--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-01-27--001</guid><pubDate>Mon, 27 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. 키 사용&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;키 사용 용도 9가지에 대해서 인지 필요 (0~9 까지 있지만 실사용은 1~9 까지)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;#2. 확장 키사용&lt;/h3&gt;
-&lt;p&gt;    - OID 
-       - OID Info 사이트 존재
-       - derEncoding 
-       - 서명용으로 사용하는데 키사용, 확장 키사용으로 표시를 한 부분은 개발자 몫?&lt;/p&gt;
-&lt;h3&gt;#3. CRL 분배 포인트, OCSP 둘 중 하나만 선택해서 인증서 유효성 검증(3가지) 를 한다&lt;/h3&gt;
-&lt;p&gt;    - 유효일자 검사, ?, ?&lt;/p&gt;
-&lt;h3&gt;#4. 주체대체이름&lt;/h3&gt;
-&lt;p&gt;    - subject에 대한 &lt;/p&gt;
-&lt;p&gt;(계속 정리 필요)&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Linux] DRBD 작업 내역]]></title><description><![CDATA[DRBD 사용하여 DB 이중화 작업]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2019-12-17--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2019-12-17--001</guid><pubDate>Tue, 17 Dec 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;DRBD 사용하여 DB 이중화 작업 내역&lt;/h1&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Linux] DRBD 작업 내역]]></title><description><![CDATA[DRBD 사용하여 DB 이중화 작업]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2019-12-17--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2019-12-17--001</guid><pubDate>Tue, 17 Dec 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;DRBD 사용하여 DB 이중화 작업 내역&lt;/h1&gt;
 &lt;h3&gt;DRBD&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Distribute Replication Block Device&lt;/li&gt;

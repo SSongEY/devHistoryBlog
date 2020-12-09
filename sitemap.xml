@@ -5,10 +5,11 @@
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/categories/history/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/posts/2020-09-09--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/spring-security/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/posts/2020-01-28--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/pki/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/posts/2020-01-27--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/v-2-g/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/posts/2020-01-27--002</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/pki/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/posts/2020-05-03--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/posts/2020-04-13--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/posts/2020-04-13--002</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -150,6 +151,10 @@
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/about</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/posts/2020-11-26--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/sign/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/posts/2020-12-09--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/posts/2020-12-08--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/작업로그/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/db-migration/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/categories/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
