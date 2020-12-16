@@ -5,7 +5,7 @@ import Layout from '../../components/Layout'
 import Post from '../../components/Post'
 import Sidebar from '../../components/Sidebar'
 
-class ErrorsIndexRoute extends React.Component {
+class WorksIndexRoute extends React.Component {
   render() {
     console.log('check!!!!!!!!!!!!!!!!!1 - algo: ', this.props.data);
     const items = []
@@ -34,10 +34,10 @@ class ErrorsIndexRoute extends React.Component {
   }
 }
 
-export default ErrorsIndexRoute
+export default WorksIndexRoute
 
 export const pageQuery = graphql`
-  query ErrorsIndexRoute {
+  query WorksIndexRoute {
     site {
       siteMetadata {
         title
@@ -60,7 +60,7 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       limit: 1000
-      filter: { frontmatter: { layout: { eq: "post" }, category: { eq: "errors" } } }
+      filter: { frontmatter: { layout: { eq: "post" }, category: { eq: "works" } } }
       sort: { order: DESC, fields: [frontmatter___date] }
     ) {
       edges {

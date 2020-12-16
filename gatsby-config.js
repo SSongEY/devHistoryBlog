@@ -19,20 +19,16 @@ module.exports = {
         path: '/',
       },
       {
+        label: 'Works',
+        path: '/works/',
+      },
+      {
         label: 'History',
         path: '/history/',
       },
       {
         label: 'Errors',
         path: '/errors/',
-      },
-      {
-        label: 'Algo',
-        path: '/algo/',
-      },
-      {
-        label: 'Gatsby',
-        path: '/gatsby/',
       },
       {
         label: 'About me',
