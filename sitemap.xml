@@ -169,6 +169,6 @@
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/algo/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/errors/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/gatsby/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
