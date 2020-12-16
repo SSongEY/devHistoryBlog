@@ -1,4 +1,435 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 09 Dec 2020 18:04:49 GMT</lastBuildDate><item><title><![CDATA[[Linux] 리소스 모니터링 오픈소스]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-12-09--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-12-09--001</guid><pubDate>Wed, 09 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h4&gt;Zabbix&lt;/h4&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 16 Dec 2020 05:24:08 GMT</lastBuildDate><item><title><![CDATA[[작업로그] Jenkins/Bitbucket 연동]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-15--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-15--001</guid><pubDate>Tue, 15 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Jenkins/Bitbucket 연동&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;이번에 JIRA를 사용하면서 Bitbucket을 사용하게 되었다.
+이에 따라 Jenkins/Github 에서 Jenkins/Bitbucket 으로 변경하는 작업을 하였다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#1. Jenkins에 Bitbucket 플러그인 설치&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Jenkins 관리 -&gt; 플러그인 관리&lt;/li&gt;
+&lt;li&gt;Bitbucket 설치&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/28f8c7d0444a57476faeebd0a27468f4/25be5/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 44.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABQklEQVQoz5VRy26DMBDkN8OF9NJKFeQP8g+t+m9RpObWNiEUYhs/sDEwtY2MUHNpVxqtvZ4dr8fJLn9GUeyw2aTIsgzb7TYgrrMsrh+Qpin2+z0OhwOOxyPeTye8vbyieHxyGgXyPEfCBMNgR/wn+t7AmBm/I1FawjrBcRwxTRN4y1FVNQhlqOsGQkhIqdB1nYOG1sbx7QIv6uuEEMcVSGbdKYj58ITrtcT5/IWmqdAygrZ1ZM5cQxsgPSSHWoFzPgt6oQgf4zigEyU4/YBgn1Di4vaXUBP8GrKWJUz3DWsaWF27TJwNfUCYcC1o3PMbKsG4guntnzz1rd4SrfW94DBOIKzFjdBA8PBkpdQCa3vHn32P3kdP7wR9JpTi232Ib45PWf9sbB6GmIcl30/oivWNoqwaZ7RYRP15nCZOtka8+AfiQqJ1ERo2KwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/28f8c7d0444a57476faeebd0a27468f4/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/28f8c7d0444a57476faeebd0a27468f4/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/28f8c7d0444a57476faeebd0a27468f4/e85cb/001-01.png 480w,
+/devHistoryBlog/static/28f8c7d0444a57476faeebd0a27468f4/d9199/001-01.png 960w,
+/devHistoryBlog/static/28f8c7d0444a57476faeebd0a27468f4/07a9c/001-01.png 1440w,
+/devHistoryBlog/static/28f8c7d0444a57476faeebd0a27468f4/25be5/001-01.png 1893w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;#2. Jenkins Item 구성&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;프로젝트 -&gt; 구성 -&gt; 소스 코드 관리 및 빌드 유발 수정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/0a2bc141922315315b9fc8bebe58d443/61100/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 64.99999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAABGUlEQVQ4y6VSyW6EMAzN///lHIqA7ASyMAfXz0xmpKotZXp4MgrOW+yoZVlonmda15Vaa1RrfQutVbmvXIiUUjppPhcqpdKWK6nAhN57gtNxHAXOOYG1VqoxR4Xwd9g4nXaeBhNI4QBxOyHiW2uY5IV51qQf3xD5WuUfEybmUDFGUQ8hSIPWWoBGOMe5gL/9DzDcO91uFEEIZyDty4HLaZqEHGdIgPor+P74MZDh8SmogwguQbxt2xMYxTkwR67c72I6CBHxGPBKOecnSil/BvqXNZPqc7jf77Tv7V9vMeHZeI6KyH2OULtK2vttKsfDxgIQPT0I33U4Ro5sXJDNYo7d4b7vonoVa2aHWDnc9c32CFdRa6MhZPoE0Avp5L4TjRIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/0a2bc141922315315b9fc8bebe58d443/d9199/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/0a2bc141922315315b9fc8bebe58d443/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/0a2bc141922315315b9fc8bebe58d443/e85cb/001-02.png 480w,
+/devHistoryBlog/static/0a2bc141922315315b9fc8bebe58d443/d9199/001-02.png 960w,
+/devHistoryBlog/static/0a2bc141922315315b9fc8bebe58d443/07a9c/001-02.png 1440w,
+/devHistoryBlog/static/0a2bc141922315315b9fc8bebe58d443/29114/001-02.png 1920w,
+/devHistoryBlog/static/0a2bc141922315315b9fc8bebe58d443/61100/001-02.png 1949w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Repository URL&lt;br&gt;
+— git clone 주소 &lt;/li&gt;
+&lt;li&gt;Credentials&lt;br&gt;
+— Add 누른 후 bitbucket 계정 및 패스워드 입력&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/4d6918891dbb1df70add0197117aee37/e751c/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABQklEQVQoz52S226CQBRF5///ygrU1mjL1WJi0mC5DlcRrw+750zVpBWb6MOCw0AWmz0Ib+bBtN5g6AYM4xmTyRS6rkMbangaDjEej6FpOkajF7ybJgaDAV5pLYyiXoTtWJiaU1i2A8uy4bgubJoZk65nHz4cx6V1T838jOfNECyXvYhPOvi+j8Vigfl8DpeEcRxjs9kouq67mvnctm0vIggCRCTIskyJkiRBmqaoqgr7/f6K3W6n6LvHiDiO0NQN8jxHWZaQUqIoCmy321+JGF67JboIWbRarVShTdP8SHN5eUFd16gInll6PB5xOBxuIjgRC5f06V9fISLerTBUSbmTv92t1+t/UUJOlqaJknCHnKall3C6e7kk5GTc3bl47uu8AfcgslNCFkuZozv9Io8iskyirLh42umCNoHknPhRvgGMIz18J6VnygAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/4d6918891dbb1df70add0197117aee37/d9199/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/4d6918891dbb1df70add0197117aee37/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/4d6918891dbb1df70add0197117aee37/e85cb/001-03.png 480w,
+/devHistoryBlog/static/4d6918891dbb1df70add0197117aee37/d9199/001-03.png 960w,
+/devHistoryBlog/static/4d6918891dbb1df70add0197117aee37/e751c/001-03.png 1123w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Build 에 Execute Shell 내용 추가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/d7630d4ec06ed4681a88476b12fd6025/e332b/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 26.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAj0lEQVQY052QyQ7DIAxE+f//LBGiDcFshkKmpmqkqKe0hycvsmcsK2stYoxgZpRS/kN2c0pIIUI556BvGuQDkjSZy5ufBGtFEh2jFygiQggBuTC4NrT2RBV67xhjXGffRSNDTTHvPYy9YzEHFo/VIYgZfZgzdKq/2TYvMwQ1k1XOzTmD5fyDIm6zd5X5rhlflpSDN5tJwokAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/d7630d4ec06ed4681a88476b12fd6025/d9199/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/d7630d4ec06ed4681a88476b12fd6025/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/d7630d4ec06ed4681a88476b12fd6025/e85cb/001-04.png 480w,
+/devHistoryBlog/static/d7630d4ec06ed4681a88476b12fd6025/d9199/001-04.png 960w,
+/devHistoryBlog/static/d7630d4ec06ed4681a88476b12fd6025/07a9c/001-04.png 1440w,
+/devHistoryBlog/static/d7630d4ec06ed4681a88476b12fd6025/29114/001-04.png 1920w,
+/devHistoryBlog/static/d7630d4ec06ed4681a88476b12fd6025/e332b/001-04.png 1929w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;#3. Bitbucket Webhook 설정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Repository 선택 후, Repository settings -&gt; Webhooks 에 들어가면 webhook 설정을 할 수 있다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/39a93592d0b4bccbd86952ef9f5fe9d6/0fcea/001-05.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 851px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAACbElEQVQ4y41UTYvUQBDN//IXePAPePfq1aseBG+CiOAPEfGiKCjCLigrXlx22ZnZfHfS3UknmXzN81XPZB0UxR6KrnR6XtV7VZUge/0GycfPMG2PUlvYysE1nbfdbodpmjHPs/eXtfiy/25B/Ow5Ni9eIqlahGEKVVo07Ra1azGOE67WIc4v11htYmzCBHmh/wrmATWBCu1QmobZNTCWvq5Q142/4JrWZ61t7XfL83+tIFUWq6jExVohyTQKZqgK68FlTfNCdbf/7WYMzFwYiLm2++VTpkCb2munSEX8Ri4caSi0V65DVA18N/PdBDBImpeUIEUYZ16O6yhDnCoEeWEglinj6TZNdxNtxz/OGPHgncX9tzmenJZ4emrwJW8Z3GBNwDgtPFCUKOod7wHlUCLKLlSPq9xPEx6+N7j14Ry3Ty5w9+sVXiUWtTaIBIgZJpnIVRA0R1CwAJnSPCh9MdxxhtI2w4zH31PcOb3EvbMNHv1IoLYDDOWJMkPKBE1LJKxFmGoEihmmufa0pSDHAgugFKAbRmwP1g8Te3MiGIsZa1wnJXTdw7gRthkRZAQT/pKyZPpnY+8BpDiDBxx9kL4f+Dz4fRzHm3uBgIm4C92FshRHJkTpGllR+UBVVdPcvh9ptWv8s/Ss5TtDP5BCCKhMiFB2R5RnZmjdgIpUxJ+PJkKCzTf+4ZnmKceZiEotqaPrejbr1gPLMpyQfRVLdNve92nGey196VvJqj9IISMbSEFkhpN1hGRDW4Uw1LLpthipSWkqr51ouGQh/sR90W05l7NAZtNyUqo43Rs/AJU6ZEPan06++cv/u34C0R55lI2CkYcAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 05&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/39a93592d0b4bccbd86952ef9f5fe9d6/0fcea/001-05.png&quot;
+        srcset=&quot;/devHistoryBlog/static/39a93592d0b4bccbd86952ef9f5fe9d6/8ff5a/001-05.png 240w,
+/devHistoryBlog/static/39a93592d0b4bccbd86952ef9f5fe9d6/e85cb/001-05.png 480w,
+/devHistoryBlog/static/39a93592d0b4bccbd86952ef9f5fe9d6/0fcea/001-05.png 851w&quot;
+        sizes=&quot;(max-width: 851px) 100vw, 851px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/dccd55dcb806a231fe9a3c1e102d381a/6dd26/001-06.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 45.416666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABaUlEQVQoz4VSy26EMAzk/7+mUn+gn7Cn3irtoQshIQ9CILAEprYXUKUeGmlwDNZ4xqZq3t6hO4/QJ8zzgvMsyxOZ8rWUF9aC57riv1PVjxZ9TBhSFgLsu3wIroO3hppkDMOAlBLGcaS6UeI0Tcg5UyRInKjpiqoldZ0NiMNIKiO2bRPCz7vGx+0O43pMB8HIyAspLVJXyivuJOKMlfMRhgjZsnXuIvx6ONy+SOGzSM5q+Nu2FSHaDyesKlHDjdKNHhWr61wgKxOsdVfhk6ySf7nzO+89tNZoCRw5jzES2QTjE1rjaHQDEZIlFyJZntCT5ZOQZ8Y5z4sVhRCglBIyYwzatpWcZ+pihmq11IhC3TkhzPN8EXJ3Xgbnp8KmUUKkD5WMxM76jEYdhEp7KO1khryt0yaTzdTgHLa1FnVdC5qmeYHuvEzjR3zXCo52UCkTYP3wixDXEtj2fKhm633f/wH/u8O4yB/CNT8w9bYV+tQ0WQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 06&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/dccd55dcb806a231fe9a3c1e102d381a/d9199/001-06.png&quot;
+        srcset=&quot;/devHistoryBlog/static/dccd55dcb806a231fe9a3c1e102d381a/8ff5a/001-06.png 240w,
+/devHistoryBlog/static/dccd55dcb806a231fe9a3c1e102d381a/e85cb/001-06.png 480w,
+/devHistoryBlog/static/dccd55dcb806a231fe9a3c1e102d381a/d9199/001-06.png 960w,
+/devHistoryBlog/static/dccd55dcb806a231fe9a3c1e102d381a/07a9c/001-06.png 1440w,
+/devHistoryBlog/static/dccd55dcb806a231fe9a3c1e102d381a/6dd26/001-06.png 1597w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Webhook 을 추가하여 아래와 같이 입력한다.
+— URL : &lt;a href=&quot;http://%7Bjenkins_host%7D/bitbucket-hook&quot;&gt;http://{jenkins_host}/bitbucket-hook&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/e41e1197e413cce9490629e489b9dfe1/d67ca/001-07.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 714px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 82.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABYlAAAWJQFJUiTwAAACDUlEQVQ4y41UW5LTMBDMlTkMn9yAX7gAP3ABUhU2OCG7iR+yJfkpWU6amXHs9VY2EFVNqWSPe2a6W149JwZpUSEMA4YQECjO5zMul8tDwWvaea2i/QEvpxhpmuJ4POFweEbdNHh0LcEEMCOgosgFMM1S5LlClmVyVkrRuwIZ7TnteZ5D6RrKNIjzClXrbzvs+17G5Oi6Dt57tG0rwe9uI8D3g8RA1NwALtvtCKTr3NgddTMwr9dgXl/P4f7IS3Kdc9CFQrR9wm63QxRF+L3dYrPZYL1ey86x3++l2wnwTYfTgSs3dYm4aPDrD/EZn1CWFay10FpLGGMk+Bnn3+2QF4/U1hVUdcZBNShNIRwtLSKjLwDes89qAmNBmPDQO1RWk7oaSZKMypLKcRxLZ/466j37zKKwqqywozDGjkCZmq0Tx4kU5eLMtfeOcskZflR97pDt0pCROWm0ShCeGMTYEbgg/qw1V3A9FqZ8R7lNF2hfAPa9l1EYtK5r9FS5NJpMnomZX02eSZcMOk3iCTSEXs6TJ+eRudO2bdC4AcfMyu2ZVJUPhtHIbBcuPsU4WTerPqvM/BgarevP0LZGnrzI3U5JGAbl+83Waf5xz2eVl15StsXnbxt8/fGEXFOnpiR/1qiqSngty/LGMkvrLHw47ttTiQ+fvuPjl59oHZHuwn//MG+M/UjivX/ge9l/ATJEKo0m2oeDAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 07&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/e41e1197e413cce9490629e489b9dfe1/d67ca/001-07.png&quot;
+        srcset=&quot;/devHistoryBlog/static/e41e1197e413cce9490629e489b9dfe1/8ff5a/001-07.png 240w,
+/devHistoryBlog/static/e41e1197e413cce9490629e489b9dfe1/e85cb/001-07.png 480w,
+/devHistoryBlog/static/e41e1197e413cce9490629e489b9dfe1/d67ca/001-07.png 714w&quot;
+        sizes=&quot;(max-width: 714px) 100vw, 714px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Webhook History&lt;br&gt;
+— Enable History 버튼을 클릭하면 아래 그림과 같이 해당 Webhook에 대한 History 내역을 볼 수 있다.&lt;br&gt;
+— Webhook 추가시에 URL을 bitbucket-webhook으로 잘못적어 403 에러가 계속 났었다.. 404 에러로 좀 해주지…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/a0a6bad0f7c04756414d2d1baf14418d/e35ec/001-08.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 861px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 98.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAABYlAAAWJQFJUiTwAAACoklEQVQ4y4WU23KbMBCGef/bXvUx+gS+6E3TpplOOp7EaVM3E5szSEICg7HY7i+BjcdOyowGsVrtfnsiiJKU1n83lKYZxXFMSZpQt98TnmEYLpa19qp8WoFSkvI8ozRLKUkSZzTLMiqKgoQQ7p3nuduXZen3/Ma+GN+QTftAlILCMKSIDUVRRFVVkTGG6rr2i/daa2qa2i2cQQdnkCulSPG3lNLJAwjTNHVU+UgmmRqKUILXUvBbKqbwlxD2W88Ycs7Lh4awQeoc8DcMSqWprBoSqqY95/e9PAYxX47jhCTnCLS73c6F5cNu3iTB5auE4XZL6/Wa87j1BWGqfb8/u/jeOtOBQeQkHguCcKeQ/kdy7dy3jfQ5PBwO1Pf98QBOtDYnAjvQwbLOob8g9LkWPmTkDZe7bu8UYBiEKAaom6ZxMsUVXoYr+vLyzV2EDGtg3UIa2iSSWrYR4AI8TAanCsIR2qjhItnBkpGafmyXtHj96g1aOPaUVd1SUhqesJ4CYzxh27ZnhJiMOI6oZodd17m22rz+ptXiE/Xcq3akBKHgltqminYgRMdnPHq4NBFioVjoRbTRjo1m7KDmbkg+fiDz/GsMG/lkXbNzhC0INRNGTDIRwhg8Y2JAjkJZ/s55WsTTiqr7O9cePof2SLgBYTsjRLvMCTF2kE9hSW50uXqk6s7ncNJzOTRnOTSu/9q2OyrBSMmEmHFP2FPBsy1WD6S+35wIrSeUTBhmla+yI8yysyo7Qs4Z5D2KBAeVpurxgepbb9COxcMdxTmMC+1zaGrDJMlFUfDPA6HPVU+C/zbxnxVtl7c+5JlBqSfCWcgweBYyG4QcIcOgFIqeXx5o+XRzauwpGjYY5VPI/NPM8yshz0bShcxjqH7ek/68uCCcF+Ufj2sI5lzAYjYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 08&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/a0a6bad0f7c04756414d2d1baf14418d/e35ec/001-08.png&quot;
+        srcset=&quot;/devHistoryBlog/static/a0a6bad0f7c04756414d2d1baf14418d/8ff5a/001-08.png 240w,
+/devHistoryBlog/static/a0a6bad0f7c04756414d2d1baf14418d/e85cb/001-08.png 480w,
+/devHistoryBlog/static/a0a6bad0f7c04756414d2d1baf14418d/e35ec/001-08.png 861w&quot;
+        sizes=&quot;(max-width: 861px) 100vw, 861px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] Jenkins Timezone 변경]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-15--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-15--002</guid><pubDate>Tue, 15 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;[작업로그] Jenkins Timezone 변경&lt;/h2&gt;
+&lt;p&gt;jenkins 실행 파일에 아래 option을 추가하라는 가이드가 많았다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token assign-left variable&quot;&gt;JENKINS_JAVA_OPTIONS&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Seoul&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;p&gt;jenkins 실행파일을 보니 java 옵션으로 줘도 괜찮겠다 싶어서 아래 처럼 진행하였다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;실행파일 위치 : /etc/init.d/jenkins&lt;/li&gt;
+&lt;li&gt;do_start 함수 안에 java 명령어에 ‘-Duser.timezone=Asia/Seoul’ 옵션 추가&lt;/li&gt;
+&lt;li&gt;jenkins 재시작&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/45e1ff8f71978a000439a17c234e5d45/fbfd6/002-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 51.25000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAABb0lEQVQoz3WTa27jMAyEfZZd7MaOKIp6WGrWaQIUvf+VZkfKG21/fKAh2+PhkJ4kB/ioWLwjezglJnBhj0UXns3ktc6yw27+dWdefsPJ38EUV0U9HODLAZYScqsIJcLiAtEZzu+uzE/s7gI3hGedSVKEnj9gH5/IxyPezifEarw5Q0IXXeBJf9h3+BGvt/qVyYqhvB+Rt4bUMhIjsNXoMgy002NhBOIfTn6CLRva6d8g0qFbV6Saoa1Ba78uyG+R9SLqzQ0ncnU7OnliCkkotMFvZ7aaUPiyJbrLBmOWMV+ufUnQpNAojwi+aznYQpEEqRxMrUhFoHyhE4gNV5x6DCPPW9s3l31w8iIY97BWKNZQGrOzi1h34dSNiQqn6OXPS1b+KvStoDIn5bqkFplXQuxr09vMCb63mTwH86j3DJ+4D0WZTTyeYNs7Kl1uZcWBQroWuFIhJUNyZF1JGdX39qPBceUcd1f4Y6TsELhm/wHfUzQo/wgjRwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/45e1ff8f71978a000439a17c234e5d45/d9199/002-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/45e1ff8f71978a000439a17c234e5d45/8ff5a/002-01.png 240w,
+/devHistoryBlog/static/45e1ff8f71978a000439a17c234e5d45/e85cb/002-01.png 480w,
+/devHistoryBlog/static/45e1ff8f71978a000439a17c234e5d45/d9199/002-01.png 960w,
+/devHistoryBlog/static/45e1ff8f71978a000439a17c234e5d45/fbfd6/002-01.png 1357w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;// jenkins 재시작
+$ /etc/init.d/jenkins restart&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h5&gt;참고로 -D 옵션은 아래와 같다&lt;/h5&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/fba7da07c29b9431aca841d0b9dcf8f9/48c0e/002-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 440px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 13.333333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAmklEQVQI1z2OWQ6DMAxEe5XSAtl3EpYUcf9LTZ0g8WHZY3ue5sXFiFwCtj2h1oIQNdJiSS84aoaxHNowcPGFkCOkmqD0/GghJ1gnoHX7GfFi/NMXMVkkqmZ2XhHYYCeoD6pDnJcoa8SSXb+1ORdPHoNpfmNiA/WBgDTcQNPTNaB1skPrb8V5bj3tdR3Yj4xI6W9geDwt1Mzu+gPRBF0SVPLtNAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/fba7da07c29b9431aca841d0b9dcf8f9/48c0e/002-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/fba7da07c29b9431aca841d0b9dcf8f9/8ff5a/002-02.png 240w,
+/devHistoryBlog/static/fba7da07c29b9431aca841d0b9dcf8f9/48c0e/002-02.png 440w&quot;
+        sizes=&quot;(max-width: 440px) 100vw, 440px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+     &lt;/p&gt;
+&lt;h4&gt;jenkins 시스템 설정 정보 보는 방법&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;http://%7Bjenkins_host%7D/systemInfo&quot;&gt;http://{jenkins_host}/systemInfo&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[grep - Binary file (standard input) matches]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2020-12-14--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2020-12-14--001</guid><pubDate>Mon, 14 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;문제&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/1dbdc78a582b310f98bc5b9a5b7b4af3/6da96/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 922px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 8.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAeklEQVQI1y2MWw6DMAwEuUsfFAKCAKGA1KDGhAS4/3m2sdUPa2dW8mbx8PD7F7StcGRh1wUfO8E5C/p7PzQYTAMzttBdnVILV3UuPr47THOPVitkIW4IkXCcHjExj/L4HgjXFTAvBq/iJs+qeqJUj5S5OPdFeZeej/kHGOxBjjNkT78AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/1dbdc78a582b310f98bc5b9a5b7b4af3/6da96/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/1dbdc78a582b310f98bc5b9a5b7b4af3/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/1dbdc78a582b310f98bc5b9a5b7b4af3/e85cb/001-01.png 480w,
+/devHistoryBlog/static/1dbdc78a582b310f98bc5b9a5b7b4af3/6da96/001-01.png 922w&quot;
+        sizes=&quot;(max-width: 922px) 100vw, 922px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;grep 명령어 시 “Binary file (standard input) matches” 에러 발생&lt;/p&gt;
+&lt;h3&gt;원인&lt;/h3&gt;
+&lt;p&gt;로그파일 grep 할때 텍스트 파일로 인식하지 않고 Binary file 로 인식&lt;/p&gt;
+&lt;h3&gt;해결&lt;/h3&gt;
+&lt;p&gt;-a 혹은 —text 옵션 추가&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ cat server.log | grep -E &amp;quot; \[[0-9]{4}\]&amp;quot; -a
+or
+$ cat server.log | grep -E &amp;quot; \[[0-9]{4}\]&amp;quot; --text&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[Linux] 리소스 모니터링 오픈소스]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-12-09--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-12-09--001</guid><pubDate>Wed, 09 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h4&gt;Zabbix&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.zabbix.com/download&quot;&gt;https://www.zabbix.com/download&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Graphite&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&quot;https://logz.io/blog/grafana-vs-graphite/&quot;&gt;https://logz.io/blog/grafana-vs-graphite/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] DB Data Migration]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-12-08--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-12-08--001</guid><pubDate>Tue, 08 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 동일한 구조의 테이블 또는 다른 구조의 테이블에  select 한 내용을 insert 하는 방법&lt;/h3&gt;
