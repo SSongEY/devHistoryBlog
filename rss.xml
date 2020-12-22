@@ -1,4 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 22 Dec 2020 16:31:26 GMT</lastBuildDate><item><title><![CDATA[Grep 사용 명령어]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--002</guid><pubDate>Sun, 20 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://twpower.github.io/173-grep-and-or-not&quot;&gt;https://twpower.github.io/173-grep-and-or-not&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[리눅스 명령어를 이용한 시스템 모니터링하기]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--001</guid><pubDate>Sun, 20 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;리눅스 명령어를 이용한 시스템 모니터링하기&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 22 Dec 2020 16:57:10 GMT</lastBuildDate><item><title><![CDATA[[MariaDB] SlowQuery 설정 및 확인]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-22--001.md</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-22--001.md</guid><pubDate>Tue, 22 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Slow Query(슬로우쿼리)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Slow Query(슬로우쿼리)는 지정된 시간보다 실행하는데 오래걸리는 쿼리에 대한 log&lt;/li&gt;
+&lt;li&gt;특정 작업이 오래 걸린다면 로그를 통해 원인을 파악이 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;#1. 설정 방법&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;my.cnf 파일 설정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# 3초 이상 소요된 쿼리 기록
+[mysqld]
+log_slow_queries       = /var/log/mysql/mysql-slow.log
+long_query_time = 3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h3&gt;#2. 설정 확인&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;service restart 및 활성화 확인&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ /etc/init.d/mysqld restart&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;mysql&gt; show variables like ‘slow&lt;em&gt;query&lt;/em&gt;%’;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;br&amp;gt;
+
+### #3. 로그파일
+- 아래와 같은 형식으로 로그파일에 기록됨&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Query_time : 쿼리 처리시간&lt;/h1&gt;
+&lt;h1&gt;Lock_time : lock이 걸린 횟수&lt;/h1&gt;
+&lt;h1&gt;Row_sent : 조회 결과 Row 수&lt;/h1&gt;
+&lt;h1&gt;Rows_examined : 조회 대상 ROW 수&lt;/h1&gt;
+&lt;h1&gt;User@Host: DB&lt;em&gt;유저[DB&lt;/em&gt;유저] @ server_hostname [서버IP]&lt;/h1&gt;
+&lt;h1&gt;Query&lt;em&gt;time: 0.000599  Lock&lt;/em&gt;time: 0.000163 Rows&lt;em&gt;sent: 3  Rows&lt;/em&gt;examined: 86&lt;/h1&gt;
+&lt;p&gt;SET timestamp=1489118717;
+select count(*)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;br&amp;gt;
+
+### #4. mysqladmin 명령어로 상태 출력&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;// -i5 : interval 5s
+$ mysqladmin -i5 status -u root -p
+Enter password:
+Uptime: 10578  Threads: 1  Questions: 4809  Slow queries: 589  Opens: 1321  Flush tables: 1  Open tables: 348  Queries per second avg: 0.454&lt;/p&gt;
+&lt;h1&gt;Uptime : MySQL server 시삭된 후 현재 시간 (초 단위)&lt;/h1&gt;
+&lt;h1&gt;Threads : 현제 DB 서버에 연결된 유저수&lt;/h1&gt;
+&lt;h1&gt;Questions : 서버 시작후 지금까지 요청된 쿼리수&lt;/h1&gt;
+&lt;h1&gt;Slow queries : mysql 설정파일에 슬로우쿼리의 쿼리시간 이상을 가진 요청수&lt;/h1&gt;
+&lt;h1&gt;Opens : 서버가 시작된 후 현재까지 열렸던 테이블수&lt;/h1&gt;
+&lt;h1&gt;Open tables : 현재 열려 잇는 테이블 수&lt;/h1&gt;
+&lt;h1&gt;Queries per second avg : 평균 초단 쿼리수&lt;/h1&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Grep 사용 명령어]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--002</guid><pubDate>Sun, 20 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://twpower.github.io/173-grep-and-or-not&quot;&gt;https://twpower.github.io/173-grep-and-or-not&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[리눅스 명령어를 이용한 시스템 모니터링하기]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--001</guid><pubDate>Sun, 20 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;리눅스 명령어를 이용한 시스템 모니터링하기&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.whatap.io/ko/blog/10/&quot;&gt;https://www.whatap.io/ko/blog/10/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] Jenkins/Bitbucket 연동]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-15--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-15--001</guid><pubDate>Tue, 15 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Jenkins/Bitbucket 연동&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;이번에 JIRA를 사용하면서 Bitbucket을 사용하게 되었다.
@@ -2382,7 +2431,7 @@ $ tcpdump -i any port 23&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded><
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;정의&lt;/td&gt;
-&lt;td&gt;Exception의 상속받는 하위 클래스 중 Runtime Exception을 제외한 모든 Exception&lt;/td&gt;
+&lt;td&gt;Runtime Exception을 제외한 모든 Exception&lt;/td&gt;
 &lt;td&gt;Runtime Exception 하위 Exception&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
