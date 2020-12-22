@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 20 Dec 2020 10:29:52 GMT</lastBuildDate><item><title><![CDATA[[작업로그] Jenkins/Bitbucket 연동]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-15--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-15--001</guid><pubDate>Tue, 15 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Jenkins/Bitbucket 연동&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 22 Dec 2020 16:31:26 GMT</lastBuildDate><item><title><![CDATA[Grep 사용 명령어]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--002</guid><pubDate>Sun, 20 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://twpower.github.io/173-grep-and-or-not&quot;&gt;https://twpower.github.io/173-grep-and-or-not&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[리눅스 명령어를 이용한 시스템 모니터링하기]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--001</guid><pubDate>Sun, 20 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;리눅스 명령어를 이용한 시스템 모니터링하기&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.whatap.io/ko/blog/10/&quot;&gt;https://www.whatap.io/ko/blog/10/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] Jenkins/Bitbucket 연동]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-15--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-15--001</guid><pubDate>Tue, 15 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Jenkins/Bitbucket 연동&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;이번에 JIRA를 사용하면서 Bitbucket을 사용하게 되었다.
 이에 따라 Jenkins/Github 에서 Jenkins/Bitbucket 으로 변경하는 작업을 하였다. &lt;/li&gt;
@@ -2370,7 +2371,55 @@ $ tcpdump -i any src port 23
 $ tcpdump -i any dst port 23
 
 //port PORT : 패킷의 source, destination port 중에 하나라도 PORT이면 출력.
-$ tcpdump -i any port 23&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[AWS] key 분실 시]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-11-01--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-11-01--001</guid><pubDate>Sun, 01 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h4&gt;1. keypair 재 생성&lt;/h4&gt;
+$ tcpdump -i any port 23&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[예외 발생 시 트랜젝션 처리]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-11-02--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-11-02--001</guid><pubDate>Mon, 02 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;-&lt;/th&gt;
+&lt;th&gt;Exception&lt;/th&gt;
+&lt;th&gt;RuntimeException&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;정의&lt;/td&gt;
+&lt;td&gt;Exception의 상속받는 하위 클래스 중 Runtime Exception을 제외한 모든 Exception&lt;/td&gt;
+&lt;td&gt;Runtime Exception 하위 Exception&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;예외처리&lt;/td&gt;
+&lt;td&gt;명시적인 예외처리 필요&lt;/td&gt;
+&lt;td&gt;명시적인 예외처리를 강제하지 않음&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;시점&lt;/td&gt;
+&lt;td&gt;Compile Time&lt;/td&gt;
+&lt;td&gt;Runtime&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;트랜젝션 처리&lt;/td&gt;
+&lt;td&gt;non-rollback&lt;/td&gt;
+&lt;td&gt;rollback&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;#. @Transactional&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;CheckedException 의 경우 롤백이 되지 않고, RuntimeException 의 경우 롤백이 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;#. rollbackFor 옵션&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;롤백이 되는 클래스 지정 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Exception 예외로 롤백 &lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Transactional&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;rollbackFor &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// 여러 예외 지정 &lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Transactional&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;rollbackFro &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;#. noRollbackFor 옵션&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;특정 예외 발생 시 롤백이 되지 않도록 하는 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Transactional&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;noRollbackFor&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;IgnoreRollbackException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[AWS] key 분실 시]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-11-01--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-11-01--001</guid><pubDate>Sun, 01 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h4&gt;1. keypair 재 생성&lt;/h4&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
