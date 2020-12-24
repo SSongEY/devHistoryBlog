@@ -1,4 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 22 Dec 2020 18:11:04 GMT</lastBuildDate><item><title><![CDATA[[MariaDB] SlowQuery 설정 및 확인]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-22--001.md</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-22--001.md</guid><pubDate>Tue, 22 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Slow Query(슬로우쿼리)&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 24 Dec 2020 11:03:04 GMT</lastBuildDate><item><title><![CDATA[[MariaDB] Prepared statement needs to be re-prepared]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2020-12-24--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2020-12-24--001</guid><pubDate>Thu, 24 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;문제&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;프로젝트 실행 시 아래와 같은 에러 발생&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Cause: java.sql.BatchUpdateException: Prepared statement needs to be re-prepared&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;원인&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;로컬에 너무 많은 DB/테이블 생성으로 인한 table definition cache 부족&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;해결&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;table_definition_cache 값 변경&lt;/li&gt;
+&lt;li&gt;Default 값은 400&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;변경방법1) 쿼리문 (DB 재시작 시 기본세팅으로 변경됨)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;MariaDB [(none)]&amp;gt; SHOW VARIABLES LIKE &amp;#39;table_definition_cache%&amp;#39;;
++------------------------+-------+                              
+| Variable_name          | Value |                              
++------------------------+-------+                              
+| table_definition_cache | 400   |                              
++------------------------+-------+                              
+1 row in set (0.001 sec)                                        
+                                                                
+MariaDB [(none)]&amp;gt; SET GLOBAL table_definition_cache = 600;     &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;변경방법2) my.cnf 수정&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;[mysqld]
+table_definition_cache = 400&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h4&gt;Table Definition Cache?&lt;/h4&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/3dc7c44443e52de17abae57abb369f6f/c1b63/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 40.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABIklEQVQoz6VQ2XKDMAzk/78xM6TNNBwGAjY+sdlKgpQ+9K2aWe8iC3mlarUW0+uFedHQZoVZV3gfsO+7oJSCnDN24kJc8ka5LHkG1+R86YpOqL5HT1C9Iu7wfH5BKYW2bTEMI7qOeJrRjAvacUY/LVLP94zm2QizmYo7f35+4PF4UJFCwwUE1txMXhY35GQHiIgv54yfKdhhSgm3201ecM4d9uWHY2SO4zzVfn39FVWmndR1jXt9F8sxRvwnZORhGLBoA+c9IjkOMWGNGT4VhK2IjtulPTHDnjqceqOpqvcAo7boaOHGGGgXMdgEEzIWv2G0xwNvrcP2S2do0pNLyNJwP/Yy24DZOITgyVmGIyTaJ2t2ytpJviCeeXfmpYZccnwDu0lvFq6+paQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/3dc7c44443e52de17abae57abb369f6f/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/3dc7c44443e52de17abae57abb369f6f/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/3dc7c44443e52de17abae57abb369f6f/e85cb/001-01.png 480w,
+/devHistoryBlog/static/3dc7c44443e52de17abae57abb369f6f/d9199/001-01.png 960w,
+/devHistoryBlog/static/3dc7c44443e52de17abae57abb369f6f/c1b63/001-01.png 1200w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;cf) &lt;a href=&quot;https://mariadb.com/kb/en/server-system-variables/#table_definition_cache&quot;&gt;https://mariadb.com/kb/en/server-system-variables/#table_definition_cache&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[MariaDB] SlowQuery 설정 및 확인]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-22--001.md</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-22--001.md</guid><pubDate>Tue, 22 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Slow Query(슬로우쿼리)&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Slow Query(슬로우쿼리)는 지정된 시간보다 실행하는데 오래걸리는 쿼리에 대한 log&lt;/li&gt;
 &lt;li&gt;특정 작업이 오래 걸린다면 로그를 통해 원인을 파악이 가능&lt;/li&gt;
