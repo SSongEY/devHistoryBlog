@@ -1,4 +1,198 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 24 Dec 2020 11:03:04 GMT</lastBuildDate><item><title><![CDATA[[MariaDB] Prepared statement needs to be re-prepared]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2020-12-24--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2020-12-24--001</guid><pubDate>Thu, 24 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;문제&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 29 Dec 2020 17:20:04 GMT</lastBuildDate><item><title><![CDATA[프로젝트 gradle version 확인 및 업데이트]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-29--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-29--002</guid><pubDate>Tue, 29 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. gradle version 확인&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;gradle -&gt; wrapper -&gt; gradle-wrapper.properties 안에 해당 프로젝트의 gradle 버전이 명시되어 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/53cfd7050d50b717a08c7004b88dc4a2/077b7/002-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 25.416666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAyklEQVQY013K3XKDIBCGYe6mEwgLAhKNVkF+tdHYSe7/WqK2zUHfeQ6+nVmU5jWk1NnBx5TG0acp35/5tk7z6vNUtU3dNrqq3y5/to3WZfxebIwbl6L13gmpGkEaSZViRckoo/iE3z7wr+1C9yk/lhSGPjoTnXXDoLRuJb1KKsuikJxx2BUABQgOjtEeqAUqz2c027Auj2C9aa1r+9gZUWoG8GPvWOzAGSgAeeAASKuuMbk2t/LzS9fhWhkuJMYEkyP8vxMmO7I/vADRdkBwvjCtnAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/53cfd7050d50b717a08c7004b88dc4a2/d9199/002-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/53cfd7050d50b717a08c7004b88dc4a2/8ff5a/002-01.png 240w,
+/devHistoryBlog/static/53cfd7050d50b717a08c7004b88dc4a2/e85cb/002-01.png 480w,
+/devHistoryBlog/static/53cfd7050d50b717a08c7004b88dc4a2/d9199/002-01.png 960w,
+/devHistoryBlog/static/53cfd7050d50b717a08c7004b88dc4a2/077b7/002-01.png 1166w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;#2. gradle version 변경&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;// gradlew wrapper --gradle-version {변경 할 버전 정보}
+$ gradlew wrapper --gradle-version 4.5.1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[SpringBoot Remote Debugging]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-29--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-29--001</guid><pubDate>Tue, 29 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. 서버 설정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;아래 옵션을 추가한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;-Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=15001,suspend=n&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;실행 시 15001 포트로 접속하여 디버깅을 진행할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/5fe1d9489dc311a1e0ae9c977489749c/e8d6f/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 30.83333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA4ElEQVQY002OCQ6DIBBFuYq2CrLIjiyi2KT3v1JHbZomLz+PAX4GvZJ71/jK4UgesiXfom0lWC+9nVvQm5O7VyDVye2SpGiUNM8TcoJohi3Hho2aDYaPanpQ0g+4G3E33FzHr5D+ibsbJA3VjmsnlBHansD1iB+YnJCLy/s/vhOkDHWBacu04WHRPigxE8qGiT5/yfj4DxcYEp6htcacw1rT3kouoW7pONZSQljMEm0u3getNJeKzXK6uUsZx6gdK/wHWit1i3XP4PueyzlcoC5lD11QFLOHhO1gR2MFNH4AKd1DXIrmrN8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/5fe1d9489dc311a1e0ae9c977489749c/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/5fe1d9489dc311a1e0ae9c977489749c/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/5fe1d9489dc311a1e0ae9c977489749c/e85cb/001-01.png 480w,
+/devHistoryBlog/static/5fe1d9489dc311a1e0ae9c977489749c/d9199/001-01.png 960w,
+/devHistoryBlog/static/5fe1d9489dc311a1e0ae9c977489749c/e8d6f/001-01.png 1273w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;#2. IntelliJ 설정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;서버와 동일한 프로젝트에서 아래와 같이 debug configuration 을 적용한다.&lt;/li&gt;
+&lt;li&gt;Remote 선택 후&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/6b73711184f0309304decf191e376d99/a76f4/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 586px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 63.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAACFElEQVQ4y42T6W7aQBSF/UQpYbcN3vCMN8xiwOyQlKVKqci/pBIVFNECCQlSn6UPeDqetlGkEtQfn46uPT6+c+eMQMwaiGPDdn3Yng/TckBtl9VFUMfjqhomZEVDTtVf9C2EnOaiQCnDBmFGBrGgm5SbReYFakHKq5zXpm8hENuGlFNYoSKvatwkIivnITIMQlGth7BYp3qBcOOzHVpsq8T24PoVFMsBKrUQXqkKl+EUyyhV62i0uuxZAJvV0Ud/uz3ZYbnRg+MHCMI2mp0B6s0Oqo02wnYfYYfR7vGfWF6ZravyLvOaDkUzTiIMZzcwXZsX0Ryj+RmMZEZEPJ3lJCJYncpKuExLuEiKeJc6jVC/22H06Rbz+S1Gkyk6vQE6/QHaXIfoMiK9Hk+4in4fMaeHuHsa4ef+B467R3x/OGC3P2DzbYuHwzO2+0d8WX79w5pr9G6xWuNuscT9YnUSoVgMoBvR/hVousoyF0VEQiaTRDwRQzwe4xq7vICqGxBzeSRSGTaSLJLpfxGmHw+4mWwxu1pjOlhj1luiEX6G3l2DvoJ0N/CCPoyCyU7aYAdzGmE+fsKY8WF8wPXoGe9bG7SaKxSujqCDA+jwiSsZHuEGQ2gGi82Z2yI0yz7qFkWNkt9YBLIsQZJFyDkGVwmilIXluDwF58ItmDUXTiWAU6rAKVdBWXgVnd1dvsB4QVL0/7otvwA+Ceo/49jt6wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/6b73711184f0309304decf191e376d99/a76f4/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/6b73711184f0309304decf191e376d99/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/6b73711184f0309304decf191e376d99/e85cb/001-02.png 480w,
+/devHistoryBlog/static/6b73711184f0309304decf191e376d99/a76f4/001-02.png 586w&quot;
+        sizes=&quot;(max-width: 586px) 100vw, 586px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Debugger mode 선택, Host, Port를 넣어 실행하면 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/bf9ede622887815e59e64e5aef1d3446/ee3fb/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 63.74999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABBUlEQVQoz5WSaVLDMAyFfS2g8aLFazMllPufhWeb0v5ICsx8o9HI0fYUE0tN7Uwaw4D2cCSgfyPdhyVNntXE9YM1+8DOE1hcOB2w4NVT94cDjJXUgnySbiSbI8RerH+1hyUeMe8xXVO+SGyeVpICy7oSnxb3Zv1+GuLjyVxrA5dctlJXTSXwmWNjnXvawDuQOslwjNbzoHVbmpQqtQHNFUCbHTQBlDaBY2AlzbBBRkOIRzy1WW7a7GKgOJDSUl05Zt9LxBkEvyRPDdDN9w0RCtaT7W/h+zBP1Ka+hmJmCNDnHNxv+xR0nvfwN3oORphgInvc3yx9SP5Z4y//xj358QZQ6F/JX+NaxvcCFUahAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/bf9ede622887815e59e64e5aef1d3446/d9199/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/bf9ede622887815e59e64e5aef1d3446/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/bf9ede622887815e59e64e5aef1d3446/e85cb/001-03.png 480w,
+/devHistoryBlog/static/bf9ede622887815e59e64e5aef1d3446/d9199/001-03.png 960w,
+/devHistoryBlog/static/bf9ede622887815e59e64e5aef1d3446/ee3fb/001-03.png 1144w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;아래와 같이 접속 성공 시 “Connedted to the target VM” 이 뜨고, 종료 시 “Disconnected” 가 출력된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/abcc1ad6da716a9387bc7981e134912b/65654/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 872px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 17.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAAqElEQVQY01WKWQ6DIBRF2Y/DjynwmEGtnY1J97+VWyGVtB8nd2SX54rHuuG1vTFf77AhwfgI89Wad7SL1Zfs/3P+spBGpGnG+XJDSBOUtlDGVpWkYX2AjwnaOpA2BS6pqJAKghRIGZyEBONcwFoLIoKUEkoRtNY7qmjuMzFGLMuCaRzhnCvdsQshIDjHMAxgbdsi03UdDn/kpmmqZvq+L+Tud8//4vftA7XUhXREJYxtAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/abcc1ad6da716a9387bc7981e134912b/65654/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/abcc1ad6da716a9387bc7981e134912b/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/abcc1ad6da716a9387bc7981e134912b/e85cb/001-04.png 480w,
+/devHistoryBlog/static/abcc1ad6da716a9387bc7981e134912b/65654/001-04.png 872w&quot;
+        sizes=&quot;(max-width: 872px) 100vw, 872px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[MariaDB] Prepared statement needs to be re-prepared]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2020-12-24--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2020-12-24--001</guid><pubDate>Thu, 24 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;문제&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;프로젝트 실행 시 아래와 같은 에러 발생&lt;/li&gt;
 &lt;/ul&gt;
