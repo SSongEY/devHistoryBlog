@@ -1,4 +1,520 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 29 Dec 2020 17:20:04 GMT</lastBuildDate><item><title><![CDATA[프로젝트 gradle version 확인 및 업데이트]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-29--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-29--002</guid><pubDate>Tue, 29 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. gradle version 확인&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 31 Dec 2020 21:58:51 GMT</lastBuildDate><item><title><![CDATA[JVM 분석 툴]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-31--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-31--001</guid><pubDate>Thu, 31 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. JPS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Java Virtual Machine Process Status Tool&lt;/li&gt;
+&lt;li&gt;JVM 프로세스 표시&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;// PID, 메인 메소드의 args 표시
+$ jps -m 
+
+// PID, jvm 파라미터 표시
+$ jps -v&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/606d55ea709aec7b00e1db5f9a698485/3f8cf/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 16.249999999999996%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAjUlEQVQI12WOWRKDIBBEvU1iIosRXFBxAfH+J2qZSfzKR9frqZl6ULjRYllHhOgRjxV78Jj9gMGZHAvaux9ppvSDQWMUjFVM/akyJerMQsgn/OJYdqQtC2eWpnPnOcSFezq/nXbj1EHXb0hVQukX8w4L6WDdJj6m0I+J9Mjdu76BbTXarmaJkCUq8fjLBV2AYzo6AiOaAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/606d55ea709aec7b00e1db5f9a698485/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/606d55ea709aec7b00e1db5f9a698485/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/606d55ea709aec7b00e1db5f9a698485/e85cb/001-01.png 480w,
+/devHistoryBlog/static/606d55ea709aec7b00e1db5f9a698485/d9199/001-01.png 960w,
+/devHistoryBlog/static/606d55ea709aec7b00e1db5f9a698485/3f8cf/001-01.png 1293w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;#2. JMAP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;JVM 프로세스의 메모리 맵 표시&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;#2.1. heap 메모리 사용 현황에 대한 요약 정보&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$jmap -heap &amp;lt;PID&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/e3ebc5805eef55d29ea1f806757ca33f/68e9c/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 654px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 145.83333333333331%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAdCAYAAACqhkzFAAAACXBIWXMAABJ0AAASdAHeZh94AAAC/0lEQVRIx5WWUXqiQBCEOcxuNlFBUAEBFRFQ0Zj732a2/yYzn+siSR5GiIGaqurqHr2siE25z812tzbrbGnS9dJk+UpXsUn1+12Zm822v+ZFIt8n8tzCXfV5wUmS0Hinc2Nut84cT5Wsgzmfa3Ood+Zw2Jpz1yiI3YCX5+HEBPO3weUHr8Yr94W+xNpXhTLaVxtTyQrDqZnOXszb5JeZTH/r/cz/M7q8WGgmaaRy9T6J5Bopm2gx07VcBY7BV8uDWSXyyhIfc/UThsiG8RpPs5VKhcGXgKs4NKt4LizsCvTlMJrq1cqdDbw8tIFHVbuuNdfr0XSX1tw+OpUPCA9wPxe51j+u9n4I1Jv5ryqvaUqVSxQWS9+ZvN1lUrBMfe79Xpg8j1XBIENkXS49O9jcV4wHNpLFd4nVRRS0x8pc3k8Sp/q55GA+MSfJXnvcKzPk3D9AkAGrP4vUtJVkdOMs+U8ycdAgy8JPpFifeIAIPeZv1EMYHk+1dkUn0vERplSbDBIrOoig4ycRs/Y8qnEMG/GGovAS0rbSt6mYD2gmBWBDQJp2r0oo0rNcenzQfjWABFwYAmQ9orqWGcwt0FPJxKSfLIkL832bPfp2DzDIEI+Qgk+5jKC1tNlyGfzDwBZJO+YJMwcYiQzydVBJgUjfOZ+ISNOWWmmGBps9C7QDZGc8oqJ4dBRwNsBXhgT5bIW9zkcpTJzMB6vrAGknAK7XkwPBBqY1FjwO1DG5vWRh1oP0LOkM/iYujK2hITrqIf/AM6KCh8SDVrTnh//NseUAAVLPBIC5aKPD4n++snr91rRWQADwbrNNnWR7MNFefvBDQOjTWhyBVJmOeb+dVTotGPxUMjL7ky/TyiLTvtBPHnvajU9qB9iHudRAA9hK11SfVUY+xypWhFF/AhKdUYZ80HpIjha+4eC/ylRm+hzqUqZ5qwOWwN8+LjKFIhfswV7mS1rL9nGhPzVSZYgdvr7Uh/p+0oxMm1QrzLTRa5Ho75j+50esG+kzn5tQebx9xvAv5Tib98XputsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/e3ebc5805eef55d29ea1f806757ca33f/68e9c/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/e3ebc5805eef55d29ea1f806757ca33f/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/e3ebc5805eef55d29ea1f806757ca33f/e85cb/001-02.png 480w,
+/devHistoryBlog/static/e3ebc5805eef55d29ea1f806757ca33f/68e9c/001-02.png 654w&quot;
+        sizes=&quot;(max-width: 654px) 100vw, 654px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;#2.2. 객체 타입 별 사용 내역&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$jmap -histo:live &amp;lt;PID&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/679ddd85c15c253c61840fa681e2e7a0/ddc81/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 837px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 40%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABNElEQVQoz11S2XKEMAzjX9ptu9wBwhVu2Ov/P0i13MkO0wdNDjuyZCfoeothbNE7i6YtFLY2cteg6yu4ocEoce6btkTbVagbIygUzG1krWyG3EQIyipFloewkkRyI5dx8q17W+dg3NocUfyFa/gh+EQYXRR+zxjBd4EpYmXmxXFbtHqaXXF/bJjmXonbrtTVDTXGqVU1RZloMYL5SfqjCBjITYhYDrf7qskMkHBZnWDAccxajKTMZw6tshBBQqpTQqOEfzb52BM+X4cSTrPDug3Y9gmrxOfFKQnz1Xp8eZOpZVb0fdv2UQhzDT6eu5B1OiwS9K4W4lEHxJ57ix5vhZROhWwwVXAQ3NMi1XDKtMp+8uzdnInO54CV+SXKKsMmCqiIbdilb7S4LE6Vchj+65wV/ccvy3AAUsUrp+MAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/679ddd85c15c253c61840fa681e2e7a0/ddc81/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/679ddd85c15c253c61840fa681e2e7a0/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/679ddd85c15c253c61840fa681e2e7a0/e85cb/001-03.png 480w,
+/devHistoryBlog/static/679ddd85c15c253c61840fa681e2e7a0/ddc81/001-03.png 837w&quot;
+        sizes=&quot;(max-width: 837px) 100vw, 837px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h5&gt;참고) [C, [I, [B 이란?&lt;/h5&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/2e6fbdc0096ef686e2a9338f1f0eef4a/3a737/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 897px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 72.08333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABJ0AAASdAHeZh94AAABcElEQVQ4y41S7ZKDMAj0/Z+yv6rxI9FojFojx6KxqfVujhkGEsKyEDJjDLVtS60dSGtDRVGQtZa2baOwrrSugXUVfb1eHxrv8BaCc2aMpkIpqquKyrKiuq6pYh+KYopjKOj9SM45Gobh1HEcRaOEECizXScgWmtqmkbs9QxggH0D7ncAdW6gaZoo67pW2CC5LEsBiAyhAAcg/FKV0oVShYzHe38WAhjaz7r2DRjbBXD06wNY63c8dgAbGYawySyZ4dFyc00wUqQ5Wt/18DkeCaBDYPR9T8vCDBHAz4JVnhfyCc/nk+8Un3PRPZZLMVjFMcOdgaXM+LDzPFO2LIvQro+qWBnPLcAHgHOjPPR+EjtPu70T+WU4jn/s8XiQZdoYLqRnYIDGHbsK7lM99xDOdZ9iAh7cJd/pByB2CrPDcLHECOyf1ZztpYl3bL8YYqghScJOXcH+DYgZ4mPSIAYM0PTuN7llaG3/FUwB/8JMc34AvpI9xxOaLKYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/2e6fbdc0096ef686e2a9338f1f0eef4a/3a737/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/2e6fbdc0096ef686e2a9338f1f0eef4a/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/2e6fbdc0096ef686e2a9338f1f0eef4a/e85cb/001-04.png 480w,
+/devHistoryBlog/static/2e6fbdc0096ef686e2a9338f1f0eef4a/3a737/001-04.png 897w&quot;
+        sizes=&quot;(max-width: 897px) 100vw, 897px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[L 은 class 또는 interface 즉, any non-primitives(Object)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;#2.3. gc 대기중인 클래스 목록 확인&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$jmap -finalizerinfo &amp;lt;PID&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;#2.4. 덤프 파일 생성&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;파일 확장자는 일반적으로 .hprof 를 사용&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;힙 메모리의 크기가 GB 단위로 크다면, 분석할 덤프 파일 크기도 GB 단위로 늘어남&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;jmap -dump:[live,]format=b,file=&amp;lt;dump filename&amp;gt; &amp;lt;PID&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;#3. JHAT&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Java Heap Analyzer Tool&lt;/li&gt;
+&lt;li&gt;힙 메모리 분석 툴&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;입력한 포트(기본은 7000)로 덤프파일이 분석된 웹페이지가 구동&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ jhat [-port] &amp;lt;dump filename&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[작업로그] JVM OutOfMemory Error 분석]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-31--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-31--002</guid><pubDate>Thu, 31 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;팀에서 서비스하고 있는 제품 중, 아이맘 택시 서비스에서 아래와 같은 현상이 발생 되었다.&lt;br&gt;
+당시, 해당 프로세스의 메모리 사용량이 8G를 넘고 있었고(평균 1G), CPU 사용량도 90% 이상이 넘고 있었다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GC Overhead
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/e94feaf13307b0fd9b0f8c28a469fa43/fe238/002-10.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 15%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAh0lEQVQI13WOWQ7CMBBDextAalrRJFCSZl96/xOZzCC+EB+WZ5GfPB3uiZgsWk+oLSJlB7p9tLPb48EyVuNlNKRaofSKTQrct5n9O09iucIHg35mhhIwF49z7OR0ay2N2fGPgMt6+ysGhmg5VGpgUbD3xMBSPdxouu9ywNRot4wmApSbxeVHb1EEYxh/AQavAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 10&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/e94feaf13307b0fd9b0f8c28a469fa43/d9199/002-10.png&quot;
+        srcset=&quot;/devHistoryBlog/static/e94feaf13307b0fd9b0f8c28a469fa43/8ff5a/002-10.png 240w,
+/devHistoryBlog/static/e94feaf13307b0fd9b0f8c28a469fa43/e85cb/002-10.png 480w,
+/devHistoryBlog/static/e94feaf13307b0fd9b0f8c28a469fa43/d9199/002-10.png 960w,
+/devHistoryBlog/static/e94feaf13307b0fd9b0f8c28a469fa43/fe238/002-10.png 1401w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;li&gt;JDBC Connection Pool Error
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/21af5a2a6906aa3f25fc1efccceb6cfb/2eb79/002-11.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 28.333333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAAA8klEQVQY02WRa26EMAyEOU2rbtnlkRDIkxAW9v4ncj1OaVX1x8gRTsafh2bNnrYS6Tw3eh6Z9udKIc6E72VP0kuro5gs5S2wvPRCmEnph0hPnUjpjprMTVyEIQwgHwybLmSdpskMZOaBa1/r1MtD6NHdWB/U9bcfNZiOieer/CE6eEBabTVnGucnOc/LKFQY0N7f/6lZsxPCQwijmMa0UBHja80gZ8haTcPYCtln+yYmVxVDECG74zs/GGJdyYmzXKxiKsVV18q6IoCwupnHmiMydN4IGUxBu5VAO5vKkDPL+r+k9YeAHiC4hzfYaFR3yfALhzzIF9njtmYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 11&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/21af5a2a6906aa3f25fc1efccceb6cfb/d9199/002-11.png&quot;
+        srcset=&quot;/devHistoryBlog/static/21af5a2a6906aa3f25fc1efccceb6cfb/8ff5a/002-11.png 240w,
+/devHistoryBlog/static/21af5a2a6906aa3f25fc1efccceb6cfb/e85cb/002-11.png 480w,
+/devHistoryBlog/static/21af5a2a6906aa3f25fc1efccceb6cfb/d9199/002-11.png 960w,
+/devHistoryBlog/static/21af5a2a6906aa3f25fc1efccceb6cfb/2eb79/002-11.png 1256w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;li&gt;Java heap Out of memory
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/d95cbb210fde1c7f2b63144bf9a46a33/77abb/002-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 12.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAlklEQVQI1z2OaxKDIAyEvUqdtloVRdQCykP0/mfaJuj0xzdLssmSYk8exxnAmg6PzWloM8EQWisYOxNXze/lK6GmHqPq0A8NBtlCjh2EqCH6GkWIK+K+UqCD8yYHRuodFM41++wx6e55wq4zmvaFT/P8K3MHbnk4RIuNhnmJr/bBwvEH5Fu6bl5kRk0C7+qBqi6zXpSZH5rYYX0XorA2AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/d95cbb210fde1c7f2b63144bf9a46a33/d9199/002-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/d95cbb210fde1c7f2b63144bf9a46a33/8ff5a/002-01.png 240w,
+/devHistoryBlog/static/d95cbb210fde1c7f2b63144bf9a46a33/e85cb/002-01.png 480w,
+/devHistoryBlog/static/d95cbb210fde1c7f2b63144bf9a46a33/d9199/002-01.png 960w,
+/devHistoryBlog/static/d95cbb210fde1c7f2b63144bf9a46a33/77abb/002-01.png 1305w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;현재 내가 진행하고 있는 프로젝트가 아니라.. 로그만으로는 분석이 힘들어 &lt;a href=&quot;/devHistoryBlog/works/posts/2020-12-31--001&quot;&gt;jvm 분석 툴&lt;/a&gt;을 사용하여 아래와 같이 모니터링을 하였다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;#1. 모니터링 스크립트 만들기&lt;/h3&gt;
+&lt;h4&gt;#1.1. 사용 리소스 모니터링&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;해당 서비스의 메모리, cpu 사용률 및 부하 감지를 위한 서비스, DB 포트 연결 개수 모니터링&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;#!/bin/bash
+
+LOG=log_res_mn
+while [ true ]
+do
+
+        echo `echo \[;date;echo \]` &amp;gt;&amp;gt; $LOG
+        echo `echo netstat 8000 cnt \[;netstat -na | grep 8000 | wc -l;echo \];` &amp;gt;&amp;gt; $LOG
+        echo `echo netstat 3306 cnt \[;netstat -na | grep 3306 | wc -l;echo \];` &amp;gt;&amp;gt; $LOG
+        ps -eo pid,rss,size,vsize,pmem,pcpu,time,cmd --sort -rss | grep NAMU | head -n 1 &amp;gt;&amp;gt; $LOG
+        #ps -eo pid,rss,size,vsize,pmem,pcpu,time,cmd --sort -rss | head -n 5 &amp;gt;&amp;gt; $LOG
+        echo ------------------------------------------------------------------------ &amp;gt;&amp;gt; $LOG
+        sleep 1;
+done;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;#1.2. 해당 프로세스 PID의 메모리 사용 내용&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;jmap -histo:live [PID] 명령어를 이용&lt;/li&gt;
+&lt;li&gt;해당 프로세스에서 사용하고 있는 클래스 별 사용 내역 (인스턴스 개수, 사용된 메모리 크기)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;#!/bin/bash
+
+LOG=log_mn_jvm
+while [ true ]
+do
+        PID=`sudo jps -v | grep &amp;quot;\-Xmx2048m&amp;quot; | awk &amp;#39;{print $1}&amp;#39;`
+        echo `echo \[;date;echo \]` &amp;gt;&amp;gt; $LOG
+        sudo jmap -histo:live $PID | head -n 10 &amp;gt;&amp;gt; $LOG
+        echo ------------------------------------------------------- &amp;gt;&amp;gt; $LOG
+        sleep 5;
+done;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h3&gt;#2. 모니터링 결과&lt;/h3&gt;
+&lt;p&gt;** 해당 결과는 새벽에 오류 재연을 한 것이므로 오류 상황보다 CPU 점유율이 낮게 나왔다. ** &lt;/p&gt;
+&lt;h4&gt;#2.1. 오류 발생 전&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;기본 사용 메모리, cpu
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/a32f5708df6f6d955e6607d28bc438db/59822/002-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 916px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 7.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAIAAADXZGvcAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAYUlEQVQI12WNwQ3DIAwAGSWgKDYVARvbxKHKHt1/kqb5Vjqd7ndBjUT3/FoBE2LKmOCPDeLjBPDrDRbA2zH45afLfI/S8qTyoXoZd21dK/fiLj6NeCcuYk20joN10L20QV/CiBU8J6c1IwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/a32f5708df6f6d955e6607d28bc438db/59822/002-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/a32f5708df6f6d955e6607d28bc438db/8ff5a/002-04.png 240w,
+/devHistoryBlog/static/a32f5708df6f6d955e6607d28bc438db/e85cb/002-04.png 480w,
+/devHistoryBlog/static/a32f5708df6f6d955e6607d28bc438db/59822/002-04.png 916w&quot;
+        sizes=&quot;(max-width: 916px) 100vw, 916px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;li&gt;인스턴스 개수
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/d7ea364e590d1cdea7313d37ba5120ce/c67d4/002-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 723px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 27.916666666666668%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAABBklEQVQY012RaXLDIAyFfZJu8W6DFwx4je1JmyYz7f2P84qEp9sPDZIQT59EkOUhmlbA2AatEqA4SV9QNyW0rlGKBKqT6HTFfhg9Ik6eEcVPXPffAioiR1Y59n3mR2l2wjBqTLPlZrLKOJ8X0WExijL+Fv5tgTi60qPrdedCiufzgPfbBdo0GCcvPowdFpefJoPzOjA5TaVNDdu3fDIhKQuZYtsmFIXvTISbI1ZKsj8vPQvbXvE9Ga2HiAmiFKk7Ey94Ch+Y8OPz5gQjT+gE7vc3Jlxdo21fsLjc5XU94pmJSPDvyDLlDiRI2LQCilVXwTgx+hz6ECJtnRnbMmk/KJ7qZ6/evgCPmbnpbNQQ/wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/d7ea364e590d1cdea7313d37ba5120ce/c67d4/002-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/d7ea364e590d1cdea7313d37ba5120ce/8ff5a/002-03.png 240w,
+/devHistoryBlog/static/d7ea364e590d1cdea7313d37ba5120ce/e85cb/002-03.png 480w,
+/devHistoryBlog/static/d7ea364e590d1cdea7313d37ba5120ce/c67d4/002-03.png 723w&quot;
+        sizes=&quot;(max-width: 723px) 100vw, 723px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h4&gt;#2.2. 오류 발생  후&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;문제 발생 시점부터 약 20초간 확 증가된 메모리 사용량
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/2d8bf4767dc95258800bb9326e0bb556/b7877/002-08.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 891px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 26.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAwUlEQVQY0y1P0WrEMAzL52zXJrEt20kbxnGDsZf9//dMLQfBCMWSpTJT/9J+0QliKLy3/skZKYamtp8rPbpZde8E9xNOLpSBvtCW1Rli93dtH10e3BDdRbccRlJkU1R6qV2TPFzLOe3njNfA14oYlkNFHqp7TsAbUI8V1FNDC9zu5A01EuVI+z78OZSXL3EqXfl3HeSqN8YeA2Su8GhMewOKrVDz8v70vqZ5aqaws+rG/qoVrHNGpDIq3p2FAHQZ+Aej1TvR6E6tRgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 08&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/2d8bf4767dc95258800bb9326e0bb556/b7877/002-08.png&quot;
+        srcset=&quot;/devHistoryBlog/static/2d8bf4767dc95258800bb9326e0bb556/8ff5a/002-08.png 240w,
+/devHistoryBlog/static/2d8bf4767dc95258800bb9326e0bb556/e85cb/002-08.png 480w,
+/devHistoryBlog/static/2d8bf4767dc95258800bb9326e0bb556/b7877/002-08.png 891w&quot;
+        sizes=&quot;(max-width: 891px) 100vw, 891px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;li&gt;해당 시점의 인스턴스 상태
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/94a63512ca1b5551c1ba6a2dc2d8cae7/d4c13/002-06.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 825px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 25.416666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA4UlEQVQY002O206FMBBF+RSVQq9T2kLLpUTaw4FyRBNj4rv//xU20QeS9bD3ZFayC20EF7V1yvUaAAND09B2BqwRnW0YQzV+xuTlCuMVSJIpBGBKSynpEqYsP0zzc4/fg92A1vmPIULKLJALnFfyX5aEMAQNXbeYuzGQ0s17O0529PY1+GHsqvoJXSC0zGMZ4GIE0lM0APncwiTpKNlXWpN3aR7OMH/E+Vx8dDpadevbtW+jM/tk82WRtJg5XlkVBD7aJgocOD6d3pRIBg4jj1buWuS6Kb5r+MuPTr0786bEL/ipOhq1KIt/AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 06&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/94a63512ca1b5551c1ba6a2dc2d8cae7/d4c13/002-06.png&quot;
+        srcset=&quot;/devHistoryBlog/static/94a63512ca1b5551c1ba6a2dc2d8cae7/8ff5a/002-06.png 240w,
+/devHistoryBlog/static/94a63512ca1b5551c1ba6a2dc2d8cae7/e85cb/002-06.png 480w,
+/devHistoryBlog/static/94a63512ca1b5551c1ba6a2dc2d8cae7/d4c13/002-06.png 825w&quot;
+        sizes=&quot;(max-width: 825px) 100vw, 825px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;GC가 돌아 약 25초간 cpu 사용량 쭉 증가 후 약 40초간 유지&lt;/li&gt;
+&lt;li&gt;그 후 점차 감소
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/f44b9b470a0d2e584d497f3b55e1c871/1cfc2/002-09.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 900px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 26.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAuElEQVQY0y2Paw4CIQyEOY66C/TJazUx6k/vfx6HxaRpKHTmG4JXGcNK4YZeRZ00Xb8UH04ku2rsw70Q42xZPZtntYTCcjAnm1eEDXSxLOnylNg1iiamDb7Yy3Qj3mDBEtFFI7wC3mphLzyOUptameSPprszOIvch51kACfm7NmLBMhaEwyt64wNcb6+JB1G8wuWerfWIQYqIct0h9hOMWjLbxVoiP3mOHSuiuxwrFWRGeOSqf4j/ACsCTu4cTefBQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 09&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/f44b9b470a0d2e584d497f3b55e1c871/1cfc2/002-09.png&quot;
+        srcset=&quot;/devHistoryBlog/static/f44b9b470a0d2e584d497f3b55e1c871/8ff5a/002-09.png 240w,
+/devHistoryBlog/static/f44b9b470a0d2e584d497f3b55e1c871/e85cb/002-09.png 480w,
+/devHistoryBlog/static/f44b9b470a0d2e584d497f3b55e1c871/1cfc2/002-09.png 900w&quot;
+        sizes=&quot;(max-width: 900px) 100vw, 900px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h4&gt;#2.3. 소스 검토&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;해당시간에 발생된 request url 검사 후 해당 로직 검토를 하였더니
+Document 테이블에서 가져오는 row수가 1,713,561건 인것을 발견하였다.&lt;/li&gt;
+&lt;li&gt;해당 비즈니스 로직에 대한 이해도가 없어 왜 이런 상황이 발생이 됐는지는 모르겠지만,
+select 최대 row를 강제할 수 있는 방법을 찾아 팀 코드 컨벤션으로 정해야겠다.&lt;/li&gt;
+&lt;li&gt;좋은 경험 했다!!!!!!!&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[프로젝트 gradle version 확인 및 업데이트]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-29--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-29--002</guid><pubDate>Tue, 29 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. gradle version 확인&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;gradle -&gt; wrapper -&gt; gradle-wrapper.properties 안에 해당 프로젝트의 gradle 버전이 명시되어 있다.&lt;/li&gt;
 &lt;/ul&gt;
