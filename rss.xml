@@ -1,4 +1,545 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 31 Dec 2020 21:58:51 GMT</lastBuildDate><item><title><![CDATA[JVM 분석 툴]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-31--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-31--001</guid><pubDate>Thu, 31 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. JPS&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 04 Jan 2021 00:14:55 GMT</lastBuildDate><item><title><![CDATA[도커와 기존의 가상화 기술과의 차이를 통한 컨테이너 이해]]></title><description><![CDATA[따라하며 배우는 도커와 CI환경 강의 복습]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2021-01-02--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2021-01-02--001</guid><pubDate>Sat, 02 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 하이퍼바이저 기반의 VM 구조&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;하이퍼바이저에 의해 구동되는 VM은 각 VM마다 독립된 가상 하드웨어 자원을 할당받는다.&lt;/li&gt;
+&lt;li&gt;논리적으로 분리 되어 있어 한 VM에 오류가 발생해도 다른 VM으로 퍼지지 않는다는 장점이 있다.
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/b8ecd51a61f731a26976525442c72c68/5caea/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 64.16666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAAB00lEQVQ4y3WTzW7bQAyE/f7PUzTooQiSU/sAPthNgeYgJ46klWTJ+rNkdj5KK7SHCKCX3h0Oh+Tubp5nw+73u6981+vV9vv9f/txjf5ntuv73oZhsLpurG1b9yHsum77D+ZyqTcf++zb3W43G8fRQgjWK2CaJgVfrCgKJ0ZR0zRWlpX7JIIQXF3X7pMYjCuEFdLz+WyDiPkAQhiVXKrKsiy3iGUfEa3Ik9PJSp1fRUpCV4iSJEmskjL+Q1gJRGaUpGlqb+/vW7kYuEGEjXC94vtIyA9B2ceH5Qr0zDqkbAI5R+H59LYlGNbW/Hl+sl/fHuzw9Yulh8PSQx+KSBr1sAm5zerDoD1UQ+4lSkml0iCih+xDmPz8Ya9Pj/b6+N3C75eFcNbBJBWjsrdSUpSlFSKn5BAKrUsbOvUUkmkdopt8+tfRBiXzkgHh3FbCNMu8ZwwlrmB6rbE9kRDlDJMr1cYe+th1UCoY69ZyGQwgDD/X0Fg5o3RUL1UET7pdGxxGPgJsau8hgWmaeTCBZEYhRHyxh5mq4UUdj0fHOiGSc2UJOqyKcnlCa2n/PsVMOJJHwngbWOPr8pIBsMEA/IKuzy4+PVauEEkh9PsnPIl9SKvFN/4XLvXu1jahtIwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/b8ecd51a61f731a26976525442c72c68/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/b8ecd51a61f731a26976525442c72c68/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/b8ecd51a61f731a26976525442c72c68/e85cb/001-01.png 480w,
+/devHistoryBlog/static/b8ecd51a61f731a26976525442c72c68/d9199/001-01.png 960w,
+/devHistoryBlog/static/b8ecd51a61f731a26976525442c72c68/5caea/001-01.png 996w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;#. 도커 VS 기존 가상화 기술(VM)&lt;/h3&gt;
+&lt;h4&gt;#1. 공통점&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;도커 컨테이너와 가상 머신은 기본 하드웨어에서 격리된 환경 내에서 애플리케이션을 배치하는 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;#2. 차이점&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;vm과 비교했을 때 컨테이너는 하이퍼바이저와 게스트 OS가 필요하지 않으므로 더 가볍다.&lt;/p&gt;
+&lt;h5&gt;#2.1. 도커 컨테이너에서 돌아가는 애플리케이션은&lt;/h5&gt;
+&lt;/li&gt;
+&lt;li&gt;컨테이너가 제공하는 격리 기능 내무에 샌드박스가 있지만, 여전히 같은 호스트의 다른 컨테이너와 동일한 커널을 공유한다.&lt;/li&gt;
+&lt;li&gt;컨테이너가 전체 OS를 내장할 필요가 없는 결과, 매우 가볍고 일반적으로 약 5-100MB 이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;#2.2. 가상머신&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;VM 내부에서 실행되는 모든 것은 호스트 운영체제 또는 하이퍼바이저와 독립되어 있다.&lt;/li&gt;
+&lt;li&gt;게스트 OS를 부팅하여 어플리케이션을 실행하기 때문에 무겁다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/459af3404c9060b9e2104252a608888a/748b0/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 868px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 71.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABJ0AAASdAHeZh94AAAB5klEQVQ4y1WTh47jMAxE9f9feHtbLo57790JT4+JBKwBQhQ9Go5IyjR1I3VVyzTNsiyL9H0v4zjKuq4y9IMMwyDrsmqsKispikLappU8y9W6tpPZnuU/q5nnWQ9qwPpd11ny6Rc5+23bZN93Xbd1k/M8vQ8WAeAMZI/HQ6ZxUruuS4H4EHAQIMncIbeHyO35Nw6jmCIv9FpI5yooRBnWtq895IDrulZc3/XSNM0Lb/f47p9xNayqyoPKotQyACrLUskgj6NYkiSxSXpJ01T95l3POI4lt+IMRAAcoWa3SVxmiLgB5Ld/NwnvoaoOboHcg7sKiMJI/2WW2EBADVDhruYawar7YfR1o5Pg1Lem8feEkMhs2y58NCMMQ0mTVIIgUEXuW+ZFG+U+CFEXRZGSepwlNbCihEOu/a6DrG50MOqquDd2sfP5WhdfZwMB6igshUZhlmWSxInW5/l86pUYbnwalqWZYlhpDI1T5W4OcXgBXJPXQDM4CBCVWtNx8jjiulpMnudq7lEYQAww8lFFFzFI/ZC/GwKOGAm4Hg0lTuw4jtdguxrQiJ/vH/n48yGffz/l6+vbk2gXbd04iDFSsU3OtSmLxh+vRGa3XcbO45TrvPwhfN4pCsl+7MevPU8S0/i2+bf+H++vL+QS9TatAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/459af3404c9060b9e2104252a608888a/748b0/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/459af3404c9060b9e2104252a608888a/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/459af3404c9060b9e2104252a608888a/e85cb/001-02.png 480w,
+/devHistoryBlog/static/459af3404c9060b9e2104252a608888a/748b0/001-02.png 868w&quot;
+        sizes=&quot;(max-width: 868px) 100vw, 868px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;#. 도커&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;카카오톡 컨테이너와 노션 컨테이너는 커널을 공유하고 있다.&lt;/li&gt;
+&lt;li&gt;각 컨테이너는 실행 프로그램 및 필요한 양만큼의 리소스에 대해 격리가 되어 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/a6203456312d4ec94a4f3b5da6048abb/91f10/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABJ0AAASdAHeZh94AAACIElEQVQ4y1VTi27bMAzM///a2izNtgDBgDw6rG2cOPFDtqyXbzw68hIChGjJOt6R1GIcR9BiDDgefuPHeoneVHCDkfWGYejFHbz3cM4hhoDPrwLfXr6jOJforEPVdGhNr2eLDOj9gE6AiqLAYb/XNYYBGKMAeVwuF3Umti7gUpa4Xq+oqgp9b2EHr2czIJl4J+4D2raFMZ0AMavDIMy6rlMnS+ej/metFbAevRUy/YDwyDAGrzJjTEgpiidJYNVjjE/Oy2Sdv52AE5RYM2AgE2s0s/dOVyes6YyZXV1qScBcVzrjTmSPQuJJcgxW47yXkkeKXuOmaVQyjZKjXM6W0qg1fJLsRJobOpXM4nIN0ig6Lw/DxIql6K1TmVkyFZD1U1NSDAoYQrzLi1MNvdX4sYYK6PxcBsZWkok2LGbeMh4YPZ5M9sYU8gfGe+RDmuPpRPbiVIIFJZAlJddViUZGpuuMjk1T32D73Cg/O4e41poa9aqu5Z6ZmrLb7XA4HLHZ/MTm1xu22y1eX1+wWq3w8fddm0LA67XUxtAo+fj+B8vlEuv1Gnu5XzdGyzEz5Kjwqd2uBc7FBy7nT7RNqS+IrDpjtMusGRtwq1p8nc7q5a1BI6wTAXMd+GOeLXaVXearYHe5MumUmHNn5z0+gvyfMvw/Nk43aMa0qOvmPmMTcDYCMjntdDrNZeAez54A6Tzg+8zycvZHQH7zLA/7pG7a+webTJD/YjkGqwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/a6203456312d4ec94a4f3b5da6048abb/d9199/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/a6203456312d4ec94a4f3b5da6048abb/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/a6203456312d4ec94a4f3b5da6048abb/e85cb/001-03.png 480w,
+/devHistoryBlog/static/a6203456312d4ec94a4f3b5da6048abb/d9199/001-03.png 960w,
+/devHistoryBlog/static/a6203456312d4ec94a4f3b5da6048abb/91f10/001-03.png 992w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;#.도커 컨테이너를 격리시키는 방법&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;컨테이너와 호스트에서 실행되는 다른 프로세스 사이에 벽을 만드는 리눅스 커널 기능인 Cgroup과 네임스페이스를 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/e2068bae7be87e83caeb468a821e8a83/ee455/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 863px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 31.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAABGUlEQVQY0z1QCXKDMBDj/39rmplCzB1zhBuS1tyUqN4lqWfkxcNKq5VR5AUiGTGWZcG2bQfWo/5qdN8KMk7hex7ERaCuaqzrinmescwL8+it+h5G27YQQuD0cUJ2y5BnOeI4RpZlkFKirmtNXJAkqUaCOIpRvQSnacI4jlBKoddi6kfBIPV93xEGoXbgs4ht23BsBxfrcjjRxDzPMQwDu3Ndl/+fP89wHRdd26EsS64GqRdFAcu0YH6ZkFfJjfRNA27pjaf7vg/vtTJtRII0mJBq92SEdIyyKJlMjbawWUToGgTBMcQ0WZSiITRNwy5J8Bpeed2u6/4rZ9jUDTdXZcWZvcmU5+P+QNu0nBed5/OpL3AUBHq/QT1/8bm+shKkRcsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/e2068bae7be87e83caeb468a821e8a83/ee455/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/e2068bae7be87e83caeb468a821e8a83/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/e2068bae7be87e83caeb468a821e8a83/e85cb/001-04.png 480w,
+/devHistoryBlog/static/e2068bae7be87e83caeb468a821e8a83/ee455/001-04.png 863w&quot;
+        sizes=&quot;(max-width: 863px) 100vw, 863px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[컨테이너가 생성이 되는 방법]]></title><description><![CDATA[따라하며 배우는 도커와 CI환경 강의 복습]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2021-01-02--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2021-01-02--002</guid><pubDate>Sat, 02 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;컨테이너 이미지&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;이미지는 응용 프로그램을 실행하는데 필요한 모든 것을 포함하고 있다.&lt;br&gt;
+- 1. 컨테이너가 시작 될 때 실팽되는 명령어&lt;br&gt;
+- 2. 파일 스냅샷 (디렉토리나 파일을 복사 한 것)  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;이미지로 컨테이너 만드는 순서&lt;/h3&gt;
+&lt;h4&gt;#1. Docker 클라이언트에 docker run &amp;#x3C;이미지&gt; 입력&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ docker run helloworld&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;#2. 도커 이미지에 있는 파일 스냅샷을 컨테이너 하드 디스크에 옮겨 준다&lt;/h4&gt;
+&lt;h4&gt;#3. 이미지에서 가지고 있는 명령어 (컨테이너가 실행될때 사용될 명령어)를 이용하여 앱 실행&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;3.1. 명렁어 실행 &lt;/li&gt;
+&lt;li&gt;3.2. 커널을 통해 앱 시작 &lt;/li&gt;
+&lt;li&gt;3.3. 프로세스 작동&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/418a7084f26730d69bb6634600412a3a/c6671/002-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 58.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAACC0lEQVQoz21Ta5ObMAzk//+5fmnSzIQjhEIIxg8M2LzZSia59m7qGWEw9mq1Wkf7vuPfwd9hjWd8Hcu6IMsynE4nlGUZ1rZtw7ZveONE/BBCIM9zTNP0BWDbVjSNhDIaUinIWsD5ngBWAp9fsWBephABsGkalI8HiqIIwJ3zmOnQ3kmsvoFSNYrkivz8A/k9g3cO/xucPAA+COx2u+F0PuN8+glTPzHo8gCkTVyI0wImPcN1Fn4Y0PcdRY+ewHnuug6NNRjoX8SPRlJZlcA6OiwUw3jQZ8CVynJ+gO0dpnEM64L2xr8uuMUxkuQW5PKDg6MEkbUWRmusyxI2zzRzkjcgC86Arkzg1JNK7tFqCSkqyPQCk8cwtv3L8Hq9IqZMLLoj+vM8Y5jmT12cd/AE2Is8APYE3MgKvjXoVYkqvaKlc7ZtDkBBzbh/fCBNU2glMfUWg1WAt4GdbW1IoomFokp8lUJqA0PN1I1Fkt6pmcSWmsdaRlxu9XxC08wCT9MIr5/YbYV1IJBnjlrUyJIEN0qcxReIugZLxQCiqsBOUSQDn4+894Eqz+7VtWXdjpLJb1orWGOoigS/ydS1VMFeDbEztM4OqSlBLWu0LTF834zPG3Lcl3BTuGTDYo8Dxnk62FM3JR1m67QkR1Hk0EahJUsFDb8b9Du4o652wXdHdF0bvjnZ+jIzv3Pw+AO0ppo42R+5FAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/418a7084f26730d69bb6634600412a3a/d9199/002-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/418a7084f26730d69bb6634600412a3a/8ff5a/002-01.png 240w,
+/devHistoryBlog/static/418a7084f26730d69bb6634600412a3a/e85cb/002-01.png 480w,
+/devHistoryBlog/static/418a7084f26730d69bb6634600412a3a/d9199/002-01.png 960w,
+/devHistoryBlog/static/418a7084f26730d69bb6634600412a3a/c6671/002-01.png 1129w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[도커 이미지 생성]]></title><description><![CDATA[따라하며 배우는 도커와 CI환경 강의 복습]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2021-01-02--003</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2021-01-02--003</guid><pubDate>Sat, 02 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;#. 도커 파일(Docker file)이란?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;도커 이미지를 만들기 위한 설정 파일이며, 컨테이너가 어떻게 행동해야 하는지에 대한 설정들을 정의해 주는 곳&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h2&gt;#. 도커 파일 만드는 순서&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;베이스 이미지를 명시해준다. (파일 스냅샷에 해당)&lt;/li&gt;
+&lt;li&gt;추가적으로 필요한 파일을 다운 받기 위한 몇가지 명령어를 명시 (파일 스냅샷에 해당)&lt;/li&gt;
+&lt;li&gt;컨테이너 시작시 실행 될 명령어를 명시 (시작시 실행 될 명령어에 해당)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/66104116bbd13b57537dd50c355885b4/00e65/003-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 327px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 138.33333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAcCAYAAABh2p9gAAAACXBIWXMAABJ0AAASdAHeZh94AAACtElEQVRIx5VW144aQRCc//8F3u/lLF6wMcE+gQy2AEsglqAjXCCHO3JO5a2xGs8tS3BLLXZmd2qqq7tnUIfDAbc4TX7NZ+d3CjeaE8D5LGM1GAzw/v7u6vJuv9+fBaXxvYyPgPwVl/Hb2xv6/T622+1JeDTOD4fDI4HxeHw55Ol0im63i91ud6IhF3PD1Wp1nJvNZlDZrIXNliH9211CFEBhSFsul5o135nafQj5cIEhWdA2m40OiyGamp4kZbFYYGYvnDqc9EejEZ6fn/H09KSfzfAkESdlwxCczoXciFYqlbTfamoymeCSk5mpHyViQjjv5orUN+s11g5nIrjYTAoXcBOOnd+zEoilSqUydmeyQh17vd6xbAhm6miWUqvVgtfrharV6tjjPKBZhwQkGzejHNRazedzTGxNxg7nYrKjS8iclxo0v+MvNyd7tXbRz9SFdSeAHEsVOF0qREl2uJDOZ8kimTAxZqdcLRvJjmkE4BxBnb18zVXeyiL4NYjQ9wh8n78gGPpmMx196GWzva4ynNqiDu2wWp0OrFwezVbb7pLlMQkMmdmLRCJIpVKoVCrI5XIoFot4eHiAZVlIJBKIRqNIp9OXjy9mkAdCvV7XAATr2Buzv19eXvS42WyiWq0im83qseJLFqWz4QWQiSKjQCCAUCiEQqGAcDiMZDKpmfE08vv9iMVieqzy+TxY3G6A1JB1yIOCLHnqcPPX11fNjKw5Ztjtdlu/V4+Pj6C73WiSFBpBqFMmk9Esy+Uy4vG41tbj8WgMn88H1Wg0UK/VjoUrJWMy5JwULjuLjPmNHHOUhgew7pTYj5/4lfhta5LC/f0n3N3dgTJIls3D4aayqdnsavUGGo2mXTItrRWBJCn/Xdh/j3zzUJ3qDmH25Co1r9GrDJ2XOwHMe5rgbn9Fztkft7hpG9LzVtQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/66104116bbd13b57537dd50c355885b4/00e65/003-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/66104116bbd13b57537dd50c355885b4/8ff5a/003-01.png 240w,
+/devHistoryBlog/static/66104116bbd13b57537dd50c355885b4/00e65/003-01.png 327w&quot;
+        sizes=&quot;(max-width: 327px) 100vw, 327px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;#. 베이스 이미지란?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;도커 이미지는 여러개의 레이어로 구성되어 있다.&lt;/li&gt;
+&lt;li&gt;그 중에서 베이스 이미지는 이 이미지의 기반이 되는 부분이다.&lt;/li&gt;
+&lt;li&gt;레이어는 중간 단계의 이미지라고 생각하면 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/0fb726fdcb867d7d6542669f00e1f265/2ad15/003-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 801px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 54.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABfUlEQVQoz31S2ZKCQAzk///NKi8UZNFFQEUQPMELe6ejmWL3YVOVmiEk3Z1knOfzifv9Lt62LabTKVzXxev1snHm8FuNeTSNdf85ZVnidDrhfD4jz3MkSYI0TbHblRKjHw4HKSLw9XoVJ5GCdd05Ho+WIcsyAXsD7iwrAQl8u92sOoI+Hg/8NYfJBKUziUU8m6aWGIEIzpOqVB29aRoBVdWs/aVwtVoh+o6wXMYoisKy1nVti2lVVWGxWCA2eXGcoP20yxxRyAIycJbqosgwUqm2qypYyJjmqkK6oy1RXWFOXQoVJkkqbV8uF1kITTfe3SzvnK0shQxUuN/vpZXCbHq9XgvgZpOJIsYHgwGCIMBsNsNwOMR4PIbv+/A8T54Zn1sURe+Wlbnf78P9JIZhaBVQJWMsovd6PQGik2gymWA0GhnA5Vsh1QRfIXzPN8yuMM7nc6MmEOU6Y26Wd9ZwjrxzHHrnf9kyH/d2m0sx79J+WZmWN/LNOXdn9p/9AN+KSgY8NLyHAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/0fb726fdcb867d7d6542669f00e1f265/2ad15/003-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/0fb726fdcb867d7d6542669f00e1f265/8ff5a/003-02.png 240w,
+/devHistoryBlog/static/0fb726fdcb867d7d6542669f00e1f265/e85cb/003-02.png 480w,
+/devHistoryBlog/static/0fb726fdcb867d7d6542669f00e1f265/2ad15/003-02.png 801w&quot;
+        sizes=&quot;(max-width: 801px) 100vw, 801px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h2&gt;#. 도커 파일로 이미지 생성&lt;/h2&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/97dcc3ccddb4c6c99d52e3c8420d20c0/681f1/003-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 899px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 14.583333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAhklEQVQI1z2P2w7EIAhE/f/f9KHbtRov4LXJrNBsH06GMIOCabVhjIHWGnrvmGOi1grpV350zaUqGYGZca9ba8kqOyvvGOccrLXw3mvw/JxaH8eh+MsjhKBejBGSl+GUMkopYGK4r8NaC711mJzLNpOa/5+o0IsM6FZbBSJSRh9Pj/n15MIfySDnFnOqDwAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/97dcc3ccddb4c6c99d52e3c8420d20c0/681f1/003-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/97dcc3ccddb4c6c99d52e3c8420d20c0/8ff5a/003-03.png 240w,
+/devHistoryBlog/static/97dcc3ccddb4c6c99d52e3c8420d20c0/e85cb/003-03.png 480w,
+/devHistoryBlog/static/97dcc3ccddb4c6c99d52e3c8420d20c0/681f1/003-03.png 899w&quot;
+        sizes=&quot;(max-width: 899px) 100vw, 899px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;#1. 도커 파일 생성&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;기본적 토대 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# 베이스 이미지를 명시
+# 태그를 안붙이면 자동적으로 가장 최신것으로 다운
+FROM &amp;lt;이미지이름&amp;gt;:&amp;lt;태그&amp;gt;
+
+# 도커이미지가 생성되기 전에 수행할 쉘 명령어
+RUN &amp;lt;command&amp;gt;
+
+# 컨테이너 시작시 실행 될 파일 또는 명령어
+CMD [&amp;quot;excutable&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;#2. 도커 파일 빌드&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;build 명령어 : 해당 디렉토리 내에서 명시된 도커파일을 찾아 도커 클라이언트에 전달&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/22a6be0fb508ea74e82a764e3a170473/e3829/003-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 31.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAAAwklEQVQY042RSXbDIBBEOY2QgGYmCug5m9z/TJUGrFje2F78V9UMRQOitoR2ZORiEZOBoQVkOxJEE2PXf0/dv0DUW8DPb0a9eZSqWR1K03B55SDFbCPwU4SLAXY/YEqFSjt0aVAxQ1kN7cwIpd71QL5FKEdY0jdk/ILsmiq2mKA9QXnLuEGvZ7dn16e/skFoXixzw5or68EbOSR4JmALkTUOP/EXH+4H2Qd8I9FTtaPHJA/2emIuap7neO38rPMppv4BVBy3w03nIG4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/22a6be0fb508ea74e82a764e3a170473/d9199/003-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/22a6be0fb508ea74e82a764e3a170473/8ff5a/003-04.png 240w,
+/devHistoryBlog/static/22a6be0fb508ea74e82a764e3a170473/e85cb/003-04.png 480w,
+/devHistoryBlog/static/22a6be0fb508ea74e82a764e3a170473/d9199/003-04.png 960w,
+/devHistoryBlog/static/22a6be0fb508ea74e82a764e3a170473/e3829/003-04.png 1077w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;도커 이미지에 이름 부여 (-t : tagging)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ docker build -t &amp;lt;나의 도커 아이디&amp;gt;/&amp;lt;저장소/프로젝트&amp;gt;:&amp;lt;버전&amp;gt; ./&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/d40ac82d92fd3f1ad6d0fc341e893484/eb4a1/003-05.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 34.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA0UlEQVQY033QSW7DMAwFUJ8mkmxx1CzZTYAU6P1vVEdFgyzSAm/BBfkJctlv4foZ+yH7Ve5fedxIsgFaH9D+b9Ecpe5UB5Wu/YNyW9F7Bs8e0Ex/D2/CNhQbmgntEofTOCdhY9yEPMHZhGie4MUCKiZ2G4tJzYbkVG2IJuQfVsPK6ISmR7EKn6Hnyo1pQeEkLYYWtWWSQnqqTJV+sUxcRDvRGeXRwbRo2o6CI+Fe6KjcC7XoC7i3GjhC65833+4tDwh5TRXqQEmW5OJnx1uvD/sGTu9N5OdkjeMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;003 05&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/d40ac82d92fd3f1ad6d0fc341e893484/d9199/003-05.png&quot;
+        srcset=&quot;/devHistoryBlog/static/d40ac82d92fd3f1ad6d0fc341e893484/8ff5a/003-05.png 240w,
+/devHistoryBlog/static/d40ac82d92fd3f1ad6d0fc341e893484/e85cb/003-05.png 480w,
+/devHistoryBlog/static/d40ac82d92fd3f1ad6d0fc341e893484/d9199/003-05.png 960w,
+/devHistoryBlog/static/d40ac82d92fd3f1ad6d0fc341e893484/eb4a1/003-05.png 1083w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[jmap 사용 시 main java.lang.reflect.InvocationTargetException 발생]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2020-12-31--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2020-12-31--001</guid><pubDate>Thu, 31 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;문제&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;jmap 사용 시 아래와 같은 에러 발생&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/83305625508723f528d6122dc0e3d346/38a65/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 71.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABJ0AAASdAHeZh94AAAB00lEQVQ4y3VT63KyUAzkTWr55CYCcquAclHQ1vb9n2ebDR6Hb4b+2MlJgM2eTbCqukBzKvFxzFA3BQ5pCNezX3Dcd4kG9uI8w3E3LzC3sjxCmu0RJwHyItFzFPvwgy1cd0liL2DI3uH5c26iRRIqq+occRxgFzoIhMxxNtg6m6dCexV85gf/lCyQOCvMIkxTj0ZIWfSkWFUF8jxBIc2SJFRyJSH5CowtvLaV5zGG4aRErhRI2raVoEbfNWBDfuT7sxLvFe2nsq2qDHaO5ko4ikIOJdy7SA47vX5exFJLUZQJ9pH3J+g3sY98zZXw++eO++cVxyoHh3S7X/D1mDBczmJFqY3WSUxN8mfdok/n9ojyI0WaztPOpAkVckh8iaoJPiO5wZpiXZvT+SikFbq+EVUnjGOHXnyd87Mqnm4DLtdWLWAzNjVKl7C2zpt6xQ+uQnSXjx+PGz6/xplI/CU5l79uZlRijfGZJEvFFq/Bv4VKqOA6tkrMM9F2tTakIi49/yRG3oyY1UaqnBth7UIXlewgSczVxqnTaEC1VEliemlIGQnWmDNa3J2iPOgu9kOjXnJI9I/qiF7OfOcgQ/trff67MmVTMrvRE9bMVM3ZYG0QS/wCuOKzbVXD+fsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/83305625508723f528d6122dc0e3d346/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/83305625508723f528d6122dc0e3d346/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/83305625508723f528d6122dc0e3d346/e85cb/001-01.png 480w,
+/devHistoryBlog/static/83305625508723f528d6122dc0e3d346/d9199/001-01.png 960w,
+/devHistoryBlog/static/83305625508723f528d6122dc0e3d346/38a65/001-01.png 1075w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;원인&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;기본적으로 설치한 jdk에는 debugging이 포함되어 있지 않다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;해결&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;openjdk-8-dbg 설치&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/cdde29de0ca668497ea58f8972332365/7608e/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 735px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 59.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABwklEQVQozz1SCYrcMBD0U5IZn7qP1mXJ4/GyEJYEkv+/JmWbBApRQuqu6pK6nOk4NudUzs46qQ23VhgrwIGYnJBzP3wbxu83xuk/eXQu8li1S2KtUWlGwUg1Mz7O85Ox4QQfUa8UE2oB5AUuprNY6T7GJQVW1wCdFWu0sJMKrTVJzWY2LGKCF7SWckEjWON8hJ3uh3p8huHTj7+SSNGFaEohjPCO7kh+D/ZFdiNzj+O9AgEwJpHpinw2ml607PCfLJFK2edov5z+k8NPsr8TfZGBYSiry/PNId4x/TBx0GFyccnZB1Kl+LM+ueg1urQcciJrJZwbzQ2UNYOFCTNz8TB+sG7yDmakcyIEDeAYt51XiCBEe5chNn3qs2XpkWin7bAdvjRTt/A+6vbKraXXXrZXeR9tf9d0PqFAFhjKB00XlEZyE4r7uuu0irbTvjdUti0DSB7IxUMW9f+2dBkxIGWl86nWzeSqc4W4z6srNeLNPWFIjn/ivPSkLlyy13py0p1yfXub0nRuqu6qNHsqt3wc7eNjW2vAVUjdgHPoI04Q2OkW/qQkHXH8rRg9EoLI1fsk2Co1wwL0zfVtERu2lynxFwvCjDxS14MaAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/cdde29de0ca668497ea58f8972332365/7608e/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/cdde29de0ca668497ea58f8972332365/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/cdde29de0ca668497ea58f8972332365/e85cb/001-02.png 480w,
+/devHistoryBlog/static/cdde29de0ca668497ea58f8972332365/7608e/001-02.png 735w&quot;
+        sizes=&quot;(max-width: 735px) 100vw, 735px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;설치 후&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/d0f60ef54a0f5e2154e3b338a0d25dd3/7cb89/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 563px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 170.41666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAiCAYAAABfqvm9AAAACXBIWXMAABJ0AAASdAHeZh94AAAEJ0lEQVRIx5WW6XLiSBCEeZCNXRubU0iIWxwSlznsYdax7/8wtfmV1AQw9sTujwohqZWdlZVVTW007tt+X9hiObXRKDHux5PUprOhrn3Li0zPEsvmY3+2XM2sGzWs3a5bt/tqzdbzXdSK9cJ2u1wfzi1bjP26XE1tOh3YfDGx/dvaQSa6B5jN4qT9C1AZT1Zj8XqztFk2su2uZDqfl8CFIkk6FvVa9tr4y+PllevTFaTRfGDIroNhz1MdKuWk37new6rTebHn+h8OUgLVv2FXAaaDnqcS0hm7hiX4cBQLPK70TG2o3wA+sroDZKELLjaATGcDMUsdADlmAkOzTrfh8TVQ/cq8BgvSjKVVP40sTbuu2y0L10/alc/q30TFEKC1Kk1BqDZV5RrHZSFYlPTLTdCwQTSfr5re61q3WqP5ZKtVZpvtStVeuO9m2dB6vabxjoUwDxWHQE9V9036kfXi9g2oAFsyKLaB2UI+xKzOrALjPR9vteHpfFATrN1Sx+PODgoAy40DoD5C/A1eVAEidQFgrUoTrrE+KgpkybXp1PJ87gGRUpb6PUN2fDtsZIuexP/zChiCorEZ9sE6A1ltIhcQzYdCiWHdluqOpXT0tlPa6AdwQ7tThFQaJmLJ2nb7xaPbeVU0rBc1BVovgZtVyqt85qIDiFaYvC/7DAaR9aUfgAwQ1y9n04mcUNjptLe1vmGjjjYgHPCoF39/fkj0vZ0VXKk4Ji9jqI93dvn5bp//XOwgeY66h0A6oNItNz/XGnottCMCIzpMYczCjioeKX3MTzfBHlvxMboCwPsA5oAjLR4rRaYNqQaQsCAEzx7jlhlOcMA8z2y3z+38/qZr4bOQIjFxGKS3LB7jFvDKkOmCDw/HrWbhxNOjU9AOxgwMhgWgsA8RGD5mU8OYeBAN0QWt3j8OXhg0pRs+VbDjaev3dNTpvPPNHvVzQNpmqSKQKmyCyaki/U0HFeuyS7gvVH3ez+XXRykckAGKjmjI7iulz1lCkDofMnmi+DcFSVre0w6IHmVq21I3TWvSh81cmsJ8cOO1r4pyB4iGAHgKqiogpPvx4+igAKa/AQToF4bYZbNdeprjcVIdWLFbh4OqX5n4a+s8ADI0N5uV9Cv8cKKHKQ5gMONZ8n8AqbJXUwEI5zIFuvw8u7a04Xcafgvog1PasYDCeF9X+tG7bPSfi0KKsONgKify+Np2wWe3VglxD3oDyEIYhZEF+I/LyZ/RkgT6jqrjFgKh6l8yDBpm85F69MVnHwcQOpYn4dIul7PfY6ejz8Wzm/62U+4AV3l5jGKbt8Pae5lB662mtuNj9KTP+U3hJqr+XerJVcPo+n8Qlj5p5D3sMqr+55Ai6YbpE9K+HwwVIMad+3+boQ/ZcLoxxTnVeEd/Z9nY/xD4bz3LtDYM1XAl/gVKCCq3Sd0R1wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/d0f60ef54a0f5e2154e3b338a0d25dd3/7cb89/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/d0f60ef54a0f5e2154e3b338a0d25dd3/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/d0f60ef54a0f5e2154e3b338a0d25dd3/e85cb/001-03.png 480w,
+/devHistoryBlog/static/d0f60ef54a0f5e2154e3b338a0d25dd3/7cb89/001-03.png 563w&quot;
+        sizes=&quot;(max-width: 563px) 100vw, 563px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[JVM 분석 툴]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-31--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-31--001</guid><pubDate>Thu, 31 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. JPS&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Java Virtual Machine Process Status Tool&lt;/li&gt;
 &lt;li&gt;JVM 프로세스 표시&lt;/li&gt;
