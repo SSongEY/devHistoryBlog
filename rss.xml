@@ -1,4 +1,424 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 04 Jan 2021 00:14:55 GMT</lastBuildDate><item><title><![CDATA[도커와 기존의 가상화 기술과의 차이를 통한 컨테이너 이해]]></title><description><![CDATA[따라하며 배우는 도커와 CI환경 강의 복습]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2021-01-02--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2021-01-02--001</guid><pubDate>Sat, 02 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 하이퍼바이저 기반의 VM 구조&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Jan 2021 00:23:57 GMT</lastBuildDate><item><title><![CDATA[Docker 기반 Remote Debugging 개발 환경 설정]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</guid><pubDate>Wed, 06 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 작업 구성&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/6d12ea3a3581d40219bf4223a9aa4bd3/80d71/002-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 625px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 72.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABJ0AAASdAHeZh94AAABwElEQVQ4y3VT23bCMAzj/z+QN9gKo4NCS69JcymaZZoOBus5OonBUWTZWeHPN00TbrfbEnOfYq5t26JpGgzDoGvXdYoQguasmBRj1CDPc6zXaxhj9HAif8TpdMJms8HxeMR+v8d2u9WYFykhmQmSjuOo4J7w3v9RHxXvPuZTwEKYSBMRY5JTSZbtBBmqukaYbvo7y6Wqvu813zn3S8iA5TCJZVtr9U/blPBdhWL/geb8Dd9WcM0FtLQWcpbPMzz7RJgUvewFTJJ2AN7Alwe4ukAUlVn2Kd5tcTgctOQXQjaC8q2shJOy3NBhMg2Krw9cyzNp4UJEkPxOu13rmVTlE2El8nPp2Fk6d97t0Espzghh8KKU3k6IVEzz2fEgNjmjl5Ao+b9KzdCxeJg7IsQ7Ufo0l5CSo7OIfXXfS17ieRqbR7J7EtVAD6XV+TBPgIUZeon9+5LZ2bIsUVUVrhwPKXXsaky2xSXfYagviEMNJ11nyUVR4FtGiq/kpcsMCBpM8FnpbFmD6EfxQYZ5EmWjNMsMyxMlaXqSC2Eak8dnlkz2s1+Lh+LnOF9OsKq0Ty9slQx9Dy8XzHNIVfMr+g8U8gOT0UUyRPXAPgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/6d12ea3a3581d40219bf4223a9aa4bd3/80d71/002-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/6d12ea3a3581d40219bf4223a9aa4bd3/8ff5a/002-01.png 240w,
+/devHistoryBlog/static/6d12ea3a3581d40219bf4223a9aa4bd3/e85cb/002-01.png 480w,
+/devHistoryBlog/static/6d12ea3a3581d40219bf4223a9aa4bd3/80d71/002-01.png 625w&quot;
+        sizes=&quot;(max-width: 625px) 100vw, 625px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;작업 내용&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;git repository 이동&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;#1. WAS Dockerfile&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;FROM openjdk:8-jdk
+
+# 환경 변수 및 작업 경로 설정
+ENV WCA_LIB /usr/local/wca_libs
+ENV CATALINA_HOME /usr/local/tomcat
+ENV PATH $WCA_LIB:$CATALINA_HOME/bin:$PATH
+ENV LD_LIBRARY_PATH $WCA_LIB:$LD_LIBRARY
+
+COPY docker/lib/lib.tar.gz $WCA_LIB/
+RUN tar -zxf $WCA_LIB/lib.tar.gz -C $WCA_LIB/
+RUN mkdir -p &amp;quot;$CATALINA_HOME&amp;quot;
+WORKDIR ${CATALINA_HOME}
+
+# 패키지 설치 wget은 톰캣 설치 파일 다운로드 위한
+RUN apt-get update;
+RUN apt-get install -y --no-install-recommends
+RUN apt-get install -y gnupg dirmngr
+RUN apt-get install -y wget ca-certificates
+
+# 톰캣 바이너리 다운로드 및 압축해제
+ENV TOMCAT_VERSION 8.5.61
+RUN wget http://apache.mirror.cdnetworks.com/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz;
+RUN tar -xf apache-tomcat-$TOMCAT_VERSION.tar.gz  --strip-components=1;
+
+# 불필요 파일 삭제 후 webapps 디렉토리 새로 생성
+RUN find . -name &amp;quot;*.bat&amp;quot; -exec rm -rf {} \;
+RUN rm -rf *tomcat*.tar.gz;
+RUN mv webapps webapps.org
+RUN mkdir webapps
+
+# war 파일 복사
+COPY build/libs/ROOT.war $CATALINA_HOME/webapps
+
+# tomcat conf 파일 복사
+COPY docker/tomcat-conf/* $CATALINA_HOME/conf/
+
+# 컨테이너에서 사용할 포트 (서비스 포트, remote debugging 포트)
+EXPOSE 8080 5000
+
+# debugging 모드 시 필요 환경 변수
+ENV JPDA_ADDRESS=5000
+ENV JPDA_TRANSPORT=dt_socket
+
+# 설정 완료 후 실행
+#CMD [&amp;quot;catalina.sh&amp;quot;, &amp;quot;run&amp;quot;]
+CMD [&amp;quot;catalina.sh&amp;quot;, &amp;quot;jpda&amp;quot;, &amp;quot;run&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h4&gt;2. DB Dockerfile&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;FROM mysql:5.7.32
+#FROM mariadb:10.4.10
+
+# my.cnf 파일 복사
+ADD ./mysql-conf/my.cnf /etc/mysql/conf.d/my.cnf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h4&gt;3. docker-compose.yml&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;/devHistoryBlog/history/posts/2021-01-06--001&quot;&gt;Docker-Compose 내용 정리&lt;/a&gt; &lt;/p&gt;
+&lt;br&gt;
+&lt;h4&gt;4. IntelliJ 원격 디버깅 설정&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;/devHistoryBlog/works/posts/2020-12-29--001&quot;&gt;IntelliJ 설정 확인&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Intellij run configurations에 docker-compose 등록]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--001</guid><pubDate>Wed, 06 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h4&gt;#.1. docker-compose.yml 우클릭 후 Create docker-compose.yml.. 선택&lt;/h4&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/dc786e113454ee04fc6e7a332de7326c/17602/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 597px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 92.91666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAIAAAAf7rriAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACwElEQVQ4y11U2W7TQBT1tyAkBE1aCKmbJh7Pas/msR03GyqLUCvagvgQ3rvwyp9yxlZDqXRljSc69yz3Okl7tqrqpll2pbFUSMoFYYIKRShHcanmGT05XRyfzCbTlM5TmaV8kQoyE6eHCa9Wc26I8kS6THla+EJb7XzOOLrEFkzkKC5RGZMZV0xpocqjo1GS+t27mRyn4ijloyk9YWa12QK/yFlG+bPCZc6FrWpIm0xnydn2gwuNqQIaLyiDcusDbpS24JwT9hQJjCyNi2B5nM2S0O2sq/AewTkbCH1oQttBfGFcVNuDuYo4G2q0hpHx4UHyZce1X5bWoSUcMlmE9szXLZcFzvCWD84pBy1ucB+ZuRyPx8l65Y1vYGMAgEFpY3wwLgA5CBnAj54l+CF7MpkkdvPJh7qqW5AP8tDV1Q2Ux4ExsfdMHisqKsrRaJSE1Q7ZwAlasJ4ZhK5uYXCR5cOo/i8OI9AYwe1qUxiLDKyPypEQCBF4ab12FS/0s5kNr1z14Gq5Qqq2CngCAFp0hWYYq5ol+LOc7QWDE90jARMRbKraRHB8DsIACO0S4SObp573A+ujVaPxKPFth7TwDuV122G8dbdGL22xpz0JWuydDzPjEtawvwlTJen3lkQerK4Q2IXQQLOtGuNr7bB8iD3+ikOE8ViEisQaI4TEaI21znllC+6Ztdo6ow2+tOip1AXJs4wsMKNSK1VKximySN6o9QFxY+JepvLFlB9Qpz9ehu21X19Wm29udVFtr8L2yiy/MnfO/Dn3HxnKbuEiOZTte2YnmXp9zF5NTt/Knfv5p7u5Xd48dD8e2uv77nus+ureXt6Zizt9cWsuf+vPvwgvEppjE1hOGeOccYEDjs77Ej6cVWWxICTL86HwXfXF8ETyyb/p94XYTJ8TRphjPbmKfwB9LajghUF+hYnrAMhf3A8zByf/358AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/dc786e113454ee04fc6e7a332de7326c/17602/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/dc786e113454ee04fc6e7a332de7326c/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/dc786e113454ee04fc6e7a332de7326c/e85cb/001-01.png 480w,
+/devHistoryBlog/static/dc786e113454ee04fc6e7a332de7326c/17602/001-01.png 597w&quot;
+        sizes=&quot;(max-width: 597px) 100vw, 597px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;#2. configuration 설정&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;server 는 디폴트로 생성&lt;/li&gt;
+&lt;li&gt;compose 파일이 선택되어 있는지 확인&lt;/li&gt;
+&lt;li&gt;빌드 옵션 추가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/a57ebb514687b63c91bdb6804845978e/38cea/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 678px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 102.08333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB6ElEQVQ4y4WUi27rIAyGea01XA2YS5psSndvdaSdZ5i01z8/pD3q1k6VvjqQYmx+7IhkR+ISUw7c8JxiLm2ciu8WUDwOuIywypA0zjgvtI8uppBLmea8ncvcLKbaebyHv4+JAHf6GwuXwFggGH8GBlOdtrlOdSyp2MBtbwrNuceHA6aGIqZIjetIkcWLdu+Wdq6+p3nv/OOdXAatnLfOIzFsj7GypPt4xRB2qPiJN2n+UvxwAfb1Th6k/Yj5QPHg+U9Ie0PKODifg6SQCBDs/JRK8TG0KIatH2MaI3dSjXw87Rk+Za7b5qwoWM4qxI0jSUFBjFwAnQjXyNsJmgmiUDhnBE9lLGOEfjGlLmKTqtsfUL8dB8EW43ZcqrK4vixN1TZrC81IW5xN/YLsiHmQKd/XtJ04jygC2DI+U8CS4bToNwQi4E5ZfUdbdcuzOUvnfS4+V0I99oFHPaIGv1/PJc0ZD+cj4uheDMo6idNqO9yiR75IBmW4ltFpEFZ+LIO/WB8rG4iE057l9n8X2CvOLe3IpwY42rV70JjnW18TrJ8We7dG662z1u3KDbVvqdK5Fvao9qr7dWwYKANl0YxY6Y9y9KsR7fuSC6S68CSp9SY/u/2Xev3U6eF+WR52T2ipeXlcnl7wMfgHIo04dKrUV/8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/a57ebb514687b63c91bdb6804845978e/38cea/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/a57ebb514687b63c91bdb6804845978e/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/a57ebb514687b63c91bdb6804845978e/e85cb/001-02.png 480w,
+/devHistoryBlog/static/a57ebb514687b63c91bdb6804845978e/38cea/001-02.png 678w&quot;
+        sizes=&quot;(max-width: 678px) 100vw, 678px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;#3. run&lt;/h4&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/97f750235e5257a73de1a0d44f61faa8/409e6/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 385px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 19.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAIAAAABPYjBAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAqklEQVQI102NUU7EMAxEe60S22M7peyqoKZbkaRZrfYenJ4U+EB6ej+eGQ+szu7iMQdprJVQGaWbTpcghTo4xPo1kzwCX6DBoqgPJBYmn/bp+ULx+fWR2pFSTrdteS9pr9str1te03pdFp99iceMz+xjmubXy0B9RpShNUjVt4LY4E39fAW/W2x6UhiZsAd5jHQFRjOG9bJ1QrcYWIQhrD/+j0L+EDmTv61vpcNA3L8O7gkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/97f750235e5257a73de1a0d44f61faa8/409e6/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/97f750235e5257a73de1a0d44f61faa8/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/97f750235e5257a73de1a0d44f61faa8/409e6/001-03.png 385w&quot;
+        sizes=&quot;(max-width: 385px) 100vw, 385px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;#4. docker daemon 설정&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;아래와 같이 connection refused 가 발생하면 4.1 로 간다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/9e64406bf721be57f24901a6ae1d3cbc/38af3/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 894px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 37.083333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAAA0ElEQVQoz4WRyw4CIQxF+S2BFmRmGN8LE2NcafwCY/T7ry3DGE18LE5awi3ltibljBAZzltw8AUiJ2cPxxGWwk8mnsHTBm2eIUg03PVodhfMD1fhLtyQ93fw7ABH0ihMy8O/8KIpSG5St0BaH9FsTgjL48DqDM5bEUVQTIVn0ReoRsOt/MA7WGdLHJCcCCG1xU5sOqQ2I3VKX+OQ651q1K42NkP3kbFj+m7rA68681b4Jgh/Z/cJw88ZRdkYwdatjTPhakXt04tWizXnilrXmgeq0vVMun1wIQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/9e64406bf721be57f24901a6ae1d3cbc/38af3/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/9e64406bf721be57f24901a6ae1d3cbc/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/9e64406bf721be57f24901a6ae1d3cbc/e85cb/001-04.png 480w,
+/devHistoryBlog/static/9e64406bf721be57f24901a6ae1d3cbc/38af3/001-04.png 894w&quot;
+        sizes=&quot;(max-width: 894px) 100vw, 894px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;#4.1 docker - settings&lt;/h4&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/c793a25d05797c5b451ef38fc61023e1/38070/001-05.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 451px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 94.58333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAIAAAAf7rriAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADDklEQVQ4y31SWU8TURTun+EBNS7YzpS2WIgJFAiUhi5gWB6ooAlqNCb+APwlvmkiZSlbywMJiYgSl4SlrXSbmdvZ2uniTGfptPXQAgERv5zcnJtzvvOde841kET6VzQilgo0oniOLRbyuqbpmnrJVEUSxfoVGPZjye1vkSjJfT2If48RMZRDeYUSZDjPjRTkJOLq9drf5J9ICkbl9zupd1uRD7vkekxai4rrUWnlqNS01aPSwn5x64CuX2Eb8iUpW5RTiIscpxIkEyfpHwfRw2OiUK4U5RMryXqxrNNcrl67oqzIZU1VhCxPpBLpZJwiqd+lYlWvXEit1WvVvCDUrpLL5bKiKNlslqBIjmMphGiGLRUBJRbuLCOKEtCE68iapiLqBDTNECRBEOlkMpVOpzmeF/KCJEnVavVasqqoLMOADOgjlMnlcjRDkxQJIWi+Uqmoqgqh/7WdySCSQqDLcmwzDQT1BsCBilBFv4yGsqrSNA3dUvBilDlOJKD/JrPaADiFQuEfn6SpzLIsSZIMQwNdUVVN06pnACbkHR4eBj7Or6+tLS0tBYPB1dUVwClZyOVQBhUbU640oJ0BokAOzAcmn045h12vXr6emJxwOIZ6ewdP24adpNIpGfJqtepZtxeVFwIL/R6nZ9Q37Z8aHx9zuXzDw95TZXhzPJGMx49ZloOpwvJA87wFKLG4uPji2fMRn9ftezLkGpmenpqZmTGIogh8IMO0eZ6HicFKG6PWm23LsgzX5eVl/2P/6Ojoo/EZt9frn/KfkKEqxHJZPkNneB72jLI8B39Dbjy1uTA4w+Gw0+n0+XzuYZfH7Qa/b8Bp+LK3t729vbm5uREOb2yEQuFwKBRaCQbB+by7+2lnJwCzCszPvZ2bnZ0dHBzo7jlBd4+jq8tuMN43g+GY1QyG28Bwc4fF0mluf4BhVhNmbW293dJy4+atu/faTDhusXd02m12m9mCO8YMbXeMprZ2zGjBjRY4MZMVw2xGk81ksmFYB5jZbG9v78Rx8K0Wi723p9/R3fewoxP3vPkDxe2NbVYFNmgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 05&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/c793a25d05797c5b451ef38fc61023e1/38070/001-05.png&quot;
+        srcset=&quot;/devHistoryBlog/static/c793a25d05797c5b451ef38fc61023e1/8ff5a/001-05.png 240w,
+/devHistoryBlog/static/c793a25d05797c5b451ef38fc61023e1/38070/001-05.png 451w&quot;
+        sizes=&quot;(max-width: 451px) 100vw, 451px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;#4.2. Expose daemon on… 선택 후 도커 재시작&lt;/h4&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/acf12d6fb13a3046b0f0f3da6a4a4085/f4281/001-06.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 71.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAIAAACgpqunAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABSElEQVQoz72R20rEMBCG++be+w4+gPgCvoYgCLbbdnfTHCan5th2RXDSrXvjIosXwsfPTMI/k8xUCiQh1FqX85zSdCbGfAtVzRKhIEFK0ABKK6OUwYtSK04p5qvEtUH18ir2dT/UDa1b1nTkvRnqlu46tusMoV6AY+A5OF60BAwRnnL0V25P+MDpgQhCEYopGRQVignDwYKyQo74Ii6NKGgOhkt0FXPT6aE98K7n7Z42LfRHz+U32FCOXHuhIugNiaqituXZRz0zadeKSmprRj/6iGpcsC4Yl8AtLs44gnhhmrc/73g+UmCUDQOTUo9oM+MZXEFRrGhGjbqm5cSMMaRixpppnTvONoR0xvu4BSVOl/ML26pCyDdu9cqe/+z8d3OI2YeN6ucwfiHGlFP+PE3IxzJV87zcSMqLDKe33t8/0btH8fAsvgCxFhUiNIbXzwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 06&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/acf12d6fb13a3046b0f0f3da6a4a4085/d9199/001-06.png&quot;
+        srcset=&quot;/devHistoryBlog/static/acf12d6fb13a3046b0f0f3da6a4a4085/8ff5a/001-06.png 240w,
+/devHistoryBlog/static/acf12d6fb13a3046b0f0f3da6a4a4085/e85cb/001-06.png 480w,
+/devHistoryBlog/static/acf12d6fb13a3046b0f0f3da6a4a4085/d9199/001-06.png 960w,
+/devHistoryBlog/static/acf12d6fb13a3046b0f0f3da6a4a4085/f4281/001-06.png 1016w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[Docker-Compose 내용 정리]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2021-01-06--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2021-01-06--001</guid><pubDate>Wed, 06 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Docker-Compose&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Define and run multi-container application with Docker.&lt;/li&gt;
+&lt;li&gt;여러 개의 컨테이너를 동작시키기 위해 도커 어플리케이션을 정의하고 실행하는 도구&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;docker-compose.yml&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;컨테이너 실행에 사용되는 옵션과 컨테이너 간 의존성을 모두 docker-compose.yml 파일에 적어두고, docker-compose 명령어를 사용하여 컨테이너를 실행 및 관리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/63637afeecc8e3d76b6e1cec00dc77d5/3fe45/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 699px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 106.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAACXBIWXMAABJ0AAASdAHeZh94AAACCklEQVQ4y5VUWZKjMBTLbSbg5RkvrN3TPTX3P5NGzxCSmnRC8qECUyCkJ9mn/PEXaf7GPE0V3fgBSQXWGsK+jVMae8Q+ofcN5tDAtQ2a8xlt065o38Mp9gNCynBkL4PARQ+fPCTzGh2ss3zRwJjXcIq5R4ipWhyTxUASJ44/6eBFSEbFTVP/rh9crk8JOxLqInqDz2RQpEXKBcM4IYQAIYyxL5HuCnXRB4M5GgyFMx1GSJcQulixEjX7h49IT6kMu+WpM/hNhUsWBNoVc4ZtCevgvYdz/lhhKmMlbLnIYvCnGHxlJW7x1QumPiOyRjqCLqrSgxmqwi7mOqNxU5hInH1bVQntqiIN5hLO09pUy5yVJbuj7ZwSyriwQjNS6ZGJaflkQHNN3Tl3j5tx7Aq15R1TTrSl9jKRktrNm91Uofdxe64/uz4r/xOyNmIrob4sVPOKxXvL/bjXpuGOUOkioVo5KvGPoeSRhDkjOJaa6Qqvv87Hyh7VZ61NtyosTHfh9hNva42eqyFZ+1NtaPmy9bQu31S5RFMPC51tDYhzTtsWrUGwSjrfi8rbw2MPRQkSU56yxVy4M+QeevLc3l8tt/eEdiMMnYcN7BVtC+9Fj7OwnkD6zIk9Ihz32uRgsYwDpmlZbR2E83TrVUJRywG5k21GVwXtDer6UQ/zrpCWaWfuI7fdVMN4t4OKf06+hFa116IKAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/63637afeecc8e3d76b6e1cec00dc77d5/3fe45/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/63637afeecc8e3d76b6e1cec00dc77d5/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/63637afeecc8e3d76b6e1cec00dc77d5/e85cb/001-01.png 480w,
+/devHistoryBlog/static/63637afeecc8e3d76b6e1cec00dc77d5/3fe45/001-01.png 699w&quot;
+        sizes=&quot;(max-width: 699px) 100vw, 699px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;version&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;docker-compose.yml 파일의 첫 줄에는 파일 규격 버전을 적는다. &lt;/li&gt;
+&lt;li&gt;파일의 규격에 따라 지원하는 옵션이 달라진다. &lt;a href=&quot;https://docs.docker.com/compose/compose-file/compose-versioning&quot;&gt;참고&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;1| version: &amp;quot;3.1&amp;quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;services&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;실행하려는 컨테이너들을 정의&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt; 2| services:
+ 3|   ca-db:
+       ...
+18|  ca-was:
+       ...&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;image&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;베이스 이미지를 지정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;4| image: mariadb:10.4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;build&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;도커파일을 이용하여 베이스 이미지 지정&lt;/li&gt;
+&lt;li&gt;도커 파일의 경로나 이름이 다르면 아래와 같이 지정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;5| build:
+6|   context: ./docker
+7|   dockerfile: Dockerfile.db&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;restart&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;재시작 옵션&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;8| restart: always
+
+# no : 
+    container를 재시작 시키지 않는다. (default)  
+# on-failure[:max-retries] :
+    container가 정상적으로 종료되지 않은 경우(exit code가 0이 아님)에만 재시작 시킨다. 
+    max-retries도 함께 주면 재시작 최대 시도횟수를 지정할 수 있고, 테스트 서버 등과 같은 리모트에 설정하면 좋을 것 같다.  
+# always : 
+    container를 항상 재시작시킨다. 
+    exit code 상관 없이 항상 재시작 된다.
+# unless-stopped : 
+    container를 stop시키기 전 까지 항상 재시작 시킨다.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;environment&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;docker run 명령어의 —env, -e 옵션과 동일, 환경변수&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt; 9| environment:
+10|   MYSQL_ROOT_PASSWORD: flatron123!
+11|   MYSQL_DATABASE: webca&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;volumes&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;DB의 데이터를 로컬에 저장&lt;/li&gt;
+&lt;li&gt;sql을 /docker-entrypoint-initdb.d/ 에 저장하면 DB가 start 될 때 sql 문을 순차적으로 실행한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;12| volumes:
+13|   - ./ca-db-data:/var/lib/mysql
+14|   - ./docker/mysql-conf/init.sql/:/docker-entrypoint-initdb.d/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;ports&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;HOST:CONTAINER 형식으로 호스트로 들어온 포트를 해당 컨테이너의 포트로 포워딩&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;15| ports:
+16|   - 3333:3306&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;depends_on&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;서비스 간 의존 관계를 지정&lt;/li&gt;
+&lt;li&gt;명시된 컨테이너가 먼저 생성되고 실행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;26| depends_on:
+27|   - ca-db&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[도커와 기존의 가상화 기술과의 차이를 통한 컨테이너 이해]]></title><description><![CDATA[따라하며 배우는 도커와 CI환경 강의 복습]]></description><link>https://eunyoung-autocrypt.github.io/history/posts/2021-01-02--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2021-01-02--001</guid><pubDate>Sat, 02 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 하이퍼바이저 기반의 VM 구조&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;하이퍼바이저에 의해 구동되는 VM은 각 VM마다 독립된 가상 하드웨어 자원을 할당받는다.&lt;/li&gt;
 &lt;li&gt;논리적으로 분리 되어 있어 한 VM에 오류가 발생해도 다른 VM으로 퍼지지 않는다는 장점이 있다.
