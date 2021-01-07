@@ -9,6 +9,8 @@
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/categories/history/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2020-12-22--001.md</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/slow-query/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2021-01-06--002</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/docker/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/posts/the-birth-of-movable-type/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/open-source/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/gatsby/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -174,8 +176,6 @@
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/jmap/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2020-12-29--002</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/remote-debugging/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2021-01-06--002</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/docker/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2021-01-06--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/intellij/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2020-12-29--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>

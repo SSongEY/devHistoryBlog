@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Jan 2021 00:23:57 GMT</lastBuildDate><item><title><![CDATA[Docker 기반 Remote Debugging 개발 환경 설정]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</guid><pubDate>Wed, 06 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 작업 구성&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Jan 2021 10:42:45 GMT</lastBuildDate><item><title><![CDATA[Docker 기반 Remote Debugging 개발 환경 설정]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</guid><pubDate>Wed, 06 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 작업 구성&lt;/h3&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -34,7 +34,7 @@
     &lt;/p&gt;
 &lt;h3&gt;작업 내용&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;&quot;&gt;git repository 이동&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/eunyoung-autocrypt/docker-practice.git&quot;&gt;git repository 이동&lt;/a&gt; &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4&gt;#1. WAS Dockerfile&lt;/h4&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;FROM openjdk:8-jdk
