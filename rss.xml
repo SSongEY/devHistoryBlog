@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Jan 2021 10:42:45 GMT</lastBuildDate><item><title><![CDATA[Docker 기반 Remote Debugging 개발 환경 설정]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</guid><pubDate>Wed, 06 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 작업 구성&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Jan 2021 11:46:42 GMT</lastBuildDate><item><title><![CDATA[Docker 기반 Remote Debugging 개발 환경 설정]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</guid><pubDate>Wed, 06 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 작업 구성&lt;/h3&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -1475,7 +1475,99 @@ Document 테이블에서 가져오는 row수가 1,713,561건 인것을 발견하
 &lt;li&gt;해당 비즈니스 로직에 대한 이해도가 없어 왜 이런 상황이 발생이 됐는지는 모르겠지만,
 select 최대 row를 강제할 수 있는 방법을 찾아 팀 코드 컨벤션으로 정해야겠다.&lt;/li&gt;
 &lt;li&gt;좋은 경험 했다!!!!!!!&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[프로젝트 gradle version 확인 및 업데이트]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-29--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-29--002</guid><pubDate>Tue, 29 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. gradle version 확인&lt;/h3&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Docker? 및 명령어 정리]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2020-12-30--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2020-12-30--001</guid><pubDate>Wed, 30 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 도커는 무엇인가요?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;컨테이너를 사용하여 응용프로그램을 더 쉽게 만들고 배포하고 실행할 수 있도록 설계된 도구 이며, 컨테이너 기반의 오픈소스 가상화 플랫폼이며 생태계&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#. 컨테이너란?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;코드와 모든 종속성을 패키지화하여 응용 프로그램이 한 컴퓨팅 환경에서 다른 컴퓨팅 환경으로 빠르고 안정적으로 실행되도록 하는 소프트웨어의 표준 단위&lt;/li&gt;
+&lt;li&gt;컨테이너 안에 다양한 프로그램, 실행환경을 컨테이너로 추상화하고 동일한 인터페이스를 제공하여 프로그램의 배포 및 관리를 단순하게 해준다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#. 컨테이너 이미지&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;코드, 런타입, 시스템 도구, 시스템 라이브러리 및 설정과 같은 응용 프로그램을 실행하는 데 필요한 모든 것을 포함하는 가볍고 독립적이며 실행 가능한 소프트웨어 패키지&lt;/li&gt;
+&lt;li&gt;도커 이미지는 프로그램을 실행하는데 필요한 설정이나 종속성을 갖고 있으며, 도커 이미지를 이용해서 컨테이너를 생성하며(이미지의 인스턴스) 도커 컨테이너를 이용하여 프로그램을 실행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/fe627eb7e3afb044becde90e18397f07/7960f/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 54.58333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB0UlEQVQoz5WSW2/aQBCF/f9/RhWplfrQp6okbUpiSEpEyyWBtODgC7YBG9/W2Bhs7NPx2kWhTSv14dOOhp3jc3YQ3tx5mMg68kDH3tORvkDZd23jhd/mSF0Nmadh66jYMhtC5BjI5StAbaFQxb8CrUV3xBNS9RbZvItM/4pUucFhMYCQM7O6PP9C3P5BUZ+p3MJ+1uJnKreRTJtg5NpjMWwnQOh7yKxHCFlgIldE5NoNHy7oLOvfhfez6+rOL9Q2tuYYW5ui2grixQ9kywcIB19HZvSQhB5CZ4k4cLGzJBxkElApBg3mRCJdHWvel0VEyymfYWsTkaWS4KgUpIc1+tiEIdy1BcYYotUTdtJnZDyeyGPGk2Zdi7y/k5rYrGSK6sJ3LESOiWw1hpD6BibN1/j24RX6jTMMzs8wJMLHT4DZOYlcPH8KjSIb9+RSQlxijKrIpWA4vsDm+yWC0QV8ohQrXaF+U76UmchF97PKcTK9REhRWZTACzaIWEAO66VgTkNG5xQuVm25eLbxY48+pHQbmN6d46n7EVLnPXbGoBIslOt6e+0jKJ39CzIRPDSofAuVsLrv6H84JMHQQm52kS96/w1WfcAaAvY91T0c1hP8BKr2I5/mIr48AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/fe627eb7e3afb044becde90e18397f07/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/fe627eb7e3afb044becde90e18397f07/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/fe627eb7e3afb044becde90e18397f07/e85cb/001-01.png 480w,
+/devHistoryBlog/static/fe627eb7e3afb044becde90e18397f07/d9199/001-01.png 960w,
+/devHistoryBlog/static/fe627eb7e3afb044becde90e18397f07/7960f/001-01.png 1274w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;#. 도커 명령어 모음&lt;/h3&gt;
+&lt;h4&gt;#. 컨테이너&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# 동작중인 컨테이너 확인
+$ docker ps
+
+# 정지된 컨테이너 확인
+$ docker ps -a
+
+# 컨테이너 삭제
+$ docker rm [컨테이너 id], [컨테이너 id] 
+
+# 컨테이너 모두 삭제
+$ docker rm `docker ps -a -q`
+
+# 중지된 모든 컨테이너 삭제
+$ docker container prune
+
+# 실행중인 컨테이너에 명령어 전달, interactive, terminal : 명령어 실행 후 터미널 계속 유지
+# docker exec {-it} &amp;lt;컨테이너 아이디&amp;gt; &amp;lt;명령어&amp;gt;
+
+# 해당 컨테이너의 ssh 접속
+$ docker exec -it &amp;lt;컨테이너 아이디&amp;gt; sh
+
+# 실행 시 volume 잡기, 맥에선 -v $(pwd):/usr/src/app
+$ docker run -p 3000:3000 -v /usr/src/app/node_modules -v %cd%:/usr/src/app [이미지 아이디]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;#. 이미지&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;# 이미지 확인
+$ docker images
+$ docker image ls
+
+# 이미지 삭제, 강제옵션 -f
+$ docker image {-f} rm [이미지id], [이미지id]
+$ docker rmi {-f} [이미지id], [이미지id]
+
+# 이름없는 모든 이미지 삭제
+$ docker image prune&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;#. docker 리소스정리&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;# 중지된 모든 컨테이너, 사용되지 않은 모든 네트워크, 하나 이상의 컨테이너에서 사용되지 않는 모든 이미지를 삭제
+$ docker system prune -a&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;#. dockerfile 빌드&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ docker build {-f dockerfile} {-t tag} [context 폴터위치]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;#. docker compose 실행/종료&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ docker-compose up {-d --build}
+$ docker-compose down&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[프로젝트 gradle version 확인 및 업데이트]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-29--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-29--002</guid><pubDate>Tue, 29 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. gradle version 확인&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;gradle -&gt; wrapper -&gt; gradle-wrapper.properties 안에 해당 프로젝트의 gradle 버전이 명시되어 있다.&lt;/li&gt;
 &lt;/ul&gt;
