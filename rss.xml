@@ -1,4 +1,120 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Jan 2021 11:46:42 GMT</lastBuildDate><item><title><![CDATA[Docker 기반 Remote Debugging 개발 환경 설정]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</guid><pubDate>Wed, 06 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 작업 구성&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 13 Jan 2021 04:34:30 GMT</lastBuildDate><item><title><![CDATA[[Jenkins] hudson.plugins.git.GitException: Failed to fetch from]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2021-01-12--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2021-01-12--001</guid><pubDate>Tue, 12 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;문제&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;jenkins에 webhook 이벤트 발생 후 아래와 같은 오류 발생&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/a2eeda97627cd166d8333bf4d7ededd9/ad00e/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 57.50000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAABRklEQVQoz31TCZKEIAz0/z+dFRC58crSQRjGPajqSozYdCc4GWNIa81Y15UWtZC1lsxaoA0548nbwDG4yEghUYqZ9m0nrOu6GFgTPpZSMuGyLJwLIUgpxQds20bXeX3gPM6K8/xJ6JxjkkbUcpDhHQ5EzDkzOR9wfzySNTAh1IyEo0IoB6n3nvZ9/1DzzLvlRoDYbIMIh6WUWBXs/UU05hNUvJUYwpDac07VJuxCXS6DwDBSyBR9rHmvlYPTVi3DDqJzJVrHiDEyUc6p9w8Rimv9rqWa9x6KL0FaaVKiWC65nCXH4EMnAPlI1GrIx1ZwD6GOFVpP1rj7/lnOgwsdbOsmgn2owzPysZdTCKFfbAxE67UPRgpJr9eL5nnmoaGO/a2nz2vTFWIz/x3GdGAwiFDR8CQZ72K3DCIAm4HjOOi/9dulHuvf7tumXSFrHqsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/a2eeda97627cd166d8333bf4d7ededd9/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/a2eeda97627cd166d8333bf4d7ededd9/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/a2eeda97627cd166d8333bf4d7ededd9/e85cb/001-01.png 480w,
+/devHistoryBlog/static/a2eeda97627cd166d8333bf4d7ededd9/d9199/001-01.png 960w,
+/devHistoryBlog/static/a2eeda97627cd166d8333bf4d7ededd9/ad00e/001-01.png 1366w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;원인&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;origin에 있는 특정 브랜치 삭제 후 fetching이 되지 않아 오류 발생&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;해결&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;프로젝트 &gt; 구성 &gt; 소스관리 &gt; Additional Behaviours 에서 Wipe out repository &amp;#x26; force clone 추가 후 재빌드 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/52b7b0614fc9d3fd6c927f0cb84d6c5b/efc66/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 885px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 28.750000000000004%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA60lEQVQY02WQ0W6EIBRE+f8fatLvMLHRbdqNiqCAiui+tJkyt7IP7cNkxst1OEGN4wjvPbquQ9u26Pse8zxDaw1rLXg+DAOmaZJZ8ZJDCAjOibNHbduGfd9BX5YF67qKU7Kcl7x3suzcr/NCyufvPR14fH3jcSaE/K8yxgiB1qMQsZBFzCSgl1yKuCMihDW4v77gQ88CpgpJoaN4yVtdo2ka8frKfJLb7V1IXS4W4sniXlWoPg1i3KBSSqDYTrFwNJlodthifM5jzkVPwkvxOJDiKs+mlkzH4ZGH53mK77wgvw3zX3Hnn3h25R/gxMQ4malVugAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/52b7b0614fc9d3fd6c927f0cb84d6c5b/efc66/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/52b7b0614fc9d3fd6c927f0cb84d6c5b/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/52b7b0614fc9d3fd6c927f0cb84d6c5b/e85cb/001-02.png 480w,
+/devHistoryBlog/static/52b7b0614fc9d3fd6c927f0cb84d6c5b/efc66/001-02.png 885w&quot;
+        sizes=&quot;(max-width: 885px) 100vw, 885px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/d52e2ac6758d9a0aa8a9a2f70d2a11d1/00a4e/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 389px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 112.91666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAIAAACEf/j0AAAACXBIWXMAAA7DAAAOwwHHb6hkAAACCElEQVQ4y51U227bMAz1/3/AnvYVw9A+dMCwAuta57bEbZLmZjhOfJFkyZJsybZ8mex0w7CtjbMDgTAJHpIiTRlpmmJCIEIoioSQJ2ASw9aAI4wpZfqDxDEhsfyJrIMRhGAwmjyYo7v7gfbPpNThFsuVORjPrCdzOF5ttpOppc9gOOE8ESIVQryQlVJlWVZVpaUqW+Wkt6aqatXO4yQLpYrfYBRlrj2lyPIsL/KiyFWeFbnMtaqlDtM0Td2dv2FcL94FsQ2PEfRAeAjBEQVuuN+6MIQoQDpo07xC1WTIg7LW1ZQylS+2uqnrV9z/IFtrEBO6GC/mw+UbSf5NphTrBqquV22L6gvYxnT4KXBXq31ku2DjhB4gbfqeZVMU5CJRqh1LN7Wyf+nG+w/3u4B7Edt62A4p5rL/xY0v0yDwogYh5nqZH5YANkL0vvPi9njzefd15FtLezI/jKzs+6xr+/n0xs3jVfgwo9NH/rxhyzWePpVbuy85u70Tvo+YBBHliYwwc0LSc14Guf4oHYfnpQ/jmOmVySgXfcnm3AURT2LGCWsuhGGaawioKlTC0ovJu+dxjPV8WcISzrgOkfKU69JTqbfyDHn27cpz1iTEyIfQBxhgDAk4ghhT4MG3/1PjaOvMfppXMleyKC9bjIU18F3b8cnBQ3sP6xC/FuPsehj6HdOL2PwXfgCtXDPQUL2XvAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/d52e2ac6758d9a0aa8a9a2f70d2a11d1/00a4e/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/d52e2ac6758d9a0aa8a9a2f70d2a11d1/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/d52e2ac6758d9a0aa8a9a2f70d2a11d1/00a4e/001-03.png 389w&quot;
+        sizes=&quot;(max-width: 389px) 100vw, 389px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;해당 옵션은 webhook 이벤트 발생 시 마다 작업 공간 clean 후 clone 하므로 유지시켜야 할 파일이 있을 경우 백업 또는 이동이 필요하다.  &lt;/li&gt;
+&lt;li&gt;소스 빌드가 완료 됐으면 해당 옵션 제거한다.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Docker 기반 Remote Debugging 개발 환경 설정]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</guid><pubDate>Wed, 06 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 작업 구성&lt;/h3&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
