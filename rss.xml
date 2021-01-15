@@ -1,4 +1,86 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 13 Jan 2021 04:34:30 GMT</lastBuildDate><item><title><![CDATA[[Jenkins] hudson.plugins.git.GitException: Failed to fetch from]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2021-01-12--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2021-01-12--001</guid><pubDate>Tue, 12 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;문제&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 15 Jan 2021 05:10:53 GMT</lastBuildDate><item><title><![CDATA[[intelliJ] FAILURE: Build failed with an exception]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2021-01-13--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2021-01-13--001</guid><pubDate>Wed, 13 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;문제&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;intelliJ에서 테스트 코드 수행 시 아래와 같은 오류 발생&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/5e63cc39794cc2d4b0162c7fcc03319f/e1b78/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 22.499999999999996%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAzElEQVQY012Qa47DIAyEc51gwDwMhHR30/tfanaSVFXVH59msJHNsDxLxkGGKixG1BDgnBD3RoS4G/fFd215pIxJNg6bMaB6QeNQO4kJNSoae6YZhX7Qn3TeFfFwnkqCyMXSa0OpG6pNtDowqJ0LTCM0G2KqSJoQUqM3LvNM4a+lISS4WOCphbXM2jLnL/bHE2U7yB/KpJ8HbD/Q2GvUMn6gXJpsg6SO1StWt74i37q+WPbW0ash5/JG+UJ3xrkIH/4+n1Gvf2VER+SDfziEmyTDMzk0AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/5e63cc39794cc2d4b0162c7fcc03319f/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/5e63cc39794cc2d4b0162c7fcc03319f/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/5e63cc39794cc2d4b0162c7fcc03319f/e85cb/001-01.png 480w,
+/devHistoryBlog/static/5e63cc39794cc2d4b0162c7fcc03319f/d9199/001-01.png 960w,
+/devHistoryBlog/static/5e63cc39794cc2d4b0162c7fcc03319f/07a9c/001-01.png 1440w,
+/devHistoryBlog/static/5e63cc39794cc2d4b0162c7fcc03319f/e1b78/001-01.png 1809w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;원인&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;intelliJ 업데이트로 인해 발생&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;해결&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;settings -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; Gradle 에서 Run tests using 에서 IntelliJ 선택&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/bed2403e634c94fdb74b92fa838bc7f0/38a65/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 65.83333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABvElEQVQoz2VS2W4bMQzc30psr8RDoo69nNhetyiS5770C4oWfeh/d7ROnaAFBgQBYTjkjDqziS07CU6iF/MSJRoHk5hIW08aSO3guffSE6PZO7qhy9N5WC51PtvwxDap1ZiLWpIQSUDDREXTe3as6D0r+Dd0ZVrTeHI6Aj7MHDJkvUbsElLGlGCtYoX/0aXpksZzL8OeSqxnsUrCIAazmKuVwQpqbRMlAE1/A5puWNbT+mVcLml4juUIchxOoZ4oDo7bqg0kADbvUe/A2lyuaXnhvDo7a/2k5Tk+f02XbzS+sqoaroiQbVXjZqTBgjfD9Pqjvvyyzz/1+r28/pa6Pjw+7Ht3cJBsnt1kN2i/NXfDO7G5zhevuDmLLRzSrnd42DmCZx6eN4RW9SNaEB3F2YaT5CMatiPpG7l3lGE0fAtWUk1WTBNTy6nfxFEbeViuMJxtlnREVCDv4FXvjyQja3Ey21S1VG+pl0fn3z+JD1OdV4hjSsNfZcyOasIqxMqiHAKu2DTfb8bfCPnpwHVHheNyJwNimYKRlVBHxYdJmePt2nDLvMO2ZV41IeEFa38kb9nSgVrU29/mf6L+A2Fq0xoUAzN3AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/bed2403e634c94fdb74b92fa838bc7f0/d9199/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/bed2403e634c94fdb74b92fa838bc7f0/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/bed2403e634c94fdb74b92fa838bc7f0/e85cb/001-02.png 480w,
+/devHistoryBlog/static/bed2403e634c94fdb74b92fa838bc7f0/d9199/001-02.png 960w,
+/devHistoryBlog/static/bed2403e634c94fdb74b92fa838bc7f0/38a65/001-02.png 1075w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Jenkins] hudson.plugins.git.GitException: Failed to fetch from repo]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2021-01-12--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2021-01-12--001</guid><pubDate>Tue, 12 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;문제&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;jenkins에 webhook 이벤트 발생 후 아래와 같은 오류 발생&lt;/li&gt;
 &lt;/ul&gt;
@@ -114,7 +196,147 @@
 &lt;ul&gt;
 &lt;li&gt;해당 옵션은 webhook 이벤트 발생 시 마다 작업 공간 clean 후 clone 하므로 유지시켜야 할 파일이 있을 경우 백업 또는 이동이 필요하다.  &lt;/li&gt;
 &lt;li&gt;소스 빌드가 완료 됐으면 해당 옵션 제거한다.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Docker 기반 Remote Debugging 개발 환경 설정]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</guid><pubDate>Wed, 06 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 작업 구성&lt;/h3&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[bash] 파일 데이터로 CURL 요청]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-11--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-11--001</guid><pubDate>Mon, 11 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;시나리오&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;test-csv.csv 파일 한줄 씩 리드&lt;/li&gt;
+&lt;li&gt;”,” 로 split &lt;/li&gt;
+&lt;li&gt;API POST 데이터 생성&lt;/li&gt;
+&lt;li&gt;API 요청 &lt;/li&gt;
+&lt;li&gt;결과&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;#. test-csv.csv&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;emaid1,pcid1
+emaid2,pcid2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;#. Script File&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;#!/bin/bash
+
+COUNT=0
+while read LINE;
+do
+    # IFS 는 입력필드 구분자
+    # ${vStr[0]} , ${vStr[1]} 로 사용
+    IFS=&amp;#39;,&amp;#39; read -ra vStr &amp;lt;&amp;lt;&amp;lt; $LINE
+
+    COUNT=$(($COUNT + 1))
+    DATA=&amp;quot;{\&amp;quot;emaid\&amp;quot;: \&amp;quot;${vStr[0]}\&amp;quot;, \&amp;quot;pcid\&amp;quot;: \&amp;quot;${vStr[1]}\&amp;quot;}&amp;quot;
+
+    echo RequestData${COUNT} : ${DATA}
+
+    curl -H &amp;quot;Content-Type: application/json&amp;quot; \
+            -d &amp;quot;${DATA}&amp;quot; \
+            -w &amp;quot; - status code: %{http_code}, sizes: %{size_request}/%{size_download}\n\n&amp;quot; \
+            -X POST http://192.168.250.79:15000/api/v2/mo/contractById
+
+done &amp;lt; test-csv.csv&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;#. 결과&lt;/h4&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/67e3bded05121ec06cec9ed8df587faf/13566/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 491px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 23.333333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABFklEQVQY0zVQ2XaCMBD1S6xVMCyymLCjFgkQirQHffac/v9X3E5S+zBnMrlL7mTFRYAo9lGWCao6w/lSgXMPRx4gzWKEkY/TpUCSRoiPPvIiMfdR5ML1LDBnZ86Ou4N3sLFy3C0JSiIKfC8zbpPCPA9QqkVARMtaQ6QxYV94LBNkf8WgJDp5oiAH2PYbPpoaapSoL7U23IGLkBKEqM8FCkpQlBxBwCidR2m4wf7TqWlA05RgbIMj6YQ4EB6bDXkSYuWTsKxyfI4txrHDVTZoZU1reJBdg+WxUOIejrNBRobPnyfu9xs9uEeWC/TDFePUmy604Z69g9HazKFiW/MXuvSsu8YNh2Z7v4Flr83sevaLY/1pX5pfEHCgj3gUJiYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/67e3bded05121ec06cec9ed8df587faf/13566/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/67e3bded05121ec06cec9ed8df587faf/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/67e3bded05121ec06cec9ed8df587faf/e85cb/001-01.png 480w,
+/devHistoryBlog/static/67e3bded05121ec06cec9ed8df587faf/13566/001-01.png 491w&quot;
+        sizes=&quot;(max-width: 491px) 100vw, 491px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업내역] Nginx 설치]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-08--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-08--001</guid><pubDate>Fri, 08 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;폐쇠망에서 nginx를 설치하게 되어 rpm 으로 진행하였다.(CentOS 7)&lt;/p&gt;
+&lt;h3&gt;#. RPM 다운로드&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://nginx.org/packages&quot;&gt;http://nginx.org/packages&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;# 금일 기준 stable version : 1.18
+$ wget http://nginx.org/packages/centos/7/x86_64/RPMS/nginx-1.18.0-2.el7.ngx.x86_64.rpm&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;#. RPM 설치&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ sudo rpm -Uvh nginx-1.18.0-2.el7.ngx.x86_64.rpm&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;#. 서비스 파일 확인&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ll /usr/lib/systemd/system/nginx.service&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;#. systemctl daemon 재시작&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ systemctl daemon-reload&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;#.정상적으로 Service가 등록되었는지 확인&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ systemctl status nginx&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/46f8981038741dae8052239f07066caf/705cc/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 21.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAAvklEQVQY0z2PWQ6DMAxEOUpbFcISspBAFgj0/peaxq7Kx5MtxTOZadLucJ4Je/HYokHMC0qJOK9UyVg3AzkLKDVgVj3vw9hCyq7ON9rugU48GdG/0GgrkbJHKprJxVbDhJgctrBULPxqsBLV3K+ajZUeGDIlxqnl2YTokfetpsy4PgdCcCxyXrHA2ImN7CLrLn9vTmFxM39Kd5Ram4lbNEqP9XhGodpHuJPRISUhQxLQTiJtRkxS3DWJf22q/AVghXzT7g+TpAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/46f8981038741dae8052239f07066caf/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/46f8981038741dae8052239f07066caf/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/46f8981038741dae8052239f07066caf/e85cb/001-01.png 480w,
+/devHistoryBlog/static/46f8981038741dae8052239f07066caf/d9199/001-01.png 960w,
+/devHistoryBlog/static/46f8981038741dae8052239f07066caf/705cc/001-01.png 1071w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;#. 필요시 방화벽 해제&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;firewall 구동 확인&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ firewall-cmd --state&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;http, https 서비스에 대해 해제/제거&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# 해제
+$ sudo firewall-cmd --permanent --add-service=http
+$ sudo firewall-cmd --permanent --add-service=https
+
+# 제거
+sudo firewall-cmd --permanent --remove-service=http
+sudo firewall-cmd --permanent --remove-service=http
+
+# --permanent : 영구적으로 실행 (default zone에 등록 : /etc/firewalld/zones/public.xml)
+# --add-service : 해당 서비스를 추가
+# --remove-service : 해당 서비스를 삭제&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;특정 port로 방화벽 해제/제거&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# 해재
+$ sudo firewall-cmd --permanent --add-port=80/tcp
+
+# 제거
+$ sudo firewall-cmd --permanent --add-remove=80/tcp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Docker 기반 Remote Debugging 개발 환경 설정]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-06--002</guid><pubDate>Wed, 06 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 작업 구성&lt;/h3&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
