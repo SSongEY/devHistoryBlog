@@ -64,7 +64,6 @@ class PostTemplateDetails extends React.Component {
             <hr />
             <p className="post-single__footer-text">
               {subtitle}
-                <br /> <strong>{author.name}</strong> on Twitter
             </p>
             {commentsBlock}
           </div>
