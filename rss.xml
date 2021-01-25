@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 25 Jan 2021 11:33:30 GMT</lastBuildDate><item><title><![CDATA[SSH Key]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-25--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-25--001</guid><pubDate>Mon, 25 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. SSH Key란?&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 25 Jan 2021 18:10:28 GMT</lastBuildDate><item><title><![CDATA[SSH Key]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</guid><pubDate>Fri, 22 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. SSH Key란?&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;서버에 접속 할 때 비밀번호 대신 key를 제출하는 방식이다. &lt;/li&gt;
 &lt;/ul&gt;
@@ -80,7 +80,58 @@
 chmod 600 ~/.ssh/id_rsa
 chmod 644 ~/.ssh/id_rsa.pub  
 chmod 644 ~/.ssh/authorized_keys
-chmod 644 ~/.ssh/known_hosts&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[작업로그] MySQL Optimize]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-15--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-15--001</guid><pubDate>Fri, 15 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;요청사항&lt;/h3&gt;
+chmod 644 ~/.ssh/known_hosts&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[작업로그] 테스트 자동화 구축 #1]]></title><description><![CDATA[테스트 자동화 시나리오]]></description><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-18--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-18--001</guid><pubDate>Mon, 18 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 사용된 환경&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;BitBucket Cloud&lt;/li&gt;
+&lt;li&gt;Jenkins&lt;/li&gt;
+&lt;li&gt;Jacoco &amp;#x26; SonarQube&lt;/li&gt;
+&lt;li&gt;Docker&lt;/li&gt;
+&lt;li&gt;SpringBoot Junit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;#. 테스트 시나리오&lt;/h3&gt;
+&lt;h4&gt;#1. Pull Request 이벤트 시나리오&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;#1.1. develop branch에 Pull Request 이벤트 발생&lt;/li&gt;
+&lt;li&gt;#1.2. Bitbucket 에서 Webhook 발생 ( to jenkins )&lt;/li&gt;
+&lt;li&gt;#1.3. Jenkins 에서 해당 Webhook Payload를 분석하여 정의된 Pipeline 실행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# Pipeline
+
+1. clone 타켓 branch  
+
+2. 테스트 없이 소스코드 빌드 ( 컴파일 오류 체크 )    
+    2.1. 성공 시 해당 PR에 comment 등록 (build success)  
+    2.2. 실패 시 해당 PR에 comment 등록 (build fail) 및 decline 요청 (to Bitbucket) 후 파이프라인 종료  
+
+3. 테스트 및 jacoco(수행된 테스트가 작성된 코드를 얼마나 커버 하는지에 대한 code coverage 측정) 진행   
+
+4. SonarQube 실행 (정적 코드 분석/ 버그, 코드 스멜, 보안 취약점 발견 목적 등 코드 품질에 대한 검사)  
+    4.1. Quality Gate 조건 만족 시 Teams 단체톡방 알림 전송 후 파이프라인 종료  
+    4.2. Quality Gate 조건 만족 못할 시 해당 PR에 Comment 등록 (quality gate fail) 및 decline 요청 후 파이프라인 종료&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h4&gt;#2. Push to develop/master 이벤트 시나리오&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;#2.1. develop 또는 master branch에 Push 이벤트 발생&lt;/li&gt;
+&lt;li&gt;#2.2. Bitbucket 에서 Webhook 발생 ( to jenkins )&lt;/li&gt;
+&lt;li&gt;#1.3. Jenkins 에서 해당 Webhook Payload를 분석하여 정의된 Pipeline 실행  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# Pipeline
+
+1. clone develop 또는 master branch
+ 
+2. 테스트 없이 소스코드 빌드 ( 컴파일 오류 체크 )
+    2.1. 성공 시 해당 PR에 comment 등록 (build success)
+    2.2. 실패 시 해당 PR에 comment 등록 (build fail) 및 decline 요청 (to Bitbucket) 후 파이프라인 종료 
+ 
+3. 테스트 및 jacoco 진행 
+ 
+4. SonarQube 실행
+    4.1. Quality Gate 조건 만족 못할 시 해당 PR에 Comment 등록 (quality gate fail) 후 파이프라인 종료
+ 
+5. 빌드 완료된 jar 파일 deploy 서버에 전달 및 서비스 실행
+ 
+6. 완료 결과 Teams 단체톡방 알림 전송 후 파이프라인 종료&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[작업로그] MySQL Optimize]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-15--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-15--001</guid><pubDate>Fri, 15 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;요청사항&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Replication 이 적용된 두 서버의 DB 의 몇몇 테이블 스페이스가 달라요. 확인 해주세요.&lt;/li&gt;
 &lt;/ul&gt;
