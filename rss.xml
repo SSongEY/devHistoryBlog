@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 25 Jan 2021 18:10:28 GMT</lastBuildDate><item><title><![CDATA[SSH Key]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</guid><pubDate>Fri, 22 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. SSH Key란?&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 25 Jan 2021 18:55:38 GMT</lastBuildDate><item><title><![CDATA[SSH Key]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</guid><pubDate>Fri, 22 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. SSH Key란?&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;서버에 접속 할 때 비밀번호 대신 key를 제출하는 방식이다. &lt;/li&gt;
 &lt;/ul&gt;
@@ -80,7 +80,185 @@
 chmod 600 ~/.ssh/id_rsa
 chmod 644 ~/.ssh/id_rsa.pub  
 chmod 644 ~/.ssh/authorized_keys
-chmod 644 ~/.ssh/known_hosts&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[작업로그] 테스트 자동화 구축 #1]]></title><description><![CDATA[테스트 자동화 시나리오]]></description><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-18--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-18--001</guid><pubDate>Mon, 18 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 사용된 환경&lt;/h3&gt;
+chmod 644 ~/.ssh/known_hosts&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[작업로그] 테스트 자동화 구축 #2]]></title><description><![CDATA[BitBucket 설정 및 Jenkins 설치]]></description><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-18--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-18--001</guid><pubDate>Mon, 18 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. BitBucket Webhook 설정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Repository -&gt; Pepository settings -&gt; Webhooks -&gt; Add Webhook&lt;/li&gt;
+&lt;li&gt;Push Webhook 설정 (URL : &lt;a href=&quot;http://JENKINS-HOST/generic-webhook-trigger/invoke?token=build-test-wh-push&quot;&gt;http://JENKINS-HOST/generic-webhook-trigger/invoke?token=build-test-wh-push&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;token 값이 중요!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/f7419e7d08cb45e23f57fa11bf769a55/6e9ba/002-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 731px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 80.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAIAAACZeshMAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABmklEQVQoz41TW27bMBD0VXMiJ3Hgi/QG+Uy/2hQognykdmzRMiXx/ZIopkO5Um0nRjKwFjLJ5c7OrGbWtYRKynSMses6xJTS29cwk1K+rNYF2e335WazLQrinPtqcgihqRvGWJ3RTOCcCSGwxDlvmKiFp8xw7U+S8fQjfAht2xprbX6s9x6LKeWAXxziefIEJCilN1ugAPaUuhHY6vt4Tnt6w/0x9o8/f9zeXC+Xy7u7xWJxez1gPp9jBb3g2LGc/5ODD4I3z8Q9Pv15Xa/QKhtxeIcRFysPVybjo1DGDQ1DSxD23l3SfzZyjkJwrXXwvmlqQspiW1RVhc7pnl5yfja1MQj7BrnBUSutlJIj7ABcbZ0XJmjbpikZ9OpsLMe54F1dVbuyLDE0OWSg/sG2+A/9Ke2UN7BtfWg4pkOitlTKALmmQlk10LHZNoNBPhEMx9BtYxKE3ZEN5pRWFUhBOJT9sO1jtXNkyn3//fq8Irm6lAeTKKXdO5/OhiRn3/8iVzf33x7WxnUudJ98GGf/u9gr17Zdf2T+RfwFlkOYFQ+bU0AAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/f7419e7d08cb45e23f57fa11bf769a55/6e9ba/002-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/f7419e7d08cb45e23f57fa11bf769a55/8ff5a/002-01.png 240w,
+/devHistoryBlog/static/f7419e7d08cb45e23f57fa11bf769a55/e85cb/002-01.png 480w,
+/devHistoryBlog/static/f7419e7d08cb45e23f57fa11bf769a55/6e9ba/002-01.png 731w&quot;
+        sizes=&quot;(max-width: 731px) 100vw, 731px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pull Request Webhook 설정 (URL : &lt;a href=&quot;http://JENKINS-HOST/generic-webhook-trigger/invoke?token=build-test-wh-pr&quot;&gt;http://JENKINS-HOST/generic-webhook-trigger/invoke?token=build-test-wh-pr&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;역시 token 값 중요!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/c29316ea81ce16f403423c39ba9a239a/ace37/002-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 666px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 124.16666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAZCAYAAAAxFw7TAAAACXBIWXMAABJ0AAASdAHeZh94AAACbklEQVQ4y6VV2xaaMBD0/7+uj/ahiooCcgn3cHW7sxiEKK2n5Zw1Cchkdnay7LRuyfUVBXFOTdtS+4xxHOmb6/F4rNa7qizp1+FIZ/dKruvS+XQih6MsC/nzMAwCjnjN+f5zNKAGeNcPPaVKUZ7nlGUZqTSVecpjkigZsU5UwuuEVFZQkmsKVUVZ2bwD4ge7mptt21HXdcywlKjrmvq+n1kuw7zzWKS+MxMzVlVFWmuKo4jiOBaGRlOkbMJoLO8tdNzZu4DRwDIsLxvMBnxL2SyQaqpiuqiRHI91zVKaCDz+GhPOAvD1gFmylVSaSZEQpkh5Ps1tqywxZg2RQlEUVHHK0DCKQgrDO3mex2NIt9uN70Wr9GX+jLcqLwOpK7YSNkAY64At1sYBVa0pr1oq6m5mKYA9A8Bj5iUwvD9ZBUFAvu8J08D36Xq9UslO6LqWmqaREQHGK9vgGthvLYMPfUtZyqaGhrwJNoJ1mmYCMQxxmrA5rAavvlUZf86Qnh75fIfM5iLMEACQ9HmTT0VZpWwf8obZJ2nOOk4ygIXWtTABY5xhaI379vsrhhjH5/we+LTf/xQtP12QwHGOUjDoN9tmTfkFjt3REAxx28RgiAIeGRSnaz56W/2triuuri/n2TavFJBZoUv5rC8cAq+CxB8AawH0/MnYMPX9HkpxZnmYJaqLMA1kE7Aocq7ujS6XqdKnkyP++9SlVx17CxCfA7BBlQGOtMDC1tOOTUCVRHQ+nyVwFO3nWyw3AX+4A134OwMdl139n1PeBwO519sMuPWV+xpQs23QDNAcYF7oOf4PQwAcDwepMI4c1t+k/BsKC6VrvMA45QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/c29316ea81ce16f403423c39ba9a239a/ace37/002-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/c29316ea81ce16f403423c39ba9a239a/8ff5a/002-02.png 240w,
+/devHistoryBlog/static/c29316ea81ce16f403423c39ba9a239a/e85cb/002-02.png 480w,
+/devHistoryBlog/static/c29316ea81ce16f403423c39ba9a239a/ace37/002-02.png 666w&quot;
+        sizes=&quot;(max-width: 666px) 100vw, 666px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;#. Jenkins 설치&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;jenkins 는 docker 기반으로 설치를 진행하였다.&lt;/li&gt;
+&lt;li&gt;추후 테스트 도구 확장을 위해 docker-compose 파일을 생성하여 서비스 기동 시켰다.&lt;/li&gt;
+&lt;li&gt;test-tools-docker-compose.yml&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;version: &amp;quot;3.6&amp;quot;
+services:
+    jenkins:
+        image: jenkins/jenkins
+        container_name: jenkins
+        ports:
+            - 8080:8080
+            - 50000:50000
+        user: root
+        volumes:
+            - /docker-volumes/jenkins:/var/jenkins_home&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;서비스 기동&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ docker-compose -f test-tools-docker-compose.yml up&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#. Jenkins 세팅&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;password 등록&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/07f30343b241b9e43a76622e74ab3972/d2a60/002-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 807px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABJ0AAASdAHeZh94AAACGElEQVQ4y51Uy47aQBDkg/MT+YwoP5BjEEIiQkhcVtpLpJxQJEgwYBs/x28b/Kp0TTCLV7uHxFJpemZ6erqrejyxLAuGYcC2bdDu+x7/8tH/EZOqqhBFERzHgWmayLIMQRCgKAokSaL3fN9HHMcoyxKXy0WPRF3XaNt2hEnXdQjDEPP5HIvFAsvlErPZDJvNBuv1Wq9Pp1OsVittMzAvItI0xfV61Zkyjs6QBhfpSAdCKaUzo82Mued5nq7AdV2cz7bgDEdgyVok/kP5Exp1fYUvB+jEcj05RApYqisjuT0Iz7vdDtvtFr+ME4yThf3RxnZ/wtlx79zrgNe6gRfn8FUEVwI7DOi5CFQIP/BhWiZOkkmcJlCSbZzlSPJC5rlGJvO2aV4C6rKLChfZqNIMVZJqe5inodIooliQoIwFtIUSikdhKdBLwKZFFShclCjphyi9AKXMaVdBhFzmse0gNI4I9keEhxOio6kvKSVY3/VjDinKWcoMKQZLYmkiShgpXaIlIpi2cHY4wHYduMKtJ1zHonTgB7pLRhyyf5QsRsIhbhukgb3G9qDSVJzzoT04PmKUIZuVL0W3gqjK1iA3QxvleX7n6PXLeMQoQxLLwAMYoBHlOL71Ih5Ri18jOnTM8L3bhlIGFV+XOKC9lTt8k/cc7wduWby9J8H6Ds8/HXx9/o3lj+Pfkv/3G35Mn75t8OHzEz5++Y4/P9N/cwTNCqEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/07f30343b241b9e43a76622e74ab3972/d2a60/002-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/07f30343b241b9e43a76622e74ab3972/8ff5a/002-03.png 240w,
+/devHistoryBlog/static/07f30343b241b9e43a76622e74ab3972/e85cb/002-03.png 480w,
+/devHistoryBlog/static/07f30343b241b9e43a76622e74ab3972/d2a60/002-03.png 807w&quot;
+        sizes=&quot;(max-width: 807px) 100vw, 807px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Jenkins 기본 플러그인 설치&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/bfbad501260f47e9665a352a257b3baa/38af3/002-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 894px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 75.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABJ0AAASdAHeZh94AAACQklEQVQ4y31UWc/SUBDt/3/2T/jqm8YoUQhgQD9MP0igSFcKZem+UKDHmYHbgBqbHObe6eXMmeVWC4IAtm3DcRzsdjs0TSO4Xq/t+n++R5zPZ2hlWYJxuVzEwQ+/VJZJ/nzUWQXeK2jsYELDMLDZbGBZFtbrNUzThO/7CMMQnudJFupMnucSjAk4oAL7NF5UVYXxeIzhcIjBYIDRaIRer4d+v4/VaiW22+2K5TPb7fYv9SorjX9Y5eFwEDVs4ziWNdsoigRJkiDLMiFjxZwFB1N1V6Saqkl4PMpLblJEZLy+pXaVgHVdC+l+v8eRznJAZVUJWoUiv7lL5wBX3jdiL1Kb2zv+Y1EUKKjmSZoipgACykQ19Jby5QrnmGFibWEfUqTnBmF5RlRdcCxqxGkGY7nEgprCmM5miIikrs9ESOeJnPsghDd1jZC9efcVb7+84Ie5QUhkjAMRhnGCyWSCTqcjDfP9tag9nU5CzGRctraGNW10b48PLwb6cxdOlMNLSvhpBS8uRGGeZ21jJG0Ck2YP9WsJS5I+9UOMVhuMzS2GS1+gr49Y7lNsgh3m8zkWi4XMIlueV25ceU/1qSlMOFxt8f7nL3ye2fg0tfBRN8X3nUph2Q5eX3Xouo7pdIoZ1ZAHn69rTkoVYaswr2oMzeAGK2jX36wd+oaHlWXf77sLl2bQdV25MbxOqRxPCuUK0WhEeYUwKxHmD6B9XJCfBvtAM5dL3Qqx2b1+PJ/q1jA0dsjH4T5Ht0l8hkrnX88jGeM3Zml3O4S9icoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/bfbad501260f47e9665a352a257b3baa/38af3/002-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/bfbad501260f47e9665a352a257b3baa/8ff5a/002-04.png 240w,
+/devHistoryBlog/static/bfbad501260f47e9665a352a257b3baa/e85cb/002-04.png 480w,
+/devHistoryBlog/static/bfbad501260f47e9665a352a257b3baa/38af3/002-04.png 894w&quot;
+        sizes=&quot;(max-width: 894px) 100vw, 894px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;BitBucket 연동 관련 플러그인 설치&lt;br&gt;
+— Generic Webhook Trigger Plugin&lt;br&gt;
+— Bitbucket Plugin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[계속]&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] 테스트 자동화 구축 #1]]></title><description><![CDATA[테스트 자동화 시나리오]]></description><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-18--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-18--001</guid><pubDate>Mon, 18 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. 사용된 환경&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;BitBucket Cloud&lt;/li&gt;
 &lt;li&gt;Jenkins&lt;/li&gt;
