@@ -1,4 +1,91 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 18 Jan 2021 05:38:14 GMT</lastBuildDate><item><title><![CDATA[[작업로그] MySQL Optimize]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-15--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-15--001</guid><pubDate>Fri, 15 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 25 Jan 2021 11:33:30 GMT</lastBuildDate><item><title><![CDATA[SSH Key]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-25--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-25--001</guid><pubDate>Mon, 25 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. SSH Key란?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;서버에 접속 할 때 비밀번호 대신 key를 제출하는 방식이다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#. 동작 방법&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;클라이언트가 서버에 SSH 연결을 요청한다.&lt;/li&gt;
+&lt;li&gt;서버는 랜덤 챌린지(랜덤 데이터 스트링)를 생성해 클라이언트에게 보낸다.&lt;/li&gt;
+&lt;li&gt;클라이언트는 서버로 부터 받은 챌린지(C)를 자신이 가지고 있는 private 키로 암호화해서 암호화 된 메시지를 서버로 보낸다.&lt;/li&gt;
+&lt;li&gt;서버는 클라이언트에서 받은 암호화 된 메시지를 public 키로 해석한 후 그 결과를 2단계에서 자신이 클라이언트에게 보낸 랜덤 챌린지와 일치하는지 확인한다. (public 키로 해석할 수 있는 메시지는 그 쌍이 되는 private 키를 가진 사람만이 만들 수 있기 때문) 일치하면 클라이언트가 인증된 것이다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/12e5141213fcf1ef39927aeadfaff0ba/59000/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 917px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAA6ElEQVQY04VQ7W7DIBDj/V9vUrt2U5V1WdOlNIRAEsJHXF+q/ps0JAs4zsZnpd0CMz5x9wu0C3Bzwn9rXf+uq1wK+oliFOyJlAvGkGCnCBcihjkislaoIL0vrLxLXVuPW29h3LTVlCf5eL7iu6rwWbcUSQgxw1NsWhLdRnQ+wNC9nF+Qtx894KO+4K16x7H+xW2YoWTk3bnF/lRjz12TKILiTogSRdNPaNksbi2n2dzzfGgsDpcetZnRdQZad1BLKjBs2DUOdn66KxxJQoopbzFIrne6FAeCKz8YyJF42iHgS4/kJeSc8QBQ1oKKT1H4zQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/12e5141213fcf1ef39927aeadfaff0ba/59000/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/12e5141213fcf1ef39927aeadfaff0ba/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/12e5141213fcf1ef39927aeadfaff0ba/e85cb/001-01.png 480w,
+/devHistoryBlog/static/12e5141213fcf1ef39927aeadfaff0ba/59000/001-01.png 917w&quot;
+        sizes=&quot;(max-width: 917px) 100vw, 917px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;#. 패스워드 없이 ssh 연결&lt;/h3&gt;
+&lt;h4&gt;#1. key pair 생성 [Client Side]&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;default 로 생성 시 ~/.ssh/id&lt;em&gt;rsa , ~/.ssh/id&lt;/em&gt;rsa.pub 로 생성됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;$ ssh-keygen&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;파일 설명   &lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;파일명&lt;/th&gt;
+&lt;th&gt;설명&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;id_rsa&lt;/td&gt;
+&lt;td&gt;private key, 서버에 패스워드 없이 접속할때 해당 key를 사용한다&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;id_rsa.pub&lt;/td&gt;
+&lt;td&gt;public key, 접속하려는 서버의 authorized_key 에 등록하면 된다&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;#2. 접속하려는 서버에 public key 등록 [Server Side]&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ cat id_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;#3. 접속확인 [Client Side]&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ scp -i ~/.ssh/id_rsa [타겟파일] [서버계정]@[서버HOST]:~/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h5&gt;#ps. 관련 디렉토리, 파일 퍼미션&lt;/h5&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;chmod 700 ~/.ssh
+chmod 600 ~/.ssh/id_rsa
+chmod 644 ~/.ssh/id_rsa.pub  
+chmod 644 ~/.ssh/authorized_keys
+chmod 644 ~/.ssh/known_hosts&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[작업로그] MySQL Optimize]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-15--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-15--001</guid><pubDate>Fri, 15 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;요청사항&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Replication 이 적용된 두 서버의 DB 의 몇몇 테이블 스페이스가 달라요. 확인 해주세요.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;확인&lt;/h3&gt;
+&lt;ul&gt;
 &lt;li&gt;DB 데이터 파일이 존재하는 디렉토리에서 데이터파일 사이즈 확인 결과 두개의 로그파일 사이즈가 달랐다.&lt;/li&gt;
 &lt;li&gt;ibd 파일 위치: my.cnf 파일안에 data 경로 &lt;/li&gt;
 &lt;/ul&gt;
