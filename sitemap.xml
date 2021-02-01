@@ -183,8 +183,6 @@
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2020-11-01--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2020-12-29--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/remote-debugging/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2020-12-22--001.md</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/slow-query/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2020-12-29--002</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/history/posts/2020-12-30--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2021-01-06--002</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -209,6 +207,10 @@
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/ssh-key/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2021-01-18--002</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/ci-cd/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2020-12-22--002.md</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/mysqladmin/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2020-12-22--001.md</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/slow-query/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2021-01-18--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/works/posts/2021-01-20--002</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://eunyoung-autocrypt.github.io/devHistoryBlog/tags/jacoco/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>

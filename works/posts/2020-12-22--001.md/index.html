@@ -5,50 +5,199 @@
 <li>특정 작업이 오래 걸린다면 로그를 통해 원인을 파악이 가능</li>
 </ul>
 <br>
-<h3>#1. 설정 방법</h3>
+<h3>#. 설정 확인</h3>
 <ul>
-<li>my.cnf 파일 설정</li>
+<li>slow query log 설정 상태 확인</li>
 </ul>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># 3초 이상 소요된 쿼리 기록
-[mysqld]
-log_slow_queries       = /var/log/mysql/mysql-slow.log
-long_query_time = 3</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># slow query 설정 정보
+mysql&gt; show global variables like &#39;slow%&#39;;</code></pre></div>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/devHistoryBlog/static/c9a4118eaae557a4491e4650e3480b65/e4c9a/001-01.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 591px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 40.416666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABUklEQVQoz21R146DMBDMl1xJKCZ0bMCYFggp9/8fNLe7iaI7KQ+jlRcznrLbLgtu9zPWdcS8DLjeFri+Qedq9ENDaDGOLbTJMc8OJ7pj6kJ2eRHLme+Eag8VHbBrbQWGtRpNW8ERkalzVDqVvetr2E7LmfeMskqgdYaiTFA3BdJUCRmT7gwthtFi22ZRdqZZFEf5mNPkb6w+SUMcYx9xEryQEFGWRwjCbyEUhdpkpITVlaTEyGTikl5nBRUp4Z/TTL1BRHdiqKddISzJyvW2YrvMuP9csKyDqI2OHhRhotxUtMfB+4Dnfwr84DG94EseY8JQPS2zioUsMSFPtsjhs2rOqnMNxskSqJBTj4EK6J8Yp06y/WeZ22Srj/CNlMJtzycnLXNRbEsKoXi4DCZ5lFTQo+mrYSGsm1Jsdc5Idpaa5fOy9JiIlFtkuz7Ze4e/6hi/7Y/9N6x8EY8AAAAASUVORK5CYII='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="001 01"
+        title=""
+        src="/devHistoryBlog/static/c9a4118eaae557a4491e4650e3480b65/e4c9a/001-01.png"
+        srcset="/devHistoryBlog/static/c9a4118eaae557a4491e4650e3480b65/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/c9a4118eaae557a4491e4650e3480b65/e85cb/001-01.png 480w,
+/devHistoryBlog/static/c9a4118eaae557a4491e4650e3480b65/e4c9a/001-01.png 591w"
+        sizes="(max-width: 591px) 100vw, 591px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
 <br>
-<h3>#2. 설정 확인</h3>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># 소요시간 확인
+mysql&gt; show global variables like &#39;%long_query_time%&#39;;</code></pre></div>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/devHistoryBlog/static/e075030c0255aaa2bda14dffa54a6b21/2c288/001-02.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 684px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 26.666666666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAx0lEQVQY041QSRLCMAzLU1jblG5pS/bScIAD/P8/wnGnXOGgUaxYih0x3zyWJcAHjTg7Zu9XLCkSX1m7LR5XrfiszYDsi9HC2AmBOOuyOkGszY7CDJuMHcjYI90DGRXGqUXbVWhaibopiEtc6jNpEl1fcb3dyeoIkc1xtvSiY1g3olcXCoxwbmJTUe5xLnbMG3K9arvvXSkPEMPY0MiGQzWtFKKGUjVrr/eTVp6+zb+Q+0Q2phTovwJP+HgkRq7VUPNqW/M/oR8+XJwQ4N8RewAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="001 02"
+        title=""
+        src="/devHistoryBlog/static/e075030c0255aaa2bda14dffa54a6b21/2c288/001-02.png"
+        srcset="/devHistoryBlog/static/e075030c0255aaa2bda14dffa54a6b21/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/e075030c0255aaa2bda14dffa54a6b21/e85cb/001-02.png 480w,
+/devHistoryBlog/static/e075030c0255aaa2bda14dffa54a6b21/2c288/001-02.png 684w"
+        sizes="(max-width: 684px) 100vw, 684px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<br>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># 로그파일 저장 방법 (FILE / TABLE)
+mysql&gt; show global variables like &#39;%log_output%&#39;;</code></pre></div>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/devHistoryBlog/static/ab24097d71c08c59a8d7996770dbbcb2/6114d/001-03.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 623px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 30.83333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA30lEQVQY05VQSXLDMAzTU9q0ibzE8ardsuPk0P7/QwhJTzK9tT1gSEEYEKRa14TtlpGXiBAt1usM6wZ6B6TZ4UZ/xvaIyeG6ZTg/IiUr3LJGzKThyqjqI5QPE3L2mLMjQyPVul0ck0HX1yJsLoXg3GjUZy0c95e2FHBflB9Q/dCATTmNDyMZegzEsbmxHXRxwPH0hpN+f9WfYO7Js1aNU4sYJzFi8JS2q7FtMw2xKKvPl/g3sE7t9/KSkA0n02Gh+8kA4qp/GErC/eAGno9NiQKl/fq+ywBeWxe82uHPhg/IL7pdeTFsiQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="001 03"
+        title=""
+        src="/devHistoryBlog/static/ab24097d71c08c59a8d7996770dbbcb2/6114d/001-03.png"
+        srcset="/devHistoryBlog/static/ab24097d71c08c59a8d7996770dbbcb2/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/ab24097d71c08c59a8d7996770dbbcb2/e85cb/001-03.png 480w,
+/devHistoryBlog/static/ab24097d71c08c59a8d7996770dbbcb2/6114d/001-03.png 623w"
+        sizes="(max-width: 623px) 100vw, 623px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<br>
+<h3>#. 설정 방법</h3>
+<h4>#1. my.cnf 파일 설정 및 재기동</h4>
 <ul>
-<li>
-<p>service restart 및 활성화 확인</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">$ /etc/init.d/mysqld restart</code></pre></div>
-</li>
+<li>파일 설정</li>
 </ul>
-<p>mysql> show variables like ‘slow<em>query</em>%’;</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">&lt;br&gt;
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># 3초 이상 소요된 쿼리를 테이블에 기록
+[mysqld]
+slow_query_log=1
+long_query_time = 3
 
-### #3. 로그파일
-- 아래와 같은 형식으로 로그파일에 기록됨</code></pre></div>
-<h1>Query_time : 쿼리 처리시간</h1>
-<h1>Lock_time : lock이 걸린 횟수</h1>
-<h1>Row_sent : 조회 결과 Row 수</h1>
-<h1>Rows_examined : 조회 대상 ROW 수</h1>
-<h1>User@Host: DB<em>유저[DB</em>유저] @ server_hostname [서버IP]</h1>
-<h1>Query<em>time: 0.000599  Lock</em>time: 0.000163 Rows<em>sent: 3  Rows</em>examined: 86</h1>
-<p>SET timestamp=1489118717;
-select count(*)</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">&lt;br&gt;
+log_output = TABLE
+log_slow_queries       = /var/log/mysql/mysql-slow.log</code></pre></div>
+<ul>
+<li>재기동</li>
+</ul>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">$ /etc/init.d/mysqld restart</code></pre></div>
+<br>
+<h4>#2. 쿼리문 사용 (편하다…, 재기동시 날라간다…)</h4>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># 해당 값(초) 이상의 로그 기록
+mysql&gt; set global long_query_time = 3;
 
-### #4. mysqladmin 명령어로 상태 출력</code></pre></div>
-<p>// -i5 : interval 5s
-$ mysqladmin -i5 status -u root -p
-Enter password:
-Uptime: 10578  Threads: 1  Questions: 4809  Slow queries: 589  Opens: 1321  Flush tables: 1  Open tables: 348  Queries per second avg: 0.454</p>
-<h1>Uptime : MySQL server 시삭된 후 현재 시간 (초 단위)</h1>
-<h1>Threads : 현제 DB 서버에 연결된 유저수</h1>
-<h1>Questions : 서버 시작후 지금까지 요청된 쿼리수</h1>
-<h1>Slow queries : mysql 설정파일에 슬로우쿼리의 쿼리시간 이상을 가진 요청수</h1>
-<h1>Opens : 서버가 시작된 후 현재까지 열렸던 테이블수</h1>
-<h1>Open tables : 현재 열려 잇는 테이블 수</h1>
-<h1>Queries per second avg : 평균 초단 쿼리수</h1>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"></code></pre></div></div><div class="post-single__date"><em>Published <!-- -->22 Dec 2020</em></div></div><div class="post-single__footer"><div class="post-single__tags"><ul class="post-single__tags-list"><li class="post-single__tags-list-item"><a class="post-single__tags-list-item-link" href="/devHistoryBlog/tags/slow-query/">slow query</a></li></ul></div><hr/><p class="post-single__footer-text">EY&#x27;s 개발 히스토리 블로그</p><div></div></div></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script>
+# 슬로우쿼리 활성 여부 (0 = 비활성 / 1 = 활성)
+mysql&gt; set global slow_query_log = 1;
+
+# 로그파일 저장 방법 변경
+mysql&gt; set global log_output = &#39;TABLE&#39;;</code></pre></div>
+<br>
+<h3>#. 로그 확인</h3>
+<h4>#. mysql.slow_log 테이블 확인</h4>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">mysql&gt; select sleep(3);
+
+mysql&gt; select * from mysql.slow_log\G</code></pre></div>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/devHistoryBlog/static/4aae148b1988ba271b336ed8e2299443/c7dcc/001-04.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 641px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 65.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAABoklEQVQ4y41T6XqCQAzkSWqrgigKyH3f3l/r+z/NNAlq69X6I+zCktnMZKJEsYc0DRDFLvxgCX63l3NZl86c9oacBaEDz7fgBbb8Fyc+jLkGVXuHNvm4hBJGLuo6Q1XnyItY9kWRoKpSFGWCkIA4uW4yea/kPKZ9/HOJbyOgSyx7BoVvcD0LTVuckmJJXK1ribyIkBCDNe13+xX2h7UkcjUzQ72K6WwMZawO5Ib1piXQXACbpsDn146+NTgeD7IG4ZIkWMC0ptD14RXNK8oMyDq1q0roCOUylYrqJhfgPVXGTHq9es0mBPooFC6VdeAKe5AMDlXCh0xBn45kvU18BqqY1gzcGNYxTUN0q/LUvVs6w7t4CMidYsCMOsdrVWWilSRQdVzhRB89pXgHyHQc18R216Gk7jakm+uZGI3fpDLWmLV7GVDVBtRyDW1bSkPYixH5Lkl90ZYtxB0W3V4B5AfrePZdlkcUsUyJPh2LAxamfmnEf0GT4ggQe41Nu9m26LqSZOg9d6asvUrZsg0ZIdbNpznlNc/76WDD/7bHX/47xzciI5LhHDChpAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="001 04"
+        title=""
+        src="/devHistoryBlog/static/4aae148b1988ba271b336ed8e2299443/c7dcc/001-04.png"
+        srcset="/devHistoryBlog/static/4aae148b1988ba271b336ed8e2299443/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/4aae148b1988ba271b336ed8e2299443/e85cb/001-04.png 480w,
+/devHistoryBlog/static/4aae148b1988ba271b336ed8e2299443/c7dcc/001-04.png 641w"
+        sizes="(max-width: 641px) 100vw, 641px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<br>
+<h4>#. /var/log/mysql/mysql-slow.log 파일 확인</h4>
+<ul>
+<li>아래와 같은 형식으로 로그파일에 기록됨</li>
+</ul>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># Query_time : 쿼리 처리시간  
+# Lock_time : lock이 걸린 횟수  
+# Row_sent : 조회 결과 Row 수  
+# Rows_examined : 조회 대상 ROW 수  
+
+# User@Host: DB_유저[DB_유저] @ server_hostname [서버IP]
+# Query_time: 0.000599  Lock_time: 0.000163 Rows_sent: 3  Rows_examined: 86
+SET timestamp=1489118717;
+select count(*)</code></pre></div>
+<br>
+2021.02.01. 오늘 slow query 찾아보다가 내용이 부실해서 추가함...</div><div class="post-single__date"><em>Published <!-- -->22 Dec 2020</em></div></div><div class="post-single__footer"><div class="post-single__tags"><ul class="post-single__tags-list"><li class="post-single__tags-list-item"><a class="post-single__tags-list-item-link" href="/devHistoryBlog/tags/slow-query/">slow query</a></li></ul></div><hr/><p class="post-single__footer-text">EY&#x27;s 개발 히스토리 블로그</p><div></div></div></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script>
   
   
   if(true) {

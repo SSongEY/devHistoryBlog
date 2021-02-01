@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 27 Jan 2021 17:39:05 GMT</lastBuildDate><item><title><![CDATA[SSH Key]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</guid><pubDate>Fri, 22 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. SSH Key란?&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 01 Feb 2021 11:48:07 GMT</lastBuildDate><item><title><![CDATA[SSH Key]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</guid><pubDate>Fri, 22 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. SSH Key란?&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;서버에 접속 할 때 비밀번호 대신 key를 제출하는 방식이다. &lt;/li&gt;
 &lt;/ul&gt;
@@ -3913,56 +3913,217 @@ table_definition_cache = 400&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
   
   &lt;/a&gt;
     &lt;/p&gt;
-&lt;p&gt;cf) &lt;a href=&quot;https://mariadb.com/kb/en/server-system-variables/#table_definition_cache&quot;&gt;https://mariadb.com/kb/en/server-system-variables/#table_definition_cache&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[MariaDB] SlowQuery 설정 및 확인]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-22--001.md</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-22--001.md</guid><pubDate>Tue, 22 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Slow Query(슬로우쿼리)&lt;/h3&gt;
+&lt;p&gt;cf) &lt;a href=&quot;https://mariadb.com/kb/en/server-system-variables/#table_definition_cache&quot;&gt;https://mariadb.com/kb/en/server-system-variables/#table_definition_cache&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[MariaDB] 현재 status 확인 방법]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-22--002.md</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-22--002.md</guid><pubDate>Tue, 22 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. mysqladmin 명령어로 상태 출력&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// -i5 : interval 5s
+$ mysqladmin -i5 status -u root -p
+Enter password: 
+Uptime: 10578  Threads: 1  Questions: 4809  Slow queries: 589  Opens: 1321  Flush tables: 1  Open tables: 348  Queries per second avg: 0.454
+
+# Uptime : MySQL server 시삭된 후 현재 시간 (초 단위)
+# Threads : 현제 DB 서버에 연결된 유저수
+# Questions : 서버 시작후 지금까지 요청된 쿼리수
+# Slow queries : mysql 설정파일에 슬로우쿼리의 쿼리시간 이상을 가진 요청수
+# Opens : 서버가 시작된 후 현재까지 열렸던 테이블수
+# Open tables : 현재 열려 잇는 테이블 수
+# Queries per second avg : 평균 초단 쿼리수&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[MariaDB] SlowQuery 설정 및 확인]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-22--001.md</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-22--001.md</guid><pubDate>Tue, 22 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Slow Query(슬로우쿼리)&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Slow Query(슬로우쿼리)는 지정된 시간보다 실행하는데 오래걸리는 쿼리에 대한 log&lt;/li&gt;
 &lt;li&gt;특정 작업이 오래 걸린다면 로그를 통해 원인을 파악이 가능&lt;/li&gt;
 &lt;/ul&gt;
 &lt;br&gt;
-&lt;h3&gt;#1. 설정 방법&lt;/h3&gt;
+&lt;h3&gt;#. 설정 확인&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;my.cnf 파일 설정&lt;/li&gt;
+&lt;li&gt;slow query log 설정 상태 확인&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# 3초 이상 소요된 쿼리 기록
-[mysqld]
-log_slow_queries       = /var/log/mysql/mysql-slow.log
-long_query_time = 3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# slow query 설정 정보
+mysql&amp;gt; show global variables like &amp;#39;slow%&amp;#39;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/c9a4118eaae557a4491e4650e3480b65/e4c9a/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 591px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 40.416666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABUklEQVQoz21R146DMBDMl1xJKCZ0bMCYFggp9/8fNLe7iaI7KQ+jlRcznrLbLgtu9zPWdcS8DLjeFri+Qedq9ENDaDGOLbTJMc8OJ7pj6kJ2eRHLme+Eag8VHbBrbQWGtRpNW8ERkalzVDqVvetr2E7LmfeMskqgdYaiTFA3BdJUCRmT7gwthtFi22ZRdqZZFEf5mNPkb6w+SUMcYx9xEryQEFGWRwjCbyEUhdpkpITVlaTEyGTikl5nBRUp4Z/TTL1BRHdiqKddISzJyvW2YrvMuP9csKyDqI2OHhRhotxUtMfB+4Dnfwr84DG94EseY8JQPS2zioUsMSFPtsjhs2rOqnMNxskSqJBTj4EK6J8Yp06y/WeZ22Srj/CNlMJtzycnLXNRbEsKoXi4DCZ5lFTQo+mrYSGsm1Jsdc5Idpaa5fOy9JiIlFtkuz7Ze4e/6hi/7Y/9N6x8EY8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/c9a4118eaae557a4491e4650e3480b65/e4c9a/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/c9a4118eaae557a4491e4650e3480b65/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/c9a4118eaae557a4491e4650e3480b65/e85cb/001-01.png 480w,
+/devHistoryBlog/static/c9a4118eaae557a4491e4650e3480b65/e4c9a/001-01.png 591w&quot;
+        sizes=&quot;(max-width: 591px) 100vw, 591px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
 &lt;br&gt;
-&lt;h3&gt;#2. 설정 확인&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# 소요시간 확인
+mysql&amp;gt; show global variables like &amp;#39;%long_query_time%&amp;#39;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/e075030c0255aaa2bda14dffa54a6b21/2c288/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 684px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 26.666666666666668%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAx0lEQVQY041QSRLCMAzLU1jblG5pS/bScIAD/P8/wnGnXOGgUaxYih0x3zyWJcAHjTg7Zu9XLCkSX1m7LR5XrfiszYDsi9HC2AmBOOuyOkGszY7CDJuMHcjYI90DGRXGqUXbVWhaibopiEtc6jNpEl1fcb3dyeoIkc1xtvSiY1g3olcXCoxwbmJTUe5xLnbMG3K9arvvXSkPEMPY0MiGQzWtFKKGUjVrr/eTVp6+zb+Q+0Q2phTovwJP+HgkRq7VUPNqW/M/oR8+XJwQ4N8RewAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/e075030c0255aaa2bda14dffa54a6b21/2c288/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/e075030c0255aaa2bda14dffa54a6b21/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/e075030c0255aaa2bda14dffa54a6b21/e85cb/001-02.png 480w,
+/devHistoryBlog/static/e075030c0255aaa2bda14dffa54a6b21/2c288/001-02.png 684w&quot;
+        sizes=&quot;(max-width: 684px) 100vw, 684px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# 로그파일 저장 방법 (FILE / TABLE)
+mysql&amp;gt; show global variables like &amp;#39;%log_output%&amp;#39;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/ab24097d71c08c59a8d7996770dbbcb2/6114d/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 623px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 30.83333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA30lEQVQY05VQSXLDMAzTU9q0ibzE8ardsuPk0P7/QwhJTzK9tT1gSEEYEKRa14TtlpGXiBAt1usM6wZ6B6TZ4UZ/xvaIyeG6ZTg/IiUr3LJGzKThyqjqI5QPE3L2mLMjQyPVul0ck0HX1yJsLoXg3GjUZy0c95e2FHBflB9Q/dCATTmNDyMZegzEsbmxHXRxwPH0hpN+f9WfYO7Js1aNU4sYJzFi8JS2q7FtMw2xKKvPl/g3sE7t9/KSkA0n02Gh+8kA4qp/GErC/eAGno9NiQKl/fq+ywBeWxe82uHPhg/IL7pdeTFsiQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/ab24097d71c08c59a8d7996770dbbcb2/6114d/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/ab24097d71c08c59a8d7996770dbbcb2/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/ab24097d71c08c59a8d7996770dbbcb2/e85cb/001-03.png 480w,
+/devHistoryBlog/static/ab24097d71c08c59a8d7996770dbbcb2/6114d/001-03.png 623w&quot;
+        sizes=&quot;(max-width: 623px) 100vw, 623px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h3&gt;#. 설정 방법&lt;/h3&gt;
+&lt;h4&gt;#1. my.cnf 파일 설정 및 재기동&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;service restart 및 활성화 확인&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ /etc/init.d/mysqld restart&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/li&gt;
+&lt;li&gt;파일 설정&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;mysql&gt; show variables like ‘slow&lt;em&gt;query&lt;/em&gt;%’;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;br&amp;gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# 3초 이상 소요된 쿼리를 테이블에 기록
+[mysqld]
+slow_query_log=1
+long_query_time = 3
 
-### #3. 로그파일
-- 아래와 같은 형식으로 로그파일에 기록됨&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Query_time : 쿼리 처리시간&lt;/h1&gt;
-&lt;h1&gt;Lock_time : lock이 걸린 횟수&lt;/h1&gt;
-&lt;h1&gt;Row_sent : 조회 결과 Row 수&lt;/h1&gt;
-&lt;h1&gt;Rows_examined : 조회 대상 ROW 수&lt;/h1&gt;
-&lt;h1&gt;User@Host: DB&lt;em&gt;유저[DB&lt;/em&gt;유저] @ server_hostname [서버IP]&lt;/h1&gt;
-&lt;h1&gt;Query&lt;em&gt;time: 0.000599  Lock&lt;/em&gt;time: 0.000163 Rows&lt;em&gt;sent: 3  Rows&lt;/em&gt;examined: 86&lt;/h1&gt;
-&lt;p&gt;SET timestamp=1489118717;
-select count(*)&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;br&amp;gt;
+log_output = TABLE
+log_slow_queries       = /var/log/mysql/mysql-slow.log&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;재기동&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ /etc/init.d/mysqld restart&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h4&gt;#2. 쿼리문 사용 (편하다…, 재기동시 날라간다…)&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# 해당 값(초) 이상의 로그 기록
+mysql&amp;gt; set global long_query_time = 3;
 
-### #4. mysqladmin 명령어로 상태 출력&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;// -i5 : interval 5s
-$ mysqladmin -i5 status -u root -p
-Enter password:
-Uptime: 10578  Threads: 1  Questions: 4809  Slow queries: 589  Opens: 1321  Flush tables: 1  Open tables: 348  Queries per second avg: 0.454&lt;/p&gt;
-&lt;h1&gt;Uptime : MySQL server 시삭된 후 현재 시간 (초 단위)&lt;/h1&gt;
-&lt;h1&gt;Threads : 현제 DB 서버에 연결된 유저수&lt;/h1&gt;
-&lt;h1&gt;Questions : 서버 시작후 지금까지 요청된 쿼리수&lt;/h1&gt;
-&lt;h1&gt;Slow queries : mysql 설정파일에 슬로우쿼리의 쿼리시간 이상을 가진 요청수&lt;/h1&gt;
-&lt;h1&gt;Opens : 서버가 시작된 후 현재까지 열렸던 테이블수&lt;/h1&gt;
-&lt;h1&gt;Open tables : 현재 열려 잇는 테이블 수&lt;/h1&gt;
-&lt;h1&gt;Queries per second avg : 평균 초단 쿼리수&lt;/h1&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Grep AND, OR, NOT 사용 명령어]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--002</guid><pubDate>Sun, 20 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. AND&lt;/h3&gt;
+# 슬로우쿼리 활성 여부 (0 = 비활성 / 1 = 활성)
+mysql&amp;gt; set global slow_query_log = 1;
+
+# 로그파일 저장 방법 변경
+mysql&amp;gt; set global log_output = &amp;#39;TABLE&amp;#39;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h3&gt;#. 로그 확인&lt;/h3&gt;
+&lt;h4&gt;#. mysql.slow_log 테이블 확인&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;mysql&amp;gt; select sleep(3);
+
+mysql&amp;gt; select * from mysql.slow_log\G&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/4aae148b1988ba271b336ed8e2299443/c7dcc/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 641px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 65.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAABoklEQVQ4y41T6XqCQAzkSWqrgigKyH3f3l/r+z/NNAlq69X6I+zCktnMZKJEsYc0DRDFLvxgCX63l3NZl86c9oacBaEDz7fgBbb8Fyc+jLkGVXuHNvm4hBJGLuo6Q1XnyItY9kWRoKpSFGWCkIA4uW4yea/kPKZ9/HOJbyOgSyx7BoVvcD0LTVuckmJJXK1ribyIkBCDNe13+xX2h7UkcjUzQ72K6WwMZawO5Ib1piXQXACbpsDn146+NTgeD7IG4ZIkWMC0ptD14RXNK8oMyDq1q0roCOUylYrqJhfgPVXGTHq9es0mBPooFC6VdeAKe5AMDlXCh0xBn45kvU18BqqY1gzcGNYxTUN0q/LUvVs6w7t4CMidYsCMOsdrVWWilSRQdVzhRB89pXgHyHQc18R216Gk7jakm+uZGI3fpDLWmLV7GVDVBtRyDW1bSkPYixH5Lkl90ZYtxB0W3V4B5AfrePZdlkcUsUyJPh2LAxamfmnEf0GT4ggQe41Nu9m26LqSZOg9d6asvUrZsg0ZIdbNpznlNc/76WDD/7bHX/47xzciI5LhHDChpAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/4aae148b1988ba271b336ed8e2299443/c7dcc/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/4aae148b1988ba271b336ed8e2299443/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/4aae148b1988ba271b336ed8e2299443/e85cb/001-04.png 480w,
+/devHistoryBlog/static/4aae148b1988ba271b336ed8e2299443/c7dcc/001-04.png 641w&quot;
+        sizes=&quot;(max-width: 641px) 100vw, 641px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h4&gt;#. /var/log/mysql/mysql-slow.log 파일 확인&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;아래와 같은 형식으로 로그파일에 기록됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# Query_time : 쿼리 처리시간  
+# Lock_time : lock이 걸린 횟수  
+# Row_sent : 조회 결과 Row 수  
+# Rows_examined : 조회 대상 ROW 수  
+
+# User@Host: DB_유저[DB_유저] @ server_hostname [서버IP]
+# Query_time: 0.000599  Lock_time: 0.000163 Rows_sent: 3  Rows_examined: 86
+SET timestamp=1489118717;
+select count(*)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+2021.02.01. 오늘 slow query 찾아보다가 내용이 부실해서 추가함...</content:encoded></item><item><title><![CDATA[Grep AND, OR, NOT 사용 명령어]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2020-12-20--002</guid><pubDate>Sun, 20 Dec 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. AND&lt;/h3&gt;
 &lt;h4&gt;#1.1. pipe를 이용해 여러번 사용&lt;/h4&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;cat test.txt | grep pattern1 | grep pattern2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;#1.2. -E 옵션 사용&lt;/h4&gt;
