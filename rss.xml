@@ -1,4 +1,563 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 01 Feb 2021 11:48:07 GMT</lastBuildDate><item><title><![CDATA[SSH Key]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</guid><pubDate>Fri, 22 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. SSH Key란?&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 08 Feb 2021 16:26:59 GMT</lastBuildDate><item><title><![CDATA[[작업로그] Mysql Index 미생성 이슈]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-02-04--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-02-04--001</guid><pubDate>Thu, 04 Feb 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;현재 프로젝트중인 사이트에서 에이징 테스트 중에 DB 서버 CPU 사용량이 점차 증가하여 사용율이 90%까지 올라가는 현상이 발생했다.&lt;br&gt;
+결론적으로는 index를 생성하지 않아 select가 많은 특정 테이블에서 약 50만건 데이터를 계속해서 full scan 하여 해당 현상이 발생되었다.&lt;/p&gt;
+&lt;h3&gt;#. 이를 위해 무엇을 확인했나?&lt;/h3&gt;
+&lt;h4&gt;#1. slow query 확인&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;1초 이상 수행되는 쿼리 검출&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; leaf_cert 
+&lt;span class=&quot;token keyword&quot;&gt;where&lt;/span&gt; actor&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;MO&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; cn&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;KREVPABCDEF0052&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; valid&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; last_issued&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; 
+
+&lt;span class=&quot;token keyword&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; leaf_cert leafcert0_ 
+&lt;span class=&quot;token keyword&quot;&gt;where&lt;/span&gt; actor&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;CPS&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; valid&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; last_issued&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h4&gt;#2. 조건절로 사용되는 컬럼의 cardinality 와 선택률&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;위의 쿼리문 확인 결과, leaf_cert 테이블에서는  &lt;/li&gt;
+&lt;li&gt;&lt;span style=&quot;color:green; font-weight:500&quot;&gt;cn&lt;/span&gt; 컬럼은 cardinality 가 높다&lt;br&gt;
+— 1년마다 인증서 갱신이 되면 동일 cn의 row 가 발생, 인증서 폐지 시 동일 cn으로 row가 발생할수 있다.  &lt;/li&gt;
+&lt;li&gt;&lt;span style=&quot;color:green; font-weight:500&quot;&gt;last_issued&lt;/span&gt; 컬럼은 cardinality가 낮지만 선택률이 낮다.&lt;br&gt;
+— 값은 true 또는 false 이다.&lt;br&gt;
+— 한개의 row만 true 이다.   &lt;/li&gt;
+&lt;li&gt;&lt;span style=&quot;color:green; font-weight:500&quot;&gt;actor&lt;/span&gt;가 CPS 일 경우 선택률이 낮다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;- cardinality  
+    -- 값의 균형을 나타냄  
+    -- 모든 레코드에 다른 값이 들어있으면 cadinality 가 높다.  
+    -- 높을 수록, 즉 값이 평균치에서 많이 흩어져 있을수록 좋은 인덱스 후보이다.  
+
+- 선택률  
+    -- 테이블 전체에서 몇 개의 레코드가 선택되는지를 나타냄  
+    -- 선택률이 낮을 수록, 즉 한 번의 선택으로 레코드가 조금만 선택되는 것이 좋은 후보이다.  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h3&gt;#.인덱스 생성&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;create index idx__cn on leaf_cert(cn);
+create index idx__last_issued on leaf_cert(last_issued);
+create index idx__vaild on leaf_cert(valid);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;#.근데?&lt;/h3&gt;
+&lt;p&gt;확인해보니 에이징 테스트 셋이 잘못됐었다..&lt;br&gt;
+운영시 실제로는 cn 컬럼의 데이터가 중복 발생 할 경우가 낮아 cn의 cadinality는 높아야 하는데…&lt;br&gt;
+테스트 셋을 300개만 생성하여 테스트를 하니 동일 cn으로 생성/폐지가 계속 발생하게 되었다.&lt;/p&gt;
+&lt;p&gt;폐지가 계속 발생되는 테스트이다보니… cn은 cardinality 가 낮아지고, 폐지 여부 컬럼인 valid 가 선택률이 낮게 되었다.
+어쩔 수 없이 valid 컬럼에 인덱스를 추가 생성했다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;create index idx__valid on leaf_cert(valid);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h3&gt;테스트 결과&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;결론적으로 CPU 사용량 및 응답속도에서 약 65~75% 의 개선 효과가 관찰됨.&lt;/li&gt;
+&lt;li&gt;인덱스 작업 전 CPU 사용량
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/4ba4f99899220e04996580bc1b4eb2c9/098c1/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 28.750000000000004%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA4UlEQVQY021QW27DMAzr/U+17W8DCuwYjZvESer3i5PkBFnRCiBsSxQt6nIfR6zbCqUUvPfgqLWitvaChjP0w2LWC9Z1wW3U2IyR/stj25BjIpWGkovcc8qE1BE7CuXsrGGshXUOznmkEAXRByTiiKAkrUc0DslR4TgpJzC9lkOCuv7i+v2Dr49PLJNG+cfLdPeOBXMWC01snVbbk90qdt004T4oDLcBmfrOnl4PIZBgjDIqE2R3hERWI1lo+5vBZLvvmIM5DOGUIuIiqOcZlixpWvAx6Tuw6PFpfz/XsU/4B5iZ1L+V9ck3AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/4ba4f99899220e04996580bc1b4eb2c9/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/4ba4f99899220e04996580bc1b4eb2c9/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/4ba4f99899220e04996580bc1b4eb2c9/e85cb/001-01.png 480w,
+/devHistoryBlog/static/4ba4f99899220e04996580bc1b4eb2c9/d9199/001-01.png 960w,
+/devHistoryBlog/static/4ba4f99899220e04996580bc1b4eb2c9/07a9c/001-01.png 1440w,
+/devHistoryBlog/static/4ba4f99899220e04996580bc1b4eb2c9/098c1/001-01.png 1578w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;li&gt;인덱스 작업 전 응답시간
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/70721dc15ae9d6e7dfc8f97b6e2b1c62/891d5/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 30.83333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABaUlEQVQY002QSUtCYRiF748K2pSlJbVqWvQDIiIaNBsoi6BltJF21aZF1C8IIZTMKRWHNC2TLFRCHK5DF83hDqfvvha4eDgf532/88LhFEVC5buDTKEBodlFqy0SkiRDlmWU6220OxKqQof8xo+IriiRly00oSgKmi0RNTbvdCVwgII830IsXadgNVSlK8q0mMoJ+Mw3EE7VkMwIiH/U4Y3z8L1UcHWXhT1UxLUthxt7jv5wsXQNu2cJmC8S2DtPYNUSxYrlCYbTGBZPIlg4DmP+KIDZAz+mzD5M7/swse3B5I4X+k0PtEY3NOsu6ExuXFoz4G4f8xhYcpA5tOYkHf5DY3BhhKHdcEOnYurpOAsaM/VURb/VC55hRzmrL4/B5QeMGl0EBbChqv1e/+zfV990gIWrx+cOWeBXqQlbsEhdOCIl3DM8zzypO1YmnNEy9eaMluBn3VGHCR6B1wpCb1VE32sIJqu09wt5sHdaqnp+sAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/70721dc15ae9d6e7dfc8f97b6e2b1c62/d9199/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/70721dc15ae9d6e7dfc8f97b6e2b1c62/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/70721dc15ae9d6e7dfc8f97b6e2b1c62/e85cb/001-03.png 480w,
+/devHistoryBlog/static/70721dc15ae9d6e7dfc8f97b6e2b1c62/d9199/001-03.png 960w,
+/devHistoryBlog/static/70721dc15ae9d6e7dfc8f97b6e2b1c62/07a9c/001-03.png 1440w,
+/devHistoryBlog/static/70721dc15ae9d6e7dfc8f97b6e2b1c62/891d5/001-03.png 1520w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;인덱스 작업 후 CPU 사용량
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/44bb4660498f26b26e3993eba8f22549/bd82c/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 27.916666666666668%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA5ElEQVQY032R3W6DMAyF8/7vVvVibaXdIFVbKUHtCoyQOH9nNiRS14se9Mk4PjYkUVprjOOIruvWmFJCjPEtKUVY8uhuDwzDA7f7D9r+DmMM1DRNCCFAlHMuDek/cUN8kotPIvHQ4D08Q4zUVeABorUxF3MhF+q7NBPROkD68uvDHuWsQwq8FR8Q+IsSX5H1lAHbXnH+OGC336NpmrVPahXxKuKBdprh5gXeWFBh4TVa3JZzjRxhOH/hcvrE8XBE+32B/Z23WsGzX/V8KYYTrXtU8c8gpohnybYdbzfy0VTV43rWH/Se1GTfj9PPAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/44bb4660498f26b26e3993eba8f22549/d9199/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/44bb4660498f26b26e3993eba8f22549/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/44bb4660498f26b26e3993eba8f22549/e85cb/001-02.png 480w,
+/devHistoryBlog/static/44bb4660498f26b26e3993eba8f22549/d9199/001-02.png 960w,
+/devHistoryBlog/static/44bb4660498f26b26e3993eba8f22549/07a9c/001-02.png 1440w,
+/devHistoryBlog/static/44bb4660498f26b26e3993eba8f22549/bd82c/001-02.png 1585w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;li&gt;인덱스 작업 후 응답시간
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/6cbf1f4c05306f02c3a609ebaa0c2682/6bfbb/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 31.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABIUlEQVQY01VQyUoDQRDt/xM8qPmB/IQgLmeFiAclKl68CCrEBQ+CdxfEs8iYqLe4ZJnMZLqnp7ufVTWZoAWPqq569R7VKtMW3nsAAZkpYKwTxKmFLRxyqpPMyswWftpjhBAw1uUOz9OsgEqJnFsvot9Dg5QImXH4GpgJ0aE/ypGMrYiIYe6gqU+KYsxiI5ozT7E7i7D6Z1/LgF27PT11/SGjYZJDkxDPGLxTOI8Bm5EGC/diA6WNRRXVGXw+L1fBZ3KvxP8IwVeVfIl6fo+xd9kRbLfa2Dlr4+DqDfv03r3ooHleZgZzDq8/sHUaYfMkEk7jOEKTZhtHL9R/hbp57GJm8Ra1tQcsrJaoTfL8yr2gqv/25hjLZeb37NId6utP+AWR260yeAx0+AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/6cbf1f4c05306f02c3a609ebaa0c2682/d9199/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/6cbf1f4c05306f02c3a609ebaa0c2682/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/6cbf1f4c05306f02c3a609ebaa0c2682/e85cb/001-04.png 480w,
+/devHistoryBlog/static/6cbf1f4c05306f02c3a609ebaa0c2682/d9199/001-04.png 960w,
+/devHistoryBlog/static/6cbf1f4c05306f02c3a609ebaa0c2682/07a9c/001-04.png 1440w,
+/devHistoryBlog/static/6cbf1f4c05306f02c3a609ebaa0c2682/6bfbb/001-04.png 1514w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;느낀점&lt;/h3&gt;
+&lt;p&gt;이번 프로젝트를 진행하면서 많은 경험을 하는것 같다.&lt;br&gt;
+실 운영 상황에 맞게 테스트 셋을 만들었어야 했고, 미리 index 작업을 했었어야 했다.&lt;br&gt;
+놓쳤던 부분이 많았다.  &lt;/p&gt;
+&lt;p&gt;특히 인덱스 부분에서는 50만개 full scan 정도야 했는데… 이로인해 응답속도지연과 cpu 사용률이 문제가 되다니…&lt;br&gt;
+DB를 너무 신뢰했던거 같다.
+반성한다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Git Repository 이동]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-23--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-23--001</guid><pubDate>Sat, 23 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;생각보다 레파지토리 이동 작업을 많이한다..&lt;br&gt;
+commit 등의 이력까지 같이 이동하는 방법이다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;git clone --mirror [기존 리파지토리 주소]
+
+cd [기존 리파지토리 명].git
+
+git remote set-url --push origin [신규 리파지토리 주소]
+
+git push --mirror&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[작업로그] 테스트 자동화 구축 #5]]></title><description><![CDATA[sonarqube 설치 및 pipeline 작성]]></description><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-23--002</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-23--002</guid><pubDate>Sat, 23 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. Sonarqube ?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;20개 이상의 프로그래밍 언어에서 버그, 코드 스멜, 보안 취약점을 발견할 목적으로 정적 코드 분석으로 자동 리뷰를 수행하기 위한 지속적인 코드 품질 검사용 오픈 소스 플랫폼 &lt;/li&gt;
+&lt;li&gt;중복 코드, 코딩 표준, 유닛 테스트, 코드 커버리지, 코드 복잡도, 주석, 버그 및 보안 취약점의 보고서를 제공.&lt;/li&gt;
+&lt;li&gt;sonar scanner에게 정적 분석 관련 데이터 제공&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;#. 정적분석을 위한 Sonarqube 설치&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/sonarqube/&quot;&gt;https://hub.docker.com/_/sonarqube/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;#1. host 설정&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;sonarqube 내부에 Elasticsearch 를 사용하고 있기 때문에 필요 설정이 있다
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/7a24aa1ce8afd1f2e94e6157c789e279/e619b/002-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 787px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 38.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsSAAALEgHS3X78AAABCklEQVQoz5VRa2+DMAzk///ESVM3Op4ZeSdASXqzA3T9MGkq4rBzwedzUgmp8V43uHYD6rbH2+WKj6bD5atDO3zj1aeK8wJjHazzBYagaS21Kfm8LFjWdceyR+YYgWp9nMEa4YiV9QGj9hAmQBxxsgG9tBiUwyANhDKP9agd2slAuVjEWZRjpAZF0IWITkgIKpy0xUhHII2Dsr6Ac+Y51wwXiOPo4amW6w3xbKyMzFYVFZxj85jM5ZyxbYmwHaA8pYPb+duJ246c76h401LX/SzJkbKYaERJTXgvkUjanoV+kU48/VMcfjZ9udG6GYrYOCnM8/ro/Aoq/rBDHtX5CNzpJesp5T9d/YcfNlRsle3zlIQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/7a24aa1ce8afd1f2e94e6157c789e279/e619b/002-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/7a24aa1ce8afd1f2e94e6157c789e279/8ff5a/002-01.png 240w,
+/devHistoryBlog/static/7a24aa1ce8afd1f2e94e6157c789e279/e85cb/002-01.png 480w,
+/devHistoryBlog/static/7a24aa1ce8afd1f2e94e6157c789e279/e619b/002-01.png 787w&quot;
+        sizes=&quot;(max-width: 787px) 100vw, 787px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# max_map_count ?
+This file contains the maximum number of memory map areas a process may have. Memory map areas are used as a side-effect of calling malloc, directly by mmap and mprotect, and also when loading shared libraries.
+While most applications need less than a thousand maps, certain programs, particularly malloc debuggers, may consume lots of them, e.g., up to one or two maps per allocation.
+The default value is 65536.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h4&gt;#2. DB 및 Volumes 설정 내용&lt;/h4&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/5ab97f9516fe199f8f2313f58a223c46/0f67e/002-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 921px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 58.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsSAAALEgHS3X78AAABV0lEQVQoz5VTi26EIBD0/3+yTWpPqyCC+EDU7c4qV03tJSWZDCy4O/swe/t40HteUN0YwlrXldZto+0Gf9nPyIpKUZgj/We9dAhlne/JMfphJNf1ZDsvZ7Bnm+8H6hg4n4NvN0EybSxBpTLtjqYl2GrmprUMR7q1UhLcGeuodZ0w3oHlHTPKlcHw+FLiFPxZVsy1nIGy1vQAq4YK3ucl3ylDed1SqS0rH0X9OIVdYVLkh0FSR4pIN6UpZcBHYxDYYWIEcuPM55n8FCnE9Zl2huhIKS6LYAHHfT/HKI9edEcqeWkK1KAmcHqujYBtUCgB4h4ghJmmECTgbZcdd65SWqCPpqA5cAanaZ+Kr7g5tTZSkrsRyiyrQuGl0/w4qWxOSo3tpOtJfeo8soPSy9jAqI6RgEJ8lOYwOQdPnOqvP4fHJNX4ModQCBXAjxN/pOmeQcBnRXd/zjerVKLxZBShkQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/5ab97f9516fe199f8f2313f58a223c46/0f67e/002-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/5ab97f9516fe199f8f2313f58a223c46/8ff5a/002-02.png 240w,
+/devHistoryBlog/static/5ab97f9516fe199f8f2313f58a223c46/e85cb/002-02.png 480w,
+/devHistoryBlog/static/5ab97f9516fe199f8f2313f58a223c46/0f67e/002-02.png 921w&quot;
+        sizes=&quot;(max-width: 921px) 100vw, 921px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br&gt;
+&lt;h4&gt;#3. Compose 파일 작성&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;sonarqube develop edition 버전 설치 (trial 라이센스 문의 함)&lt;/li&gt;
+&lt;li&gt;embedded db : postgres 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;version: &amp;quot;3.7&amp;quot;
+services:
+  db:
+    image: postgres
+    container_name: sonar-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: sonar
+      PASTGRES_PASSWORD: sonar
+      TZ: Asia/Seoul
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - ~/docker-volumes/sonar-postgres/postgres:/var/lib/postgresql/data
+  
+  sonarqube:
+    image: sonarqube:8.6.1-developer
+    container_name: sonarqube
+    restart: always
+    environment:
+      SONARQUBE_HOME: ./
+      SONARQUBE_JDBC_USERNAME: sonar
+      SONARQUBE_JDBC_PASSWORD: sonar
+      SONARQUBE_JDBC_URL: jdbc:postgresql://db:5432/sonar
+    depends_on:
+      - db
+    ports:
+      - 10002:9000
+    volumes:
+      - ~/docker-volumes/sonar-postgres/sonarqube/data:/opt/sonarqube/data
+      - ~/docker-volumes/sonar-postgres/sonarqube/extensions:/opt/sonarqube/extensions
+      - ~/docker-volumes/sonar-postgres/sonarqube/logs:/opt/sonarqube/logs
+      - ~/docker-volumes/sonar-postgres/temp:/opt/sonarqube/temp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;#4. 서비스 기동&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ docker-compose -f sonarqube-compose.yml up -d&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h3&gt;#. 정적분석을 위한 Sonarqube 프로젝트 생성 및&lt;/h3&gt;
+&lt;h4&gt;#1. Sonarqube 프로젝트 생성&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;10002 포트로 접속 후 로그인 &amp;#x26; 프로젝트 생성
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/1ec4e0187cad189410f134a4520be1a9/eea79/002-05.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 502px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 77.91666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAAB6ElEQVQ4y5WUbZObIBSF/f//bD90djbJRI0ajFZQUUHwLW1nToGdtXWTdNMPj/eKzOHAvehRSnE+nx2EENj3NE1dnsQxOOcYhgFKKWitv8QrigK+7+NwOCAIAifsBz72+51hvxF8Bs9OnqZpZRzHNZ/n2a36rNgqaEVstNwTuLe1R9+8PMvw9rZDYLZN4gRVVaHve6hePcR+n4cZk55uHbKO4pRFSAuCSlRQV7P6YlY28R7qqjD/nHFsjiAtwTItq2Pn0AomNAGhZ+R1jlKWqPoaTDBHKcr3MVm5SAUFlxw7ukPCE3RNByHEKuoxxhAnsSFBekldHsWRqbiPxFQ8iiKcopMbD0+h6Yiji3maO86mvZqm+eOw4Q0YZeA1R9u0ZsXWRSkktNLoZe/yj/ieK3SiQ81rI6Q3fepdshSvu1cEcYhjeDQuCXjH0Q89hBKQWt5gx127jdOm2m7LpaQIv59AGEE7ddC/jKurcbPIu4hFYPox4YW94FAdsAzLRtQreYmMZsiKDDnLHVVbQw7yrjuLdW8LZosz6O219OyZKGkmmWjPrjFX7aNq9gwfMerxRswJ0rrFt/CC4MIgTNOO41+3Rf+DT2e3Clamj4LU/HGKCsJUUuvtxGf/MqvgYB7zOGyc/Y/AZ34D8OO59yenUa8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 05&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/1ec4e0187cad189410f134a4520be1a9/eea79/002-05.png&quot;
+        srcset=&quot;/devHistoryBlog/static/1ec4e0187cad189410f134a4520be1a9/8ff5a/002-05.png 240w,
+/devHistoryBlog/static/1ec4e0187cad189410f134a4520be1a9/e85cb/002-05.png 480w,
+/devHistoryBlog/static/1ec4e0187cad189410f134a4520be1a9/eea79/002-05.png 502w&quot;
+        sizes=&quot;(max-width: 502px) 100vw, 502px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;프로젝트 토큰 생성
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/dcd094aa105fa8673ecc2a2b2322129a/e619b/002-06.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 787px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 32.08333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAAAz0lEQVQY06WRyW5CMQxF3///HktWSAgKL2Qg03OmWzutoCp0VUsnthzlesiyO1ywGoecEkKMICL03tFae6G+yf1m2Z81VusR/B3OOUQW/Y8tcsStYL0Z2LuHjwlUpZuB0vqDkAnGJxS+ExtjvGVhkKngqjSsD0gck4j0MakTwIQNR+W4WP+zuykogczuQ4AxBlpr5JxRawWVMndKXKRyPHpDYV++8z9j0XiOzHtTSsGyoLUWH9ztadVcJLJ4mh+WmLxtX54LyhvxguREVDr8BKtY1eONlFIfAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 06&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/dcd094aa105fa8673ecc2a2b2322129a/e619b/002-06.png&quot;
+        srcset=&quot;/devHistoryBlog/static/dcd094aa105fa8673ecc2a2b2322129a/8ff5a/002-06.png 240w,
+/devHistoryBlog/static/dcd094aa105fa8673ecc2a2b2322129a/e85cb/002-06.png 480w,
+/devHistoryBlog/static/dcd094aa105fa8673ecc2a2b2322129a/e619b/002-06.png 787w&quot;
+        sizes=&quot;(max-width: 787px) 100vw, 787px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;을 하면 아래와 같이 sonar scanner 를 사용하기 위한 설정 방법이 나온다.
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/bf81404469ad3593a0cd1a85abd3233d/c65fa/002-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 40.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA8klEQVQY042QzW7DIBCE/f7v1KOlRrJ6TJW2ruNgwIB/wCyODcEUmktSNWo/rdBIq2FGmwHAPM+rtSEE/4DNb4tbzNkIIcqyrKrqsywppRnp1WzALrMxsIUtpAnbb6RftrS9EnVmrfto2NPLe9uNyixxRn22zod/kHl/kZMWo5o0qGnSGpy7pKb+mvQz8M5s1/VU16SJoAYhSkkboS3BmBASBcaYMdbfMPQ946IfZOac67qOcx5fKWVMNt/EK94KuCd2BDDJTAlBCLWMdUIMwxB3+i+kUhogmevj8XB4K4oiz/Pn3W6/f43F2WM4Zw0mLRdfL73GsvdEufYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/bf81404469ad3593a0cd1a85abd3233d/d9199/002-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/bf81404469ad3593a0cd1a85abd3233d/8ff5a/002-04.png 240w,
+/devHistoryBlog/static/bf81404469ad3593a0cd1a85abd3233d/e85cb/002-04.png 480w,
+/devHistoryBlog/static/bf81404469ad3593a0cd1a85abd3233d/d9199/002-04.png 960w,
+/devHistoryBlog/static/bf81404469ad3593a0cd1a85abd3233d/c65fa/002-04.png 1434w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h4&gt;#2. Scanner 설정 및 실행&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;build.gradle에 plugin 추가 후&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;plugins &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  id &lt;span class=&quot;token string&quot;&gt;&quot;org.sonarqube&quot;&lt;/span&gt; version &lt;span class=&quot;token string&quot;&gt;&quot;3.0&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;scanner 를 실행하면&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;./gradlew sonarqube \
+  -Dsonar.projectKey=Test-Proj \
+  -Dsonar.host.url=http://HOST:10002 \
+  -Dsonar.login=***********************&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;정적분석 결과가 표시된다.
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/3adf418ed240c4d33879ddf364d05ad9/951a4/002-07.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABvUlEQVQoz41STWsUQRDtS8457D/Ir9Fr/I0eJGZRUE+CgseEQE4RJEpIYGMYnOmP6u+eZ1XvLLokiM0UNXRXv3rvVavgMpJOaH7G7AFk/lJCzvyDmT/en5sk1Dgh0gOcHRCjh/cexhho6zAZh1IK1Mfrzzj5+hqn306x/r7Ghx/vcbe5wzSOXGgxjAYjFxtjYfmidQTnHIO6LZjW0JL7uYV68eUYq7crqFcK6qXC6s0KN8MNrCGEGEDMotTKjCJCCHshexLCNDjDgAbq2afnHexwfYiDkwMcvTvCTxrgQ+lS/2eJ1OonkABePVzhbHOGi80FzjfnuLy/REjcOeXu49w9/HfU1pDZAseyVXQRhQoy5SUSEgOFmFBZqqzdxdbaIzAs+6X7yoDaiKn7EXjKFMSfsEy7oyKx+eKdSNw1auIv19fJgvhcyWR2YZZJiVzjY2f4NxtN2yHUUvZYJ6mPGsY9CWg6oPWps1rI9TUx4NaKP8MS0JILxjg+BWhgOOcUMFmN20Gz9ISZWVgfFggC8Su4/+W6AmmuaXtGRI8Bu2T2zge+6CXH7qNILaWhZkIM3MjH7l3i8FxXaukP/jdVN0DhWZ2OGwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 07&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/3adf418ed240c4d33879ddf364d05ad9/d9199/002-07.png&quot;
+        srcset=&quot;/devHistoryBlog/static/3adf418ed240c4d33879ddf364d05ad9/8ff5a/002-07.png 240w,
+/devHistoryBlog/static/3adf418ed240c4d33879ddf364d05ad9/e85cb/002-07.png 480w,
+/devHistoryBlog/static/3adf418ed240c4d33879ddf364d05ad9/d9199/002-07.png 960w,
+/devHistoryBlog/static/3adf418ed240c4d33879ddf364d05ad9/951a4/002-07.png 1355w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3&gt;#. Pipeline 작성&lt;/h3&gt;
+&lt;h4&gt;#1. Test Stage&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;코드 커버리지 측정 및 정적분석 진행 전 테스트 코드를 수행한다.&lt;/li&gt;
+&lt;li&gt;테스트 실패 시 파이프라인을 종료한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;stage (&amp;#39;Test&amp;#39;) {
+    sh &amp;#39;&amp;#39;&amp;#39;
+    {
+        ./gradlew test \
+        &amp;amp;&amp;amp; curl -X POST -u &amp;quot;$USER&amp;quot; $COMMENT_URL -d &amp;#39;{&amp;quot;content&amp;quot;: {&amp;quot;raw&amp;quot;: &amp;quot;[TEST] SUCCESS&amp;quot;}}&amp;#39; -H &amp;#39;Content-Type: application/json&amp;#39; &amp;gt; /dev/null 2&amp;gt;&amp;amp;1 \
+        &amp;amp;&amp;amp; echo [TEST] SUCCESS;
+    }||\
+    {
+        curl -X POST -u &amp;quot;$USER&amp;quot; $COMMENT_URL -d &amp;#39;{&amp;quot;content&amp;quot;: {&amp;quot;raw&amp;quot;: &amp;quot;[TEST] FAIL&amp;quot;}}&amp;#39; -H &amp;#39;Content-Type: application/json&amp;#39; &amp;gt; /dev/null 2&amp;gt;&amp;amp;1;
+        curl -X POST -u &amp;quot;$USER&amp;quot; $DECLINE_URL -d &amp;#39;{&amp;quot;content&amp;quot;: {&amp;quot;raw&amp;quot;: &amp;quot;[TEST] FAIL&amp;quot;}}&amp;#39; -H &amp;#39;Content-Type: application/json&amp;#39; &amp;gt; /dev/null 2&amp;gt;&amp;amp;1;
+        echo [TEST] FAIL;
+        exit 1;
+    }
+    &amp;#39;&amp;#39;&amp;#39;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h4&gt;#2. Jacoco &amp;#x26; SonarQube Analysis &amp;#x26; Quality Gate&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;테스트 성공 시 coverage 측정 및 정적분석 진행 후 Quality Gate 결과 확인&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;stage (&amp;#39;Jacoco &amp;amp; SonarQube Analysis &amp;amp; Quality Gate&amp;#39;) {
+    withSonarQubeEnv(&amp;#39;sonarqube&amp;#39;) {
+        sh &amp;quot;./gradlew jacoco sonarqube&amp;quot;
+    }
+    
+    def qg = waitForQualityGate()
+    if (qg.status != &amp;#39;OK&amp;#39;) {
+        sh &amp;#39;&amp;#39;&amp;#39;
+            curl -X POST -u &amp;quot;$USER&amp;quot; $COMMENT_URL -d &amp;#39;{&amp;quot;content&amp;quot;: {&amp;quot;raw&amp;quot;: &amp;quot;[QualityGate] FAIL&amp;quot;}}&amp;#39; -H &amp;#39;Content-Type: application/json&amp;#39; &amp;gt; /dev/null 2&amp;gt;&amp;amp;1;
+            curl -X POST -u &amp;quot;$USER&amp;quot; $DECLINE_URL -d &amp;#39;{&amp;quot;content&amp;quot;: {&amp;quot;raw&amp;quot;: &amp;quot;[QualityGate] FAIL&amp;quot;}}&amp;#39; -H &amp;#39;Content-Type: application/json&amp;#39; &amp;gt; /dev/null 2&amp;gt;&amp;amp;1;
+            echo [TEST] FAIL;
+            exit 1;
+        &amp;#39;&amp;#39;&amp;#39;
+    } else {
+        sh &amp;#39;&amp;#39;&amp;#39;
+            curl -X POST -u &amp;quot;$USER&amp;quot; $COMMENT_URL -d &amp;#39;{&amp;quot;content&amp;quot;: {&amp;quot;raw&amp;quot;: &amp;quot;[QualityGate] SUCCESS&amp;quot;}}&amp;#39; -H &amp;#39;Content-Type: application/json&amp;#39; &amp;gt; /dev/null 2&amp;gt;&amp;amp;1;
+        &amp;#39;&amp;#39;&amp;#39;
+    }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;h4&gt;#3. Approve PullRequest&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Quality Gate 패스 후 해당 PR에 대한 승인 API 발생 후 파이프라인 종료&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;stage (&amp;#39;Approve PR&amp;#39;) {
+    timeout(time: 1, unit: &amp;#39;MINUTES&amp;#39;) {
+        sh &amp;#39;&amp;#39;&amp;#39;
+            curl -X POST -u &amp;quot;$USER&amp;quot; $APPROVE_URL;
+            echo Approve PullRequest;
+        &amp;#39;&amp;#39;&amp;#39;
+    }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[SSH Key]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-01-22--001</guid><pubDate>Fri, 22 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#. SSH Key란?&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;서버에 접속 할 때 비밀번호 대신 key를 제출하는 방식이다. &lt;/li&gt;
 &lt;/ul&gt;
