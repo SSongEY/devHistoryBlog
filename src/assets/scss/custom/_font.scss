@@ -1,0 +1,36 @@
+.text-mark__green {
+  background-color: #aeff9b;
+  font-weight: 600;
+  padding: 3px;
+}
+.text-mark__blue {
+  background-color: #b9fffb;
+  font-weight: 600;
+  padding: 3px;
+}
+.text-mark__red {
+  background-color: #ffa7b8;
+  font-weight: 600;
+  padding: 3px;
+}
+
+.title__sub1 {
+  background: linear-gradient(180deg,rgba(255,255,255,0) 60%, #fed857 50%);
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-top: 4.5rem;
+  margin-bottom: 0.8125rem;
+  display: inline-block;
+}
+.title__sub2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 3.25rem;
+  margin-bottom: 0.8125rem;
+  display: block;
+}
+.title__sub3 {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  display: block;
+}
