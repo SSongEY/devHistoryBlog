@@ -1,4 +1,396 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 19 Feb 2021 01:19:05 GMT</lastBuildDate><item><title><![CDATA[@Value 사용 시, required a bean of type 'java.lang.Boolean' that could not be found. @value]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2021-02-10--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2021-02-10--001</guid><pubDate>Wed, 10 Feb 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span style=&quot;background-color:#ed5f65; color:#ffffff; margin-bottom: 5px; padding: 10px; font-weight: 600&quot;&gt; 무엇이 문제였나? &lt;/span&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[EY's 개발 히스토리 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 22 Feb 2021 11:11:48 GMT</lastBuildDate><item><title><![CDATA[[작업로그] WCA, WVA 서비스 설치 스크립트 만들기]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-02-22--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-02-22--001</guid><pubDate>Mon, 22 Feb 2021 00:00:00 GMT</pubDate><content:encoded>&lt;br&gt;
+&lt;p&gt;이번에 다른 부서에서 사온 제품 2개에 대한 설치 매뉴얼 검토중에 작업 단순화가 필요하다고 느꼈다.&lt;br&gt;
+이에 불필요한 작업 제거 및 설치 단순화를 하여 설치 스크립트를 생성하는 목적으로 이 작업을 진행하여 되었다.&lt;br&gt;
+이 작업을 진행하면서 배운 내용이나 기록이 필요한 내용을 정리한다.  &lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt;■ 1. 수작업 최소화&lt;/span&gt;
+&lt;span class=&quot;title__sub2&quot;&gt;1.1. Cloud, On-Premise 둘다 OS는 데비안 계열을 사용&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ubuntu 18.04 에서 진행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt;1.2. 두 제품에 대한 리펙토링을 진행하기 전까지 JAVA8, Tomcat8 사용&lt;/span&gt;
+tomcat major 버전이 fix 이므로 8버전의 latest 파일을 받아 아래 파일들을 수정한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;1.2.1. context.xml&lt;/b&gt;&lt;br&gt;
+— datasource 설정  &lt;/li&gt;
+&lt;li&gt;&lt;b&gt;1.2.2. server.xml&lt;/b&gt;&lt;br&gt;
+— 최대 2개의 WAS 서비스를 사용하므로 &lt;span class=&quot;text-mark__green&quot;&gt; port 를 동적으로 설정&lt;/span&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/3d14480d82b7fb44b2423b96a57fe1a5/29492/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 522px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 28.750000000000004%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAABAklEQVQY002RUXLDIAxEc5zGgAABBgL+6PT+Z9pKSp3px1oGSW9W4sGZELxHjAkheIToLXrvEMh/RERgZuScQZEQcxAREpPkPI7jgHMOj5+LsWfGWi+080TtDD4jcokoPcs5I6aAlBLmnKbMAhVgkppco5j5B1w94XsLsBOu/ULvHVyzFVpxert1/rCm4IO5DYHgbRIvOWfS/IPkcoojBZ/Fo9WKMSaKQOsoKI1xjoZyyrkVrGthzAEuLA7JXOroCjeg2nw+D9OXKMue9t4G1bjWwr62wdRxfWXbqXMH/F+vgj4j6+eWXuquxhho7bSoD6EPoDCSXUZ+u0ryz6IbdPf/Atb8u6otFOWnAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/3d14480d82b7fb44b2423b96a57fe1a5/29492/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/3d14480d82b7fb44b2423b96a57fe1a5/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/3d14480d82b7fb44b2423b96a57fe1a5/e85cb/001-01.png 480w,
+/devHistoryBlog/static/3d14480d82b7fb44b2423b96a57fe1a5/29492/001-01.png 522w&quot;
+        sizes=&quot;(max-width: 522px) 100vw, 522px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;1.2.3. catalina.sh&lt;/b&gt;&lt;br&gt;
+— &lt;span class=&quot;text-mark__green&quot;&gt;java system properties 설정&lt;/span&gt;&lt;br&gt;
+— http 포트가 8080 일 경우,&lt;br&gt;
+ — 8005 -&gt; ${port.shutdown}&lt;br&gt;
+ — 8009 -&gt; ${port.ajp}&lt;br&gt;
+ — 8443 -&gt; ${port.https} 가 된다.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/a463a5f1f2799ad66ea082705e23a975/dc333/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 938px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 17.916666666666668%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAAzElEQVQY01WQS2rEQAxEfZPMZNruj1rqVvsXGwIhIYts5v63qZGdIZDFoyRKFIW61ATMEYWTQZAcQSJwonBsnu2SA6r5kg27yRTO+bgvnOG54CYNrozoZF9BWjBM7+jHDUUbxlqhOiKWGYNucOaFUhGOIPJIqUeIDvGkhzcdTA86/foEzQsu+x0v6zfavGOfFuMNH1QhZcNl+8HVPGfhVRiULMBf/+GfdLxOSIXPFk4XsDWZVTEdVIPsDbUhW+ue4tkihNtvSHj9Y3jyAAFlecY8Ry56AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/a463a5f1f2799ad66ea082705e23a975/dc333/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/a463a5f1f2799ad66ea082705e23a975/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/a463a5f1f2799ad66ea082705e23a975/e85cb/001-02.png 480w,
+/devHistoryBlog/static/a463a5f1f2799ad66ea082705e23a975/dc333/001-02.png 938w&quot;
+        sizes=&quot;(max-width: 938px) 100vw, 938px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt;■ 2. Service 등록&lt;/span&gt;
+&lt;span class=&quot;title__sub2&quot;&gt;2.1. 서비스파일 생성&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[Unit]
+Description=WCA WAS
+Requires=mysqld.service
+After=network.target mysqld.service
+
+[Service]
+Type=forking
+Environment=WCA_LIB=/opt/penta/wca-libs
+Environment=SERVICE_PORT=8080
+Environment=CATALINA_HOME=/opt/tomcat-wca
+Environment=JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+Environment=LD_LIBRARY_PATH=/opt/penta/wca-libs:$LD_LIBRARY_PATH
+
+User=autocrypt
+Group=autocrypt
+
+ExecStart=/opt/tomcat-wca/bin/startup.sh
+ExecStop=/opt/tomcat-wca/bin/shutdown.sh
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Requires vs After&lt;/b&gt;&lt;br&gt;
+— &lt;a href=&quot;https://stackoverflow.com/questions/40593242/systemd-using-both-after-and-requires&quot;&gt;https://stackoverflow.com/questions/40593242/systemd-using-both-after-and-requires&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Environment&lt;/b&gt;&lt;br&gt;
+— User를 설정하더라도 bash_profile이나 기타 &lt;span class=&quot;text-mark__green&quot;&gt;쉘/유저 기반의 환경 변수는 먹지 않는다.&lt;/span&gt;&lt;br&gt;
+— 따라서 해당 프로퍼티를 사용하여 환경 변수를 설정한다.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Restart&lt;/b&gt;&lt;br&gt;
+— 해당 서비스가 강제 종료되었을 경우 재시작에 대한 정책이다.&lt;br&gt;
+— systemctl 로 종료했을 경우는 작동하지 않는다.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;WantedBy&lt;/b&gt;&lt;br&gt;
+— [install] 은 “systemctl enable [service name]” 으로 서비스 등록 시 이용하는 섹션이다.&lt;br&gt;
+— WantedBy 는 이 서비스가 어떤 전제조건 하에서 실행되는 지를 결정한다.&lt;br&gt;
+— multi-user.target 은 runlevel 3 환경이 모두 구동되었을 때를 의미한다.&lt;br&gt;
+— &lt;span class=&quot;text-mark__blue&quot;&gt;run leval (리눅스시스템의 실행레벨)&lt;/span&gt;&lt;br&gt;
+ ▶ init 0 : halt, 시스템 종료&lt;br&gt;
+ ▶ init 1 : Single user mode, 관리 모드로 root 계정만 사용 가능&lt;br&gt;
+ ▶ init 2 : Multiuser, without NFS (The same as 3, if you do not have networking)&lt;br&gt;
+ ▶ init 3 : Full multiuser mode, default level&lt;br&gt;
+ ▶ init 4 : unused, 사용하지 않는 실행레벨, 커스텀레벨로 사용 가능&lt;br&gt;
+ ▶ init 5 : X11, X윈도우 환경으로 실행된 멀티유저 실행모드&lt;br&gt;
+ ▶ init 6 : reboot  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt;2.2. 기타 설정 및 서비스 활성화 스크립트 생성&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;각 Step 별로 블럭지어 실패 시 메시지 출력 및 종료하도록 구성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/2a40559cff525bbf32826ed963af32c2/47730/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 428px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 51.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAABrklEQVQoz1VSUZajIBDMUTaJIggCCiGOmsRMZt/e/0S1BZrZnY9+1UBTVHVz8INEiBJd1yB4j8E52E7BW0PUjBadUXB7vtVYnmv0xN5pSHWGaE5o5BmHOWqkawuta0Tfs9jD2hbO23LBGU0yA8/I2PPBwJrBduit49qQaCMrhKY+oxZHvnBEa2r4geTVEZfTGYovx7GH66ksdkQNzzxj5xrEJKHaele3K2x4aZN8ZLHB8/OOKXT4MzmkD4tb6DGnAetzwf0x4/W6YV0XPNaJ64hppgsnC6kg6SEz56SiSus1Xl9PzPeE8R6Q2gapqjBNCcttxI2Ej3XGOF3Kw8t9wev3wvOIphBSYZCiWDBdDcU+WkfLpkGrGeKElpY6z8F0suxrDi+j4TrXWqdL/j2UJASJKvaiKn0QVJpRKhao87bX/CoteWNT4sTev/eP/4ai5PvSiT2UtOQRgkIaAj7iteAYUvlGF+aR3yYNER/hgpHn14w8z9+nJnEhfP+jgUTrp0dPi5r9y3ZzaC1+YA7131q1oqjLHIfQ1LS2+Zf7xOWu+tt6zt/4I7b2iD0yx19t9y+R+XkXXgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/2a40559cff525bbf32826ed963af32c2/47730/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/2a40559cff525bbf32826ed963af32c2/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/2a40559cff525bbf32826ed963af32c2/47730/001-03.png 428w&quot;
+        sizes=&quot;(max-width: 428px) 100vw, 428px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;서비스 활성화 Step&lt;br&gt;
+— service 파일 활성화 명령어 : $ systemctl enable {service 파일명}&lt;br&gt;
+— daemon reload 명령어 : $ systemctl daemon-reload  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/5d8236538d4cabf795efc722db79b89f/242e2/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 703px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 40%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABRElEQVQoz32R2XLDIAxF/SVNnGCz2GCzxOAt6UP//5duBU6mM5m2D2cEQrpoqbwTsLbDqA20Jms6SHVFw88Q/ATJP8Dp3PILmuaMpv2BNSewNpPPOaZGZboGQjGE0MH1HG4wCNbBGQPhIs7hATU6DEbAh5EYMFIB1vWIyZW79wrz0kN1DFUrLuBEnA0iBXk7YE0Ja0wY0w65fCHMK9Z1wn5fiJmSLQlphNsI5w2clZhS7owEubyWdtIcsGwRU3SURII73eeRsNj3G9YtIUZPONymI5mVEdQF1tRFp1KSlZaLIFXx+Fyxbbkag/vDkd+j1zQW+pg/u3mRfUJk8vnwVVa2kNR7dkgKkDInM7IHQrCS9C6WyUt4pxLPhykqGm7etobpJW1bY6CtG63Iqj8F331VT7+3oqa2WJnLEfQKrH9N+k/0G2C98NKyfbjzAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/5d8236538d4cabf795efc722db79b89f/242e2/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/5d8236538d4cabf795efc722db79b89f/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/5d8236538d4cabf795efc722db79b89f/e85cb/001-04.png 480w,
+/devHistoryBlog/static/5d8236538d4cabf795efc722db79b89f/242e2/001-04.png 703w&quot;
+        sizes=&quot;(max-width: 703px) 100vw, 703px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;스크립트 생성하면서 리눅스 파일 시스템 계층 구조에 맞게 설정 등의 디렉토리를 구성하였다.&lt;br&gt;
+▶ &lt;a href=&quot;https://ko.wikipedia.org/wiki/%ED%8C%8C%EC%9D%BC%EC%8B%9C%EC%8A%A4%ED%85%9C_%EA%B3%84%EC%B8%B5%EA%B5%AC%EC%A1%B0_%ED%91%9C%EC%A4%80&quot;&gt;리눅스 파일 시스템 계층구조 표준 위키피디아&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h4&gt;github&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/eunyoung-autocrypt/bash-scripts&quot;&gt;https://github.com/eunyoung-autocrypt/bash-scripts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[linux 다중명령어 차이점 (&& || ; |)]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2021-02-19--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2021-02-19--001</guid><pubDate>Fri, 19 Feb 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; ■ Double Ampersand (&amp;#x26;&amp;#x26;) &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;첫번째 명령이 &lt;span class=&quot;text-mark__green&quot;&gt;정상 종료&lt;/span&gt; 했을 경우 두번째 명령 수행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/22210d8b9d2d6beb24bdeb169cd12fb2/c0388/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 542px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 20.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAAvElEQVQY012Q6xKCIBSEfZTKUlG8gQok2sVmmqn3f56Nc+hH04+dXb6Bw0Ji3QDSshjctxXuPGJZHZSuYYzCZHqMUw89NJyN1cEjJ2adZmasQtMUSGZvMPsJPgwkifKIvDigECmL8r9+ecwphIjnEr9YbrSuFtvjwjdTg7Yr0as6SELr6MPYhbZdZN/G5CrsO2U7ZPk+NjzPUxjocL15fvLr/QxfYJnTc4g3rUAlM8g6Z69kzlnKuKZh1PAD0EF96+7zWAsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/22210d8b9d2d6beb24bdeb169cd12fb2/c0388/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/22210d8b9d2d6beb24bdeb169cd12fb2/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/22210d8b9d2d6beb24bdeb169cd12fb2/e85cb/001-01.png 480w,
+/devHistoryBlog/static/22210d8b9d2d6beb24bdeb169cd12fb2/c0388/001-01.png 542w&quot;
+        sizes=&quot;(max-width: 542px) 100vw, 542px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; ■ Double Vertical Bar (||) &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;첫번째 명령이 &lt;span class=&quot;text-mark__green&quot;&gt;에러&lt;/span&gt; 일 경우 두번째 명령어 수행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/6478f6305036b7db497650824d24ea6a/3ddad/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 545px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 20%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAAxklEQVQY0z2PWQ6DMAxEOUoXCoQlpEASCIEKWj56/wNNbUv0w4qtzLyxkylYhNkiLiP294px7DFHj65v4NwTgzXohhb9oOF8B/Os0GgF64xo/NhJz77WlEim4Ajmsa6TAFnUE6DRBQkq6FZJsbhuCgLW0NQb+uMQnjkkL25SSaBtYnRYCLjtkbZ1+H4PrK9Jgnj+HBus1VBlKgCGM4TDjYSWyPKrVOJp1YXOnQka6PyqzlCou5j5lV6lks6GR3b5m7k/5/P/B3+LfV+KX9zDAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/6478f6305036b7db497650824d24ea6a/3ddad/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/6478f6305036b7db497650824d24ea6a/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/6478f6305036b7db497650824d24ea6a/e85cb/001-02.png 480w,
+/devHistoryBlog/static/6478f6305036b7db497650824d24ea6a/3ddad/001-02.png 545w&quot;
+        sizes=&quot;(max-width: 545px) 100vw, 545px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt;■ Pipe (|)&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;첫번째 명령어 결과를 사용하여 두번째 명령어 수행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/68813033d8e7bae6013c56801171b352/a1aa0/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 533px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 20.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAAxklEQVQY0y2PaxKDIAyEvUnfPioKCiJYQWvb+x9pG6I/dnYCm282mfMG02tACCO2T4T3mmaLrhcwg8RA0qZFT7O1it9bWWJ0PVRXs9uxgyWXskI2B4dlnbAsHt/fyp+D7SDVk5YbdqlqKPKmLQn2JFUMU5wRnCmrG4ryiuw1O4ToEaPDewsEUwzal6sDLBhQiwJatzxrszdPV6RcXpxJFwJSw5nODeSRWva6wfoOdLrhcIL7yUA0BfL8jMeh++OE++FpTu2S/lpbfbMrqa9wAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/68813033d8e7bae6013c56801171b352/a1aa0/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/68813033d8e7bae6013c56801171b352/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/68813033d8e7bae6013c56801171b352/e85cb/001-03.png 480w,
+/devHistoryBlog/static/68813033d8e7bae6013c56801171b352/a1aa0/001-03.png 533w&quot;
+        sizes=&quot;(max-width: 533px) 100vw, 533px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt;■ Semicolon (;)&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;한 라인에서 여러 명령어를 수행할때 사용&lt;/li&gt;
+&lt;li&gt;순차적으로 수행하며, &lt;span class=&quot;text-mark__green&quot;&gt;오류가 발생하더라도 다음 명령어는 계속 수행&lt;/span&gt;된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/b51f4b95340bc2c1735b2d7a753dd762/89a37/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 532px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 24.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAA2UlEQVQY001QVxbDIAzLTbqzBySBEAhtOu5/JdV2x8uHnmxjJNvJ7EeExeL1uiEEi3idYScNYzWcGzCaDpPriRW4t2kLiaeplx4fjLy7eURdp0iW6EiEQNy0OdJ0jyw/Ii9OAo63eZod/rVtvSjPkifrfcH15mnCVSY1VkHpCp2qoPoabVdQ/mE2HMaW4pK4Qz800NQjg3yNEu8NeMp1DSL2pNUfz0jrGQGbMSpap24yKDJicRbSYlTK21+Qb8Z3iHGGoXvxjRj86bcK40Kn2OJ82Qk4/okxvwH5A5s5YdHzdwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/b51f4b95340bc2c1735b2d7a753dd762/89a37/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/b51f4b95340bc2c1735b2d7a753dd762/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/b51f4b95340bc2c1735b2d7a753dd762/e85cb/001-04.png 480w,
+/devHistoryBlog/static/b51f4b95340bc2c1735b2d7a753dd762/89a37/001-04.png 532w&quot;
+        sizes=&quot;(max-width: 532px) 100vw, 532px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Linux] sed 명령어 정리]]></title><link>https://eunyoung-autocrypt.github.io/works/posts/2021-02-18--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/works/posts/2021-02-18--001</guid><pubDate>Thu, 18 Feb 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt;sed ?&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;문자열 변환 편집기&lt;/li&gt;
+&lt;li&gt;원본은 변경없이, 변경된 결과를 출력  &lt;/li&gt;
+&lt;li&gt;i 옵션으로 변경된 결과를 원본파일에 덮어쓸 수 있다.&lt;/li&gt;
+&lt;li&gt;e 옵션으로 정규식 사용이 가능하다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt;치환(substitute)&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# AAA를 BBB로 변환. 단, 원본파일을 바꾸지 않고 표준출력만 한다.
+$ sed &amp;#39;s/AAA/BBB/&amp;#39; list.txt
+
+# 탭문자를 엔터로 변환
+$ sed &amp;#39;s/\t/\ /&amp;#39; list.txt &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt;삭제(delete)&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# AAA 문자가 포함된 줄을 삭제하여 출력
+$ sed &amp;#39;/AAA/d&amp;#39; list.txt
+
+# AAA 문자가 있는 줄만 지우지 않는다.
+$ sed &amp;#39;/AAA/!d&amp;#39; list.txt 
+
+# num 1,2 라인 삭제 
+$ sed &amp;#39;1,2d&amp;#39; list.txt
+
+# 공백라인 삭제
+$ sed &amp;#39;/^$/d list.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[@Value 사용 시, required a bean of type 'java.lang.Boolean' that could not be found. @value]]></title><link>https://eunyoung-autocrypt.github.io/errors/posts/2021-02-10--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/errors/posts/2021-02-10--001</guid><pubDate>Wed, 10 Feb 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span style=&quot;background-color:#ed5f65; color:#ffffff; margin-bottom: 5px; padding: 10px; font-weight: 600&quot;&gt; 무엇이 문제였나? &lt;/span&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;@Value 어노테이션을 이용하여 application.properties 변수 접근 시 아래와 같은 오류 발생&lt;/li&gt;
 &lt;li&gt;소스코드&lt;/li&gt;
@@ -89,6 +481,14 @@
 &lt;li&gt;immutable 한 변수가 아닌데… 다른 방법도 찾아서 정리해 놔야곘네…&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[init vs systemd]]></title><link>https://eunyoung-autocrypt.github.io/history/posts/2021-02-10--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/history/posts/2021-02-10--001</guid><pubDate>Wed, 10 Feb 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이번에 서비스 등록할때 “/etc/init.d, /usr/lib/systemd/system 디렉토리 밑에 모두 서비스 스크립트를 생성해야하나?” 라는 의문점이 생겨 두개의 차이를 찾아보게 되었다.&lt;br&gt;
 결론은 systemd 로만 등록하였다. &lt;/p&gt;
+&lt;h3&gt;#. systemd?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;위키피디아 &lt;a href=&quot;https://ko.wikipedia.org/wiki/Systemd&quot;&gt;https://ko.wikipedia.org/wiki/Systemd&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#. init?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;위키피디아 &lt;a href=&quot;https://ko.wikipedia.org/wiki/Init&quot;&gt;https://ko.wikipedia.org/wiki/Init&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;#. 차이점&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.tecmint.com/systemd-replaces-init-in-linux/&quot;&gt;왜 init이 systemd로 바뀌어야 하는가&lt;/a&gt;&lt;/li&gt;
