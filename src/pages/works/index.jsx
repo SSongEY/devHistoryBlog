@@ -10,6 +10,20 @@ class WorksIndexRoute extends React.Component {
 
   constructor(props) {
     super(props);
+
+    const pagingState = sessionStorage.getItem("pagingState");
+    const routePath = this.props.location.pathname;
+
+    if(pagingState) {
+      const state = JSON.parse(pagingState);
+      console.log(state.routePath)
+      console.log(routePath)
+      if(state.routePath === routePath) {
+        this.state = state;
+        return;
+      }
+    }
+
     const totalPostCnt = props.data.allMarkdownRemark.edges ? props.data.allMarkdownRemark.edges.length : 0;
     const totalPage = totalPostCnt > 0 ? Math.ceil(props.data.allMarkdownRemark.edges.length/5.0) : 1;
 
@@ -19,7 +33,14 @@ class WorksIndexRoute extends React.Component {
       currentPage: 1,
       perPage: 5,
       offset: 0,
+      routePath,
     };
+    sessionStorage.setItem("pagingState", JSON.stringify(this.state));
+
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    sessionStorage.setItem("pagingState", JSON.stringify(this.state));
   }
 
   render() {
