@@ -11,7 +11,10 @@ class WorksIndexRoute extends React.Component {
   constructor(props) {
     super(props);
 
-    const pagingState = sessionStorage.getItem("pagingState");
+    let pagingState;
+    if (typeof window !== "undefined")
+      pagingState = sessionStorage.getItem("pagingState");
+
     const routePath = this.props.location.pathname;
 
     if(pagingState) {
@@ -35,7 +38,9 @@ class WorksIndexRoute extends React.Component {
       offset: 0,
       routePath,
     };
-    sessionStorage.setItem("pagingState", JSON.stringify(this.state));
+
+    if (typeof window !== "undefined")
+      sessionStorage.setItem("pagingState", JSON.stringify(this.state));
 
   }
 

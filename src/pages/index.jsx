@@ -8,64 +8,85 @@ import Pagination from "materialui-pagination-component";
 
 class IndexRoute extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   const totalPostCnt = props.data.allMarkdownRemark.edges ? props.data.allMarkdownRemark.edges.length : 0;
-  //   const totalPage = totalPostCnt > 0 ? Math.ceil(props.data.allMarkdownRemark.edges.length/5.0) : 1;
-  //
-  //   this.state = {
-  //     totalPostCnt,
-  //     totalPage,
-  //     currentPage: 1,
-  //     perPage: 5,
-  //     offset: 0,
-  //   };
-  // }
-
   constructor(props) {
     super(props);
 
-    const pagingState = sessionStorage.getItem("pagingState");
     const routePath = this.props.location.pathname;
+    let pagingState;
+    if (typeof window !== "undefined") {
+      pagingState = window.sessionStorage.getItem("pagingState");
+    }
 
     if(pagingState) {
       const state = JSON.parse(pagingState);
-      console.log(state.routePath)
-      console.log(routePath)
-      if(state.routePath === routePath) {
-        this.state = state;
+      if(state.routePath === routePath) { // paging 유지
+        this.state = {
+          ...state,
+          posts: this.getFilteredPostsBySearchWord(state.searchWord),
+        };
         return;
       }
     }
 
-    const totalPostCnt = props.data.allMarkdownRemark.edges ? props.data.allMarkdownRemark.edges.length : 0;
-    const totalPage = totalPostCnt > 0 ? Math.ceil(props.data.allMarkdownRemark.edges.length/5.0) : 1;
+    // paging 초기화
+    const posts = props.data.allMarkdownRemark.edges;
+    const totalPostCnt = posts ? posts.length : 0;
+    const totalPage = totalPostCnt > 0 ? Math.ceil(totalPostCnt/5.0) : 1;
 
     this.state = {
+      searchWord: '',
       totalPostCnt,
       totalPage,
       currentPage: 1,
       perPage: 5,
       offset: 0,
       routePath,
+      posts,
     };
-    sessionStorage.setItem("pagingState", JSON.stringify(this.state));
 
+    if (typeof window !== "undefined")
+      sessionStorage.setItem("pagingState", JSON.stringify({...this.state, posts: []}));
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    sessionStorage.setItem("pagingState", JSON.stringify(this.state));
+    sessionStorage.setItem("pagingState", JSON.stringify({...this.state, posts: []}));
+  }
+
+  getFilteredPostsBySearchWord(searchWord) {
+    let filteredPosts = this.props.data.allMarkdownRemark.edges;
+    if(searchWord) {
+      const upperedSearchWord = searchWord.toUpperCase();
+      filteredPosts = filteredPosts.filter(post => {
+        const {title, description} = post.node.frontmatter;
+        return (title.toUpperCase().indexOf(upperedSearchWord) > -1) || (description.toUpperCase().indexOf(upperedSearchWord) > -1)
+      });
+    }
+    return filteredPosts;
+  }
+
+  onFilterPostsBySearchWord() {
+    const filteredPosts = this.getFilteredPostsBySearchWord(this.state.searchWord);
+    const totalPostCnt = filteredPosts.length;
+    const totalPage = totalPostCnt > 0 ? Math.ceil(totalPostCnt/5.0) : 1;
+
+    this.setState({
+      ...this.state,
+      totalPostCnt,
+      totalPage,
+      currentPage: 1,
+      posts: filteredPosts
+    })
   }
 
   render() {
     const items = [];
     const { title, subtitle } = this.props.data.site.siteMetadata;
-    const { allMarkdownRemark } = this.props.data;
-    const posts = allMarkdownRemark ? allMarkdownRemark.edges : null;
+    const posts = this.state.posts;
 
     const totalPostCnt = this.state.totalPostCnt;
     const startIndx = this.state.offset;
     const endIdx = startIndx + this.state.perPage;
+
 
     if(posts) {
       const displayPosts = posts.slice(startIndx, endIdx > totalPostCnt ? totalPostCnt : endIdx);
@@ -92,6 +113,19 @@ class IndexRoute extends React.Component {
           <Sidebar {...this.props} />
           <div className="content">
             <div style={{marginTop: "15px", textAlign: "end"}}>
+              <div>
+                <input
+                  value={this.state.searchWord}
+                  placeholder={"Search"}
+                  onKeyUp={e=> {
+                    if(e.key === "Enter")
+                      this.onFilterPostsBySearchWord();
+                  }}
+                  onChange={(e) => {
+                    this.setState({...this.state, searchWord: e.currentTarget.value})
+                  }} />
+              </div>
+
               <Pagination
                 variant="text" // Valid options are ["text", "outlined"].
                 selectVariant="tab" // Valid options are ["button", "tab", "select"].
