@@ -7,7 +7,6 @@ import Sidebar from '../../components/Sidebar'
 
 class AlgoIndexRoute extends React.Component {
   render() {
-    console.log('check!!!!!!!!!!!!!!!!!1 - algo: ', this.props.data);
     const items = []
     const { title, subtitle } = this.props.data.site.siteMetadata
     const { allMarkdownRemark } = this.props.data;
