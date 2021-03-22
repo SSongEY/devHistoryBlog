@@ -41,13 +41,14 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       _.each(result.data.allMarkdownRemark.edges, edge => {
-        if (_.get(edge, 'node.frontmatter.layout') === 'page') {
+        const frontmatterLayout = _.get(edge, 'node.frontmatter.layout');
+        if ( frontmatterLayout === 'page') {
           createPage({
             path: edge.node.fields.slug,
             component: slash(pageTemplate),
             context: { slug: edge.node.fields.slug },
           })
-        } else if (_.get(edge, 'node.frontmatter.layout') === 'post') {
+        } else if (frontmatterLayout === 'post' || frontmatterLayout === 'hidden') {
           createPage({
             path: edge.node.fields.slug,
             component: slash(postTemplate),
@@ -84,6 +85,7 @@ exports.createPages = ({ graphql, actions }) => {
             })
           })
         }
+
       })
 
       resolve()
