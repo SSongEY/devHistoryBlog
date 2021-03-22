@@ -59,7 +59,8 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       limit: 1000
-      filter: { frontmatter: { layout: { eq: "post" }, category: { eq: "algo" } } }
+      filter: { frontmatter: { category: { eq: "algo" } } }
+      sort: { order: DESC, fields: [frontmatter___date] }
     ) {
       edges {
         node {
