@@ -4,98 +4,80 @@
 그래서 Dto to Entity, Entity to Dto 의 편리성을 위해 Mapstruct 를 도입하였고, 큰 문제가 없이 수월한 작업을 예상했는데<br>
 역시나.. 모든 리펙토링은 많은 고민이 필요하구나를 다시한번 느끼게 된다.  </p>
 <p>오늘 고민한 내용은 다음과 같다.<br>
-연관관계(FK)가 많은 Entity를 생성할때 모든 FK 객체는 어떻게 채울 것인가?<br>
-DTO가 가지고 있는 각 매핑 ID로 모두 조회를 해야하나?  </p>
+연관관계(FK)가 많은 Entity를 생성할때 <span class="text-mark__green">모든 FK 객체는 어떻게 채울 것인가?</span><br>
+DTO가 가지고 있는 <span class="text-mark__green">각 매핑 ID로 모두 조회</span>를 해야하나?  </p>
 <br>
-<p>일단, 간단하게 요구사항을 설명하자면,</p>
+<p>일단, 간단하게 프로젝트를 구성하여 테스트를 했다.</p>
 <ul>
-<li>한 예약에 한명 이상의 탑승객이 존재한다.</li>
-<li>탑승객은 회원 테이블에서 선택한다.</li>
-<li>Request Dto에는 예약 정보와 각 탑승객들의 상세 정보, 그리고 상세 정보 안에는 회원 ID가 포함되어 있다.</li>
-</ul>
-<p>
-  <a
-    class="gatsby-resp-image-link"
-    href="/devHistoryBlog/static/aed2cf769fefcdb5454927dd2cc556d2/51800/001-01.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-  
-  <span
-    class="gatsby-resp-image-wrapper"
-    style="position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;"
-  >
-    <span
-      class="gatsby-resp-image-background-image"
-      style="padding-bottom: 93.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAABYlAAAWJQFJUiTwAAAC5klEQVQ4y41UyXLTQBTMPxAgOE5sbbNYi2VtVrRZlpPgEBKWyoWCQwqKM/9/at6M4iWQUBy63mgktXpet96BEBwbcK6q0NX3A0gp4bouBFXTNBEnCeI4RkJV3ds8v89x8BSh49jIz2rMz0oUZYUoSXE0OEa77NAsWqwuLuH5Phhj/0do2wzLbIx1HeK8TPHhskEecHRFhPMixmWVgDsW+B9kzxIyxongGHN/jEgYqOcByjRAMjFpz6F7DIwItTr+D8JHKpkkKLUOeBBChJFe2/QxhQ0Zf+7IuwaLvb6QQdQndxoSphC0llI8eo4/KOT7hLujsi0cx+mrbWGiCGekkJy2bVvfU8apuk+6p3AXFc/z4XoewtkMUyLyXA8BuTyJU2Rpinme6/ikWaYjtHF6Q3qwiwpDloRYtTWamlAVhBJdu8Cq66hfDEWe4frdFRZNTXtLVGWhFT9BSI12JMrZEa7yId7lHirxGo07wNw+xN1Fji/rM71ezyXOYwd3HQWcHdN7zyjk5KBXxWjPE/x4X+H7xxY/P3f4VHu4v13g17cbfCXST7WP29LF/XWBOjBg0XvySUL6kkwCRKmLq2KK60WCdRkiZQNcNQk+rxu0sUATcdQzhus6QiyNvxVqUx7yxJWzBIv6Ylm2zp1DEGSOmMWwyGVHJ4DpZxjjz7u8BeVMbteyz2EY6izy7b/7NBTxwWbBWK9OQYVXTRMFpd6PYvhxop3u98XDtCGllrXNpuLa9tAPZghIhR9MMRqNcXJ6ShhhODzBmIaFKSRO6Xo0NjSGJ6dwKbfLboWybnQulZgHhQxVNsHlssRqUSKeunCME3BrBGkbYOMhxm8OYQxfwzh+BZPqiK4DYaGrcnp3hjSa6t72hHTcZfwCbWShCGzcLDO0icQqc/GWnF6lEqlzhLmgCcQHPWid0F5oHCI2X2JiDMDUkTf/skPTRX1BuWiaVj9ZNm6r3nL611Wvdd2tObWiRz99fgNHED1hZQ4/BwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
-    >
-      <img
-        class="gatsby-resp-image-image"
-        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
-        alt="001 01"
-        title=""
-        src="/devHistoryBlog/static/aed2cf769fefcdb5454927dd2cc556d2/d9199/001-01.png"
-        srcset="/devHistoryBlog/static/aed2cf769fefcdb5454927dd2cc556d2/8ff5a/001-01.png 240w,
-/devHistoryBlog/static/aed2cf769fefcdb5454927dd2cc556d2/e85cb/001-01.png 480w,
-/devHistoryBlog/static/aed2cf769fefcdb5454927dd2cc556d2/d9199/001-01.png 960w,
-/devHistoryBlog/static/aed2cf769fefcdb5454927dd2cc556d2/51800/001-01.png 1196w"
-        sizes="(max-width: 960px) 100vw, 960px"
-      />
-    </span>
-  </span>
-  
-  </a>
-    </p>
-<br>
+<li>생성요청 DTO 클래스에는 customerId (FK) 값이 존재한다.</li>
+<li>
+<p>DTO 클래스 안에 DTO to Entity 메소드가 존재한다.</p>
 <ul>
-<li>이를 ReservationPassenger Entity로 생성하기 위해서는</li>
-<li>모든 탑승객들의 회원 ID를 뽑아 DB에서 select 한 후, 각 매핑하여 ReservationPassenger 객체를 생성한다.</li>
+<li>Case1) customerId 로 repository에서 select 한 Customer 객체를 추입받는다</li>
+<li>Case2) customerId 필드만 넣어 Customer 객체 생성을 한다.</li>
 </ul>
-<br>
-<ul>
-<li>비즈니스 로직</li>
+</li>
 </ul>
-<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> customerIds <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getPassengerList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token class-name">ReservationDto<span class="token punctuation">.</span>PassengerDto</span><span class="token operator">::</span><span class="token function">getCustomerId</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
-<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Customer</span><span class="token punctuation">></span></span> customers <span class="token operator">=</span> customerRepository<span class="token punctuation">.</span><span class="token function">getCustomersFromIds</span><span class="token punctuation">(</span>customerIds<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@NoArgsConstructor</span><span class="token punctuation">(</span>access <span class="token operator">=</span> <span class="token class-name">AccessLevel</span><span class="token punctuation">.</span>PRIVATE<span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ReservationDto</span> <span class="token punctuation">{</span>
 
-<span class="token keyword">if</span><span class="token punctuation">(</span>customers<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> customerIds<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BadRequestException</span><span class="token punctuation">(</span><span class="token string">"예약자 또는 동승자를 찾을 수 없습니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Getter</span>
+    <span class="token annotation punctuation">@NoArgsConstructor</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">CreateReq</span> <span class="token punctuation">{</span>
+        <span class="token keyword">private</span> <span class="token class-name">Long</span> customerId<span class="token punctuation">;</span>
+        <span class="token keyword">private</span> <span class="token class-name">PassengerType</span> passengerType<span class="token punctuation">;</span>
+        <span class="token keyword">private</span> <span class="token class-name">String</span> usages<span class="token punctuation">;</span>
+        <span class="token keyword">private</span> <span class="token class-name">String</span> luggage<span class="token punctuation">;</span>
+
+        <span class="token comment">//case1. customer id로 repository에서 select 한 값을 주입 받아 entity 에 주입</span>
+        <span class="token keyword">public</span> <span class="token class-name">ReservationPassenger</span> <span class="token function">toEntity</span><span class="token punctuation">(</span><span class="token class-name">Customer</span> customer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">ReservationPassenger</span> reservationPassenger <span class="token operator">=</span> <span class="token class-name">ReservationDtoMapper</span><span class="token punctuation">.</span>INSTANCE<span class="token punctuation">.</span><span class="token function">toReservationPassengerEntity</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            reservationPassenger<span class="token punctuation">.</span><span class="token function">setCustomer</span><span class="token punctuation">(</span>customer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> reservationPassenger<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">//Case2. id로 customer id 객체 생성 후 entity 에 주입</span>
+        <span class="token keyword">public</span> <span class="token class-name">ReservationPassenger</span> <span class="token function">toEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Customer</span> customer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Customer</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>customerId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token class-name">ReservationPassenger</span> reservationPassenger <span class="token operator">=</span> <span class="token class-name">ReservationDtoMapper</span><span class="token punctuation">.</span>INSTANCE<span class="token punctuation">.</span><span class="token function">toReservationPassengerEntity</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            reservationPassenger<span class="token punctuation">.</span><span class="token function">setCustomer</span><span class="token punctuation">(</span>customer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> reservationPassenger<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><span class="title__sub1">case1. customer id로 repository에서 select 한 값을 주입 받아 entity에 주입</span></p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">ReservationPassenger</span> <span class="token function">toEntity</span><span class="token punctuation">(</span><span class="token class-name">Customer</span> customer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">ReservationPassenger</span> reservationPassenger <span class="token operator">=</span> <span class="token class-name">ReservationDtoMapper</span><span class="token punctuation">.</span>INSTANCE<span class="token punctuation">.</span><span class="token function">toReservationPassengerEntity</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    reservationPassenger<span class="token punctuation">.</span><span class="token function">setCustomer</span><span class="token punctuation">(</span>customer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> reservationPassenger<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Customer</span><span class="token punctuation">></span></span> customersMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">Customer</span> customer <span class="token operator">:</span> customers<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    customersMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>customer<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> customer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 호출 메소드 로직</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">createReservation</span><span class="token punctuation">(</span><span class="token class-name">ReservationDto<span class="token punctuation">.</span>CreateReq</span> req<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// customer id로 select</span>
+    <span class="token class-name">Customer</span> customer <span class="token operator">=</span> customerRepository<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span><span class="token function">getCustomerId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElseThrow</span><span class="token punctuation">(</span><span class="token class-name">IllegalArgumentException</span><span class="token operator">::</span><span class="token keyword">new</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">ReservationPassenger</span> reservationPassenger <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">toEntity</span><span class="token punctuation">(</span>customer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">ReservationPassenger</span> saved <span class="token operator">=</span> reservationRepository<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>reservationPassenger<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
-<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ReservationPassenger</span><span class="token punctuation">></span></span> passengerList <span class="token operator">=</span>
-    <span class="token class-name">ReservationDto<span class="token punctuation">.</span>PassengerDto</span><span class="token punctuation">.</span><span class="token function">toEntityList</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span><span class="token function">getPassengerList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> customersMap<span class="token punctuation">,</span> newReservationId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-passengerList <span class="token operator">=</span> reservationPassengerRepository<span class="token punctuation">.</span><span class="token function">saveAll</span><span class="token punctuation">(</span>passengerList<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
-<br>
-<ul>
-<li>toEntityList 메소드</li>
-</ul>
-<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ReservationPassenger</span><span class="token punctuation">></span></span> <span class="token function">toEntityList</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">PassengerDto</span><span class="token punctuation">></span></span> passengerDtoList<span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Customer</span><span class="token punctuation">></span></span> customersMap<span class="token punctuation">,</span> <span class="token class-name">String</span> reservationId<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ReservationPassenger</span><span class="token punctuation">></span></span> reservationPassengerList<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>passengerDtoList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">PassengerDto</span> dto<span class="token operator">:</span>passengerDtoList<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token class-name">ReservationPassenger</span> reservationPassenger<span class="token operator">=</span><span class="token class-name">ReservationDtoMapper</span><span class="token punctuation">.</span>INSTANCE<span class="token punctuation">.</span><span class="token function">toReservationPassengerEntity</span><span class="token punctuation">(</span>dto<span class="token punctuation">,</span>reservationId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 요렇게 매핑한다.</span>
-        reservationPassenger<span class="token punctuation">.</span><span class="token function">setCustomer</span><span class="token punctuation">(</span>customersMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span><span class="token function">getCustomerId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">///</span>
-        reservationPassengerList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>reservationPassenger<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> reservationPassengerList<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre></div>
-<br>
 <p>그래.. 이게 정석이겠지,<br>
 그런데 Entity의 연관관계가 많으면? 저렇게 객체를 가져와서 매핑해야 하나?<br>
-실질적으로는 ID만 필요로 할 뿐인데?  </p>
-<p>어? 그럼 ID만 넣어서 객체 생성 후 넣어주면 어떻게 되지?</p>
-<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java">reservationPassenger<span class="token punctuation">.</span><span class="token function">setCustomer</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Customer</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span><span class="token function">getCustomerId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
-<br>
+실질적으로는 ID만 필요로 할 뿐인데?</p>
+<p><span class="title__sub1">case2. customerId 필드만 넣어 Customer 객체 생성을 한 후 entity에 주입</span></p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">ReservationPassenger</span> <span class="token function">toEntity</span><span class="token punctuation">(</span><span class="token class-name">Customer</span> customer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Customer</span> customer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Customer</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>customerId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">ReservationPassenger</span> reservationPassenger <span class="token operator">=</span> <span class="token class-name">ReservationDtoMapper</span><span class="token punctuation">.</span>INSTANCE<span class="token punctuation">.</span><span class="token function">toReservationPassengerEntity</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    reservationPassenger<span class="token punctuation">.</span><span class="token function">setCustomer</span><span class="token punctuation">(</span>customer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> reservationPassenger<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 호출 메소드 로직</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">createReservation</span><span class="token punctuation">(</span><span class="token class-name">ReservationDto<span class="token punctuation">.</span>CreateReq</span> req<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">ReservationPassenger</span> reservationPassenger <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">toEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">ReservationPassenger</span> saved <span class="token operator">=</span> reservationRepository<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>reservationPassenger<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>헉! DB에는 문제없이 잘 매핑이 된다!<br>
 그럼 존재하지 않는 ID를 넣으면 어떻게 되지?</p>
 <br>
