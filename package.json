@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "name": "SangBeoDevBlog",
+  "name": "SSongEYDevBlog",
   "description": "my develop history blog for Gatsby",
   "main": "n/a",
   "scripts": {
@@ -13,7 +13,7 @@
     "format": "prettier --write './*.js' 'src/**/*.js' 'src/**/*.jsx'",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
-  "homepage": "http://sangbeo.github.io/devHistoryBlog/",
+  "homepage": "https://SSongEY.github.io/devHistoryBlog/",
   "keywords": [
     "gatsby",
     "blog",
