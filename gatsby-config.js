@@ -10,13 +10,29 @@ module.exports = {
     siteUrl: url,
     title: 'Blog by Eunyoung',
     subtitle:
-      'EY\'s 개발 히스토리 블로그',
+      '일상 & 작업 기록 블로그',
     copyright: '© All rights reserved.',
     disqusShortname: '',
     menu: [
       {
         label: 'All Articles',
         path: '/',
+      },
+      {
+        label: 'Spring',
+        path: '/spring/',
+      },
+      {
+        label: 'Shell',
+        path: '/shell/',
+      },
+      {
+        label: 'Kubernates',
+        path: '/k8s/',
+      },
+      {
+        label: 'Docker',
+        path: '/docker/',
       },
       {
         label: 'Works',

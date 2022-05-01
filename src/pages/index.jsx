@@ -1,37 +1,37 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
+import Pagination from 'materialui-pagination-component'
 import Layout from '../components/Layout'
 import Post from '../components/Post'
 import Sidebar from '../components/Sidebar'
-import Pagination from "materialui-pagination-component";
 
 class IndexRoute extends React.Component {
-
   constructor(props) {
-    super(props);
+    super(props)
 
-    const routePath = this.props.location.pathname;
-    let pagingState;
-    if (typeof window !== "undefined") {
-      pagingState = window.sessionStorage.getItem("pagingState");
+    const routePath = this.props.location.pathname
+    let pagingState
+    if (typeof window !== 'undefined') {
+      // eslint-disable-next-line no-undef
+      pagingState = window.sessionStorage.getItem('pagingState')
     }
 
-    if(pagingState) {
-      const state = JSON.parse(pagingState);
-      if(state.routePath === routePath) { // paging 유지
+    if (pagingState) {
+      const state = JSON.parse(pagingState)
+      if (state.routePath === routePath) { // paging 유지
         this.state = {
           ...state,
           posts: this.getFilteredPostsBySearchWord(state.searchWord),
-        };
-        return;
+        }
+        return
       }
     }
 
     // paging 초기화
-    const posts = props.data.allMarkdownRemark.edges;
-    const totalPostCnt = posts ? posts.length : 0;
-    const totalPage = totalPostCnt > 0 ? Math.ceil(totalPostCnt/5.0) : 1;
+    const posts = props.data.allMarkdownRemark.edges
+    const totalPostCnt = posts ? posts.length : 0
+    const totalPage = totalPostCnt > 0 ? Math.ceil(totalPostCnt / 5.0) : 1
 
     this.state = {
       searchWord: '',
@@ -42,32 +42,32 @@ class IndexRoute extends React.Component {
       offset: 0,
       routePath,
       posts,
-    };
+    }
 
-    if (typeof window !== "undefined")
-      sessionStorage.setItem("pagingState", JSON.stringify({...this.state, posts: []}));
+    if (typeof window !== 'undefined')
+      sessionStorage.setItem('pagingState', JSON.stringify({ ...this.state, posts: [] }))
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    sessionStorage.setItem("pagingState", JSON.stringify({...this.state, posts: []}));
+    sessionStorage.setItem('pagingState', JSON.stringify({ ...this.state, posts: [] }))
   }
 
   getFilteredPostsBySearchWord(searchWord) {
-    let filteredPosts = this.props.data.allMarkdownRemark.edges;
-    if(searchWord) {
-      const upperedSearchWord = searchWord.toUpperCase();
+    let filteredPosts = this.props.data.allMarkdownRemark.edges
+    if (searchWord) {
+      const upperedSearchWord = searchWord.toUpperCase()
       filteredPosts = filteredPosts.filter(post => {
-        const {title, description} = post.node.frontmatter;
+        const { title, description } = post.node.frontmatter
         return (title.toUpperCase().indexOf(upperedSearchWord) > -1) || (description.toUpperCase().indexOf(upperedSearchWord) > -1)
-      });
+      })
     }
-    return filteredPosts;
+    return filteredPosts
   }
 
   onFilterPostsBySearchWord() {
-    const filteredPosts = this.getFilteredPostsBySearchWord(this.state.searchWord);
-    const totalPostCnt = filteredPosts.length;
-    const totalPage = totalPostCnt > 0 ? Math.ceil(totalPostCnt/5.0) : 1;
+    const filteredPosts = this.getFilteredPostsBySearchWord(this.state.searchWord)
+    const totalPostCnt = filteredPosts.length
+    const totalPage = totalPostCnt > 0 ? Math.ceil(totalPostCnt/5.0) : 1
 
     this.setState({
       ...this.state,
@@ -79,17 +79,17 @@ class IndexRoute extends React.Component {
   }
 
   render() {
-    const items = [];
-    const { title, subtitle } = this.props.data.site.siteMetadata;
-    const posts = this.state.posts;
+    const items = []
+    const { title, subtitle } = this.props.data.site.siteMetadata
+    const posts = this.state.posts
 
-    const totalPostCnt = this.state.totalPostCnt;
-    const startIndx = this.state.offset;
-    const endIdx = startIndx + this.state.perPage;
+    const totalPostCnt = this.state.totalPostCnt
+    const startIndx = this.state.offset
+    const endIdx = startIndx + this.state.perPage
 
 
     if(posts) {
-      const displayPosts = posts.slice(startIndx, endIdx > totalPostCnt ? totalPostCnt : endIdx);
+      const displayPosts = posts.slice(startIndx, endIdx > totalPostCnt ? totalPostCnt : endIdx)
       displayPosts.forEach(post => {
         items.push(<Post data={post} key={post.node.fields.slug} />)
       })
@@ -112,17 +112,17 @@ class IndexRoute extends React.Component {
           </Helmet>
           <Sidebar {...this.props} />
           <div className="content">
-            <div style={{marginTop: "15px", textAlign: "end"}}>
+            <div style={{marginTop: '15px', textAlign: 'end'}}>
               <div>
                 <input
                   value={this.state.searchWord}
-                  placeholder={"Search"}
-                  onKeyUp={e=> {
-                    if(e.key === "Enter")
-                      this.onFilterPostsBySearchWord();
+                  placeholder={'Search'}
+                  onKeyUp={e => {
+                    if(e.key === 'Enter')
+                      this.onFilterPostsBySearchWord()
                   }}
                   onChange={(e) => {
-                    this.setState({...this.state, searchWord: e.currentTarget.value})
+                    this.setState({ ...this.state, searchWord: e.currentTarget.value })
                   }} />
               </div>
 
@@ -146,7 +146,7 @@ class IndexRoute extends React.Component {
                 totalPages={this.state.totalPage} // The total number of pages.
                 elevation={0} // Passed down to Material-UI Paper component.
                 onChange={(currentPage) => {
-                  if(!currentPage) currentPage = 1;
+                  if(!currentPage) currentPage = 1
                   this.setState({currentPage, offset: (currentPage-1)*5})}
                 } // Callback when the page changes.
               />
