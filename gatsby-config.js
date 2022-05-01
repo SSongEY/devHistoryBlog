@@ -47,8 +47,8 @@ module.exports = {
         path: '/errors/',
       },
       {
-        label: 'About me',
-        path: '/about/',
+        label: '등산',
+        path: '/climbing/',
       },
     ],
     author: {
