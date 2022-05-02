@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[일상 & 작업 기록 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 01 May 2022 19:25:01 GMT</lastBuildDate><item><title><![CDATA[[Shell] 자주 사용하는 문법]]></title><link>https://eunyoung-autocrypt.github.io/shell/posts/2022-04-30--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/shell/posts/2022-04-30--001</guid><pubDate>Sat, 30 Apr 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; ■ 자주 사용하는 문법 정리 &lt;/span&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[일상 & 작업 기록 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 02 May 2022 16:15:23 GMT</lastBuildDate><item><title><![CDATA[[Shell] 자주 사용하는 문법]]></title><link>https://eunyoung-autocrypt.github.io/shell/posts/2022-04-30--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/shell/posts/2022-04-30--001</guid><pubDate>Sat, 30 Apr 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; ■ 자주 사용하는 문법 정리 &lt;/span&gt;
 &lt;span class=&quot;title__sub2&quot;&gt; 1. null 체크 &lt;/span&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; -z &lt;span class=&quot;token variable&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
@@ -341,7 +341,561 @@ image-name:tag 로 특정 이미지만 삭제하도록 한다.&lt;/p&gt;
   &lt;/span&gt;
   
   &lt;/a&gt;
-    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[K8S] ingress 인증서 교체]]></title><link>https://eunyoung-autocrypt.github.io/k8s/posts/2022-01-27--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/k8s/posts/2022-01-27--001</guid><pubDate>Thu, 27 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; ■ 도메인에 적용되어 있는 인증서 확인 방법 &lt;/span&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[K8S] kubectl 자주쓰는 명령어]]></title><link>https://eunyoung-autocrypt.github.io/k8s/posts/2022-04-04--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/k8s/posts/2022-04-04--001</guid><pubDate>Mon, 04 Apr 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; ■ 오브젝트 생성/변경 &lt;/span&gt;
+&lt;span class=&quot;title__sub2&quot;&gt; ■ Create &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;같은 이름의 오브젝트가 존재할때 생성이 안됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub3&quot;&gt; 1. Yaml 파일로 생성 &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ kubectl create -f &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;yaml 파일&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub3&quot;&gt; 2. ConfigMap 생성 &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# file-c.txt 라는 파일로 cm-file라는 이름의 ConfigMap 생성&lt;/span&gt;
+$ kubectl create configmap cm-file --from-file&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;./file-c.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# key1:value1 라는 상수로 cm-file라는 이름의 ConfigMap 생성&lt;/span&gt;
+$ kubectl create configmap cm-file --from-literal&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;key1&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;value1
+
+&lt;span class=&quot;token comment&quot;&gt;# 여러 key:value로 cm-file라는 이름의 ConfigMap 생성 &lt;/span&gt;
+$ kubectl create configmap cm-file --from-literal&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;key1&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;value1 --from-literal&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;key2&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;value2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub3&quot;&gt; 2. Secret 생성 &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# file-s.txt 라는 파일로 sec-file라는 이름의 Secret 생성&lt;/span&gt;
+kubectl create secret generic sec-file --from-file&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;./file-s.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# key1:value1 라는 상수로 sec-file라는 이름의 Secret 생성&lt;/span&gt;
+kubectl create secret generic sec-file --from-literal&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;key1&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;value1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt; ■ Apply &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;기존에 같은 이름의 오브젝트가 존재할때 업데이트 됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ kubectl apply -f &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;yaml 파일&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; ■ 오브젝트 조회 &lt;/span&gt;
+&lt;span class=&quot;title__sub2&quot;&gt; ■ Get &lt;/span&gt;
+&lt;span class=&quot;title__sub3&quot;&gt; 1. 파드 내용 조회 &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 파드리스트 조회&lt;/span&gt;
+$ kubectl get pods -n &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;namespace명&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# 좀 더 많은 내용 출력&lt;/span&gt;
+$ kubectl get pods -n &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;namespace명&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; -o wide
+
+&lt;span class=&quot;token comment&quot;&gt;# 특정 파드만 조회&lt;/span&gt;
+$ kubectl get pod &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;파드명&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt; ■ Describe &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;상세 내용 출력&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub3&quot;&gt; 1. 파드 내용 상세 조회 &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ kubectl describe pod &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;파드명&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; ■ 오브젝트 삭제 &lt;/span&gt;
+&lt;span class=&quot;title__sub2&quot;&gt; ■ Delete &lt;/span&gt;
+&lt;span class=&quot;title__sub3&quot;&gt; 1. 파드 삭제 &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 파일이 있을 경우 생성한 방법 그대로 삭제&lt;/span&gt;
+$ kubectl delete -f ./pod.yaml
+
+&lt;span class=&quot;token comment&quot;&gt;# Pod 이름 지정&lt;/span&gt;
+$ kubectl delete pod pod1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; ■ 오브젝트 컨테이너 &lt;/span&gt;
+&lt;span class=&quot;title__sub3&quot;&gt; ■ Exec &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Container 들어가기&lt;/span&gt;
+kubectl &lt;span class=&quot;token builtin class-name&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;파드명&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; -it /bin/bash
+
+&lt;span class=&quot;token comment&quot;&gt;# Container가 두개 이상 있을때&lt;/span&gt;
+kubectl &lt;span class=&quot;token builtin class-name&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;파드명&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; -c &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;컨테이너명&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; -it /bin/bash&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[[K8S] 기본 오브젝트]]></title><description><![CDATA[대세는 쿠버네티스]]></description><link>https://eunyoung-autocrypt.github.io/k8s/posts/2022-04-02--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/k8s/posts/2022-04-02--001</guid><pubDate>Sat, 02 Apr 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; 1. Pod &lt;/span&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/6c42acfc822b288d1ca9645f368f7017/71ba4/02-001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 41.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB0ElEQVQozz2SaW/aQBRF+f+/pFKlSq2UVkqJlDQllEZRIRgb8Ap4wdjGDuBlvHA6oDYfrmZGV+/MnXmvVwlBKRqquuVUCA6nklNecbyqJC8FhajlelFF17VYm4iF5RFGCUWeIySjqirquqZXysNytWOqb1i6W4bjV57+TBi9qjy9qDz8mkjPw/AT3CiDc4ei+/x8VtntdpRl+a4LuCcawVh9ZjD8wS53eOsCwqOFuZ0Q7EMcf4XtO4QnFzcJJO/MJkiw1iFRFL8nuwCvCfMyJywMTlWCMZ3gOTpFtyWu5nimg64orKYKaWbjpi5de5b7A6rhY68DXNcljmMJLP4DC6ziAaf5ym/1hoHyhRfvO/PjLdPNB+bhJxazG2bmHcbWoG3OCJlqrG2wVy6OY2MYBlmW0TQNvUKa82TIq3/Lt7s+nx8f+di/Z6Dfox3umO77jL1nhrMRimnRth2VfJ5m+iiLFXPDwbR2rJyT9K4JBbqTYK4zgvDAxgvQ5hqLpS27WBLtG6K0In4TpMdKFjXX/xpNbBa6jaapzGYqafov4bEosd0AX45A3bbsszdiaSZpKsdG3to1NBJyAYlaUMuiWnbT2ybX8QniDM8/XBN2Xc1fU/dRm4ugx+8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02 001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/6c42acfc822b288d1ca9645f368f7017/d9199/02-001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/6c42acfc822b288d1ca9645f368f7017/8ff5a/02-001-01.png 240w,
+/devHistoryBlog/static/6c42acfc822b288d1ca9645f368f7017/e85cb/02-001-01.png 480w,
+/devHistoryBlog/static/6c42acfc822b288d1ca9645f368f7017/d9199/02-001-01.png 960w,
+/devHistoryBlog/static/6c42acfc822b288d1ca9645f368f7017/07a9c/02-001-01.png 1440w,
+/devHistoryBlog/static/6c42acfc822b288d1ca9645f368f7017/71ba4/02-001-01.png 1870w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;한 파드내에서 같은 포트의 컨테이너를 가질 수 없다.&lt;/li&gt;
+&lt;li&gt;두 컨테이너 container1과 container2 는 한 호스트로 묶여 있다.&lt;/li&gt;
+&lt;li&gt;때문에 같은 파드의 각 컨테이너 내에서 다른 컨테이너로 접근시에 localhost 으로 접근할 수 있다.&lt;/li&gt;
+&lt;li&gt;파드 생성시에 고유의 아이피가 할당 된다.&lt;/li&gt;
+&lt;li&gt;이 아이피는 클러스터 내에서만 접근이 가능하며 외부에서는 접근이 불가능하다.&lt;/li&gt;
+&lt;li&gt;파드 재 생성시마다 IP가 계속 바뀐다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; 2. Label &lt;/span&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/06e421128776350b6f3032bb3578f7a2/00e09/02-001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 32.08333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABcklEQVQY0y2P207bUBBF/f889ScQD1RQteWhEmqlgoVd2pKQBOdqx47viYPt47vD4sjtw2j2bGnW7FFs22Yym5DkCWUrqNucND9Qd/+1OND2JcdUsDR9bDcgzwVd15FmBU+zLcbSZmNupZ+h7I8Hfvy55ePtFX/NBzbuA6r+lW34yGJ7z73+hV08IklTfo3WmJZNWZY0TUOWF4wNm5eFRRRFg68UdcnI0rn+fsVY9o2roT7eSOBvlrbKnfYZO3ySiRoWG5/50iJNXwdgVdUD0N4FHJNEzhWKqAr0nxfcnJ8x1i8xtHPuLs9YPX9iql2gXn9gM/tG2dR4wQFn51EWBV3bUtc1xtplunAIgugfsJJmLN+ZOTteXJ+jyDmdWoqDQzhX2a90mjyiqBrmcnlpevhBQJZl9H2HHyaDH0UxQgiUru+ZGHO00ZQoL6najjegrXIJ9WT5Ugt55EQYv7KyPNbrFa7rDSmD6IjjRaxNQbwveQe1+LgpZCLQpQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02 001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/06e421128776350b6f3032bb3578f7a2/d9199/02-001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/06e421128776350b6f3032bb3578f7a2/8ff5a/02-001-02.png 240w,
+/devHistoryBlog/static/06e421128776350b6f3032bb3578f7a2/e85cb/02-001-02.png 480w,
+/devHistoryBlog/static/06e421128776350b6f3032bb3578f7a2/d9199/02-001-02.png 960w,
+/devHistoryBlog/static/06e421128776350b6f3032bb3578f7a2/07a9c/02-001-02.png 1440w,
+/devHistoryBlog/static/06e421128776350b6f3032bb3578f7a2/00e09/02-001-02.png 1854w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;라벨은 파드뿐만 아니라 모든 오브젝트에 달 수 있다&lt;/li&gt;
+&lt;li&gt;보통은 파드에 많이 사용&lt;/li&gt;
+&lt;li&gt;목적에 따라 오브젝트들을 분리하고, 서비스로 연결하기 위함(묶어서 사용하기 위함)&lt;/li&gt;
+&lt;li&gt;라벨은 key와 value로 선언한다&lt;/li&gt;
+&lt;li&gt;한 파드에 여러개의 라벨을 달 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; 3. Node Schedule &lt;/span&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/f416109bda2a23b1347b3abdb1a440cf/7e318/02-001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 27.083333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABMUlEQVQY0zWQ226CUBBF/f9/6XP70qQmVWu1FW/IoSBwEBUPKFUBuTSrxyadZGUedrJ2ZjrZ9xmlEsSXQHif7L8tilrxP7e6xtsoojglL0rqpqGq79Q0Py2+zoJwR1kWVFVFR0ZbukODx5cePcNgaS8ZGhOeX9/4NIUuU3yMTZyVRZ4qyuz0R6Gpr2ctPOB4IUVRUOuSzkoInnpPjOw+3sFlZG546C54n9vMbJc02mDNBMbEIvQk6S5GRTvNhkx6HI8ZCxHg+z6Xy4VOetoT7Ba4oUmaRQRRokUS4bjE8YHzMSXQ4vHbFGdhsl37KBkSe2uyKKS63ZhbEmctyfPr/WSH8XRAf2BgTJe4js10NqM3HOs956RPy845YXRABj5Jomj0H/9oW9q2QW4TncdaXvILnYduqt+rKOgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02 001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/f416109bda2a23b1347b3abdb1a440cf/d9199/02-001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/f416109bda2a23b1347b3abdb1a440cf/8ff5a/02-001-03.png 240w,
+/devHistoryBlog/static/f416109bda2a23b1347b3abdb1a440cf/e85cb/02-001-03.png 480w,
+/devHistoryBlog/static/f416109bda2a23b1347b3abdb1a440cf/d9199/02-001-03.png 960w,
+/devHistoryBlog/static/f416109bda2a23b1347b3abdb1a440cf/07a9c/02-001-03.png 1440w,
+/devHistoryBlog/static/f416109bda2a23b1347b3abdb1a440cf/7e318/02-001-03.png 1892w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;파드는 여러 노드들 중에 한 노드에 올라간다.&lt;/li&gt;
+&lt;li&gt;노드에 올라가는 방법으로는 2가지가 있는데, 한개는 스케줄러가가 자동으로 선택하는 방법과 직접 명시해주는 방법이 있다.&lt;/li&gt;
+&lt;li&gt;직접: 노드에 라벨을 달고 파드 생성시에 선택&lt;/li&gt;
+&lt;li&gt;자동 : 생성할 파드의 필요 리소스 사용량에 따라 노드 스케줄러가 판단하여 노드를 지정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; 4. Service &lt;/span&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/793fa54572d1401fd4e34b5259a7100d/41870/02-001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 26.666666666666668%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABQklEQVQY0yWQPU/CYBSF+asmTixu/hMnTUhEFoRNwuDHImDloy1Y+vGWUkoplRYoiCYmhjy+wHByh5t7znluTvdWWNMNZpCdNM0wJmvq3Yir6juFukHLSnGmKxxVQX+qIjQFO1xjiASlIXhVArrajKG8zx2Ox/EXo/kWb36YUtGWcPnL2XmeQqlKvN0fdze3ZUqVB3QnZJL+4Y5tWppDc5RhzXc4sw25Dz/Di39wo93JTMqLd0flLy65LlaYbfay/YrifY3as2wpIsaf35JkSUMXtDttdHsqDbfkzFmEn7j4aSDRM/qjNQNPYnsJqhlgejF+tEYECUMnoG96DP30aGjLkJ4xQdHH9GXI0VAPDZpuGTV8QTEX3NUdinXBY8PirW3RUV3aqqCjufJPLtowRLMX9Mw5qv0p8RMGboqQyIf//wPlvl64F4EYcgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02 001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/793fa54572d1401fd4e34b5259a7100d/d9199/02-001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/793fa54572d1401fd4e34b5259a7100d/8ff5a/02-001-04.png 240w,
+/devHistoryBlog/static/793fa54572d1401fd4e34b5259a7100d/e85cb/02-001-04.png 480w,
+/devHistoryBlog/static/793fa54572d1401fd4e34b5259a7100d/d9199/02-001-04.png 960w,
+/devHistoryBlog/static/793fa54572d1401fd4e34b5259a7100d/07a9c/02-001-04.png 1440w,
+/devHistoryBlog/static/793fa54572d1401fd4e34b5259a7100d/41870/02-001-04.png 1788w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;서비스도 파드와 마찬가지고 자신의 Cluster IP를 가지고 있다.&lt;/li&gt;
+&lt;li&gt;서비스와 연결된 파드들은 서비스의 Cluster IP를 통해서 접근이 가능하다.&lt;/li&gt;
+&lt;li&gt;파드는 언제든지 죽을 수 있고 재 생성이 될 수 있는 오브젝트이기 때문에 파드의 IP는 신뢰성이 떨어진다.&lt;/li&gt;
+&lt;li&gt;서비스는 사용자가 건들지 않으면삭제되거나 재생성되지 않는다.&lt;/li&gt;
+&lt;li&gt;때문에 서비스 IP를 사용한다&lt;/li&gt;
+&lt;li&gt;서비스에서 파드의 접근을 도와주는 방식은 크게 3가지가 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt; 4.1. Cluster IP &lt;/span&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/32158fc8fd5e7117891aa309b2b1219a/7ca1f/02-001-05.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 30.83333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABWUlEQVQY0z2R626bUBCE/f7vUvUJKlX5UbdRotDYcQyBYFIM5mLu13PAXxdS9cdIe3bPjmZmN3qaaLuO8BJyzTKU1mjBPM/cbjPXosE+heRFyTiO/6GUEmip9VpPwrPsbBbCS1JwsN552puc/IisHmh6xXy7kZUNxuFEHMcMw0Df93QiQKmRNy/m3rA4n4O1v8w3edWwd0JenIj9q4dhnTn6BS+WyzUvafsB8z0gTlJRM6D+KZwmjeunmI5PVZVCOHwS6mleB9+ePb7c7fj644gRDbhhTSd2evl0dAIhDYnSYkWSJNR1RVG1WG5AWeYS0/hJuNiyP2LuHp74vv3Fw5vFz8dHtvJOs4JpntiZvqi38TxP8m5pmkaWe8q65dU+47o5Rd6tKjejBBvnNb8tk/vnA87FZWvsJAZ7tau0Iowz3D8RweVKHLWr9cX2crwoLWVeSb+XODR/AWTuws9fhNFKAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02 001 05&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/32158fc8fd5e7117891aa309b2b1219a/d9199/02-001-05.png&quot;
+        srcset=&quot;/devHistoryBlog/static/32158fc8fd5e7117891aa309b2b1219a/8ff5a/02-001-05.png 240w,
+/devHistoryBlog/static/32158fc8fd5e7117891aa309b2b1219a/e85cb/02-001-05.png 480w,
+/devHistoryBlog/static/32158fc8fd5e7117891aa309b2b1219a/d9199/02-001-05.png 960w,
+/devHistoryBlog/static/32158fc8fd5e7117891aa309b2b1219a/07a9c/02-001-05.png 1440w,
+/devHistoryBlog/static/32158fc8fd5e7117891aa309b2b1219a/7ca1f/02-001-05.png 1890w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;외부에서 접근이 불가능하다.&lt;/li&gt;
+&lt;li&gt;서비스가 트레픽은 분산시켜 Pod에 연결해준다.&lt;/li&gt;
+&lt;li&gt;type 은 기본적으로 ClusterIP 이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;171.96&lt;/span&gt;.10.17:9000/health_check&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt; 4.2. Node Port &lt;/span&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/80cfd850e17929772d350d619151d60d/e8950/02-001-06.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 30.83333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABVElEQVQY0z2R206DQBCG+/4Po4mJ8cILLzw0Go2trRJaoRxbYKEKUmCh7eeAh0k2k+zs/PPtP6OmbYkShesHrGPF4Xik6zr2+z2NbvE3Gdk2R2tNK2//ztKNMS2fLMuGWtM0Qx7VusN0Eh6mJjfjCa8LnyBriLY1uu2YGi6240tDTVXLqSppbHgXQWsVUBT5IFZLrc+jSgSNleJ2ZnF6M+f88Z0XO2bhyWQh9dYp4SZBi2ArBD1F/4Mg2uIGsQwohwH/gj3h+P6Ji6szDMdjujQ4vzzh5XXJEbD9mInhEasPlHxdpSm78osky3meu4RBzm7Xk/8K9p6F4ZqH8T0b8dATL2+v74iTlD58IZy+2Vj2avCyLMuBpvjaMTM9ZvMIa1mK5z/0Iy0G/0VZy2V3IFHpsKS60eRFOSxGpZ+kaSUUmsO+I1KfzE0HY+EQRh9Sy8TPgm/CdMIoT8lM8gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02 001 06&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/80cfd850e17929772d350d619151d60d/d9199/02-001-06.png&quot;
+        srcset=&quot;/devHistoryBlog/static/80cfd850e17929772d350d619151d60d/8ff5a/02-001-06.png 240w,
+/devHistoryBlog/static/80cfd850e17929772d350d619151d60d/e85cb/02-001-06.png 480w,
+/devHistoryBlog/static/80cfd850e17929772d350d619151d60d/d9199/02-001-06.png 960w,
+/devHistoryBlog/static/80cfd850e17929772d350d619151d60d/07a9c/02-001-06.png 1440w,
+/devHistoryBlog/static/80cfd850e17929772d350d619151d60d/29114/02-001-06.png 1920w,
+/devHistoryBlog/static/80cfd850e17929772d350d619151d60d/e8950/02-001-06.png 2000w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cluster IP의 특징을 모두 가지고 있다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;모든 노드에 같은 Port가 할당이 된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;주의할 점은 타겟 Pod가 있는 노드들에만 Port가 할당되는 것이 아니라 &lt;span class=&quot;text-mark__red&quot;&gt;모든 노드에 Port가 할당된다.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;할당된 NodeIP:Port 들이 해당 서비스로 연결이 된다.&lt;/li&gt;
+&lt;li&gt;외부에서 NodeIP:Port 로 접근이 가능하다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;nodePort 값은 옵셔널이고, 생략할 경우 자동으로 할당된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Node Port의 범위 : 30000~32767&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;외부에서 Node1 IP: Port 로 접근을 했을 경우&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Node1에 있는 Pod로 연결되지 않고,&lt;/li&gt;
+&lt;li&gt;해당 서비스와 연결되어 있는 노드들 중 하나에게 트래픽을 전달한다.&lt;/li&gt;
+&lt;li&gt;externalTrafficPolicy: Local 옵션을 사용하면 요청한 NodeIP에 있는 Pod로 트래픽을 전달한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;순서&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&quot;text-mark__green&quot;&gt; External -&gt; NodeIP:Port -&gt; Service -&gt; Pod &lt;/span&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt; 4.3. Load Balancer &lt;/span&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/40433749d7668e1b99e7b674b6a83e81/7e318/02-001-07.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 33.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVQoz0WS63KbMBCF/f7v02mbOGPnR6fpZJK4TmPsxFdqMDZgkAGBAOfrotStZs5Iuyvt2d2jXhDGbHcBhzCiqWvatqFuGpq2RZeGKMlQWU4tsc7XSKyVvT2f5dxaX2efxe7Qm26O3D1OuHpwGDgus13G0lfsE02ickaTtSWrqpKyLNFaS3LDIVaMpy7LlYtSSuKVJe1dD75z9e2a4dMdt6NnBqMhn77eMJ4sqEzNy9uW31sPIw+MqezDpqmJ04wnIQuCPUVR/E84ny/of/nM66tDHIXcDvrc/7gnFVZdGRabPa4fkeX6A9K+1gUnOTtzn+AQSjJtO7AJkRWVDcNVSH/mMY01l9VdcBY7Hp4XrF2PIEyI4phY8BHzcGY+x2M3jr8VRskJVVSEqsBZekyWLl4Q2gq61uZS4ctshetuSEUgY8w/vK0DRr9W/Bxv8P3UCtq7KAfvlsHdxxaJykTtmlJmEyU56UkThaW0Vluiyy+oSi0jyK1Qncp/AMBJDvo8lRqoAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02 001 07&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/40433749d7668e1b99e7b674b6a83e81/d9199/02-001-07.png&quot;
+        srcset=&quot;/devHistoryBlog/static/40433749d7668e1b99e7b674b6a83e81/8ff5a/02-001-07.png 240w,
+/devHistoryBlog/static/40433749d7668e1b99e7b674b6a83e81/e85cb/02-001-07.png 480w,
+/devHistoryBlog/static/40433749d7668e1b99e7b674b6a83e81/d9199/02-001-07.png 960w,
+/devHistoryBlog/static/40433749d7668e1b99e7b674b6a83e81/07a9c/02-001-07.png 1440w,
+/devHistoryBlog/static/40433749d7668e1b99e7b674b6a83e81/7e318/02-001-07.png 1892w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Node Port의 특징을 모두 가지고 있다.&lt;/li&gt;
+&lt;li&gt;로드밸런서가 트래픽을 분산시켜 연결되어 있는 노드에게 전달한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt; ■ Sample Service Yaml &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; v1
+&lt;span class=&quot;token key atrule&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Service
+&lt;span class=&quot;token key atrule&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; svc&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;             &lt;span class=&quot;token comment&quot;&gt;# Pod의 Label과 매칭&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; pod
+  &lt;span class=&quot;token key atrule&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9000&lt;/span&gt;          &lt;span class=&quot;token comment&quot;&gt;# Service 자체 Port&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8080&lt;/span&gt;    &lt;span class=&quot;token comment&quot;&gt;# Pod의 Container Port&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ClusterIP&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; NodePort&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; LoadBalancer  &lt;span class=&quot;token comment&quot;&gt;# 생략시 ClusterIP&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;externalTrafficPolicy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Local&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Cluster    &lt;span class=&quot;token comment&quot;&gt;# 트래픽 분배 역할&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;h4&gt;Referenece&lt;/h4&gt;
+&lt;p&gt;Kubernetes Service&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/concepts/services-networking/service/&quot;&gt;https://kubernetes.io/docs/concepts/services-networking/service/&lt;/a&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kubernetes NodePort vs LoadBalancer vs Ingress?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0&quot;&gt;https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; 5. ConfigMap, Secret &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;image 별로 환경변수값을 정의하는것은 비효율적이므로 외부에 환경 변수를 담기위해 ConfigMap과 Secret을 사용한다.&lt;/li&gt;
+&lt;li&gt;key와 value로 정의하여 사용 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt; 5.1. ConfigMap vs Secret &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ConfigMap은 일반적인 값, Secret은 보안적인 값을 저장(패스워드/ 인증키)&lt;/li&gt;
+&lt;li&gt;Secret 값을 넣을때 base64 인코딩을 해서 값을 넣어야 한다는 규칙을 가지고 있다.&lt;/li&gt;
+&lt;li&gt;Secret 값은 파드로 주입이 될때 자동으로 base64 디코딩이 되어 컨테이너 내 환경변수에 세팅이 된다.&lt;/li&gt;
+&lt;li&gt;일반적인 값들은 쿠버네티스 DB에 저장이 되는데, Secret 값은 메모리에 저장이 된다. (메모리에 저장되기 때문에 보안에 유리)&lt;/li&gt;
+&lt;li&gt;ConfigMap의 경우 key, value 값을 무한하게 넣을 수 있는데 반해, 한 Secret당 최대 1M까지만 저장이 가능하다.&lt;/li&gt;
+&lt;li&gt;Secret은 메모리에 넣어두기 때문에 많이 만들게 되면 시스템 자원에 영향을 미치게 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt; 5.2. 상수를 환경변수에 정의하여 사용 &lt;/span&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/72d85b283c8c81283ab89ba8e4c8e88d/d3b46/02-001-08.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 29.166666666666668%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABQklEQVQY032RUVOjQBCE8/9/yD2c/8GqO304r8xpkoskZUyMYCAQWGEX2GUhnyP67FT1w0xV90z3TGpdQe/h3FNpjWksPTIazgzDwHelypowPo085xxd1zH5/W/Bz1+3LPYJaXLkaf6XMJjidEHrPGlekuWK2hghfPQVeVHS9x1RopjONyhViGCHtZZJkOT8+HPLzW6L94Y4uCaaXdIWCabtuFvuCdYb8lNG01qm/5952r3QNjVlVbN9OZJmJ7Q4HQXPg8UPhZBT9q8bHreP6PqE+KWxjsU6FFsh2pSj4Gp7II6Tr6sc90HIcrXhcDh8Cvqh4Wq15OJmxm49JV1f8aYjyRScZKLetEBhnR0tq9KQ5zlGIui955gp7h/2RK8xnSyYeHlIYVLSKkZpQRlhu0aeMoz4rj4EC6XFdkKWpXKh4x0WoMaeFEzSDAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02 001 08&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/72d85b283c8c81283ab89ba8e4c8e88d/d9199/02-001-08.png&quot;
+        srcset=&quot;/devHistoryBlog/static/72d85b283c8c81283ab89ba8e4c8e88d/8ff5a/02-001-08.png 240w,
+/devHistoryBlog/static/72d85b283c8c81283ab89ba8e4c8e88d/e85cb/02-001-08.png 480w,
+/devHistoryBlog/static/72d85b283c8c81283ab89ba8e4c8e88d/d9199/02-001-08.png 960w,
+/devHistoryBlog/static/72d85b283c8c81283ab89ba8e4c8e88d/07a9c/02-001-08.png 1440w,
+/devHistoryBlog/static/72d85b283c8c81283ab89ba8e4c8e88d/d3b46/02-001-08.png 1690w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;파드 생성시에 해당 파드에 정의된 ConfigMap, Secret 값을 가져와서 컨테이너 내 환경변수에 세팅을 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt; 5.3. 파일을 환경변수에 정의하여 사용 &lt;/span&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/59fffe4b02e39a15ce13eae77dc0186d/11a8f/02-001-09.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 52.916666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAACOklEQVQoz01T2XLTQBD01/PGL/ADvPACLwFSEHM44FCJb1uWZFvX6l5dq9PN7DoOTNXU1qpment6WiOPMWzWK5RFjrYWaNsGR8tBmKTQdB178wDRtKjbDnXTQEZR1XBYjCDiyPMcDX2/5shxPdxOpvj2uMB0u0cqatxNt7j9rWG1mGP58APuYYdBcNUgg0UZvtyvsdFMAsxQVRWEECpHWd3gzc8lXn+c4tWHCW6WB1yjTx0cv7/D6vNbmJP3aGgCGTwvMdtacFyGIAgUUF3XF0DR1EizAkESwY5MxKWDTDCkFcPT0x9YRwMFj1BmycvINZHQDh4004PHfHDO/zFsu/ZS1HGkvYaqj2HYK4TcwXR+hxPbgcTFuSGNuw7D+Qyce5hWgJ1hw9D3ME1TaSlZjpr2Alj2IfTkHrOlje2GijQbrF4gbncvElwBh6GH58dY644auSAd5TKfGXaqWPQJtOgrJo9jjKc3GN/fYG5/QtwYxAgENChASbCjUzYvNIdqd1hplnpAbTkju/AiQV7mSHlKlkjJJgWaXqASJSWJTcsQz6IPAwHTVHJBLEwxX5tYrzc09uHC0HZduD69wFxYJwsnyjAIwVNO44RI4wgxZZIkKMsSfd9TduBZjofFAbOVDj+IFDsFWFBRITLFpigKaiqUuP+b9ZqSmQSUZ0vusMncv2YGlhsDnuddlqIT1ZNr4nii83jCfr+HS6yl2FEUgdGf5Hvy7lMTU49KDWsaOSM/en6EwPdUnTT4X+CGPFtjPwNnAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02 001 09&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/59fffe4b02e39a15ce13eae77dc0186d/d9199/02-001-09.png&quot;
+        srcset=&quot;/devHistoryBlog/static/59fffe4b02e39a15ce13eae77dc0186d/8ff5a/02-001-09.png 240w,
+/devHistoryBlog/static/59fffe4b02e39a15ce13eae77dc0186d/e85cb/02-001-09.png 480w,
+/devHistoryBlog/static/59fffe4b02e39a15ce13eae77dc0186d/d9199/02-001-09.png 960w,
+/devHistoryBlog/static/59fffe4b02e39a15ce13eae77dc0186d/11a8f/02-001-09.png 1272w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;파일을 통으로 ConfigMap에 넣어 사용할 수 있다.&lt;/li&gt;
+&lt;li&gt;파일명이 key, 파일 내용이 value가 된다.&lt;/li&gt;
+&lt;li&gt;명령어를 이용하여 파일을 secret으로 만들 경우, 자동으로 base64 인코딩이 되므로 2중 인코딩이 되지 않도록 주의하자.&lt;/li&gt;
+&lt;li&gt;파드 생성시에 해당 파드에 정의된 ConfigMap, Secret 값을 가져와서 컨테이너 내 환경변수에 세팅을 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt; 5.3. 파일 마운트의 경우 &lt;/span&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/570fb2ece37f538c002f3044d41f0d1e/f32b7/02-001-10.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 48.75000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAACAklEQVQoz52SSXPTUBCE/du5UvwHiiPccoAQwlKEEAjGW+I4XuTYlmzJiiVbsvbtY/RUKTgzVVOS3vQb9XRPq6wq6qxAZV4U/A05ryr1Vpal1HJ1lqQZ85XNcr1jazuEYUCWZSpb/X6P234fby8F3xN8yWA043owYb40uLi8xNhYJFlOVpRkeUYYJ/TvdcbTBYeDR5IkxHGsnq3VxuTzYMxZ+4azzhD9cOR+seVTW2O6MFmOuswGvzC1O8rAIRUWdX7vzhlOlhi6pLEWliFpmtKyjhHPz37y4kObZyffeNMe829YvY9oX17Tf/cKo3NOngtTYfug2xiWg/W4JxF2dTPVMBaaQRjhHlys/RI33OBFFn4iGhkaw+ENntSi8NhcFHaVyLJzPcVyMq0xQ9brdTNyUTYmJLmPm0/IOWDYE9aPM8azW65650SxTxm6VOlRNCwoxDj/GHDZ0bjuTegNRui6ju/7tJ5cDTMHM+qJLqaA5vheQlFlbLJrYRU1novjmYzcjJ0ql+81U5n28DDHtu26Ya7AQf7I1D/l9OorL9++58fdgJV9w513QlbGaqfqhk8jG6bDxe8pi9UG09oqhrUxrRpQ/zVOY/bBFj/e4Uc73KOFK9+H0JaVSRXmCVuWzcjd0YrurSYuG+x2u0ZD/iNqDXPZR9vx2YrLrusQBIGS4g8wwPDQLfJdiAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02 001 10&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/570fb2ece37f538c002f3044d41f0d1e/d9199/02-001-10.png&quot;
+        srcset=&quot;/devHistoryBlog/static/570fb2ece37f538c002f3044d41f0d1e/8ff5a/02-001-10.png 240w,
+/devHistoryBlog/static/570fb2ece37f538c002f3044d41f0d1e/e85cb/02-001-10.png 480w,
+/devHistoryBlog/static/570fb2ece37f538c002f3044d41f0d1e/d9199/02-001-10.png 960w,
+/devHistoryBlog/static/570fb2ece37f538c002f3044d41f0d1e/f32b7/02-001-10.png 1136w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;원본 파일과 마운트가 되어 있으므로, &lt;span class=&quot;text-mark__red&quot;&gt;ConfigMap이 수정이 되면 바로 반영이 된다.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;이게 5.3과 가장 큰 차이점이다.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[K8S] ingress 인증서 교체]]></title><link>https://eunyoung-autocrypt.github.io/k8s/posts/2022-01-27--001</link><guid isPermaLink="false">https://eunyoung-autocrypt.github.io/k8s/posts/2022-01-27--001</guid><pubDate>Thu, 27 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; ■ 도메인에 적용되어 있는 인증서 확인 방법 &lt;/span&gt;
 &lt;span class=&quot;title__sub2&quot;&gt; 1. openssl로 인증서 확인 &lt;/span&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ openssl s_client -showcerts -connect &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;ip&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;:443 -servername &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;domain-name&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;span class=&quot;title__sub2&quot;&gt; 2. pem 인증서 디코딩 사이트에서 확인 &lt;/span&gt;
