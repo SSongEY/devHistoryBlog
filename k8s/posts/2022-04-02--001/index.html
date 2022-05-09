@@ -44,6 +44,19 @@
 <li>이 아이피는 클러스터 내에서만 접근이 가능하며 외부에서는 접근이 불가능하다.</li>
 <li>파드 재 생성시마다 IP가 계속 바뀐다.</li>
 </ul>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod1
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> web <span class="token comment"># 서비스, 디플로이먼트 등 매핑을 위한 라벨링</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> container
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> kubetm/app<span class="token punctuation">:</span>v1
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+  <span class="token key atrule">terminationGracePeriodSeconds</span><span class="token punctuation">:</span> <span class="token number">0</span> <span class="token comment"># 파드 삭제시 기본적으로 30초 후에 삭제가 되는데, 파드를 바로 삭제하기 위한 설정 </span></code></pre></div>
 <br/>
 <p><span class="title__sub1"> 2. Label </span>
 
@@ -172,7 +185,7 @@
 <li>서비스도 파드와 마찬가지고 자신의 Cluster IP를 가지고 있다.</li>
 <li>서비스와 연결된 파드들은 서비스의 Cluster IP를 통해서 접근이 가능하다.</li>
 <li>파드는 언제든지 죽을 수 있고 재 생성이 될 수 있는 오브젝트이기 때문에 파드의 IP는 신뢰성이 떨어진다.</li>
-<li>서비스는 사용자가 건들지 않으면삭제되거나 재생성되지 않는다.</li>
+<li>서비스는 사용자가 건들지 않으면 삭제되거나 재생성되지 않는다.</li>
 <li>때문에 서비스 IP를 사용한다</li>
 <li>서비스에서 파드의 접근을 도와주는 방식은 크게 3가지가 있다.</li>
 </ul>
@@ -488,7 +501,358 @@
     </p>
 <ul>
 <li>원본 파일과 마운트가 되어 있으므로, <span class="text-mark__red">ConfigMap이 수정이 되면 바로 반영이 된다.</span></li>
-<li>이게 5.3과 가장 큰 차이점이다.</li>
+<li>이게 5.2과 가장 큰 차이점이다.</li>
+</ul>
+<br/>
+<p><span class="title__sub1"> 6. Volume </span>
+<span class="title__sub2"> 6.1. emptyDir </span>
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/devHistoryBlog/static/68ffa9bd1a8d45d4e4d29510aa947228/7161f/02-001-11.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 61.24999999999999%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAACQklEQVQoz5WTbYvaUBCF/f+/pV9aKIV+KO2ylF11jcZEjTGumvdEE82bedOn18i2hUJpBw6XC3PPPTNzpne9XvlX3OKUFqi6zWrjEoYHzkVBXdeUZUnbtvT4zzgmBUNlw1zfkKUpeZ5TCNLz+UzTNPQawVq3DbW4lFXVoRI/1vWv+xtuuWVVdwodL8D3PGzb5ng8dgo7Qtuxefj6yGg84FSbJI3NzlfYhgrpxeyQtCZRaZAWMVXVMl2ayEuRZ3vsDwfSLL9/eCMMIovp9gvr6ImEOTEKQTshrDTCQseMZfxMI2qWHPOwK9v394ykJfpsjipJWGuDIjndexjlHt5hg24sUOdC2W7LOv5OXO5wXA9V09iaFlFmE+c+l1YMxnEYywayrGNoK6LApwgDGlF2L0x2SC8S3z4JfO4jPc2R/Q+dIls8HMoSq9c1+3zDIbe53ghF7/rSiuGLykt/iCpPiF2HVpTdC1PRj+AjdrxB2z8wMN8xDt6jhY8YwYi588zKH/EqWhJlbleyazpMnmWM8YTFYIAzn1Ec9rSXC72j8NXr2kRfGsxUjdlcx7YCoighzUuuIuki0LYXMf1GnA2ZUDhWt4ynK7SFzt5z7yXfhpIKH3lBiO36WI5LsI+EeTPiU0JxLjuyN5TV3byhafPUFwNRRA8XGitlSmSZXU7nw5vU9ioeiW3ofNk0f6Dzpsi7lmc2isbocYStKuzkMSdjSSmm3PzcFLFVv6/X3+IiCDM/YGtYBJbDyfcoRf8qsSk3YT8A08qIy9G3bgcAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="02 001 11"
+        title=""
+        src="/devHistoryBlog/static/68ffa9bd1a8d45d4e4d29510aa947228/d9199/02-001-11.png"
+        srcset="/devHistoryBlog/static/68ffa9bd1a8d45d4e4d29510aa947228/8ff5a/02-001-11.png 240w,
+/devHistoryBlog/static/68ffa9bd1a8d45d4e4d29510aa947228/e85cb/02-001-11.png 480w,
+/devHistoryBlog/static/68ffa9bd1a8d45d4e4d29510aa947228/d9199/02-001-11.png 960w,
+/devHistoryBlog/static/68ffa9bd1a8d45d4e4d29510aa947228/7161f/02-001-11.png 1182w"
+        sizes="(max-width: 960px) 100vw, 960px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<ul>
+<li>container 들끼리 데이터 공유를 하기 위해 volume을 사용</li>
+<li>최초 해당 볼륨이 생성될때 항상 비어있기 때문에 emptyDir로 명칭한다.</li>
+<li>pod 안에 생성이 되기 때문에 파드 생성시에 만들어지고, 삭제시 없어짐</li>
+<li>해당 볼륨에는 일시적인 사용목적에 의한 데이터를 넣는다.</li>
+</ul>
+<br/>
+<p><span class="title__sub2"> 6.2. hostPath </span>
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/devHistoryBlog/static/ebe8232c0ca11b573d653f582c5c16b1/08485/02-001-12.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 33.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABg0lEQVQoz3WS6W7iQBCEef932UeIkmg3YTdgAsT3AR6b08FjDgcM2HzbWNpfq7RUGql7pqq6NJ3L9cr1WnO73agbOYHm1tA0DXVdc7lc2t6/ut+7I559EqdLyrKkqqoW5/OZzkQp9HaLUgn5RjMJp2ituQv50YSJ9BerFUmiyPO8xel4JEoylBAWOud4/GrJWsLuk0X30WFsGVizR56HP0Q94CrubDPi5dlm8GbhqR7D4IFg1me7LcjyPYalWKw1n8WBjQhtxVjH+G3Jg4DB0MCMuozsB9LEbx06Vsj7m8do4BCGPioOCdyxuNqw2x0Yjjxcy0avM3F5bNFxfAf75SeD/hNu2sOKfrFYxkJYC0nCsO/R640xzFc+vFe8yEAXBaXEMjZsnJFJJmJnIWtXjiXD2A8kownTmUeoHMlUs8o29Psf9P64eK5CzX0CNWKaunwd9myWGaYZsk5TykJTSQzV6USHb2p/KCkkk9O5+m92k99QySyJ5yRRSDafs1uvuIjDv/xeBycqi/EQAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="02 001 12"
+        title=""
+        src="/devHistoryBlog/static/ebe8232c0ca11b573d653f582c5c16b1/d9199/02-001-12.png"
+        srcset="/devHistoryBlog/static/ebe8232c0ca11b573d653f582c5c16b1/8ff5a/02-001-12.png 240w,
+/devHistoryBlog/static/ebe8232c0ca11b573d653f582c5c16b1/e85cb/02-001-12.png 480w,
+/devHistoryBlog/static/ebe8232c0ca11b573d653f582c5c16b1/d9199/02-001-12.png 960w,
+/devHistoryBlog/static/ebe8232c0ca11b573d653f582c5c16b1/07a9c/02-001-12.png 1440w,
+/devHistoryBlog/static/ebe8232c0ca11b573d653f582c5c16b1/29114/02-001-12.png 1920w,
+/devHistoryBlog/static/ebe8232c0ca11b573d653f582c5c16b1/08485/02-001-12.png 2014w"
+        sizes="(max-width: 960px) 100vw, 960px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<ul>
+<li>한 호스트 즉, 노드의 path를 볼륨으로 사용 </li>
+<li>pod에서 해당 노드의 path를 마운트하여 사 용하므로 pod가 삭제가 되어도 노드에 있는 데이터는 삭제되지 않는다.</li>
+<li>
+<p>다만 파드가 재 생성될때 다른 노드에 생성이 될 수 있으므로 기존 노드에 사용하던 볼륨을 마운트 할 수는 없다.</p>
+<ul>
+<li>사용자가 직접 각 노드의 볼륨들을 마운트 시키면 된다.</li>
+<li>하지만, 쿠버네티스가 하는게 아니라 사용자가 직접 작업을 하므로 실수가 발생할 수 있다.</li>
+</ul>
+</li>
+<li>파드 자신이 할당되어 있는 호스트(노드)의 데이터를 읽거나 쓸때 사용한다.</li>
+<li>
+<p>hostPath Type</p>
+<ul>
+<li>DirectoryOrCreate : 실제 경로가 없다면 생성</li>
+<li>Directory : 실제 경로가 있어야됨</li>
+<li>FileOrCreate : 실제 경로에 파일이 없다면 생성</li>
+<li>File : 실제 파일이 었어야함</li>
+</ul>
+</li>
+</ul>
+<br/>
+<p><span class="title__sub2"> 6.3. PVC/PV </span>
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/devHistoryBlog/static/3a570b0153cd4c78f8ff27cacfe52527/84ee5/02-001-13.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 45.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAACIklEQVQozz2SSW8aQRCF+eu55xDlmEMU55BLZCcKeJOwwTsxYTHgMbMPDLMxC7OwOra/NLYUtUpd/erpU7X0Svl8SZK/1axYEc0K3GlCnC1e39sqlhuSYv3f54m5G8SEaUG62JC9zrfeBaXpbI48KVCdAs2d09cCLpoPSFYitDmmlxPEGbLlY7gZivBddzTObyUGso+kBLR7I2Q9YeKnlKJsSefB5Ff5gPZARxVQc7qh1deoHB7TG1o4YpuBbKGOQ2rnN5zWz1HsFM+aM+yYNC/6+Ib42SR921APJJTJBcOxwr21oqvlXLVH1G5kBvoM3U056RV8rfT5+OWYvbqAPER070Yk2Zqz+jUnR5fY45hSIIBq1MbM68jRkBt1zuH1hE/fTqm2Yjrmhsk043aYUGvZVBsql3cOkl0wanYJqhXazTZXZ1c4zhaYiLXTOurjd9S4S32wYe/3hp0jm93GI2f3CwHMkUYZzb7Fj59lKvuHyO6C2l6Z8vt3hKGCZxsCmGyBBd1xjzv3kqFr0ZAy9psh1W7KQTOmqaQ4YcFxO+Xzjy4fdmrsnru05ATNmCLpJj1jgD4eYVlTSul8hWknKKpN408fzXREHFZ44UzEI0K1HPwox/AKLC/DsEN6si10D8sMsYwAUw/QNBfPn1Fab0SGsgzH9xnZE4IwYSW0NC/wRe+HMfEs4+npr9BywjghShKmUcJyveZFnOeX59d7tVnzD/38iR1z6HydAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="02 001 13"
+        title=""
+        src="/devHistoryBlog/static/3a570b0153cd4c78f8ff27cacfe52527/d9199/02-001-13.png"
+        srcset="/devHistoryBlog/static/3a570b0153cd4c78f8ff27cacfe52527/8ff5a/02-001-13.png 240w,
+/devHistoryBlog/static/3a570b0153cd4c78f8ff27cacfe52527/e85cb/02-001-13.png 480w,
+/devHistoryBlog/static/3a570b0153cd4c78f8ff27cacfe52527/d9199/02-001-13.png 960w,
+/devHistoryBlog/static/3a570b0153cd4c78f8ff27cacfe52527/84ee5/02-001-13.png 1076w"
+        sizes="(max-width: 960px) 100vw, 960px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<ul>
+<li>파드에 영속성 있는 볼륨을 제공하기 위한 오브젝트</li>
+<li>실제 필요할때 다시 공부</li>
+</ul>
+<br/>
+<p><span class="title__sub1"> 7. Namespace/ ResourceQuota/ LimitRange</span>
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/devHistoryBlog/static/8538cef1c0e44910a18723a66d98cf30/0940f/02-001-15.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 47.5%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAACWklEQVQoz1WSy27TUBCG/XoskFgUqRLiLRBvwIZFBYugCsSmFaqgKVRVek1a6C2N2iZ1QxKBcm/c3OM4jR3Hl+RjnHTDkcbHZzy/Z+abo0ymU/wJMGW25IgvjkZbp3DXpHLflr1Bvd2jorWo3rcYuz6BxOf/5XkeSr5cE1GNXPmWbOlG7JbuoM/Acug9WOjDkewjDNNGD87mGKPfo5Q8pFa84SJdInaZ4zydoStxSq/TpdEscaFucpoKc5neYmi259VOfKnWY+L7jy3M27AHXYrxLWr5C9EViSUyoo1LQhOl2tTp9Icinpfd69uUtR7VRhPTsvCljeCnWrNH/q4t/gaO585ifcsIHo8NTxg5Lko4GmfnMktDd4WNR/zmD9/2rliPbZMpazxYU2Hj8zORZSN6zepuhKNMl0z6L1c/QnTLCVJFg1fL+9zk71HGkqzd9xgMPeE0YTwOWvQQHDS75sw/EH9QaQD9JOeylxqTLRhU7rqYpjAejFAL9Rlv5XfFZGU7wa5aIZbMUdDaeJMpB6kWofAxOynhm8lj2S7NvkNYHfA9a4jpRNI6jaJGSzdZi0bQOh2Upf00T94fsPD5lGdvdwkdqnRMi5erpzz9dMxi6BeLSxGycn1yWoeFr2e82EnO7Pl6HLVUJ5nv8GbtmkrLQKnrQ9ZOrni3GSV8ptKUbL4wS0rm5b1jPmwdcZ6t4ghwYzhmJary+mNYbIMvh2n0gS3D92dDCWagmI6HbTtYli38XJmUz1Das2UfWeO5XwJN+WYKX8ebCjdbrtYIN3gX/YPoAzNGDv8A5X/ULf7ZZ3MAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="02 001 15"
+        title=""
+        src="/devHistoryBlog/static/8538cef1c0e44910a18723a66d98cf30/d9199/02-001-15.png"
+        srcset="/devHistoryBlog/static/8538cef1c0e44910a18723a66d98cf30/8ff5a/02-001-15.png 240w,
+/devHistoryBlog/static/8538cef1c0e44910a18723a66d98cf30/e85cb/02-001-15.png 480w,
+/devHistoryBlog/static/8538cef1c0e44910a18723a66d98cf30/d9199/02-001-15.png 960w,
+/devHistoryBlog/static/8538cef1c0e44910a18723a66d98cf30/0940f/02-001-15.png 1154w"
+        sizes="(max-width: 960px) 100vw, 960px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<ul>
+<li>클러스터에서 사용할 수 있는 리소스는 한정적이기 때문에 네이스페이스별로 리소스를 한정하여 사요하도록 하는 오브젝트</li>
+<li>ResourceQuota는 Namespace 뿐만 아니라 Cluster 전체에 부여할 수 있는 권한이지만, LimitRange의 경우 Namespace내에서만 사용 가능</li>
+</ul>
+<br/>
+<p><span class="title__sub2"> 7.1. Namespace </span>
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/devHistoryBlog/static/d2184de7167f2ae556ef4307d1e23a03/541fe/02-001-16.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 31.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfklEQVQY0yXQS1PaABiFYf7/vquunC467aY6zlRTKBqqXCIECGDIHXIPBpKGIAW0b6M96zPPfN+pHYoNr2XOJgmYq3Ms0yFPE5TuDcPeL7LQxPFTLpoT6n2f5WrHW06HHX7UI0gk5so9PVFg3G1SswMRcXqGYTdQ2lcM7r+RJQsepRu0/i1lpGEHGZeiSlMOWSTP/8FjyVXvI+d3H1gHEgutgav/pKYHLVr6GaYhEFt9TO2WIvWYdkUspcN+ZeKGGddtk666Ic5P7+Dh+IJlxWiKgSzJPHQkRn2ZWpzuiVZHZnOPVkemLU1JorAqfGfUuqSwBth+znl9xt0grN7cvoP74wnV03j0VETL4mv7moY6oeZEGYa3ZuCv+dS54MtAIFmnjMY/GI8FSk/Bjgs+D3XEWVKB1YavJ46nl2pbG8e1GS8N6iMByarA7fOBYndgs93jrFwWTz5lWZCYE9LljP3a5Sn/w9BJMfSAjRvD9jd/384MA3AssE1wPchz/gG35K3hmyLmaQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="02 001 16"
+        title=""
+        src="/devHistoryBlog/static/d2184de7167f2ae556ef4307d1e23a03/d9199/02-001-16.png"
+        srcset="/devHistoryBlog/static/d2184de7167f2ae556ef4307d1e23a03/8ff5a/02-001-16.png 240w,
+/devHistoryBlog/static/d2184de7167f2ae556ef4307d1e23a03/e85cb/02-001-16.png 480w,
+/devHistoryBlog/static/d2184de7167f2ae556ef4307d1e23a03/d9199/02-001-16.png 960w,
+/devHistoryBlog/static/d2184de7167f2ae556ef4307d1e23a03/07a9c/02-001-16.png 1440w,
+/devHistoryBlog/static/d2184de7167f2ae556ef4307d1e23a03/541fe/02-001-16.png 1654w"
+        sizes="(max-width: 960px) 100vw, 960px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<ul>
+<li>
+<p>한 네임스페이스 안에서 같은 종류의 오브젝트들은 같은 이름을 가질 수 없다.</p>
+<ul>
+<li>에러: 파일 배포 실패 (pods “podName” already exists)</li>
+</ul>
+</li>
+<li>
+<p>타 네임스페이스의 자원과 분리가 되어 관리가 된다.</p>
+<ul>
+<li>파드의 라벨링으로 서비스와 연결을 하는데, 서로 다른 네임스페이스에 있을 경우 연결이 되지 않는다.</li>
+</ul>
+</li>
+<li>네임스페이스 삭제시, 그 안의 자원들도 모두 삭제가 된다.</li>
+<li>각 네임스페이스의 파드의 IP끼리는 기본적으로 통신은 되지만, network policy 오브젝트를 이용하여 막을 수 있다.  </li>
+</ul>
+<br/>
+<p><span class="title__sub2"> 7.2. ResourceQuota </span>
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/devHistoryBlog/static/534f5e6bbda09e7bedb9a587caf3937a/9c1e6/02-001-17.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 30.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABXklEQVQY002RXU+rQBBA+f9/574YH25qtLFGRW4V2lKQYoXlqwUWKKWUHleMyd1ksjvJzNkzu9r5PHC5XBiGgbbr2csW993DNC3SNGNfNERpTllK6rrizVqwdHz8MEFWNVEkeDWXJKq2aRo0UZosgzuy2qUoKiw3ZHL3wN/JlEDEWE7Ik7EgDIOx4d98juO47OJU5QdEGPKsvyhwRNu2aGUtCJM1skkosgzDE1hrB9u2kbJC1i1xuqc/nTgcDugvBp9BQBHHyrgmUz2maeL7m/Gsve9WPLo6+8anUCOZ0YIHe8Y2t4jznP/XcO6Z+wmGs1WWa4QQ5KpGV4YfH9vxAm3qXTPd/GGTT0mEz8S+5unzCk/eIPLsB6Te93fvlOnxeByj73taZX2rvzGbW8iyRPMSg3U0I5Er6qZiFT5ii3s2u2eKRo6g70/7Bfb9aQR9x0nBu67DDWJs1yOOI74A+rq+EcQCH5YAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="02 001 17"
+        title=""
+        src="/devHistoryBlog/static/534f5e6bbda09e7bedb9a587caf3937a/d9199/02-001-17.png"
+        srcset="/devHistoryBlog/static/534f5e6bbda09e7bedb9a587caf3937a/8ff5a/02-001-17.png 240w,
+/devHistoryBlog/static/534f5e6bbda09e7bedb9a587caf3937a/e85cb/02-001-17.png 480w,
+/devHistoryBlog/static/534f5e6bbda09e7bedb9a587caf3937a/d9199/02-001-17.png 960w,
+/devHistoryBlog/static/534f5e6bbda09e7bedb9a587caf3937a/07a9c/02-001-17.png 1440w,
+/devHistoryBlog/static/534f5e6bbda09e7bedb9a587caf3937a/9c1e6/02-001-17.png 1734w"
+        sizes="(max-width: 960px) 100vw, 960px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<ul>
+<li>네임스페이스의 자원한계를 설정하는 오브젝트</li>
+<li>
+<p>리소스쿼타가 지정된 네임스페이스에 파드를 생성할때는 꼭 스펙 명시를 해야한다.</p>
+<ul>
+<li>하지 않을 경우 해당 네임스페이스로 pod 생성이 되지 않는다.</li>
+<li>에러: must specify limits.memory, requests.memory</li>
+<li>limitRange에 default가 설정되어 있을 경우에는 상관없다.</li>
+</ul>
+</li>
+<li>현재 namespace에 사용된 requests 를 넘는 파드 생성 요청시 오류가 난다.</li>
+<li>
+<p>주의할 점은 ResourceQuota 생성 전에 이미 파드가 만들어져 있으면, 해당 파드들에게는 영향이 가지 않는다</p>
+<ul>
+<li>따라서 ResourceQuota 생성 전에 파드들을 지우는게 안전하다.</li>
+<li>그렇지 않을 경우, ResourceQuota 설정보다 over하여 네임스페이스에 파드들이 생성된다. </li>
+</ul>
+</li>
+<li>
+<p>제한 가능한 항목</p>
+<ul>
+<li>Compute Resource: cpu, memory, storage</li>
+<li>Objects Count: Pod, Service, ConfigMap… 등 k8s 버전이 높아짐에 따라 제한할 수 있는 오브젝트가 늘어남</li>
+</ul>
+</li>
+</ul>
+<br/>
+<p><span class="title__sub2"> 7.3. LimitRange </span>
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/devHistoryBlog/static/305473c5ef43ec665cf2c7dc4f67450a/94cea/02-001-18.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 39.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABiklEQVQoz52S226bQBRF+f/vqdT0oqqVIqVV2qR1bMek2BiwyRjwcGfABlYPjlTltT0SM+JlnX0Zi3+ccRwv3zRJWjG3AzauR5qmdN0JKzcpaXng1Nd0pzNaa5IkoShKhmGk7TqUUjRN8xck2Mt5zCruFy5RFFHXNW3bYt15n/nlvyUulxxVwtf7BV9uvvPo+LKoZrNXRAeFEWDf9/TDIPcLsKwNa09RVZUsrDHGYC3DOQ/+D/ImIEs0XqjZ7hPCKKdqDD9XDk9+yF4X1KbFdhWz5Zpgt+N8PuEIMJClB3W4uLCu1x+ZqSt0a1PULTd317z79Ibf2yca0xHGR2a2Q6JTBlHo+BG245FJZpNiN5D/jUCDmDTLsdJyUuNSlBpdJFytPnAbvmdfzNF5w7eVy8LZUpaVKDpfcuz7QfIdGAcB7mJuH7bY62dUpLGmfKcSLhl0Bi96ZKfnHKuQ03kgKwrJTwqTciZFr2cQoLePma12YjumNWJ5ZPyvZzMVPopKP0zE8jOxqJvK+QPWIl9/f/4pqgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="02 001 18"
+        title=""
+        src="/devHistoryBlog/static/305473c5ef43ec665cf2c7dc4f67450a/d9199/02-001-18.png"
+        srcset="/devHistoryBlog/static/305473c5ef43ec665cf2c7dc4f67450a/8ff5a/02-001-18.png 240w,
+/devHistoryBlog/static/305473c5ef43ec665cf2c7dc4f67450a/e85cb/02-001-18.png 480w,
+/devHistoryBlog/static/305473c5ef43ec665cf2c7dc4f67450a/d9199/02-001-18.png 960w,
+/devHistoryBlog/static/305473c5ef43ec665cf2c7dc4f67450a/07a9c/02-001-18.png 1440w,
+/devHistoryBlog/static/305473c5ef43ec665cf2c7dc4f67450a/29114/02-001-18.png 1920w,
+/devHistoryBlog/static/305473c5ef43ec665cf2c7dc4f67450a/94cea/02-001-18.png 1940w"
+        sizes="(max-width: 960px) 100vw, 960px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<ul>
+<li>파드가 네임스페이스에 들어올 수 있는지 체크</li>
+<li>
+<p>설정값</p>
+<ul>
+<li>min: 최소 메모리값</li>
+<li>max: 해당 네임스페이스로 들어올 수 있는 파드의 최대 메모리 값<br>
+-> Pod1의 경우 limit memory값이 5Gi이므로 생성이 불가능한다.</li>
+<li>maxLimitRequestRatio: request값과 limit값의 최대 비율<br>
+-> Pod2의 경우 reuqest와 limit의 비율이 3을 넘어가므로 생성이 불가능한다.</li>
+<li>defaultRequest/ default: 스펙이 없는 pod가 들어올 경우 해당 값으로 세팅이 된다.<br>
+-> Pod3의 경우 스펙이 없으므로 default 스펙을 따라간다.</li>
+</ul>
+</li>
 </ul></div></div><div class="post-single__footer"><div class="post-single__tags"><ul class="post-single__tags-list"><li class="post-single__tags-list-item"><a class="post-single__tags-list-item-link" href="/devHistoryBlog/tags/k-8-s/">k8s</a></li><li class="post-single__tags-list-item"><a class="post-single__tags-list-item-link" href="/devHistoryBlog/tags/object/">object</a></li></ul></div><hr/><p class="post-single__footer-text">일상 &amp; 작업 기록 블로그</p><div></div></div></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script>
   
   
