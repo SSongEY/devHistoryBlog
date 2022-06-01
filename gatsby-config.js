@@ -35,6 +35,10 @@ module.exports = {
         path: '/docker/',
       },
       {
+        label: 'ETC',
+        path: '/etc/',
+      },
+      {
         label: 'Works',
         path: '/works/',
       },
