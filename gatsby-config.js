@@ -1,7 +1,7 @@
 const lost = require('lost')
 const pxtorem = require('postcss-pxtorem')
 
-const url = 'https://eunyoung-autocrypt.github.io'
+const url = 'https://ssongey.github.io'
 
 module.exports = {
   pathPrefix: '/devHistoryBlog',
@@ -10,7 +10,7 @@ module.exports = {
     siteUrl: url,
     title: 'Blog by Eunyoung',
     subtitle:
-      '일상 & 작업 기록 블로그',
+      '작업 기록 블로그',
     copyright: '© All rights reserved.',
     disqusShortname: '',
     menu: [
@@ -19,40 +19,16 @@ module.exports = {
         path: '/',
       },
       {
-        label: 'Spring',
-        path: '/spring/',
-      },
-      {
-        label: 'Shell',
-        path: '/shell/',
-      },
-      {
-        label: 'Kubernates',
-        path: '/k8s/',
-      },
-      {
-        label: 'Docker',
-        path: '/docker/',
-      },
-      {
-        label: 'ETC',
-        path: '/etc/',
-      },
-      {
         label: 'Works',
         path: '/works/',
       },
       {
-        label: 'History',
+        label: 'Info/Study',
         path: '/history/',
       },
       {
         label: 'Errors',
         path: '/errors/',
-      },
-      {
-        label: '등산',
-        path: '/climbing/',
       },
     ],
     author: {
