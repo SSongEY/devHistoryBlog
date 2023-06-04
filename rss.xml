@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[작업 기록 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 03 Jun 2023 20:27:41 GMT</lastBuildDate><item><title><![CDATA[docker 로그 사이즈 16k limit 에 따른 조치]]></title><description><![CDATA[fluent-concat-plugin]]></description><link>https://ssongey.github.io/works/posts/2023-01-29--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2023-01-29--001</guid><pubDate>Sun, 29 Jan 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이번에 내가 담당하고 있던 한 서비스를 PM장비에서 K8S로 이전하는 작업을 진행하게 됐는데,&lt;br&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[작업 기록 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 04 Jun 2023 15:39:16 GMT</lastBuildDate><item><title><![CDATA[docker 로그 사이즈 16k limit 에 따른 조치]]></title><description><![CDATA[fluent-concat-plugin]]></description><link>https://ssongey.github.io/works/posts/2023-01-29--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2023-01-29--001</guid><pubDate>Sun, 29 Jan 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이번에 내가 담당하고 있던 한 서비스를 PM장비에서 K8S로 이전하는 작업을 진행하게 됐는데,&lt;br&gt;
 해당 서버가 출력하고 있던 로그 사이즈가 16k 가 넘어버려서 로그가 제대로 ES에 적재되지 못하는 이슈가 발생했다.&lt;br&gt;
 이에 &lt;strong&gt;fluentd concat plugin&lt;/strong&gt; 을 적용한 내용을 기록한다.&lt;/p&gt;
 &lt;br/&gt;
@@ -153,7 +153,285 @@ $ docker run --name fluentd &lt;span class=&quot;token punctuation&quot;&gt;\&lt
   &lt;/span&gt;
   
   &lt;/a&gt;
-    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[Unable to acquire JDBC Connection 에러 오답노트1]]></title><description><![CDATA[Connection is not available, request timed out after 5000ms]]></description><link>https://ssongey.github.io/works/posts/2022-12-09--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-12-09--001</guid><pubDate>Fri, 09 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;현재글)&lt;/p&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[ES Node Role 정리]]></title><link>https://ssongey.github.io/history/posts/2023-01-07--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2023-01-07--001</guid><pubDate>Sat, 07 Jan 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;사내 스터디로 ES 책을 보고있는데, 문득 내가 사용하고 있는 ES 들의 role 구성이 궁금했고,&lt;br&gt;
+생각보다 node 들의 role 이 많아서 정리하려고 한다.&lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;📢 환경&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;ElasticSearch 7.17.8&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h2&gt;✔️ 노드 role 확인&lt;/h2&gt;
+&lt;p&gt;노드 정보 확인 API 를 사용하면 노드의 role 을 확인할 수 있다.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/6d7d8dd2b0ecdc30b4746e24703100d0/7970d/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 21.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAxElEQVQY001P2wpFUBTcuZSEpFwSioPYORsRJQ9evPgD//8hc45V5GGamdbMai32FV84gYM8/yBN0z/nKIoCVVUhyzKUZYkoihCGIeHSFzzPQxAEiOMYSZJA0zTs+w7Gaw7btsEYI6iqSuz7PmnTNCn8niuK8njDMGihrutY1xXsuuIyd+CGZVnE7/J7qSzLj3ddF5IkYRxHsOM4ME0T6rpG0zTouo7eXZYFQggMw4C2bWl+Z+Z5pjLnHH3fY9s2ypzniR8J3WeewHL3+wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/6d7d8dd2b0ecdc30b4746e24703100d0/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/6d7d8dd2b0ecdc30b4746e24703100d0/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/6d7d8dd2b0ecdc30b4746e24703100d0/e85cb/001-01.png 480w,
+/devHistoryBlog/static/6d7d8dd2b0ecdc30b4746e24703100d0/d9199/001-01.png 960w,
+/devHistoryBlog/static/6d7d8dd2b0ecdc30b4746e24703100d0/07a9c/001-01.png 1440w,
+/devHistoryBlog/static/6d7d8dd2b0ecdc30b4746e24703100d0/7970d/001-01.png 1908w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;여기서 node.role 필드 값에 대한 정의는 아래와 같다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;✔️ 노드 role 정의&lt;/h2&gt;
+&lt;h3&gt;m (master-eligible node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;마스터, 마스터 후보 노드&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+node.roles: [&amp;quot;master&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;v (voting-only node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;마스터 노드 선출을 위한 투표에는 참여하지만, 마스터 역할은 수행하지 않는 마스터 후보 노드&lt;/li&gt;
+&lt;li&gt;마스터 노드에만 해당 role을 줄 수 있다.&lt;/li&gt;
+&lt;li&gt;만약 장애로 마스터 노드가 3개에서 1개로 줄어 최소 마스터 노드의 수를 충족하지 못할 경우 클러스터 전체 장애로 이어지는데, 이를 방지하기 위해 낮은 스펙을 가진 voting_only 마스터 노드를 더 추가하여 마스터 후보 노드 수를 높이는 것도 괜찮을 듯 싶다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+node.roles: [&amp;quot;master&amp;quot;, &amp;quot;voting_only&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/6450ac93c555c71198b0bdfd722727fc/7970d/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 3.3333333333333335%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAOklEQVQI1z3JSQoAQQhD0T6aEyrizvufJUULVYtPHuQjIrg7VBXX3b1rZpgZZOZ+zLz9ripExFpEXgefVSP4d074pwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/6450ac93c555c71198b0bdfd722727fc/d9199/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/6450ac93c555c71198b0bdfd722727fc/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/6450ac93c555c71198b0bdfd722727fc/e85cb/001-02.png 480w,
+/devHistoryBlog/static/6450ac93c555c71198b0bdfd722727fc/d9199/001-02.png 960w,
+/devHistoryBlog/static/6450ac93c555c71198b0bdfd722727fc/07a9c/001-02.png 1440w,
+/devHistoryBlog/static/6450ac93c555c71198b0bdfd722727fc/7970d/001-02.png 1908w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;d (data node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;데이터 CRUD, 인덱싱, 검색 및 집계를 처리&lt;/li&gt;
+&lt;li&gt;multi-tier architecture 에서 사용할 수 있는 특수 데이터 역할이 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+node.roles: [ &amp;quot;data&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;s (data content node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;contents 를 저장하는 노드로, product catalog or article archive 와 같은 데이터를 CRUD, 검색 및 집계 처리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+node.roles: [ &amp;quot;data_content&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;h (data hot node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;자주 업데이트되는 시계열 데이터를 저장하는데 사용&lt;/li&gt;
+&lt;li&gt;검색 및 인덱싱이 모두 빨라야하므로 많은 CPU, RAM 및 빠른 storage를 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+node.roles: [ &amp;quot;data_hot&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;w (data warm node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;쿼리 빈도가 낮고 거의 업데이트되지 않는 시계열 데이터를 저장하는데 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+node.roles: [ &amp;quot;data_warm&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;c (data cold node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;더 이상 정기적으로 검색할 필요가 없는 시계열 데이터는 warm에서 cold로 이동&lt;/li&gt;
+&lt;li&gt;검색 성능이 우선이 아니기 때문에 일반적으로 CPU, RAM 대비 큰 storage를 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+node.roles: [ &amp;quot;data_cold&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;f (data frozen node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;거의 쿼리되지 않고 더이상 업데이트되지 않는 데이터는 cold에서 frozen으로 이동&lt;/li&gt;
+&lt;li&gt;해당 노드는 적은 비용으로 frozen 된 데이터를 운영하기 위함이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+node.roles: [ &amp;quot;data_frozen&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;i (ingest node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;인덱싱에 전처리가 필요한 경우 사용&lt;/li&gt;
+&lt;li&gt;스택 모니터링 및 수집 파이프라인에는 ingest역할이 필요&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+node.roles: [ &amp;quot;ingest&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;(coordinating node only)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;사용자 요청을 데이터 노드로 전달하고, 그 결과를 취합하는데 사용&lt;/li&gt;
+&lt;li&gt;기본적으로 모든 노드에 coordinating role을 가지고 있지만, 운영시에는 모든 사용자 요청은 coordinating only 노드로만 가도록 하여 다른 role을 가진 노드(master, data 등..)의 부하를 줄이도록 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+node.roles: []&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/cf711803b49866b9cfeecdec6b3e5066/3e992/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 3.3333333333333335%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAOklEQVQI1z2KuQkAMAwDM5Y//IA77z+PglOkEKdDOsyMzISZgYhQVehuuPvLzLxtfyLyqarfty8jAhdWRCIhXQTpfwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/cf711803b49866b9cfeecdec6b3e5066/d9199/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/cf711803b49866b9cfeecdec6b3e5066/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/cf711803b49866b9cfeecdec6b3e5066/e85cb/001-03.png 480w,
+/devHistoryBlog/static/cf711803b49866b9cfeecdec6b3e5066/d9199/001-03.png 960w,
+/devHistoryBlog/static/cf711803b49866b9cfeecdec6b3e5066/07a9c/001-03.png 1440w,
+/devHistoryBlog/static/cf711803b49866b9cfeecdec6b3e5066/3e992/001-03.png 1902w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;l (machine learning node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;ES에서 제공하는 머신러닝 기능이 필요한 경우 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+node.roles: [&amp;quot;ml&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;r (remote cluster client node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;다른 클러스터와의 검색이나 복제 등을 수행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+node.roles: [&amp;quot;remote_cluster_client&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;t (transform node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;기존 인덱스를 변환하거나 insight 및 요약된 데이터 분석 등의 api 요청을 수행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+node.roles: [&amp;quot;transform&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;모든 롤을 가진 node 설정 방법&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# elasticsearch.yaml
+
+# 아무런 설정을 하지 않는다. (default)
+# node.roles: []&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/b196e0f8b527495c527eda21f8bb426c/3e992/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 3.3333333333333335%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAOUlEQVQI102LywkAMAjFOpfgB7yq4P7DvGKhpYccEsgSEUQEzAxEhMxEVR13d3Q3VBXM/Jjnb+OXDYwyIzs8V0jlAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/b196e0f8b527495c527eda21f8bb426c/d9199/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/b196e0f8b527495c527eda21f8bb426c/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/b196e0f8b527495c527eda21f8bb426c/e85cb/001-04.png 480w,
+/devHistoryBlog/static/b196e0f8b527495c527eda21f8bb426c/d9199/001-04.png 960w,
+/devHistoryBlog/static/b196e0f8b527495c527eda21f8bb426c/07a9c/001-04.png 1440w,
+/devHistoryBlog/static/b196e0f8b527495c527eda21f8bb426c/3e992/001-04.png 1902w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;strong&gt;참고)&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html&quot;&gt;https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://opster.com/guides/elasticsearch/data-architecture/how-to-configure-all-elasticsearch-node-roles/#Master-node&quot;&gt;https://opster.com/guides/elasticsearch/data-architecture/how-to-configure-all-elasticsearch-node-roles/#Master-node&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://jeongxoo.tistory.com/12&quot;&gt;https://jeongxoo.tistory.com/12&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[무료 사용 가능한 오픈렌즈(OpenLens) 설치 방법]]></title><link>https://ssongey.github.io/history/posts/2022-12-22--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2022-12-22--001</guid><pubDate>Thu, 22 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;너무너무 잘 사용하던 Lens가 2023년 1월 2일 이후로는 기업에서 유료화가 된다고 한다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/k8slens/lens-6-released-vision-for-the-future-new-subscription-model-and-features-available-628ff21fe14a&quot;&gt;https://medium.com/k8slens/lens-6-released-vision-for-the-future-new-subscription-model-and-features-available-628ff21fe14a&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/k8slens/lens-6-released-vision-for-the-future-new-subscription-model-and-features-available-628ff21fe14a&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;하지만 &lt;strong&gt;개인용, 교육용, 스타트업(연매출 또는 자금 1,000만 달러 미만) 은 무료&lt;/strong&gt;라고 하니..&lt;br&gt;
+개인 노트북에서는 계속 사용해도 될 듯 싶다.&lt;/p&gt;
+&lt;p&gt;다만 기존 오픈소스는 ‘오픈렌즈(OpenLens)‘로 이름을 바꿔 유지되고, ‘MIT 라이선스’ 이니, 무료로 사용이 가능하다.&lt;br&gt;
+오픈렌즈를 설치하는 방법은 아래와 같다.&lt;/p&gt;
+&lt;h3&gt;✔️ MacOS - Homebrew&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;brew &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; --cask openlens&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;✔️ Windows - Scoop&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;scoop bucket &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; extra
+scoop &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; openlens&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;또는 아래 오픈렌즈 깃헙에서 빌드된 파일을 받아 설치해도 된다.&lt;br&gt;
+&lt;a href=&quot;https://github.com/MuhammedKalkan/OpenLens&quot;&gt;https://github.com/MuhammedKalkan/OpenLens&lt;/a&gt;&lt;/p&gt;
+&lt;br/&gt;
+&lt;p&gt;참고로, 오픈렌즈에서는 pod 메뉴가 없다.(pod 로그 보기 등.. 불가능)&lt;br&gt;
+이를 사용하려면 extension을 설치해야한다.&lt;/p&gt;
+&lt;h3&gt;✔️ 설치 방법&lt;/h3&gt;
+&lt;p&gt;메뉴 &gt; extensions &gt; 설치란에 &lt;code class=&quot;language-text&quot;&gt;@alebcay/openlens-node-pod-menu&lt;/code&gt; 입력 후 install 버튼 클릭&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Unable to acquire JDBC Connection 에러 오답노트1]]></title><description><![CDATA[Connection is not available, request timed out after 5000ms]]></description><link>https://ssongey.github.io/works/posts/2022-12-09--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-12-09--001</guid><pubDate>Fri, 09 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;현재글)&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Unable to acquire JDBC Connection 에러 오답노트1&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -593,7 +871,70 @@ network:
 &lt;a href=&quot;https://m.blog.naver.com/PostView.naver?blogId=msnayana&amp;#x26;logNo=80105365859&amp;#x26;proxyReferer=&quot;&gt;https://m.blog.naver.com/PostView.naver?blogId=msnayana&amp;#x26;logNo=80105365859&amp;#x26;proxyReferer=&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;configuring dhcp lease&lt;br&gt;
 &lt;a href=&quot;https://serverfault.com/questions/1022612/configuring-dhcp-lease-when-using-systemd-networkd-on-ubuntu-18-04-server&quot;&gt;https://serverfault.com/questions/1022612/configuring-dhcp-lease-when-using-systemd-networkd-on-ubuntu-18-04-server&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Cordon, Drain 명령어를 이용하여 Node 작업하기]]></title><link>https://ssongey.github.io/works/posts/2022-10-29--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-10-29--001</guid><pubDate>Sat, 29 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이번에 전사적으로 사용하고 있는 리소스 최적화 요청이 내려왔다.&lt;br&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[리눅스 접속 로그 확인 명령어]]></title><link>https://ssongey.github.io/history/posts/2022-11-24--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2022-11-24--001</guid><pubDate>Thu, 24 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;목차&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;이번에 업무 관련 검증을 받게 되면서 서버의 접속 로그를 신경쓸일이 생겼다.&lt;br&gt;
+접속로그는 /var/log/wtmp 에 기록이 된다고 하는데, tail, vi 등으로는 볼 수가 없었고, 찾아보니 last 명령어를 사용해야한다고 한다.&lt;/p&gt;
+&lt;h2&gt;✔️ 리눅스 접속 로그 확인&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;last 명령어를 사용한다.&lt;/li&gt;
+&lt;li&gt;해당 명령어를 이용하여 /var/log/wtmp 에 기록된 내용을 보여준다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ last&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/5a840be9e975736fdc54fbeb82ad4fbf/133ae/001.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 24.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAxUlEQVQY042Q2Q6DIBBFEXdRFBeqxhjU///G295JaF/7MIFZ7plF2dnCOIPRT0iLFHlRYBxH9H2PaZpQliWaphGf5r1HXdcSM8ZgXVc456C1hlIKyg0Opv4k/EsCTBA0zzOO4xAxQRQSdp6n+MuyCOi6Luz7/gOyiIlwBehUI89zKSDseR6Zgv5939i2TYCxWYyHEH5ATkBI27YSSJLku461FlmWoes6aRqnZZ5/agjniagTIB0Wc81hGFBVlbzxhrHRv/YGSZhzclzKw1AAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/5a840be9e975736fdc54fbeb82ad4fbf/d9199/001.png&quot;
+        srcset=&quot;/devHistoryBlog/static/5a840be9e975736fdc54fbeb82ad4fbf/8ff5a/001.png 240w,
+/devHistoryBlog/static/5a840be9e975736fdc54fbeb82ad4fbf/e85cb/001.png 480w,
+/devHistoryBlog/static/5a840be9e975736fdc54fbeb82ad4fbf/d9199/001.png 960w,
+/devHistoryBlog/static/5a840be9e975736fdc54fbeb82ad4fbf/133ae/001.png 1424w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br/&gt;
+&lt;h2&gt;✔️ 특정 계정 접속 확인&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ last root&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;h2&gt;✔️ 특정 시간 이전 접속 확인&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 시간 포맷: YYYYMMDDHHMMSS&lt;/span&gt;
+$ last -t &lt;span class=&quot;token number&quot;&gt;202211242359&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;h2&gt;✔️ 연도 정보 같이 확인&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ last -F&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;h2&gt;✔️ 이번달 기록만 나올 경우&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;/var/log/wtmp 파일이 logrotate에 의해 순환될 경우 이번달만 나올 수 있다.&lt;/li&gt;
+&lt;li&gt;과거 기록을 보려면 rotate 된 파일을 지정해주면 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ last -f /var/log/wtmp.1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;p&gt;참고)&lt;br&gt;
+&lt;a href=&quot;https://zetawiki.com/wiki/%EB%A6%AC%EB%88%85%EC%8A%A4_%EC%A0%91%EC%86%8D%EA%B8%B0%EB%A1%9D_%ED%99%95%EC%9D%B8_last&quot;&gt;리눅스 접속기록 확인 last&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Cordon, Drain 명령어를 이용하여 Node 작업하기]]></title><link>https://ssongey.github.io/works/posts/2022-10-29--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-10-29--001</guid><pubDate>Sat, 29 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이번에 전사적으로 사용하고 있는 리소스 최적화 요청이 내려왔다.&lt;br&gt;
 때문에 내가 운영하고 있던 서비스들의 VM 스펙 변경 및 클러스터 노드를 줄이는 작업을 진행하게 되었다.&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
@@ -881,7 +1222,19 @@ $ kubectl drain &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;�
   &lt;/a&gt;
     &lt;/p&gt;
 &lt;br/&gt;
-&lt;p&gt;이후 삭제 대상 노드 처리를 해주면 끝!!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[503 Service Unavailable 오류!! 범인은 누구냐! (WAS? Nginx? GSLB?)]]></title><link>https://ssongey.github.io/works/posts/2022-10-23--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-10-23--001</guid><pubDate>Sun, 23 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;503 Service Unavailable 오류가 발생하기 전, 해당 서비스의 인프라 구성은 아래와 같았다.&lt;/p&gt;
+&lt;p&gt;이후 삭제 대상 노드 처리를 해주면 끝!!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[docker 호스트로 연결]]></title><link>https://ssongey.github.io/history/posts/2022-10-29--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2022-10-29--001</guid><pubDate>Sat, 29 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;docker 로 띄운 컨테이너에서 내 현재 로컬의 DB를 붙여 테스트를 하게 되었다.&lt;br&gt;
+때문에 컨테이너에서 호스트의 주소로 연결하는 방법이 필요했다.&lt;/p&gt;
+&lt;p&gt;docker 18.03 부터 호스트의 IP를 직접 입력하는 방법 외에 호스트 주소로 바로 연결이 가능하다.&lt;/p&gt;
+&lt;h3&gt;✔️ Mac or Windows&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&apos;host.docker.internal&apos;&lt;/span&gt;
+또는
+&lt;span class=&quot;token number&quot;&gt;172.17&lt;/span&gt;.0.1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;✔️ Linux&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ docker run --network&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;host&quot;&lt;/span&gt;
+
+localhost
+또는
+&lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[503 Service Unavailable 오류!! 범인은 누구냐! (WAS? Nginx? GSLB?)]]></title><link>https://ssongey.github.io/works/posts/2022-10-23--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-10-23--001</guid><pubDate>Sun, 23 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;503 Service Unavailable 오류가 발생하기 전, 해당 서비스의 인프라 구성은 아래와 같았다.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -1018,7 +1371,833 @@ $ kubectl drain &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;�
 &lt;/ul&gt;
 &lt;br/&gt;
 &lt;p&gt;그래 GSLB는 잘못이 없구나.. (policy 가 어떻게 설정이 되었는지는 난 알지 못하니깐)
-IDC에 문제가 생기면 일단 GSLB에 묶여있는 VIP를 제거하는게 안전하구나.. 라는 배움을 하나 얻게되었다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[클러스터 이전 작업 로그]]></title><link>https://ssongey.github.io/works/posts/2022-08-23--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-08-23--001</guid><pubDate>Tue, 23 Aug 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이번에 인프라 이전 작업이 잦아질 듯 싶다.&lt;br&gt;
+IDC에 문제가 생기면 일단 GSLB에 묶여있는 VIP를 제거하는게 안전하구나.. 라는 배움을 하나 얻게되었다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[파일 업로드 크기 제한 늘리기 (Ingress Nginx & SpringBoot)]]></title><link>https://ssongey.github.io/history/posts/2022-10-23--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2022-10-23--001</guid><pubDate>Sun, 23 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;1. Nginx 설정&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;nginx 의 기본 body sizesms 1MB이다.&lt;/li&gt;
+&lt;li&gt;이 때, 업로드 파일을 포함한 요청 사이즈가 1MB가 넘으면 413(Request Entity Too Large) 에러를 반환한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.1. ConfigMap 으로 설정하기&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; v1
+&lt;span class=&quot;token key atrule&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ConfigMap
+&lt;span class=&quot;token key atrule&quot;&gt;proxy-body-size&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;10m&quot;&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ingress&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;nginx
+&lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; nginx&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;configuration&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1.2. Ingress Annotation 으로 설정하기&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; networking.k8s.io/v1
+&lt;span class=&quot;token key atrule&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Ingress
+&lt;span class=&quot;token key atrule&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;annotations&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;nginx.ingress.kubernetes.io/proxy-body-size&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;50m&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;h1&gt;2. SpringBoot 설정&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;SpringBoot 에 설정된 기본값은 1048576 bytes 이다.&lt;/li&gt;
+&lt;li&gt;이 때, 업로드 파일 사이즈가 위 사이즈를 넘으면 &lt;strong&gt;“multipart.MaxUploadSizeExceededException”&lt;/strong&gt; 에러가 발생한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;2.1. SpringBoot 2.x 버전&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# application.yaml&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;spring&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;token key atrule&quot;&gt;servlet&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+		&lt;span class=&quot;token key atrule&quot;&gt;multipart&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 
+			&lt;span class=&quot;token key atrule&quot;&gt;maxFileSize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 10MB
+			&lt;span class=&quot;token key atrule&quot;&gt;maxRequestSize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 10MB&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;2.2. SpringBoot 1.4 &amp;#x26; 1.5 버전&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;spring&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;token key atrule&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+		&lt;span class=&quot;token key atrule&quot;&gt;multipart&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+			&lt;span class=&quot;token key atrule&quot;&gt;maxFileSize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 10MB
+			&lt;span class=&quot;token key atrule&quot;&gt;maxRequestSize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 10MB&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;2.3. SpringBoot 1.3.x 이하 버전&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;multipart&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;token key atrule&quot;&gt;maxFileSize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 10MB
+	&lt;span class=&quot;token key atrule&quot;&gt;maxRequestSize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 10MB&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[로컬에 있는 도커 이미지 수동으로 서버에 로딩 시키기]]></title><link>https://ssongey.github.io/works/posts/2022-10-19--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-10-19--001</guid><pubDate>Wed, 19 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이번에 전사적으로 모든 CI/CD 툴이 작동하지 않는 상태에서 새로 빌드/배포를 해야하는 상황이 있었다.&lt;br&gt;
+이에 로컬에서 빌드한 docker 이미지를 k8s에 배포까지 수동으로 작업한 내용을 기록한다.&lt;/p&gt;
+&lt;h3&gt;✔️ docker image 빌드&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker build -t &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;image명&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;:&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;tag&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;✔️ 컨테이너 이미지 tar 파일로 저장&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ docker save &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;image명&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;:&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;tag&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; -o dockerImage.tar&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;✔️ tar 파일 서버로 전송&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;scp&lt;/span&gt; ./dockerImage.tar &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;계정&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;@&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;host&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;:&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;경로&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;✔️ 해당 서버에서 컨테이너 이미지 로딩&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;이미지를 로딩하면 k8s에서 해당 이미지로 배포가 가능하다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; docker load -i dockerImage.tar&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;✔️ k8s 배포시&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;deployment.yaml 파일 내에 &lt;code class=&quot;language-text&quot;&gt;imagePullPolicy&lt;/code&gt; 필드값을 &lt;code class=&quot;language-text&quot;&gt;Never&lt;/code&gt; 로 설정하여 위에 로드한 이미지를 사용하도록 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; apps/v1
+&lt;span class=&quot;token key atrule&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Deployment
+&lt;span class=&quot;token key atrule&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; app
+          &lt;span class=&quot;token key atrule&quot;&gt;imagePullPolicy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Never
+&lt;span class=&quot;token punctuation&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Fluentd 설정파일 분석]]></title><link>https://ssongey.github.io/history/posts/2022-09-17--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2022-09-17--001</guid><pubDate>Sat, 17 Sep 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;✔️ 먼저 알아두면 좋은 내용&lt;/h1&gt;
+&lt;h2&gt;1. common plugin parameters&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;builtin plugin parameter 의 경우 prefix로 &lt;code class=&quot;language-text&quot;&gt;@&lt;/code&gt; 가 붙는다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;1.1. &lt;code class=&quot;language-text&quot;&gt;@type&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;specifies the plugin type&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;1.2. &lt;code class=&quot;language-text&quot;&gt;@id&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;specifies the plugin id.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;in_monitor_agent&lt;/code&gt; uses this value for&lt;code class=&quot;language-text&quot;&gt;plugin_id&lt;/code&gt; field&lt;/li&gt;
+&lt;li&gt;버퍼, 스토리지, 로깅 및 기타 목적을 위한 경로로 사용됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;1.3. &lt;code class=&quot;language-text&quot;&gt;@label&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;specifies the label symbol. See&lt;a href=&quot;https://www.notion.so/configuration/config-file#5.-group-filter-and-output-the-label-directive&quot;&gt;label&lt;/a&gt;section.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;1.4. &lt;code class=&quot;language-text&quot;&gt;@log_level&lt;/code&gt;&lt;/strong&gt; &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;specifies per plugin log level. See &lt;a href=&quot;https://www.notion.so/deployment/logging#per-plugin-log&quot;&gt;Per Plugin Log&lt;/a&gt; section.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;자세한 내용은 아래 참고&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.fluentd.org/configuration/plugin-common-parameters#parameters-for-all-the-plugins&quot;&gt;Config: Common Parameters&lt;/a&gt;&lt;/p&gt;
+&lt;br/&gt;
+&lt;h2&gt;2. wildcards, expansions and other tips&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;match&lt;/code&gt; , &lt;code class=&quot;language-text&quot;&gt;filter&lt;/code&gt; 태그에서 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2.1. &lt;code class=&quot;language-text&quot;&gt;*&lt;/code&gt;&lt;/strong&gt; &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;single tag 와 매치&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;a.*&lt;/code&gt; 의 경우 &lt;code class=&quot;language-text&quot;&gt;a.b&lt;/code&gt; 와 매치, &lt;code class=&quot;language-text&quot;&gt;a&lt;/code&gt; 또는 &lt;code class=&quot;language-text&quot;&gt;a.b.c&lt;/code&gt; 와는 매치 안됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2.2. `&lt;/strong&gt;`**&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;zero or more tag 와 매치&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;a.**&lt;/code&gt; 의 경우 &lt;code class=&quot;language-text&quot;&gt;a&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;a.b&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;a.b.c&lt;/code&gt; 와 모두 매치&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2.3. 그외&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;그외 regex, 값 매치 등은 아래에서 확인&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.fluentd.org/configuration/config-file#wildcards-expansions-and-other-tips&quot;&gt;Config File Syntax&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h2&gt;&lt;strong&gt;3. Embedding Ruby Expressions&lt;/strong&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;fluentd 1.4.0 부터 &lt;code class=&quot;language-text&quot;&gt;#{...}&lt;/code&gt; 표현식에 루비 코드를 넣을 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;match &lt;span class=&quot;token string&quot;&gt;&quot;app.#{ENV[&apos;FLUENTD_TAG&apos;]}&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type stdout
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/match&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;h1&gt;✔️ Directive&lt;/h1&gt;
+&lt;h2&gt;1. source&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;input 에 대한 지시어&lt;/li&gt;
+&lt;li&gt;사용할 input plugin에 대한 값이 &lt;code class=&quot;language-text&quot;&gt;@type&lt;/code&gt; 으로 명시가 되야한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Receive events from 24224/tcp&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# This is used by log forwarding and the fluent-cat command&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type forward
+  port &lt;span class=&quot;token number&quot;&gt;24224&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# http://&amp;lt;ip&gt;:9880/myapp.access?json={&quot;event&quot;:&quot;data&quot;}&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type http
+  port &lt;span class=&quot;token number&quot;&gt;9880&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;2. match&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;output plugin 으로 동작하며, 명시된 태그에 대해서만 output destination으로 보내진다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Receive events from 24224/tcp&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# This is used by log forwarding and the fluent-cat command&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type forward
+  port &lt;span class=&quot;token number&quot;&gt;24224&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# http://&amp;lt;ip&gt;:9880/myapp.access?json={&quot;event&quot;:&quot;data&quot;}&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type http
+  port &lt;span class=&quot;token number&quot;&gt;9880&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# Match events tagged with &quot;myapp.access&quot; and&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# store them to /var/log/fluent/access.%Y-%m-%d&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# Of course, you can control how you partition your data&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# with the time_slice_format option.&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;match myapp.access&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt;
+  path /var/log/fluent/access
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/match&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;3. filter&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;match 와 동일한 syntax를 가지고 있고, 로그 필터에 대한 지시어이다.&lt;/li&gt;
+&lt;li&gt;event flow 는 아래와 같다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/ec6a4bfdf176b286337a7b944acbde90/8ae78/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 7.916666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAaUlEQVQI1yWMSxKAMAhDvf8dHZ1q7b/0py5jwUUGSF5YqHa08cBHgjYexkWwV9pA7ffMXvT7F/uXC9DWI6QCn0g4mrpskGzJpQmYqMnDTem5VxFnUqhDJt8uZihtcU7WhoSYf457637gA/pxlxte/OxfAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/ec6a4bfdf176b286337a7b944acbde90/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/ec6a4bfdf176b286337a7b944acbde90/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/ec6a4bfdf176b286337a7b944acbde90/e85cb/001-01.png 480w,
+/devHistoryBlog/static/ec6a4bfdf176b286337a7b944acbde90/d9199/001-01.png 960w,
+/devHistoryBlog/static/ec6a4bfdf176b286337a7b944acbde90/8ae78/001-01.png 1096w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# http://this.host:9880/myapp.access?json={&quot;event&quot;:&quot;data&quot;}&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type http
+  port &lt;span class=&quot;token number&quot;&gt;9880&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter myapp.access&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type record_transformer
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;record&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    host_param &lt;span class=&quot;token string&quot;&gt;&quot;#{Socket.gethostname}&quot;&lt;/span&gt;
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/record&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;match myapp.access&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt;
+  path /var/log/fluent/access
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/match&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;✔️ 위 예제 동작 플로우&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;input 으로 tag: myapp.access, data: {”event”: “data”} 이벤트를 받고,&lt;/li&gt;
+&lt;li&gt;첫번째 filter인 record&lt;em&gt;transformer 는 `“host&lt;/em&gt;param”` 필드를 이벤트에 추가한다.&lt;/li&gt;
+&lt;li&gt;그럼 &lt;code class=&quot;language-text&quot;&gt;{&amp;quot;event&amp;quot;:&amp;quot;data&amp;quot;,&amp;quot;host_param&amp;quot;:&amp;quot;webserver1&amp;quot;}&lt;/code&gt; 값이 ouput plugin 으로 보내져 파일로 출력하게 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/f2f8dc70a72607c91067758eb1b40258/f32b7/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 34.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAzElEQVQoz31R0Q6DIBDj/79QExNnsuiDOhVEQIUbPefijK5JcwSa3l0RIQQ6E/A+0LKszHUFPZ/396P2CEE3mCZLWfakPC+5pmlBj6Iia92P4Zmi61UUzeTcRpzneWHDsmyobnqqqiaypbruSCn9aRkuBxFJUpCMon18TKC1uRv82xBADDu995uh1pbG0bARhMY4zuxqLQA5SqmpfQ2s33NGI1QBZ4hRN4a/GQFSjpyrjrEMwxgHmkhFsuHVWsefvLpHY2wCIlPkDeL+DQ4cJZdwVmywAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/f2f8dc70a72607c91067758eb1b40258/d9199/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/f2f8dc70a72607c91067758eb1b40258/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/f2f8dc70a72607c91067758eb1b40258/e85cb/001-02.png 480w,
+/devHistoryBlog/static/f2f8dc70a72607c91067758eb1b40258/d9199/001-02.png 960w,
+/devHistoryBlog/static/f2f8dc70a72607c91067758eb1b40258/f32b7/001-02.png 1136w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;hr&gt;
+&lt;h1&gt;✔️ 서비스에 설정한 fluentd daemonset config 설정 분석&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;전체 설정 내용&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;data:
+  fluent.conf: &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;system&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      workers &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+      @log_level info
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/system&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    @include input-kubernetes.conf
+    @include filter-kubernetes.conf
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;match **&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type copy
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;store&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        @type                         kafka2
+        @id                           out_kafka
+        brokers                       logis-kafka.dev.kakaoi.io:9092
+        max_send_retries              &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;
+        required_acks                 &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+
+        default_topic                 xoauth-dev
+    
+        exception_backup              &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+        compression_codec             &lt;span class=&quot;token function&quot;&gt;gzip&lt;/span&gt;
+    
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;format&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+          @type                       json
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/format&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;buffer topic,tag&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+          @type                       &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt;
+          path                        /var/log/td-agent/buffer/td
+          flush_interval              5s
+          chunk_limit_size            16M
+          queue_limit_length          &lt;span class=&quot;token number&quot;&gt;32&lt;/span&gt;
+          retry_forever               &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/buffer&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/store&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/match&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+  input-kubernetes.conf: &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# Prevent fluentd from handling records containing its own logs. Otherwise&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# it can lead to an infinite loop, when error in sending one message generates&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# another message which also fails to be sent and so on.&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;match fluent.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                           null
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/match&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                           &lt;span class=&quot;token function&quot;&gt;tail&lt;/span&gt;
+      @id                             in_tail_container_logs
+      path                            /var/log/containers/xoauth*.log
+      pos_file                        /var/log/fluentd-containers.log.pos
+      tag                             kubernetes.*
+      read_from_head                  &lt;span class=&quot;token string&quot;&gt;&quot;#{ENV[&apos;FLUENTD_INPUT_READ_FROM_HEAD&apos;] || &apos;false&apos;}&quot;&lt;/span&gt;
+      limit_recently_modified         &lt;span class=&quot;token string&quot;&gt;&quot;#{ENV[&apos;LIMIT_RECENTLY_MODIFIED&apos;] || &apos;120m&apos;}&quot;&lt;/span&gt;
+      rotate_wait                     &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+      enable_stat_watcher             &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        @type                         regexp
+        expression                    /^&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;time&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;^ &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;stream&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;stdout&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;stderr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;flags&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;^ &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;message&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;.*&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;$/
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+  filter-kubernetes.conf: &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter kubernetes.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                           kubernetes_metadata
+      @id                             filter_kube_metadata
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter kubernetes.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                           record_modifier
+      tag                             &lt;span class=&quot;token variable&quot;&gt;${record.dig(&quot;kubernetes&quot;&lt;span class=&quot;token operator&quot;&gt;,&lt;/span&gt; &quot;container_name&quot;).gsub(&apos;-&apos;&lt;span class=&quot;token operator&quot;&gt;,&lt;/span&gt; &apos;.&apos;)}&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;record&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        @timestamp                    &lt;span class=&quot;token variable&quot;&gt;${(Time.at(time) + (60*60*9)).strftime(&apos;&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;Y-&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;m-&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;dT&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;H&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;M&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;S.&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;L+09&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;00&apos;)}&lt;/span&gt;
+        cluster_name                  &lt;span class=&quot;token string&quot;&gt;&quot;xoauth-dev&quot;&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;hostname&lt;/span&gt;                      &lt;span class=&quot;token string&quot;&gt;&quot;#{ENV[&apos;K8S_NODE_NAME&apos;]}&quot;&lt;/span&gt;
+        container_image               &lt;span class=&quot;token variable&quot;&gt;${record.dig(&quot;kubernetes&quot;&lt;span class=&quot;token operator&quot;&gt;,&lt;/span&gt; &quot;container_image&quot;)}&lt;/span&gt;
+        pod_name                      &lt;span class=&quot;token variable&quot;&gt;${record.dig(&quot;kubernetes&quot;&lt;span class=&quot;token operator&quot;&gt;,&lt;/span&gt; &quot;pod_name&quot;)}&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/record&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter kubernetes.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                           parser
+      key_name                        message
+      reserve_data                    &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+      remove_key_name_field           &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        @type                         json
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter kubernetes.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                           record_transformer
+      remove_keys                     $.kubernetes
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;1. Input에 대한 설정&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;input-kubernetes.conf: &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;match fluent.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                           null
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/match&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                           &lt;span class=&quot;token function&quot;&gt;tail&lt;/span&gt;
+      @id                             in_tail_container_logs
+      path                            /var/log/containers/xoauth*.log
+      pos_file                        /var/log/fluentd-containers.log.pos
+      tag                             kubernetes.*
+      read_from_head                  &lt;span class=&quot;token string&quot;&gt;&quot;#{ENV[&apos;FLUENTD_INPUT_READ_FROM_HEAD&apos;] || &apos;false&apos;}&quot;&lt;/span&gt;
+      limit_recently_modified         &lt;span class=&quot;token string&quot;&gt;&quot;#{ENV[&apos;LIMIT_RECENTLY_MODIFIED&apos;] || &apos;120m&apos;}&quot;&lt;/span&gt;
+      rotate_wait                     &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+      enable_stat_watcher             &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        @type                         regexp
+        expression                    /^&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;time&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;^ &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;stream&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;stdout&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;stderr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;flags&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;^ &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;message&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;.*&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;$/
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;1.1. 로그 input&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;/var/log/containers/xoauth*.log 파일을 타겟으로 tail 을 사용하여 input을 수행한다.&lt;/li&gt;
+&lt;li&gt;해당 이벤트에 kubernetes.* 태그를 붙인다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type                           &lt;span class=&quot;token function&quot;&gt;tail&lt;/span&gt;
+  @id                             in_tail_container_logs
+  path                            /var/log/containers/xoauth*.log
+  pos_file                        /var/log/fluentd-containers.log.pos
+  tag                             kubernetes.*
+  read_from_head                  &lt;span class=&quot;token string&quot;&gt;&quot;#{ENV[&apos;FLUENTD_INPUT_READ_FROM_HEAD&apos;] || &apos;false&apos;}&quot;&lt;/span&gt;
+  limit_recently_modified         &lt;span class=&quot;token string&quot;&gt;&quot;#{ENV[&apos;LIMIT_RECENTLY_MODIFIED&apos;] || &apos;120m&apos;}&quot;&lt;/span&gt;
+  rotate_wait                     &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+  enable_stat_watcher             &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    @type                         regexp
+    expression                    /^&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;time&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;^ &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;stream&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;stdout&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;stderr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;flags&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;^ &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;message&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;.*&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;$/
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/source&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;실제 들어온 이벤트의 레코드 데이터는 아래와 같다 (/var/log/containers/xoauth*.log 파일 포맷)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token number&quot;&gt;2022&lt;/span&gt;-08-23T16:20:02.313036458+09:00 stdout F &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;@timestamp&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;2022-08-23T07:20:02.312+00:00&quot;&lt;/span&gt;,&lt;span class=&quot;token string&quot;&gt;&quot;@version&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;1&quot;&lt;/span&gt;,&lt;span class=&quot;token string&quot;&gt;&quot;message&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE&quot;&lt;/span&gt;,&lt;span class=&quot;token string&quot;&gt;&quot;logger_name&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;com.kakao.xoauth.XoauthApplication&quot;&lt;/span&gt;,&lt;span class=&quot;token string&quot;&gt;&quot;thread_name&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;main&quot;&lt;/span&gt;,&lt;span class=&quot;token string&quot;&gt;&quot;level&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;DEBUG&quot;&lt;/span&gt;,&lt;span class=&quot;token string&quot;&gt;&quot;level_value&quot;&lt;/span&gt;:10000&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;parse&amp;gt;&lt;/code&gt; 의 regexp 를 통해 아래와 같이 파싱이 된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;regexp 의 결과값을 확인할 수 있는 사이트 : &lt;a href=&quot;http://fluentular.herokuapp.com/&quot;&gt;http://fluentular.herokuapp.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/193efcf311a7efcc41c6851eab2594dd/6052f/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 42.083333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAzElEQVQoz5WS2QrEIAxF/f9/lIJd3uy+bxlOIKXDdGAmcLBeY7ymurIsJU1TybJMvPdS17UQ53l+8Eu4qqokSRJpmkaO45B933WEe1DQ9G+Q43BE0XVdZZommedZ6fteQgh6EHRdd609wV5quHEcdfPdiY3DMGgiLMvytv4U6pAe0j8cUHzbNj2J0VpgmP4Ea+S4tm31R+Amxnht/Ie7Ce0hhbgSveJ6OAX7tmsb1jODHDR1iEBBTuD52BMqikLyPFfQmKMz59vmBjqFXyhXbZH8VWj7AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/193efcf311a7efcc41c6851eab2594dd/d9199/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/193efcf311a7efcc41c6851eab2594dd/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/193efcf311a7efcc41c6851eab2594dd/e85cb/001-03.png 480w,
+/devHistoryBlog/static/193efcf311a7efcc41c6851eab2594dd/d9199/001-03.png 960w,
+/devHistoryBlog/static/193efcf311a7efcc41c6851eab2594dd/07a9c/001-03.png 1440w,
+/devHistoryBlog/static/193efcf311a7efcc41c6851eab2594dd/29114/001-03.png 1920w,
+/devHistoryBlog/static/193efcf311a7efcc41c6851eab2594dd/6052f/001-03.png 2030w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;1.2. fluentd 로그 제거&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;fluentd.** tag로 들어온 이벤트는 모두 버린다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;match fluent.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type                           null
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/match&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;h2&gt;2. Filter에 대한 설정&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;✔️ 전체 코드&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;filter-kubernetes.conf: &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter kubernetes.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                           kubernetes_metadata
+      @id                             filter_kube_metadata
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter kubernetes.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                           record_modifier
+      tag                             &lt;span class=&quot;token variable&quot;&gt;${record.dig(&quot;kubernetes&quot;&lt;span class=&quot;token operator&quot;&gt;,&lt;/span&gt; &quot;container_name&quot;).gsub(&apos;-&apos;&lt;span class=&quot;token operator&quot;&gt;,&lt;/span&gt; &apos;.&apos;)}&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;record&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        @timestamp                    &lt;span class=&quot;token variable&quot;&gt;${(Time.at(time) + (60*60*9)).strftime(&apos;&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;Y-&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;m-&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;dT&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;H&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;M&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;S.&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;L+09&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;00&apos;)}&lt;/span&gt;
+        cluster_name                  &lt;span class=&quot;token string&quot;&gt;&quot;xoauth-dev&quot;&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;hostname&lt;/span&gt;                      &lt;span class=&quot;token string&quot;&gt;&quot;#{ENV[&apos;K8S_NODE_NAME&apos;]}&quot;&lt;/span&gt;
+        container_image               &lt;span class=&quot;token variable&quot;&gt;${record.dig(&quot;kubernetes&quot;&lt;span class=&quot;token operator&quot;&gt;,&lt;/span&gt; &quot;container_image&quot;)}&lt;/span&gt;
+        pod_name                      &lt;span class=&quot;token variable&quot;&gt;${record.dig(&quot;kubernetes&quot;&lt;span class=&quot;token operator&quot;&gt;,&lt;/span&gt; &quot;pod_name&quot;)}&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/record&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter kubernetes.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                           parser
+      key_name                        message
+      reserve_data                    &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+      remove_key_name_field           &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        @type                         json
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter kubernetes.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                           record_transformer
+      remove_keys                     $.kubernetes
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;2.1. K8S Metadata 정보 포함시키기&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;kubernetes_metadata&lt;/code&gt; 타입의 필터로 인해 해당 로그 레코드를 내보낸 컨테이너에 대한 기본 메타데이터(hostname, pod&lt;em&gt;name, container&lt;/em&gt;name 등) 가 해당 레코드에 포함된다.&lt;/li&gt;
+&lt;li&gt;해당 필터는 fluend 에 내장된 플러그인은 아니고, &lt;code class=&quot;language-text&quot;&gt;fluent-plugin-kubernetes_metadata_filter&lt;/code&gt; 를 설치해야 사용할 수 있다. (&lt;a href=&quot;https://github.com/fabric8io/fluent-plugin-kubernetes_metadata_filter&quot;&gt;https://github.com/fabric8io/fluent-plugin-kubernetes_metadata_filter&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter kubernetes.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type                           kubernetes_metadata
+  @id                             filter_kube_metadata
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;✔️ fluent-plugin-kubernetes&lt;em&gt;metadata&lt;/em&gt;filter 설치는 언제?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;daemonset으로 설치된 fluentd pod 에서 Gemfile을 확인해보니 해당 플러그인이 포함되어 있었다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/db3cbcc11dad1ee8e0d55256f6e1fb5d/53639/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 49.16666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABTklEQVQoz4WS266CUAxECRIUEsALARHFewygQVDB+P//VbOacF6Mnoem7N12OjMbY7lcyuVykcViIb7vy3g8lvl8rnkymUgQBDKbzSQMQ/E8TwzD+B2bzUYej4es12sFmE6nwhIywZI4jiWKIrEs63/A6/Uqt9tN9vu9MiGvVitdsN1u9QxjAFk0GAx+AzJMM2BEzw4L0jSVqqo0I7ksS7ViNBp9B6Q5SRKVBjALGO6B67qWLMu0pygKud/v0rat7HY7rX8Ank4nfRQygzQiEW8Bf71efzZgDYyxg4UQ+ACkiLzep+PxqBLxj29YUSNYSL/rut8lw44hWPS/EGDcEV3XaQ2w8/mscmE9HA7Ftm1xHEeDbwXM81x9appG5TD0fD71jj+AAJRFBKxZjAXYhCoU8qAKSBEGBP4dDgdlBkvOSGSQM0x6aTAyTfND8hsT7fxPGQXvFwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/db3cbcc11dad1ee8e0d55256f6e1fb5d/d9199/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/db3cbcc11dad1ee8e0d55256f6e1fb5d/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/db3cbcc11dad1ee8e0d55256f6e1fb5d/e85cb/001-04.png 480w,
+/devHistoryBlog/static/db3cbcc11dad1ee8e0d55256f6e1fb5d/d9199/001-04.png 960w,
+/devHistoryBlog/static/db3cbcc11dad1ee8e0d55256f6e1fb5d/53639/001-04.png 1358w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;✔️ &lt;strong&gt;input/output 에 대한 예제&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/e638e9f47d1756d2582376b943ef4375/966c1/001-05.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 86.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABYlAAAWJQFJUiTwAAAByUlEQVQ4y41U2XKCQBDkPakcqKDIIYcXgqgoaGKZVI7//6TJ9MhS3vGha2aX3WZ6ekBrOxHtEZLlDajj9gWmHVKj7ZFuutTs9O6ER1ownFK2fKc0f6Ni+01TzvvxnKLxjHqDlGx/REY3uAstyycN1eASohOMJe/2hpL7TOiEsRxUF66hJjTtQOR2XJaNnKUaXZ8eXwx6eG5JfNLbd0MDEapDHzsMS3oYkW44NV4N+zJa59AgSfUszkqJLu9hHzJumdCyzvuoedGE0sWGxtOVIGLyXj8R4Bkg+ckagLLTXmowAE7DAERUpy4iV/CipCbCWUARHrkMwjgraLH+oIQrRbWQHs9KClm+LW5PpceYy0McunvgckiDyYJyJpwwSbn9oXm5kzyZryViTjGT6JspU3A8e2eEw3RJ690vzVZbIcg3nzLoqDCqAJMgsVlVB/KLhEiCUUYbJpwXO8qYtHj/EoNG/CKRz0ArsEal6gu6KhlNHya5jA/gVtXgEr4YZYwTVIaxMej9dUI+BGPQSwBE2JN5q+Q1DuK/kvFWGICIytTYnI7FpZ/B2RziEsrfSxrXuZJ9i/Di38aUhb//bvnf12DoZpWLtPuB83+xMdJoHZd7egAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 05&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/e638e9f47d1756d2582376b943ef4375/d9199/001-05.png&quot;
+        srcset=&quot;/devHistoryBlog/static/e638e9f47d1756d2582376b943ef4375/8ff5a/001-05.png 240w,
+/devHistoryBlog/static/e638e9f47d1756d2582376b943ef4375/e85cb/001-05.png 480w,
+/devHistoryBlog/static/e638e9f47d1756d2582376b943ef4375/d9199/001-05.png 960w,
+/devHistoryBlog/static/e638e9f47d1756d2582376b943ef4375/07a9c/001-05.png 1440w,
+/devHistoryBlog/static/e638e9f47d1756d2582376b943ef4375/966c1/001-05.png 1694w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;2.2. 이벤트 레코드에 필드 추가하기&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;record_modifier 타입의 필터를 사용하여 필드를 추가/수정 할 수 있다.&lt;/li&gt;
+&lt;li&gt;추가/수정되는 필드는 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;record&amp;gt;&lt;/code&gt; 내에 정의 해주면 된다.&lt;/li&gt;
+&lt;li&gt;기본 내장된 플러그인은 아니며, &lt;code class=&quot;language-text&quot;&gt;fluent-plugin-record-modifier&lt;/code&gt; 플러그인을 설치해줘야 한다. (&lt;a href=&quot;https://github.com/repeatedly/fluent-plugin-record-modifier&quot;&gt;https://github.com/repeatedly/fluent-plugin-record-modifier&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter kubernetes.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type                           record_modifier
+  tag                             &lt;span class=&quot;token variable&quot;&gt;${record.dig(&quot;kubernetes&quot;&lt;span class=&quot;token operator&quot;&gt;,&lt;/span&gt; &quot;container_name&quot;).gsub(&apos;-&apos;&lt;span class=&quot;token operator&quot;&gt;,&lt;/span&gt; &apos;.&apos;)}&lt;/span&gt;
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;record&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    @timestamp                    &lt;span class=&quot;token variable&quot;&gt;${(Time.at(time) + (60*60*9)).strftime(&apos;&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;Y-&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;m-&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;dT&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;H&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;M&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;S.&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;L+09&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;00&apos;)}&lt;/span&gt;
+    cluster_name                  &lt;span class=&quot;token string&quot;&gt;&quot;xoauth-dev&quot;&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;hostname&lt;/span&gt;                      &lt;span class=&quot;token string&quot;&gt;&quot;#{ENV[&apos;K8S_NODE_NAME&apos;]}&quot;&lt;/span&gt;
+    container_image               &lt;span class=&quot;token variable&quot;&gt;${record.dig(&quot;kubernetes&quot;&lt;span class=&quot;token operator&quot;&gt;,&lt;/span&gt; &quot;container_image&quot;)}&lt;/span&gt;
+    pod_name                      &lt;span class=&quot;token variable&quot;&gt;${record.dig(&quot;kubernetes&quot;&lt;span class=&quot;token operator&quot;&gt;,&lt;/span&gt; &quot;pod_name&quot;)}&lt;/span&gt;
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/record&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;✔️ fluent-plugin-record-modifier 설치는 언제?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;위 k8s metadata 필터와 동일하게 daemonset pod 의 Gemfile 에 명시가 되어있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/439a3524ae30b1fd3d6179cdee6ce244/b1001/001-06.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 7.916666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAf0lEQVQI1z2MsQqFIABFQyhoDYJCjZqksSF1k/Av+oGGCvT/hxPP4Q2He85yqxAC1lqcc8QYC/u+cxwH27bhvWddV5ZlQWuNMabQdR193zNNE8MwMM9z8SqlxHVdPM/Dfd+871s651z8PE/GcURKWQ6UUrRtixCCuq5pmua/Pz50aD7OuGu0YAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 06&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/439a3524ae30b1fd3d6179cdee6ce244/d9199/001-06.png&quot;
+        srcset=&quot;/devHistoryBlog/static/439a3524ae30b1fd3d6179cdee6ce244/8ff5a/001-06.png 240w,
+/devHistoryBlog/static/439a3524ae30b1fd3d6179cdee6ce244/e85cb/001-06.png 480w,
+/devHistoryBlog/static/439a3524ae30b1fd3d6179cdee6ce244/d9199/001-06.png 960w,
+/devHistoryBlog/static/439a3524ae30b1fd3d6179cdee6ce244/b1001/001-06.png 1380w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;✔️ record_transformer 와의 차이점은?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;속도가 더 빠르다고 한다. 그외의 내용은 깃헙을 참고한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;2.3. 서비스 Application에서 출력한 로그 파싱&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;parser&lt;/code&gt; 타입의 필터는 key_name에 명시된 필드를 파싱하고 이벤트 레코드를 파싱된 결과로 변경한다.&lt;/li&gt;
+&lt;li&gt;위 input의 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;source&amp;gt;&lt;/code&gt; 태그에서 message 키에 매핑된 application 로그를 파싱한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter kubernetes.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type                           parser
+  key_name                        message
+  reserve_data                    &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+  remove_key_name_field           &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    @type                         json
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;✔️ reserve_data&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;파싱된 결과에서 원래 key-value 쌍을 유지한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter foo.bar&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type parser
+  key_name log
+  reserve_data &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    @type json
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/5d28144d91159a4e450fa3d9264dce4c/00e09/001-07.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 34.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABB0lEQVQoz5VR2W7DMAzL///khrZJcye+z4ST1CHI42aAsE1YlEg3znkobWCdw7YraDoba2Gtg1IapRT8ZZ3nKWhiSjAkagWBxNx118bBh4gQE2LKsjOYS7mg1ONCLpWaVzTGejy7Ht/PDv20oBsmtP2I13sgfkD7HvFoe7zo/B5nfD1adP0kb+dNYVp2jPMGTTo+ZjQhRngf4G7wIQgXaZpaP51L/QVFwFym/QJNW48DB1vWxkheLCR2BVayTDnjv6txlAeP3JOdVRlM6/6xsWwYphXzqoRje+uu5S1zYjEkuBsC5dzwZOO8UvGChYpmKl42FqVCgvMR3JQhAv6zB8pLPuoG/qgfz0UeALzdiZEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 07&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/5d28144d91159a4e450fa3d9264dce4c/d9199/001-07.png&quot;
+        srcset=&quot;/devHistoryBlog/static/5d28144d91159a4e450fa3d9264dce4c/8ff5a/001-07.png 240w,
+/devHistoryBlog/static/5d28144d91159a4e450fa3d9264dce4c/e85cb/001-07.png 480w,
+/devHistoryBlog/static/5d28144d91159a4e450fa3d9264dce4c/d9199/001-07.png 960w,
+/devHistoryBlog/static/5d28144d91159a4e450fa3d9264dce4c/07a9c/001-07.png 1440w,
+/devHistoryBlog/static/5d28144d91159a4e450fa3d9264dce4c/00e09/001-07.png 1854w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;✔️ remove&lt;em&gt;key&lt;/em&gt;name_field&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;파싱에 성공하면 key_name에 해당하는 필드를 지운다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter foo.bar&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type parser
+  key_name log
+  reserve_data &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+  remove_key_name_field &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    @type json
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/parse&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/62abac888cbac04b8d93496b763175a5/6fa81/001-08.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 16.249999999999996%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAd0lEQVQI15WMWw4DIQhF3f9K2/GJ4GO0ya1o2/+anFxAOCYzQ2ERJCJQZkgpECnIq55z4p9niAt8yrA+IRLDR4ILafOt7afXf82w9qV2tD5Q+71Y2W6M+YLRpaf1eFzuHHsl4nJh55nFDUtdooayZCo6wvETq/ANTR/nrsCdbAEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 08&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/62abac888cbac04b8d93496b763175a5/d9199/001-08.png&quot;
+        srcset=&quot;/devHistoryBlog/static/62abac888cbac04b8d93496b763175a5/8ff5a/001-08.png 240w,
+/devHistoryBlog/static/62abac888cbac04b8d93496b763175a5/e85cb/001-08.png 480w,
+/devHistoryBlog/static/62abac888cbac04b8d93496b763175a5/d9199/001-08.png 960w,
+/devHistoryBlog/static/62abac888cbac04b8d93496b763175a5/07a9c/001-08.png 1440w,
+/devHistoryBlog/static/62abac888cbac04b8d93496b763175a5/6fa81/001-08.png 1856w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;2.4. 불필요한 K8S Metadata 정보 제거&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;위 record&lt;em&gt;modifier filter에서 필요한 kubernetes 메타 정보만 새로 추가했으므로, kubernetes&lt;/em&gt;metadata filter에서 추가한 메타정보를 모두 삭제한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;filter kubernetes.**&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type                           record_transformer
+  remove_keys                     $.kubernetes
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;위 필터를 추가하지 않으면 불필요한 kubernetes 메타정보들이 표시된다.&lt;/li&gt;
+&lt;li&gt;따라서 kubernetes_metadata filter 에서 생성된 메타정보 중, 필요한 정보만 새로운 key로 이벤트 레코드에 추가해주는것이 좋다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/27ef619477b99d6d6e557d5980c50b95/f51c0/001-09.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 31.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAwElEQVQY03WRCw6EMAhEvf9Z1dKPWovtLGA1rps1mUgtvAEcfAjwPoC8RymM1iBqt47jgHNOcjxCjCAik55TSrdCiPYeHHkp8Fi3LMX1W7WZyThO0DwWeJVvKr3nR+4VG3CaSRwStrzfoDOhYe/AZVkt5l78T4OOq9AQk3RTuhjVRgaYWSZQw4AoI+v9ey1PGZDo3M++F+miA+sJ1FhBzAdyzmaghdfobw3UgVqoz+mODmy2t2ma7UeYqXXYAe1XH2r11XDUD/i6AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 09&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/27ef619477b99d6d6e557d5980c50b95/d9199/001-09.png&quot;
+        srcset=&quot;/devHistoryBlog/static/27ef619477b99d6d6e557d5980c50b95/8ff5a/001-09.png 240w,
+/devHistoryBlog/static/27ef619477b99d6d6e557d5980c50b95/e85cb/001-09.png 480w,
+/devHistoryBlog/static/27ef619477b99d6d6e557d5980c50b95/d9199/001-09.png 960w,
+/devHistoryBlog/static/27ef619477b99d6d6e557d5980c50b95/07a9c/001-09.png 1440w,
+/devHistoryBlog/static/27ef619477b99d6d6e557d5980c50b95/29114/001-09.png 1920w,
+/devHistoryBlog/static/27ef619477b99d6d6e557d5980c50b95/f51c0/001-09.png 2994w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br/&gt;
+&lt;h2&gt;3. Output에 대한 설정&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;match **&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  @type copy
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;store&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    @type                         kafka2
+    @id                           out_kafka
+    brokers                       logis-kafka.dev.kakaoi.io:9092
+    max_send_retries              &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;
+    required_acks                 &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+
+    default_topic                 xoauth-dev
+
+    exception_backup              &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+    compression_codec             &lt;span class=&quot;token function&quot;&gt;gzip&lt;/span&gt;
+
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;format&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                       json
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/format&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;buffer topic,tag&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      @type                       &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt;
+      path                        /var/log/td-agent/buffer/td
+      flush_interval              5s
+      chunk_limit_size            16M
+      queue_limit_length          &lt;span class=&quot;token number&quot;&gt;32&lt;/span&gt;
+      retry_forever               &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/buffer&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/store&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/match&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[/var/run/docker.sock의 permission denied 발생하는 경우]]></title><description><![CDATA[dependent child images로 인한 오류]]></description><link>https://ssongey.github.io/errors/posts/2022-09-14--001</link><guid isPermaLink="false">https://ssongey.github.io/errors/posts/2022-09-14--001</guid><pubDate>Wed, 14 Sep 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;아래 명령어 실행 후 docker 재시작 또는 해당 유저 ssh 재접속&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# usermod로 사용자를 docker 그룹에 추가&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;usermod&lt;/span&gt; -aG docker &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;계정명&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;만약 위 명령어 실행 후 터미널 재접속까지 했으나 permission denied 이 계속 발생한다면..&lt;br&gt;
+/var/run/docker.sock 파일의 권한을 666으로 변경한다.&lt;br&gt;
+그럼 그룹 내 다른 사용자도 접근 가능하게 변경된다.  &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# chmod 이용하여 모든 유저 읽기/쓰기 가능하도록 파일 권한 변경&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;666&lt;/span&gt; /var/run/docker.sock&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[swap 메모리 초기화]]></title><link>https://ssongey.github.io/history/posts/2022-09-03--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2022-09-03--001</guid><pubDate>Sat, 03 Sep 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;리눅스에서 일시적 메모리 사용의 증가로 swap을 사용하게될 경우 메모리에 여유가 생겨도 swap 메모리는 자동으로 초기화되지 않는다.&lt;br&gt;
+이것을 수동으로 초기화하려면 아래의 명령을 입력하면 된다. 당연히 root 권한에서 실행해야 한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ swapoff -a &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;swapon&lt;/span&gt; -a&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;swapoff 처리에 시간이 조금 오래 걸릴 수 있는데 서버가 멈춘 것은 아니므로 걱정하지 않아도 된다.&lt;br&gt;
+swap 메모리에서 필요한 부분을 물리 메모리로 옮기는 처리중인 것이다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[클러스터 이전 작업 로그]]></title><link>https://ssongey.github.io/works/posts/2022-08-23--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-08-23--001</guid><pubDate>Tue, 23 Aug 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이번에 인프라 이전 작업이 잦아질 듯 싶다.&lt;br&gt;
 작업 기록을 정리하고 스크립트를 만들 수 있는 곳을 찾아봐야겠다.&lt;/p&gt;
 &lt;h1&gt;✔️ 깃헙 레포 미러링&lt;/h1&gt;
 &lt;ul&gt;
@@ -1620,7 +2799,937 @@ $ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=
   &lt;/span&gt;
   
   &lt;/a&gt;
-    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring + Kotlin 멀티모듈 생성]]></title><link>https://ssongey.github.io/works/posts/2022-07-23--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-07-23--001</guid><pubDate>Sat, 23 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;br/&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[SSL Offloading 작업]]></title><link>https://ssongey.github.io/works/posts/2022-08-21--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-08-21--001</guid><pubDate>Sun, 21 Aug 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;내가 담당하고 있는 서비스에서 클라이언트 IP가 필요한 상황이 생겼는데, 계속 서버IP가 들어와서 해당 작업을 하게되었다.&lt;br&gt;
+이때 offloading 개념을 알게되어 정리한다.&lt;/p&gt;
+&lt;h2&gt;✔️ 기존 구성&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;ingress 까지 HTTPS 구간이라 클라이언트와 ingress의 구현체인 nginx가 SSL 커넥션을 맺고 있다.&lt;/li&gt;
+&lt;li&gt;그러다보니 빨간색 구간이 모두 암호화되어 LB에서 헤더를 삽입할 수 없어 클라이언트 IP를 얻을 수 없는 상태였다.&lt;/li&gt;
+&lt;li&gt;KIC의 LB가 아직 &lt;strong&gt;Terminated HTTPS(HTTPS Offloading)&lt;/strong&gt; 도입이 되지 않아 현재 상태로는 클라이언트 IP를 얻는건 불가능 했다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이때 LB 와 인그레스와의 설정은 아래와 같다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;HTTPS → 443(HTTPS)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP → 80(HTTP)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;인증서는 인그레스 쪽에 설치&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/0cf8dda803035b2ea83ca5f4c4a28892/e4d4a/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 31.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABYUlEQVQY0x2RWZOaUBCF+f//JylLp5yUBBdkVBRFVocdARcyE8eJy5cLD1/d7vNw7ulu6bHPeGYxzzzhnkYtTd3wEDp5ytk2OZkr7F2MvstxshPR+YpffuDua/ziD05ek9VfSP/igItr8eXZkIQ8BRdR/xXaLfQ5GDpGr4P50mEweuPncMGbExPVN+ZeysQMGG92TLYBbnpAOlkbgrFCPtc4rJeUq0VbN/jKgHI5x5F/Yb/2UNQFXdVAs0KMsGwNZd2mr63FJwl2XCJ9eA6JNqHQZ5y3a86mQSVMC2HU6KE6wuy/sO13kcczOuMlUytgHVXiDRnMt/yQNRTDwwxypEezs/i9pRmZJOAe7lqa/irGdwevOCLhcKrTnYo0bkJw+hYJM2YiZU9doVoRbnYUhlVBc5h7c5wi55pEbIa/2YwUjs1ej2WrXQKfOK94rz5ZuSGytmTlRew/by1pfeV4ufEfRj6vn+4J6DIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/0cf8dda803035b2ea83ca5f4c4a28892/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/0cf8dda803035b2ea83ca5f4c4a28892/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/0cf8dda803035b2ea83ca5f4c4a28892/e85cb/001-01.png 480w,
+/devHistoryBlog/static/0cf8dda803035b2ea83ca5f4c4a28892/d9199/001-01.png 960w,
+/devHistoryBlog/static/0cf8dda803035b2ea83ca5f4c4a28892/07a9c/001-01.png 1440w,
+/devHistoryBlog/static/0cf8dda803035b2ea83ca5f4c4a28892/29114/001-01.png 1920w,
+/devHistoryBlog/static/0cf8dda803035b2ea83ca5f4c4a28892/e4d4a/001-01.png 2198w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;✔️ 변경된 구성&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;그래서 별도로 LB VIP 요청을 하여 ssl offloading 및 x-forwarded-for 적용을 하였다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이때 new LB 와 인그레스와의 설정은 아래와 같다. (계속 https → 443 으로 연결해서.. 삽질했다)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;HTTPS → 80(HTTP)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP → 80(HTTP)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;인증서는 new LB에 설치&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/c173f98c4a21fba34d4fa56f72b0dec5/5b2ff/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 31.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABZUlEQVQY0x2RbXOaYBBF+f//p500ZsykaVWiKAqKKCLvIGoCaEzU4unKhzt35+7OmWefVeos4ZZGoph/SUh9VxaTfXwSFGfi8sw0yDG8DNPfMFmnLNMPwuIbd3vA2ZSs8opFVpCWXyiXYM3JsflyFyCwW+TzuVrixjuc3QndTfnxR+OhM6KlTsR1hk5MWF0bVy2fnuWJfJxkj7KfGfi9vyTaG4U1ZTseEkmt6hbPQwt9ldAeTBvY3Z/eDAZ2gOHnjKT3Ol40uSbwRZSjVMs5Ub9HLqDKngnUJB720cwlnalL11zxq6vzKLrDWuqYvgDNYNv4y2jOz9cBHdPF8lOUOg5kTY869Jp1EdVRQLw/4hUX7LTgqT/lUTVoazNaAh06CUF5YSTfoUl9z1Q7xEnfUdjnHP01498v2GqXg+dy227YyFHi8pvN4YK/O7DOS3lBRrs7QJ3MCSTLpJdWZ/LjtZl9P135DwqFr3pERyQTAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/c173f98c4a21fba34d4fa56f72b0dec5/d9199/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/c173f98c4a21fba34d4fa56f72b0dec5/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/c173f98c4a21fba34d4fa56f72b0dec5/e85cb/001-02.png 480w,
+/devHistoryBlog/static/c173f98c4a21fba34d4fa56f72b0dec5/d9199/001-02.png 960w,
+/devHistoryBlog/static/c173f98c4a21fba34d4fa56f72b0dec5/07a9c/001-02.png 1440w,
+/devHistoryBlog/static/c173f98c4a21fba34d4fa56f72b0dec5/29114/001-02.png 1920w,
+/devHistoryBlog/static/c173f98c4a21fba34d4fa56f72b0dec5/5b2ff/001-02.png 2190w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;✔️ HTTPS Offloading ?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;서버 애플리케이션 외에서 SSL/TLS(이하 TLS) 처리를 대신 하는 것을 말한다.&lt;/li&gt;
+&lt;li&gt;대부분의 서비스의 경우 API 서버군 앞에 Proxy 서버를 두고 해당 Proxy 서버에 SSL 관련 작업을 위임한다.&lt;/li&gt;
+&lt;li&gt;Proxy 서버를 거친 데이터는 decrpty 되어 HTTP 통신을 하게 되므로. HTTPS를 사용해 통신하는 것 보다 빠른 속도로 통신하게 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/f2556b08477328af1984eade598db5b1/7d62e/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 36.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABTUlEQVQoz32R3U7CQBCFeWEfxVuvfAav9IYfvQCTJkghJmIgbQUKBQKUQmH738/dheodJ9l0O7Mzc+acWhAEuK7LYu7gzn6wLIvRaMRkMtF3f7cCSvKioLhxyrIkyzJqlDlxHNEd7LAcH3EOORyOJEki4zH1tzVzL0VB1txEnuey4RXDUcF+r8sQIiIMQ7I0ZS4JLteC0ynULEQUcTwe/4am8o3v+7qZYnppKCd7wYbt6SALT9iOjW3bbLYbSAUfXYOeaeqCpbdgPB5LiVwSuYEp44Zh6CEKtWqXu4dH7p9eWAcOn67B6uBiztrsvBWtRpOv4ZAkOiO+n8l8h9hqEq2GtN8NzF4P5cV/Q4npZIrnLS9aFJJ+WWjqZyFodzq0XlvXovJignoj1+z3BzQadW2sblg5VKH6r77qRFI3JYXSqcoV15xyVpmnYir/C043E7rBFsVlAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/f2556b08477328af1984eade598db5b1/d9199/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/f2556b08477328af1984eade598db5b1/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/f2556b08477328af1984eade598db5b1/e85cb/001-03.png 480w,
+/devHistoryBlog/static/f2556b08477328af1984eade598db5b1/d9199/001-03.png 960w,
+/devHistoryBlog/static/f2556b08477328af1984eade598db5b1/07a9c/001-03.png 1440w,
+/devHistoryBlog/static/f2556b08477328af1984eade598db5b1/29114/001-03.png 1920w,
+/devHistoryBlog/static/f2556b08477328af1984eade598db5b1/7d62e/001-03.png 2368w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;✔️ &lt;strong&gt;X-Forwarded-For(XFF) 란?&lt;/strong&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;XFF 는 HTTP Header 중 하나로 HTTP Server 에 요청한 Client 의 IP 를 식별하기 위한 표준이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;p&gt;참고)&lt;br&gt;
+&lt;a href=&quot;https://minholee93.tistory.com/entry/SSL-offloading-%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C&quot;&gt;[TIL] SSL offloading 이란 무엇일까?&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[cron 표현식]]></title><link>https://ssongey.github.io/history/posts/2022-08-21--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2022-08-21--001</guid><pubDate>Sun, 21 Aug 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;계속 까먹는다.. 표현식에 대해 정리한다.&lt;/p&gt;
+&lt;h2&gt;✔️ 특수문자&lt;/h2&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/1bf9f19622798d14ad31d90a0897da64/d30ee/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 55.00000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABOElEQVQoz42SiW7EIAxE8/+/GSn3fRBCDpdnrVdpq1WLZGHAHo/HJMdxiFsWaZpGrSgKqapKQghi677vP83ikhPAeVEQANnzPJclFtn3XSj4n2WgyRmZuGlWEMDatpU0TZUpd+M4avB1XXKep+7YZ4YxaNs2BavrWrquE+ecAmPc9X2vPh2YT7zJQ9E34AHDdVVWPFogyYBxHoZByrJ8swYQKSBjrL9p6CMjkgkk2djZoPBhvsbC6Poc2C8NQwzY4gBIoh2MZGOLDzuAkQJmmAH/1PI15VmqyBB2BmTABs7bUwZa52zMbCVHrOTbXuYICggJBAJkbQNmX4kBcAfrLMtkmiZ9YwYwVkDXD5I9vo0xYCexfrHnDh9DTxuKyaAtX/EibF6r832896oVjDnj2zDYeWf/9OG/AAsBUBUcZu3GAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/1bf9f19622798d14ad31d90a0897da64/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/1bf9f19622798d14ad31d90a0897da64/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/1bf9f19622798d14ad31d90a0897da64/e85cb/001-01.png 480w,
+/devHistoryBlog/static/1bf9f19622798d14ad31d90a0897da64/d9199/001-01.png 960w,
+/devHistoryBlog/static/1bf9f19622798d14ad31d90a0897da64/d30ee/001-01.png 980w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;✔️ 주기 설정&lt;/h2&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/0302946c7deff6d4ca982b2011fe351f/07d37/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 60.416666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAABeUlEQVQoz5VTi5KCMAzs//+d3vk4REUR5E2LCL4gl41TB507b64zS0ObbLNJq4hHURQUxzHleS42EEURZVkmM9Yx+r4XvBsKn7IsJdCSJUlCTdNI8O12o67r/kdojBFCzJa8bdsnR0v2FxQ+l8tFMjqfz2KDDJlZop+y+y1bZeVgDG0rte+7gX0vwf2wXtZgX6/XBxRk5nkhcg+HAzciZ9ma6rrmepaktSFTVVRqzbamim2ogR/2oAaqoA5QCETd4IhNNAWBsI2pBCDQfCAOrY9HOp1OlPINeCXErLDg+zva7yPyvA1tNlvJeOEuyWX4u4DCcE/brc//K/J438qGxCGZEOL0NRMFYUjL5YocZ8FdjmWeTmeyt1p7/O8KKfxBNCR5IkTdQASS+dwhZ+HyJU9oPP6kyWQmWc+/HBqNPihN08eNaJpWAPlPkrGAoDTNaMfyIB+SkQ0Q8QvCvOYsIR0lCYJQAF80x2YsTRm+guEde2e/XmZwWHwDheSdbCHiXvoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/0302946c7deff6d4ca982b2011fe351f/d9199/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/0302946c7deff6d4ca982b2011fe351f/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/0302946c7deff6d4ca982b2011fe351f/e85cb/001-02.png 480w,
+/devHistoryBlog/static/0302946c7deff6d4ca982b2011fe351f/d9199/001-02.png 960w,
+/devHistoryBlog/static/0302946c7deff6d4ca982b2011fe351f/07a9c/001-02.png 1440w,
+/devHistoryBlog/static/0302946c7deff6d4ca982b2011fe351f/07d37/001-02.png 1790w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;✔️ 예시&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;0-6시 사이에 11분 + 10분마다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;11,21,31,41,51 0-6 * * *&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;0-6시 사이 매 5분 마다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;*/5 0-6 * * *&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[SpringBoot 빌드시 2개 jar 파일 생성되는 이유?]]></title><link>https://ssongey.github.io/history/posts/2022-08-07--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2022-08-07--001</guid><pubDate>Sun, 07 Aug 2022 00:00:00 GMT</pubDate><content:encoded>&lt;br/&gt;
+&lt;p&gt;최근에 빌드를 하면 jar 파일이 두개가 생성이 되는걸 확인하게 되었고, 해당 부분이 궁금해서 찾아봤다.&lt;/p&gt;
+&lt;h2&gt;✔️ 왜 2개가 생성이 될까?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;springboot 2.5 이후 부터는 빌드시 jar 파일이 2개 생긴다.&lt;/li&gt;
+&lt;li&gt;springboot 2.4.11 document 를 보면, &lt;code class=&quot;language-text&quot;&gt;jar or war tasks are disabled&lt;/code&gt; 이기 때문에 jar task 가 기본적으로 스킵이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/d21e7b2a7e5ef1864222968d7c74880a/2376a/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 24.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABQElEQVQY002QS0sCURiG558YbpIEIy9T05iipVZGo2gqKeGmiJJw0VIKugdWRP9QUaGNOs5FNHg6x0X0wMs53+I85+VT+v0+vV7vL9+DAa5lYU9MbNtG8v75RbFa57RxzcnZFZX6OblSjXy5hlE8Jpsrkc7meXxpo3S7XabT6eKx67o4kwm2OcYaj5mIu6R1c0swHObAMMge5ohu6miREFvaBsHVAH7/CkseD5eXFyjD4RBLyKTQEs0sy8ZxHFzxiZwlT8+vqJqOUa5yVK6QSiRIRHUy4lwPBQkEAiz7fDSbTZROp4MjZLKNFJimuRDOZrNFY8nd/QNrYZX9QoVcvoCuR1EjEeKxGKqqioZ+vF4vjUYDZTwa8TOfM/8XKZORq5C03z5I7qQxhEwms7tHKpUiub1NTEjj8TiaptFqtfgFZV0WhvXP6J8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/d21e7b2a7e5ef1864222968d7c74880a/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/d21e7b2a7e5ef1864222968d7c74880a/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/d21e7b2a7e5ef1864222968d7c74880a/e85cb/001-01.png 480w,
+/devHistoryBlog/static/d21e7b2a7e5ef1864222968d7c74880a/d9199/001-01.png 960w,
+/devHistoryBlog/static/d21e7b2a7e5ef1864222968d7c74880a/07a9c/001-01.png 1440w,
+/devHistoryBlog/static/d21e7b2a7e5ef1864222968d7c74880a/29114/001-01.png 1920w,
+/devHistoryBlog/static/d21e7b2a7e5ef1864222968d7c74880a/2376a/001-01.png 3138w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;springboot 2.5.0 이후부터는 bootJar, bootWar 수행시에 &lt;code class=&quot;language-text&quot;&gt;jar or war task are configured to use plain&lt;/code&gt; 이기 때문에 plain 이라는 이름으로 jar 파일이 한개 더 생긴다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/7ca391d0d671f90674a0ec6eca5b71d2/30a3b/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 27.083333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABKUlEQVQY01WQ2U7CUBRF+x/GGGRo6QRtobfzIFChSFBCCAGVqDExxv9/Xd4SNfFh5+Q8nJW1jxIFMVGQEEUZfjPDlLEn8IYehm7xfHrhYX+k3hxY705Uqy3F5JZptWBW1WTljKSYIuKcIClQBvJQ65v0dZtOT+e6o/3l4rLF/vDIvF4iwpg4zYjilNQfM0ljcuHjWiaGYaD2umiaijISEdbAQ5U2qgT/RpN7q93j9e2d+82WMM7IihvSvJSNAooso8xz2ShkMBziui62baMYlkNX1Wl3tZ/0z7Oxvbxqc3w6sVyt5TsiaZhLcIrrjfB9H18IHMfBNM0zTNd1lCQraSwdz/8XdyQwbYePzy+2uz3VfMFiuZL175hMptR1TSENG3AgjYWEh9L2GxC7pgVt0X+SAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/7ca391d0d671f90674a0ec6eca5b71d2/d9199/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/7ca391d0d671f90674a0ec6eca5b71d2/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/7ca391d0d671f90674a0ec6eca5b71d2/e85cb/001-02.png 480w,
+/devHistoryBlog/static/7ca391d0d671f90674a0ec6eca5b71d2/d9199/001-02.png 960w,
+/devHistoryBlog/static/7ca391d0d671f90674a0ec6eca5b71d2/07a9c/001-02.png 1440w,
+/devHistoryBlog/static/7ca391d0d671f90674a0ec6eca5b71d2/29114/001-02.png 1920w,
+/devHistoryBlog/static/7ca391d0d671f90674a0ec6eca5b71d2/30a3b/001-02.png 3254w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;즉, 스프링부트의 버전에 따른 gradle 플러그인의 packageing 기본 설정 차이가 있기 때문이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h2&gt;✔️ executable jar, plain jar 의 차이가 뭐지?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;plain jar 파일의 경우 어플리케이션 실행에 필요한 모든 의존성을 포함하지 않고 소스코드의 클래스파일과 리소스 파일만 포함한다.&lt;/li&gt;
+&lt;li&gt;executable jar 파일의 경우 실행에 필요한 모든 의존성을 함께 빌드한다. 따라서 해당 파일은 &lt;code class=&quot;language-text&quot;&gt;java -jar&lt;/code&gt; 명령어를 통해 실행이 가능하다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h2&gt;✔️ plain jar 를 생성하지 않는 방법은?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;jar task 를 수행하지 않으면 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/885fe781359728669b700b0697ddbfce/764d0/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 29.583333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAxUlEQVQY05WP3QrCMAyF+96CV8IeSUUfQ/BCcM510/24v6xb2sKOtRcKIqiBj4SQnOSIuq6R5zmklDjHMaIoQpKmHpkkKIoCxhiP1voJM0O/9ay1EE3ToCxLv3jNMi9+qypU7tAjd0T4J8RsPsciCBCGIYi6j0PTNP2EF1yuN1httpDpBcWtBinGyM6CsWBtHNbX3xjZODc9hBoYLQ04HE/Y7Q84yQyhzFG1CoMbUqP+GVIjREuvReoHlxmd+7J3hx79f7kD/5LNOIFlhS0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/885fe781359728669b700b0697ddbfce/d9199/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/885fe781359728669b700b0697ddbfce/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/885fe781359728669b700b0697ddbfce/e85cb/001-03.png 480w,
+/devHistoryBlog/static/885fe781359728669b700b0697ddbfce/d9199/001-03.png 960w,
+/devHistoryBlog/static/885fe781359728669b700b0697ddbfce/07a9c/001-03.png 1440w,
+/devHistoryBlog/static/885fe781359728669b700b0697ddbfce/764d0/001-03.png 1898w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[대세는 쿠버네티스] Kubernetes Architecture]]></title><link>https://ssongey.github.io/history/posts/2022-08-07--002</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2022-08-07--002</guid><pubDate>Sun, 07 Aug 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;✔️ Kubernetes Concepts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;K8S가 관리하는 각 항목은 객체로 표시되며 이러한 객체의 속성과 상태를 확인하고 변경할 수 있다.&lt;/li&gt;
+&lt;li&gt;Kubernetes는 ‘watch loop’를 사용하여 관리되고 있는 객체에 대해 원하는 상태를 지정할 수 있고, Kubernetes는 객체를 해당 상태로 전환&amp;#x26;유지한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1&gt;✔️ 제어 영역 Kubernetes 구성요소&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;제어 영역의 역할은 전체 클러스터를 조정하는 것이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/faae6f0c2e555185e9dd495b1e963613/bd9eb/002-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 42.91666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAACQUlEQVQozz2QTU8TYRSF+xtcGHe6cuHOpYmJe3+LG91oojExJhA1ho3RkECC0EBbaAu2nc5HZ2qEdtppp6W0pV/TUsCCoQWBSFA3j1dF3+Qk99yb98m519dptxgMj4lbWZaNNdS890dGro7pNIiWPMLFTZaKdSKuJ77FUqEm9W/fJfLbOzVChTr57gG+kuvS6u1SzcRx9AWyWpCMyLXC1LIqkfVV/Pll5p0VwhtZolULvx0lVIoRqeSll2IuGyFQTpDtbuEbHhywtTvguLDAqfWYz+8uM3h7iRP9IUN7Fq0UR8mGMJwl1JqOXv0gdZiUu4haT2Gsr5ByomjFRdztFj7knXw7ZyiNr2sT9GZui25x/Ok1IzeKXjSxbB1L0iplC83VpNYxbYVEJY3uqHy0U6iZGIWt9gXw7AeHqy840u8zykwzWpvkUH3AKP0co2xgFhJYBUlaSaFXBOgkMYviZX2jnCRdUNHkJMX+BfBUgAP/TXYnfIyMR6IneK989CavozdiqN159K4fpSkf27KyFyTlBVAakqwTkVkQpTNP4f/KAvwSvstw+goj8xlDa4zRzFX2A3cEGEfvBTAEqjQ19HZMYIuYXohkw0TrRGUmdWeB4j/g6dk5/akbNMd8HCn3OEw9ZXPcR/vNNbTNMEp3FtWbISbwZEsSdfyiOeJ1uWs7KDM/8fZ78v3GX+DZ95/07Sk8c5y9SoK9qkE3/RJvdRK7V8beyWNv58j0NrD7ZXLbjigvvibeJbfjkOnnaO7v8QusHkxIgTWQLQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/faae6f0c2e555185e9dd495b1e963613/d9199/002-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/faae6f0c2e555185e9dd495b1e963613/8ff5a/002-01.png 240w,
+/devHistoryBlog/static/faae6f0c2e555185e9dd495b1e963613/e85cb/002-01.png 480w,
+/devHistoryBlog/static/faae6f0c2e555185e9dd495b1e963613/d9199/002-01.png 960w,
+/devHistoryBlog/static/faae6f0c2e555185e9dd495b1e963613/07a9c/002-01.png 1440w,
+/devHistoryBlog/static/faae6f0c2e555185e9dd495b1e963613/bd9eb/002-01.png 1442w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;1. kube API Server&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;사용자가 직접 상호작용하는 단일 구성요소&lt;/li&gt;
+&lt;li&gt;kubectl 명령어와 통신하는 서버&lt;/li&gt;
+&lt;li&gt;kubeconfig 값으로 수신된 요청을 인증하고 요청의 승인 여부와 유효성을 확인하며 허용 제어를 관리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2. etcd&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;클러스터의 데이터베이스&lt;/li&gt;
+&lt;li&gt;클러스터의 상태를 저장하는 역할을 한다.&lt;/li&gt;
+&lt;li&gt;여기에는 모든 클러스터의 구성 데이터와 많은 동적 정보(클러스터의 일부인 노드, 실행해야 하는 Pod, 실행 위치)가 포함된다.&lt;/li&gt;
+&lt;li&gt;사용자는 etcd와 직접 상호작용하지 않는다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. kube-scheduler&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Pod의 요구사항을 평가하고 가장 적합한 노드를 선택하는 역할을 한다.&lt;/li&gt;
+&lt;li&gt;노드의 자원 사용량을 모니터링 하기때문에 적합한 노드 선택이 가능&lt;/li&gt;
+&lt;li&gt;kube-apiserver를 통해 etcd에 Pod생성 요청이 있는지 감시한다. (Watch 기능)&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;노드를 선택하는 방법&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;노드에 아직 할당되지 않은 Pod 객체 발견 &lt;/li&gt;
+&lt;li&gt;모든 노드의 리소스를 확인하여 적합한 노드를 선택 &lt;/li&gt;
+&lt;li&gt;해당 노드의 이름을 Pod 객체에 작성&lt;/li&gt;
+&lt;li&gt;시스템의 또 다른 구성요소가 Pod를 시작&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;4. kube-controller-manager&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;컨트롤러 오브젝트들의 요구사항을 수행&lt;/li&gt;
+&lt;li&gt;클러스터의 현재 상태가 원하는 상태와 일치하지 않을 때마다 kube-controller-manager는 원하는 상태를 달성하기 위해 변경을 시도&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;컨트롤러 종류&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ReplicaSet, Deployment, DaemonSet, Job, CronJob&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;5. Kubelet&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;각 워커 노드에서 클러스터 에이전트 역할을 한다.&lt;/li&gt;
+&lt;li&gt;kube-apiserver 에 watch 를 걸어 자신의 노드이름이 붙은 Pod 생성 및 변경 요청에 대해 수행한다.&lt;/li&gt;
+&lt;li&gt;Kubelet은 컨테이너 런타임을 사용하여 Pod의 컨테이너를 실행하고 Pod의 수명 주기를 모니터링하고 kube-apiserver에 다시 보고한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;6. kube-proxy&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;클러스터에서 Pod 간 네트워크 생성 및 연결을 유지&lt;/li&gt;
+&lt;li&gt;DaemonSet으로 설치된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1&gt;✔️ Pod 생성 플로우&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;사용자가 Pod 생성 요청 → kube-apiserver 로 명령어 전달&lt;/li&gt;
+&lt;li&gt;kube-apiserver는 etcd에 해당 Pod 정보를 저장&lt;/li&gt;
+&lt;li&gt;kube-scheduler는 kube-apiserver를 통해 etcd에 새로 들어온 Pod 생성 요청을 체크하고, 노드들의 자원상태를 확인하여 적합한 노드를 선택 후 해당 Pod에 노드명 기재&lt;/li&gt;
+&lt;li&gt;모든 노드의 kublet이 kube-apiserver 를 watch 하고 있다가 자신의 노드명이 붙은 Pod 생성 이벤트가 발생하면 해당 정보를 가져온다.&lt;/li&gt;
+&lt;li&gt;kublet은 Container Runtime에게 해당 파드 생성 및 컨테이너 실행 요청을 함&lt;/li&gt;
+&lt;li&gt;그리고 kublet은 kube-proxy에게 네트워크 생성 요청을 하게되고, kube-proxy는 새로 생성된 컨테이너가 네트워크 통신이 되도록 도와줌&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/9a3b5f0544137224fa5af5b796054097/28fe3/002-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 47.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAACR0lEQVQozzWSy2/aYBDE+f+l9tBbW/VQKTlUiSoljZqmaZQ0pHlgwJinMRhs/DYOGD8gzeXXhaSH0Ur7zY7mm92KYiSEyw1RuiHOnpn6Dnf1XxjWBHee7zCeRZhOhO0nJKsNj9kTsfCj5VrmXhAs1qTFXyrfHlx0K0Kf+rva7PX5fX9N33KZRiVDJ0Ez3B3aY59JmEu/EGxr9lpzzCDbCVcOr8fU1S71hkpT1WhpfaZBLoNr1EnETesSZdhh6K35rpoc1kbsX7dRRuI4LjDDF9Hxf8G9U43OwMRyPMypg25YmN5iR2qYIV9vr7hot9GdjBPFZL865NO5SmMc4CYFVpxhzzMx8Cr49c8MtWvQ7Rt0eluMMJwFHStHHefU9ILGqKBrFVypIeeKT22Q0p5Kz35BxyoF2S7TimLM8aMlQbRgJqHbQYL3WDIKnxm4G3FWMHBKerOS5njJfX++6+nS0+V96K4FG8mwZFXKUqruI/qi5D5MUaIVF7pNzbbojlV6vklYPrHcPHFmx7SilMGjuA6XdJMMZerSFBPteYoWpyRbwS/tKa04p+qlPPgpjVmMYjncahqKOcGRE/GzNR8edC4kU21eCHfFg7cUXkRdrkCXLHuiEeYbKgciqMUrqvJwLS6OtRFHPZs39Qnv6iZutiEsnvh43+NStr7l3rjCFbEj1eBs6PK2ZvC+OSHe3uHJKKArX9CCBdWhzQ9V57Sl8/muzfFghrPI8dKCA92jas8ZyLebXkJ1MOFna8hFx2BP6XOiOwTC+wcyqc6lReLfuQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/9a3b5f0544137224fa5af5b796054097/d9199/002-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/9a3b5f0544137224fa5af5b796054097/8ff5a/002-02.png 240w,
+/devHistoryBlog/static/9a3b5f0544137224fa5af5b796054097/e85cb/002-02.png 480w,
+/devHistoryBlog/static/9a3b5f0544137224fa5af5b796054097/d9199/002-02.png 960w,
+/devHistoryBlog/static/9a3b5f0544137224fa5af5b796054097/07a9c/002-02.png 1440w,
+/devHistoryBlog/static/9a3b5f0544137224fa5af5b796054097/29114/002-02.png 1920w,
+/devHistoryBlog/static/9a3b5f0544137224fa5af5b796054097/28fe3/002-02.png 3446w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;hr&gt;
+&lt;h1&gt;✔️ Deployment 생성 플로우&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Controller Manager Pod 내에 여러 컨트롤러들에 대한 기능들이 각각의 스레드 형태로 돌아가고 있다.&lt;/li&gt;
+&lt;li&gt;사용자가 Deployment 생성 요청 → kube-apiserver로 명령어 전달&lt;/li&gt;
+&lt;li&gt;kube-apiserver는 etcd에 해당 Deployment에 대한 정보를 저장&lt;/li&gt;
+&lt;li&gt;Controller Manager Pod 내의 Deployment 스레드가 이를 감지하여 ReplicaSet 생성을 요청한다.&lt;/li&gt;
+&lt;li&gt;Controller Manager Pod 내의 ReplicaSet 스레드가 이를 감지하여 replica 개수만큼 Pod 생성 요청을 한다.&lt;/li&gt;
+&lt;li&gt;이후에 파드 생성 플로우로 진행한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/d1913241559172c9dfb4c04294f374e8/4faaa/002-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 47.91666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAACYklEQVQozzWS228SWxTG+fdNfPDBxJiYmKPRJjV60mOobapCkVrKwAy3uTIDey7I3KBQoKX68DtLGx9W1to73/72t9a3KldOTnp9S7neU2x/MY8z7ONTxvqQMFsT5yvGYcpE7idxKrg7FjeClfxQP8TfunLUSnBUjqfmuGGG40xxv10RuBFBWDBs9TH6PkP/BwMvQWVbwnwneUNY7AjLW1T+EEm5pXJ4HtDWTbSOTkfvYQxG+OkatbynN1DYh6/kgzrjdM9ZX3F4afO2adJ05py3FdWaTa3tc9q0mKYbKv8cC4npo+IZgUqwvClBUoqCNV1/hdb7SrXxngtrTrUT8OK0y/NPGk0j4LzW5+jjJSe1DidnTVRSUHn3LaJtWDhjH8v1GdljvKhgpDYY/oaWXVAbxLS9Jd9HJZ87c1rdGT09RhtkNMwl9eGCi35CFCVUWnZOki7JiiWztCScF8zKjbT4EzveY0e3uMlDNkTxxTDDDLeYch6GO7zkjiD9xTT7KabcU2lIe664fDVf0U5X1GXwLRViTgZYszHJ5pbN/Z56XNBJr/GWonq+5OpHSd1VtMV5J7JwY4t0u6PypufTLzZ0ii3d7AY9LtGiGQ3doBv4TNayUrs9r40xVTdhuNih5VuMXN7IaLQ4p+3YMo4R4UpcPtA9NFH3+NLhZW/Kf7Ii1ZHiqa54Iu45iy3Xd/e80ixO3JiubMCj7zYvxZSj3phjU/GsF/7BTq5F4fEkYyCOHpohH4Tsiznh3J7yRgg+2NEf0G/Cj4JrxAvM4oaDoeK94XE2Cmg4ioOuw7+CjaWb/wF7ucX+yEggLAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;002 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/d1913241559172c9dfb4c04294f374e8/d9199/002-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/d1913241559172c9dfb4c04294f374e8/8ff5a/002-03.png 240w,
+/devHistoryBlog/static/d1913241559172c9dfb4c04294f374e8/e85cb/002-03.png 480w,
+/devHistoryBlog/static/d1913241559172c9dfb4c04294f374e8/d9199/002-03.png 960w,
+/devHistoryBlog/static/d1913241559172c9dfb4c04294f374e8/07a9c/002-03.png 1440w,
+/devHistoryBlog/static/d1913241559172c9dfb4c04294f374e8/29114/002-03.png 1920w,
+/devHistoryBlog/static/d1913241559172c9dfb4c04294f374e8/4faaa/002-03.png 2308w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[Bean 초기화/ 소멸 방법 3가지]]></title><link>https://ssongey.github.io/history/posts/2022-07-30--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2022-07-30--001</guid><pubDate>Sat, 30 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. &lt;strong&gt;InitializingBean, DisposableBean&lt;/strong&gt; 인터페이스&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;이 인터페이스는 &lt;strong&gt;스프링 전용 인터페이스&lt;/strong&gt;이다. 해당 코드가 스프링 전용 인터페이스에 의존한다.&lt;/li&gt;
+&lt;li&gt;초기화, 소멸 메소드의 이름을 변경할 수 없다.&lt;/li&gt;
+&lt;li&gt;코드를 수정할 수 없는 외부 라이브러리에 적용할 수 없다.&lt;/li&gt;
+&lt;li&gt;현재는 이보다 더 좋은 방법이 있기 때문에 거의 사용 되지 않는다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanTest&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;InitializingBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DisposableBean&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    init &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;call initBlock&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    fun &lt;span class=&quot;token function&quot;&gt;initTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;call initTest&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    fun &lt;span class=&quot;token function&quot;&gt;destroyTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;call destroyTest&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// 의존관계 주입이 끝나면 호출&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;override fun afterPropertiesSet&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;initTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+		&lt;span class=&quot;token comment&quot;&gt;// 스프링 컨테이너 종료시 호출&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;override fun destroy&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;destroyTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/d6211b13cb4105c1ba8d392f97766abe/027f0/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 24.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA1klEQVQY03WQWxbCIAxEuxc9aqFS3hQpdf+rGidVPv3IgYTMzYSpvRrylpCShzMey7Ig5oxrKbjW+g3mznvs+47WGiprEpn1EAK1CZ7vck597yg1IZcAv0Y8nwQKZNu+MAIuvDs2H72jMwQ8oOu6niaUUpjneQAzpxFoAh81osA4/ULBnQ5uzsHFiPdxoND5cBNZk7sx5gRqrTHJNAGWwgafuJpjXjETqtoLDwoFaBniaIAGTE5r7elUwJNMTFma+BcxYSMo0Z2lULNR/daRtUQoInHyLz5y+p8cbytjaAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/d6211b13cb4105c1ba8d392f97766abe/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/d6211b13cb4105c1ba8d392f97766abe/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/d6211b13cb4105c1ba8d392f97766abe/e85cb/001-01.png 480w,
+/devHistoryBlog/static/d6211b13cb4105c1ba8d392f97766abe/d9199/001-01.png 960w,
+/devHistoryBlog/static/d6211b13cb4105c1ba8d392f97766abe/07a9c/001-01.png 1440w,
+/devHistoryBlog/static/d6211b13cb4105c1ba8d392f97766abe/29114/001-01.png 1920w,
+/devHistoryBlog/static/d6211b13cb4105c1ba8d392f97766abe/027f0/001-01.png 2824w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br/&gt;
+&lt;h2&gt;2. initMethod, destroyMethod&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;빈을 생성하기 위한 @Bean 어노테이션에 initMethod와 destroyMethod를 사용하여 지정&lt;/li&gt;
+&lt;li&gt;스프링 빈이 스프링 코드에 의존하지 않는다.&lt;/li&gt;
+&lt;li&gt;메소드의 이름을 자유롭게 변경할 수 있으며, 코드에 접근할 수 없는 외부 라이브러리에도 초기화, 종료 메소드를 적용할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;WebConfig&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;initMethod &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;initTest&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; destroyMethod &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;destroyTest&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
+    fun &lt;span class=&quot;token function&quot;&gt;getBeanTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanTest&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanTest&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; val logger &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;LoggerFactory&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getLogger&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;!!! bean check log !!!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    init &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;call initBlock&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    fun &lt;span class=&quot;token function&quot;&gt;initTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;call initTest&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    fun &lt;span class=&quot;token function&quot;&gt;destroyTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;call destroyTest&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;2.2. 종료 메소드 추론&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;또한 destroyMethod에는 inferred라는 추론 기능이 추가되어 있다.&lt;/li&gt;
+&lt;li&gt;일반적으로 종료 메소드의 이름으로 close 또는 shutdown을 많이 이용하기 때문에, close 또는 shutdown 함수가 존재하면 이를 소멸자 메소드로 인식하여 호출한다.&lt;/li&gt;
+&lt;li&gt;이러한 추론 기능을 사용하고 싶지 않으면 destroyMethod=&quot;&quot; 처럼 destroyMethod를 공백으로 지정하면 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;WebConfig&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;initMethod &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;initTest&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    fun &lt;span class=&quot;token function&quot;&gt;getBeanTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanTest&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanTest&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; val logger &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;LoggerFactory&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getLogger&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;!!! bean check log !!!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    init &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;call initBlock&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    fun &lt;span class=&quot;token function&quot;&gt;initTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;call initTest&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;fun &lt;span class=&quot;token function&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 스프링 컨테이너 종료시 호출됨&lt;/span&gt;
+        logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;call destroyTest&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;h2&gt;3. PostConstruct, PreDestroy&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;최신 스프링에서 가장 권장하는 방법이다.&lt;/li&gt;
+&lt;li&gt;애노테이션 하나만 붙이면 되므로 매우 편리하다.&lt;/li&gt;
+&lt;li&gt;패키지를 확인해보면 javax.annotation.PostConstruct이다.스프링에 종속적인 기술이 아니라 JSR-250이라는 자바 표준이므로 스프링이 아닌 다른 컨테이너에서도 동작한다,.&lt;/li&gt;
+&lt;li&gt;컴포넌트 스캔과 잘 어울린다.&lt;/li&gt;
+&lt;li&gt;외부 라이브러리에는 적용하지 못하기 때문에 외부 라이브러리를 초기화, 종료해야 한다면 @Bean 기능을 사용하면 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;WebConfig&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    fun &lt;span class=&quot;token function&quot;&gt;getBeanTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanTest&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanTest&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; val logger &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;LoggerFactory&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getLogger&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;!!! bean check log !!!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    init &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;call initBlock&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@PostConstruct&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
+    fun &lt;span class=&quot;token function&quot;&gt;initTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;call initTest&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@PreDestroy&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
+    fun &lt;span class=&quot;token function&quot;&gt;destroyTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;call destroyTest&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;h2&gt;4. 정리&lt;/h2&gt;
+&lt;p&gt;보통은 @PostConstruct, @PreDestroy 을 사용하는걸 권장하지만, 외부 라이브러리 초기화/ 소멸시 처리해야 할 과정이 있다면, @Bean 의 InitMethod, destroyMethod를 사용하면 된다.&lt;/p&gt;
+&lt;h3&gt;4.1. 만약 &lt;strong&gt;SIGKILL 시그널(&lt;/strong&gt;kill -9 {PID})&lt;strong&gt;로 종료가 되었다면&lt;/strong&gt;,&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;SIGKILL&lt;/strong&gt;은 프로세스를 즉시 종료 시킨다. 해당 시그널을 받으면 프로세스가 종료되기 전에 수행되어야 하는 종료 절차를 실행하지 않고 즉시 종료하므로 graceful shutdown을 위해서라면 해당 시그널을 통해 프로세스를 종료시키는 것은 피해야한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;4.2. 호출 순서는?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;init&lt;/strong&gt; : @PostConstruct → InitializingBean 인터페이스 → @Bean initMethod&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;destroy&lt;/strong&gt; : @PreDestroy → DisposableBean 인터페이스 → @Bean destroyMethod&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/58087959a667ff91de6ffeeb64655605/763a5/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 19.583333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAxUlEQVQY0y2PWQ6DMAxEuUvV0iyQANkTUHv/Q03HqB8jy9uzZ+q9o/eBVANyyFiWFd47bKXgmRJejHMIeDuHnDOu60JhTSR54oz3nnsLtNaYxugYBOYWb6C1C9y6YqsVDy68YoTmsLIW6Q8cY9wSoIBEln1jDKbzPNk8UVpCyRX7tvNqRGgNmjIEz4S++UU4DhTm8l1ljKwHfi+SLx1dTL03tNoQy4F4xBv6/X7geX2mHcVhQytaqXtRQI2HRAIRm4o9iaIfDzCAP7YYuXwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/58087959a667ff91de6ffeeb64655605/d9199/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/58087959a667ff91de6ffeeb64655605/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/58087959a667ff91de6ffeeb64655605/e85cb/001-02.png 480w,
+/devHistoryBlog/static/58087959a667ff91de6ffeeb64655605/d9199/001-02.png 960w,
+/devHistoryBlog/static/58087959a667ff91de6ffeeb64655605/07a9c/001-02.png 1440w,
+/devHistoryBlog/static/58087959a667ff91de6ffeeb64655605/29114/001-02.png 1920w,
+/devHistoryBlog/static/58087959a667ff91de6ffeeb64655605/763a5/001-02.png 2804w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[동적 라이브러리 적용]]></title><link>https://ssongey.github.io/works/posts/2022-07-25--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-07-25--001</guid><pubDate>Mon, 25 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이번에 사진 피처 추출 LIB를 프로젝트에 적용하게 되어 해당 작업에 대한 내용을 정리한다.&lt;/p&gt;
+&lt;h2&gt;1. gradle 에 dependency 적용&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;files 함수를 사용하여 jar 파일 의존성 추가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/f8ad65a45a537064a574b7d72bf01910/1c1a4/001-01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 14.583333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAkklEQVQI11WOwQ6DMAxD+R7aNGkhbdlKJSS2SbvssP//Fq+wTYLDk5wottPdq8fGWhiXRIiqSCkhNvSvY4RGhSULY80Zc9Q9uufi8X6MeK0BtypY5hFzrZjKFTlnlFIQsyJOChkYHNwJJwTnCex/geIs8kjQQEhD+zAYiPftUOCcg7Ds7cT2az5AG21P3Gbu98APbd9fHyPcS84AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/f8ad65a45a537064a574b7d72bf01910/d9199/001-01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/f8ad65a45a537064a574b7d72bf01910/8ff5a/001-01.png 240w,
+/devHistoryBlog/static/f8ad65a45a537064a574b7d72bf01910/e85cb/001-01.png 480w,
+/devHistoryBlog/static/f8ad65a45a537064a574b7d72bf01910/d9199/001-01.png 960w,
+/devHistoryBlog/static/f8ad65a45a537064a574b7d72bf01910/1c1a4/001-01.png 1046w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br/&gt;
+&lt;h2&gt;2. intelliJ에 동적 라이브러리 적용&lt;/h2&gt;
+&lt;h3&gt;2.1. project settings 에 동적 라이브러리 적용&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Project Structure(&lt;code class=&quot;language-text&quot;&gt;command&lt;/code&gt; + &lt;code class=&quot;language-text&quot;&gt;;&lt;/code&gt;)  → Libraries → New Project Library → Java&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/bb57845b2785f5a2a3ace4862a243022/18872/001-02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 608px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 64.16666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAACp0lEQVQ4y2WTuW4UQRCG5y0AIUNAggUWYGR7j7mPnbNn59o5vDvr3bXXQIAcICdIEIBIOGwhQeCQByEwEiKDyAghv8tPTS8YGYJff3f16OuaqmrB6NnQrR4aV3QDoqKiIyvn1JXVM3XOrZX/JKimDc0iaM+BqOroKBq656RzCNfvWFtSFmA66/7zvWA4ERQz4JKNxhlkrsVe1DzK3oNpu1AMk2RhOJ5ANXsEls+y/pO5IJkhOqqHruajrXhoyS5Xm2KSwfiZahHUCaDZPjSCp+UIpkuXGg4lQLJcvpYMG0I+3EZWTdHPasT5GNV4F02MJUOIesCBhmkgiUPszGqUZYbNKsN8u0Y9ylEPB3w9Ivf9HoQwHWE4ucehjZJiQhlMOLDbAGULq/3HWN96iY3hIdTJW6xVh7idNzrgfqdY7G8NDiC0FB9WUCAupgizMToawwbF2irVz4w58Hr+AcuPPmJ17zPSZ19x9+EXLI0/4erWMa6Mj7FUL7yRoFBnoihGmg2QphkC1odC3VY1nbtEhd+gYl9Lp5BZBseP4LAISV4gKyp4YXSu28KN+BXE8XuY8yMYO0cQt97hJsVWktdYSd9gOXyBrpljb7KPsM+Q5jmiJEVEl5u2Q5C/M8m7fGF2gvX9H/Cen0J/+hPqk1Nc2j7B5Z1G33Fx+g1r9gzzMgILenDDhLJkcFnIR6iZ3cZlzVxk2LJKONku3PwB3MF9tHubaFsVeYUOrVtGCdG20WKMMvJhez69LBsqQZrZ5PAghOU08+pAEDUKBs0vVGBxQa8mgEQxSafZ0j16ig4034U13EQ/TnntWJzw2oW07ycZkkHBnUUJAXWGgEYkq2YoRnOEaU1DHvChlowQXeq2Fniw6hHVjhpXlBzkN0CqZZzl1JySAwMC/gK5w+++WrLG3gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/bb57845b2785f5a2a3ace4862a243022/18872/001-02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/bb57845b2785f5a2a3ace4862a243022/8ff5a/001-02.png 240w,
+/devHistoryBlog/static/bb57845b2785f5a2a3ace4862a243022/e85cb/001-02.png 480w,
+/devHistoryBlog/static/bb57845b2785f5a2a3ace4862a243022/18872/001-02.png 608w&quot;
+        sizes=&quot;(max-width: 608px) 100vw, 608px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;동적 라이브러리 디렉토리 선택 및 적용 모듈 선택&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/79a2fb4f98d7333d2200a49cc80ea009/6244b/001-03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 446px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 41.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABP0lEQVQoz53Py0rDUBAG4KMFW124cdGYpEnEnJykpGnS9DSX1gu6EIpab0UQBDe60qUg+Azim9S6Ke7cVBE3+ka/x4ArW7AuPmaYYYYZous6NEWGIWIQBEjTFEmSQNM0fPcmRXTDwJIXQjcppGIRkiRBluV/LcsWquKS4H6A6skV9ttbiOIEsqJALZWgqupoolcag1iUIt7chtNooR748MXbjNmwGINlsSy3bSfDbDtjihnTHI34zjLWKyGYW4PvuYh4iLhRQzPhiHkNSRSiGXOkUT2rxzyA61CUmYmy/RspdHowbp6xePGE6vkA84d9zOw+YG7vEbNCodNHfqeHvKj9KHTGI7nuC9jdB9Trd2zcfmLh7A3kYIjpoyGmhFz3dSLELIc4Pr1EtNoG9VJ4fA1efQWVsIWKiNTlsAT6R1/cEwUzLMPoLAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/79a2fb4f98d7333d2200a49cc80ea009/6244b/001-03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/79a2fb4f98d7333d2200a49cc80ea009/8ff5a/001-03.png 240w,
+/devHistoryBlog/static/79a2fb4f98d7333d2200a49cc80ea009/6244b/001-03.png 446w&quot;
+        sizes=&quot;(max-width: 446px) 100vw, 446px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/c6f14343c9dc05d5e2cee30aa6ad2ac4/38cea/001-04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 678px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 51.25000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAACDElEQVQoz3WSy27TQBSG/RpINFtYwIJe47udOGnt2I7jNE16i9rSliYFFQkJiRJoqvYJAFVswuV52BQQQtAu2vIgHzMm5VKJxaf/n/8ce2bso/TCgPWZCno6w1THxbKK6I5LoTxDa3GZuYVF6nMt5pfa2VqqrOm2i+kW/8FwCih+waMoF56H7hcwRSgLlshdr0yhNI0j9NK7AvmwfKEx7DWGXmZKKQiJkhpxUmfaj6lUU/yoSlSrE8QJtUYzI4hrhKJH1pPZJuncPHHayLJU3ED2yI2USr1B1F4jqIYktQg/KBMLH8cVwtDPvGnp6IYqPof2G9vWMzX/8rploVitx6idAdrGe7ytd2irA9zNt9jrbzDWBjgbAyaXjpgQ3Exf/ocX3EhfMV5somjrrxnbPUbdu6B8eIHaO8PZP8fun6MJL9Xu/8jIdU8Z6Qi6VxDZ9e0zRisPUJzOEflnHzCfn1I5PMV4+o3S/gle/wSz953C3gm+yO88+sq1u5/IbX5mRCA1t/FxyDG5rS9MxPfFCYN5JpN7GGkXe4hZ+4OedIa6zUTYyZiKpHYZr+4wFu8wKhivPkT1IhTDNNF1NUO7gvwRUg1Tp5pEtNsLrKws02gkWGJ8bs8+wVw9wF474FZjF80LxQktB9V0yBv2L6S/ZJjJui3msOSHGXIWVdtjtNRkKlgkLxgrt8jbRX4ClPmOR0RiZWUAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;001 04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/c6f14343c9dc05d5e2cee30aa6ad2ac4/38cea/001-04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/c6f14343c9dc05d5e2cee30aa6ad2ac4/8ff5a/001-04.png 240w,
+/devHistoryBlog/static/c6f14343c9dc05d5e2cee30aa6ad2ac4/e85cb/001-04.png 480w,
+/devHistoryBlog/static/c6f14343c9dc05d5e2cee30aa6ad2ac4/38cea/001-04.png 678w&quot;
+        sizes=&quot;(max-width: 678px) 100vw, 678px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;2.2. VM 옵션에 적용&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Run/Debug Configuration → VM options 필드에 java.library.path 적용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;library&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;동적 라이브러리 경로&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;h2&gt;3. UnsatisfiedLinkError&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;동적 라이브러리가 제대로 적용이 되지 않았을 경우, 아래와 같은 UnsatisfiedLinkError 오류가 발생한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token class-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;lang&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;UnsatisfiedLinkError&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; no xxxxx in java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;library&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;path&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; 
+at java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;base&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;lang&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;ClassLoader&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;loadLibrary&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;ClassLoader&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;java&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2429&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;na&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;na&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+at java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;base&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;lang&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;Runtime&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;loadLibrary0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Runtime&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;java&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;818&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;na&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;na&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+at java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;base&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;java&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;lang&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;System&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;loadLibrary&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;java&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1989&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;na&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;na&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;h2&gt;4. 기타 알게된 내용&lt;/h2&gt;
+&lt;h3&gt;4.1. 동적 라이브러리 확장자&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;window : *.dll&lt;/li&gt;
+&lt;li&gt;linux: *.so&lt;/li&gt;
+&lt;li&gt;mac : *.dylib&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;4.2. &lt;strong&gt;LD&lt;em&gt;LIBRARY&lt;/em&gt;PATH와 java.library.path&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;LD&lt;em&gt;LIBRARY&lt;/em&gt;PATH 환경변수는 ‘로더(Loader)‘가 공유 라이브러리나 동적 라이브러리를 찾아야 할 때 어떤 경로를 찾아가야 하는지를 지정하는 환경변수다. 실행 파일을 찾아가는 PATH 환경변수의 라이브러리 버전이라고 생각하면 된다.&lt;/li&gt;
+&lt;li&gt;로더가 라이브러리를 로딩할 때 우선적으로 LD&lt;em&gt;LIBRARY&lt;/em&gt;PATH에 명시된 경로들을 찾아가면서 공유 라이브러리와 동적 라이브러리 파일을 찾게 되며, 그 다음에 표준 라이브러리 경로인 ‘/lib’과 ‘/usr/lib’을 찾게 된다.&lt;/li&gt;
+&lt;li&gt;자바 애플리케이션을 실행할 때 공유 라이브러리 경로를 -Djava.library.path 옵션으로 주게 되는데, LD&lt;em&gt;LIBRARY&lt;/em&gt;PATH 환경변수로 경로를 지정한 경우 -Djava.library.path 옵션으로 입력한 것처럼 경로를 찾아서 라이브러리를 로드하게 된다.&lt;/li&gt;
+&lt;li&gt;결론은, &lt;strong&gt;LD&lt;em&gt;LIBRARY&lt;/em&gt;PATH 로 OS에 적용하는것과 java 실행시 옵션을 주는것은 같은 역할을 한다.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Spring + Kotlin 멀티모듈 생성]]></title><link>https://ssongey.github.io/works/posts/2022-07-23--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2022-07-23--001</guid><pubDate>Sat, 23 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;br/&gt;
 &lt;p&gt;이번에 본사 인프라에서 kep 인프라로 이전하게 되면서 Ruby on Rails 로 되어있는 프로젝트를 Kopring 으로 변경하기로 결정을 하였다.&lt;br&gt;
 해당 프로젝트는 여러개의 서비스가 한 프로젝트에 모두 담겨 있는데, 멀티 모듈로 구성하면 좋을 듯 하여 코프링으로 멀티모듈을 구성하게 되었다.&lt;/p&gt;
 &lt;h2&gt;✔️ 환경&lt;/h2&gt;
