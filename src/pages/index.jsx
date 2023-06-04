@@ -57,8 +57,13 @@ class IndexRoute extends React.Component {
     if (searchWord) {
       const upperedSearchWord = searchWord.toUpperCase()
       filteredPosts = filteredPosts.filter(post => {
-        const { title, description } = post.node.frontmatter
-        return (title.toUpperCase().indexOf(upperedSearchWord) > -1) || (description.toUpperCase().indexOf(upperedSearchWord) > -1)
+        let { title, description } = post.node.frontmatter
+        try {
+          return (title.toUpperCase().indexOf(upperedSearchWord) > -1) || (description.toUpperCase().indexOf(upperedSearchWord) > -1)
+        } catch(e) {
+          console.error('filter error(post: ',title,'): ', e)
+        }
+        return false
       })
     }
     return filteredPosts
