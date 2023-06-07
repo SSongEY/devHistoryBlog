@@ -1,5 +1,5 @@
 ---
-title: "[무료 사용 가능한 오픈렌즈(OpenLens) 설치 방법"
+title: "무료 사용 가능한 오픈렌즈(OpenLens) 설치 방법"
 date: "2022-12-22"
 layout: post
 draft: false
