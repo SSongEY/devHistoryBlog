@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[작업 기록 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 04 Jun 2023 21:41:20 GMT</lastBuildDate><item><title><![CDATA[docker 로그 사이즈 16k limit 에 따른 조치]]></title><description><![CDATA[fluent-concat-plugin]]></description><link>https://ssongey.github.io/works/posts/2023-01-29--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2023-01-29--001</guid><pubDate>Sun, 29 Jan 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이번에 내가 담당하고 있던 한 서비스를 PM장비에서 K8S로 이전하는 작업을 진행하게 됐는데,&lt;br&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[작업 기록 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 07 Jun 2023 14:40:52 GMT</lastBuildDate><item><title><![CDATA[docker 로그 사이즈 16k limit 에 따른 조치]]></title><description><![CDATA[fluent-concat-plugin]]></description><link>https://ssongey.github.io/works/posts/2023-01-29--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2023-01-29--001</guid><pubDate>Sun, 29 Jan 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이번에 내가 담당하고 있던 한 서비스를 PM장비에서 K8S로 이전하는 작업을 진행하게 됐는데,&lt;br&gt;
 해당 서버가 출력하고 있던 로그 사이즈가 16k 가 넘어버려서 로그가 제대로 ES에 적재되지 못하는 이슈가 발생했다.&lt;br&gt;
 이에 &lt;strong&gt;fluentd concat plugin&lt;/strong&gt; 을 적용한 내용을 기록한다.&lt;/p&gt;
 &lt;br/&gt;
@@ -413,7 +413,7 @@ node.roles: [&amp;quot;transform&amp;quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;참고)&lt;/strong&gt;&lt;br&gt;
 &lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html&quot;&gt;https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html&lt;/a&gt;&lt;br&gt;
 &lt;a href=&quot;https://opster.com/guides/elasticsearch/data-architecture/how-to-configure-all-elasticsearch-node-roles/#Master-node&quot;&gt;https://opster.com/guides/elasticsearch/data-architecture/how-to-configure-all-elasticsearch-node-roles/#Master-node&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;https://jeongxoo.tistory.com/12&quot;&gt;https://jeongxoo.tistory.com/12&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[무료 사용 가능한 오픈렌즈(OpenLens) 설치 방법]]></title><link>https://ssongey.github.io/history/posts/2022-12-22--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2022-12-22--001</guid><pubDate>Thu, 22 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;너무너무 잘 사용하던 Lens가 2023년 1월 2일 이후로는 기업에서 유료화가 된다고 한다.&lt;/p&gt;
+&lt;a href=&quot;https://jeongxoo.tistory.com/12&quot;&gt;https://jeongxoo.tistory.com/12&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[무료 사용 가능한 오픈렌즈(OpenLens) 설치 방법]]></title><link>https://ssongey.github.io/history/posts/2022-12-22--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2022-12-22--001</guid><pubDate>Thu, 22 Dec 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;너무너무 잘 사용하던 Lens가 2023년 1월 2일 이후로는 기업에서 유료화가 된다고 한다.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://medium.com/k8slens/lens-6-released-vision-for-the-future-new-subscription-model-and-features-available-628ff21fe14a&quot;&gt;https://medium.com/k8slens/lens-6-released-vision-for-the-future-new-subscription-model-and-features-available-628ff21fe14a&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://medium.com/k8slens/lens-6-released-vision-for-the-future-new-subscription-model-and-features-available-628ff21fe14a&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;하지만 &lt;strong&gt;개인용, 교육용, 스타트업(연매출 또는 자금 1,000만 달러 미만) 은 무료&lt;/strong&gt;라고 하니..&lt;br&gt;
@@ -6911,7 +6911,7 @@ res의 경우에는 DTO 클래스 또는 string 객체로 정의 했기 때문�
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;kotlin&quot;&gt;&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token function&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;it&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; StandardCharsets&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;UTF_8&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;을 이용하여 String 객체로 로깅하였다.&lt;/p&gt;
 &lt;p&gt;그런데 생각해보니.. ES를 이용하여 로깅수집을 하고 있기 때문에 type 검사 후에 string 또는 map 으로 변환하는게 가장 좋을 듯 싶다.&lt;br&gt;
-추후에 다시 수정해야겠다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[No title]]></title><description><![CDATA[따라하며 배우는 MySQL on Docker 실습]]></description><link>https://ssongey.github.io/history/posts/2021-05-16--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2021-05-16--001</guid><pubDate>Sun, 16 May 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; # Summary &lt;/span&gt;&lt;/p&gt;
+추후에 다시 수정해야겠다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[따라하며 배우는 MySQL on Docker 실습]]></title><link>https://ssongey.github.io/history/posts/2021-05-16--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2021-05-16--001</guid><pubDate>Sun, 16 May 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class=&quot;title__sub1&quot;&gt; # Summary &lt;/span&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Docker 환경에서 MySQL Master-Replication 구성&lt;/li&gt;
 &lt;li&gt;Orchestrator를 이용한 HA 구성&lt;/li&gt;
@@ -19484,21 +19484,6 @@ fi&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
   
   &lt;/a&gt;
     &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Tool] IntelliJ IDEA 단축키]]></title><link>https://ssongey.github.io/works/posts/2020-08-31--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2020-08-31--001</guid><pubDate>Mon, 31 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Alt + Enter&lt;/h2&gt;
-&lt;p&gt;코드에서 오류가 발견된 경우 해당 오류 위에 커서를 놓고 Alt+Enter를 누르면 문제에 대한 수정 제안 목록이 표시된다.&lt;/p&gt;
-&lt;h2&gt;Alt+1 / ESC&lt;/h2&gt;
-&lt;p&gt;프로젝트 창이 열리고 포커스 위치, ESC를 누르면 에디터에 다시 포커스가 간다.&lt;/p&gt;
-&lt;h2&gt;Ctrl + E&lt;/h2&gt;
-&lt;p&gt;최근 실행했던 파일 확인&lt;/p&gt;
-&lt;h2&gt;Ctrl+Tab&lt;/h2&gt;
-&lt;p&gt;switcher 가 열림&lt;/p&gt;
-&lt;h5&gt;참고&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://blog.jetbrains.com/ko/2020/03/11/top-15-intellij-idea-shortcuts_ko/&quot;&gt;가장 많이 사용되는 IntelliJ IDEA 단축키 15개&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://gmlwjd9405.github.io/2019/05/21/intellij-shortkey.html&quot;&gt;intellij 유용한 단축키 정리&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Tool] IntelliJ 커스텀 파일 템플릿 추가하기]]></title><link>https://ssongey.github.io/works/posts/2020-08-31--002</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2020-08-31--002</guid><pubDate>Mon, 31 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h5&gt;참고&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://jojoldu.tistory.com/128?category=678716&quot;&gt;[IntelliJ] 커스텀 파일 템플릿 추가하기&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Node] gyp verb check python checking for Python executable "python" in the PATH]]></title><description><![CDATA[[Node] Node.js 종속성을 위해 Windows에서 Python 실행하기]]></description><link>https://ssongey.github.io/errors/2020-08-29-001</link><guid isPermaLink="false">https://ssongey.github.io/errors/2020-08-29-001</guid><pubDate>Sat, 29 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;문제&lt;/h2&gt;
 &lt;p&gt;gatsby node_modules 설치 도중 문제 발생&lt;/p&gt;
 &lt;h2&gt;원인&lt;/h2&gt;
@@ -19553,7 +19538,7 @@ C:\Users\ben.windows-build-tools\python27\python.exe
 &lt;h4&gt;how to compress static files in vue&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&quot;https://medium.com/@aetherus.zhou/vue-cli-3-performance-optimization-55316dcd491c&quot;&gt;https://medium.com/@aetherus.zhou/vue-cli-3-performance-optimization-55316dcd491c&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;vue js bundle 줄이기&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://ui.toast.com/weekly-pick/ko_20190603/&quot;&gt;https://ui.toast.com/weekly-pick/ko_20190603/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[이벤트 버블링, 이벤트 캡처 그리고 이벤트 위임]]></title><link>https://ssongey.github.io/history/posts/2020-05-08--002</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2020-05-08--002</guid><pubDate>Fri, 08 May 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/&quot;&gt;https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[PKI] 인증서 파일 형식 및 확장자]]></title><link>https://ssongey.github.io/history/posts/2020-05-03--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2020-05-03--001</guid><pubDate>Sun, 03 May 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;1. 인코딩 (확장자로 쓰이기도 한다.)&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://ui.toast.com/weekly-pick/ko_20190603/&quot;&gt;https://ui.toast.com/weekly-pick/ko_20190603/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[PKI] 인증서 파일 형식 및 확장자]]></title><link>https://ssongey.github.io/history/posts/2020-05-03--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2020-05-03--001</guid><pubDate>Sun, 03 May 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;1. 인코딩 (확장자로 쓰이기도 한다.)&lt;/h3&gt;
 &lt;h4&gt;# der&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Distinguished Encoding Representation (DER)&lt;/li&gt;
@@ -20081,52 +20066,7 @@ signer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4&gt;참고&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://zetawiki.com/wiki/%EB%A6%AC%EB%88%85%EC%8A%A4_%EB%B0%98%EB%B3%B5_%EC%98%88%EC%95%BD%EC%9E%91%EC%97%85_cron,_crond,_crontab&quot;&gt;https://zetawiki.com/wiki/%EB%A6%AC%EB%88%85%EC%8A%A4_%EB%B0%98%EB%B3%B5_%EC%98%88%EC%95%BD%EC%9E%91%EC%97%85_cron,_crond,_crontab&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[React] Redux]]></title><link>https://ssongey.github.io/history/posts/2020-01-29--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2020-01-29--001</guid><pubDate>Wed, 29 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/devHistoryBlog/static/3adac9b50eab4fc53c0073d2c6ac98aa/8710b/001-01.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 567px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 62.083333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAACRklEQVQoz11Ta2/aMBTlD+/f7NM+bZVQBatQpUrTpE1aeYRHIAmBJISQFwkEEqAbkJbSkJzZ7mCAJeveax8f3+t7nMuyDHQkSQLf9+E4DoIggGmaWC6XbI9isixl/m63w3g8huu6GBoGNtvtGSZD7pyQkuiDATzPQ7/fx2w2O4GP4/X1DY5twSUX65qKzXp9SXh94Do++rt4hXWkETvH0xughBtMnt+QZJe4EyELkxS6KKPb7SI9Iz0kr1Abn/Dw5QOU1meowQKdTge8bsL584JDmp5Ic8dU6ZgNbUgdAVJPhj/2kJJn+IfEamHDsx4xmUqoyENU+Q7aooRRuMJLcrgiJMF+/gS+3oAsiBh1ZNQbDcz6Q5BUGXhPkljuAXdqolYto2t5aPI8mrKC7SH7T0idlKTcLtcwJl0OTRfV7z+h6Tpaj1XE682pdN2dgmtVEC2nGJgOuGaLZakZo0vCRRSRzQYCz8dvZwJZ6ZO3ElCuVEiJ05MKNFVDvVXFmjTIJ1idXCqKIiQyn59f3ptCJcLVOMyjOb7d/IBUkbHb78C3eIikfI7jmIxoExRNgaU7uP1YQryNmRbr9ToEgmu324jjGDnbtlkQzAK0ORFqb4AwCiGQ5hhEuL1ejwmZ6tIYGfDdCRq/eESkKsuymCKoVVUVYRgiRwNKaplErGMHtmMzgdM1OunPMYYGJKHLDsmyDG2gsovopGuKokDTNHYuJwgCK+dor336RtVKDbc3Bdzf3yOfz+Pu6x1KpRKKxSKzhcL7HsX+BVNaamM7VTqJAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;001 01&quot;
-        title=&quot;&quot;
-        src=&quot;/devHistoryBlog/static/3adac9b50eab4fc53c0073d2c6ac98aa/8710b/001-01.png&quot;
-        srcset=&quot;/devHistoryBlog/static/3adac9b50eab4fc53c0073d2c6ac98aa/8ff5a/001-01.png 240w,
-/devHistoryBlog/static/3adac9b50eab4fc53c0073d2c6ac98aa/e85cb/001-01.png 480w,
-/devHistoryBlog/static/3adac9b50eab4fc53c0073d2c6ac98aa/8710b/001-01.png 567w&quot;
-        sizes=&quot;(max-width: 567px) 100vw, 567px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[[PKI] 인증서 확장]]></title><link>https://ssongey.github.io/history/posts/2020-01-28--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2020-01-28--001</guid><pubDate>Tue, 28 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;#1. 키 사용&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;키 사용 용도 9가지에 대해서 인지 필요 (0~9 까지 있지만 실사용은 1~9 까지)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;#2. 확장 키사용&lt;/h3&gt;
-&lt;p&gt;    - OID &lt;br&gt;
-- OID Info 사이트 존재&lt;br&gt;
-- derEncoding &lt;br&gt;
-- 서명용으로 사용하는데 키사용, 확장 키사용으로 표시를 한 부분은 개발자 몫?  &lt;/p&gt;
-&lt;h3&gt;#3. CRL 분배 포인트, OCSP 둘 중 하나만 선택해서 인증서 유효성 검증(3가지) 를 한다&lt;/h3&gt;
-&lt;p&gt;    - 유효일자 검사, ?, ?&lt;/p&gt;
-&lt;h3&gt;#4. 주체대체이름&lt;/h3&gt;
-&lt;p&gt;    - subject에 대한 &lt;/p&gt;
-&lt;p&gt;(계속 정리 필요)&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] CertInstallationRes 구현]]></title><link>https://ssongey.github.io/works/posts/2020-01-27--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2020-01-27--001</guid><pubDate>Mon, 27 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
+&lt;p&gt;&lt;a href=&quot;https://zetawiki.com/wiki/%EB%A6%AC%EB%88%85%EC%8A%A4_%EB%B0%98%EB%B3%B5_%EC%98%88%EC%95%BD%EC%9E%91%EC%97%85_cron,_crond,_crontab&quot;&gt;https://zetawiki.com/wiki/%EB%A6%AC%EB%88%85%EC%8A%A4_%EB%B0%98%EB%B3%B5_%EC%98%88%EC%95%BD%EC%9E%91%EC%97%85_cron,_crond,_crontab&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[작업로그] CertInstallationRes 구현]]></title><link>https://ssongey.github.io/works/posts/2020-01-27--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2020-01-27--001</guid><pubDate>Mon, 27 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/devHistoryBlog/static/d46ebc8e71b6f7be29feff08dfc1e6e4/efeb1/001-01.png&quot;
@@ -20486,10 +20426,7 @@ check point :&lt;/p&gt;
 &lt;p&gt; -. check mounted state&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# df -h&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt; -. service start : DB, WAS, Primary Script?&lt;/p&gt;
-&lt;p&gt; -. Secondary Script exit&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Spring] Filter, Interceptor, AOP]]></title><link>https://ssongey.github.io/history/posts/2019-09-30--001</link><guid isPermaLink="false">https://ssongey.github.io/history/posts/2019-09-30--001</guid><pubDate>Mon, 30 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;호출 순서&lt;/h3&gt;
-&lt;p&gt;Filter -&gt; Interceptor -&gt; aop -&gt; aop -&gt; Interceptor -&gt; Filter&lt;/p&gt;
-&lt;h3&gt;전체 순서&lt;/h3&gt;
-&lt;p&gt;ServletRequest -&gt; Filter -&gt; dispatcherServlet -&gt; Interceptor -&gt; aop -&gt; 함수 -&gt; aop -&gt;Interceptor -&gt; dispatcherServlet -&gt; Filter -&gt; ServletResponse&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[AWS] private key permission in Windows]]></title><link>https://ssongey.github.io/errors/posts/2019-08-28--001</link><guid isPermaLink="false">https://ssongey.github.io/errors/posts/2019-08-28--001</guid><pubDate>Wed, 28 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt; -. Secondary Script exit&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[AWS] private key permission in Windows]]></title><link>https://ssongey.github.io/errors/posts/2019-08-28--001</link><guid isPermaLink="false">https://ssongey.github.io/errors/posts/2019-08-28--001</guid><pubDate>Wed, 28 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Problem&lt;/h2&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
