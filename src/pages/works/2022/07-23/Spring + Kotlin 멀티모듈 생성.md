@@ -30,6 +30,7 @@ description: ""
 ![](001-01.png)
 
 <br/>
+<br/>
 
 ## ✔️ 멀티 프로젝트 생성
 ### 1. 프로젝트 생성
@@ -44,7 +45,7 @@ description: ""
 
 <br/>
 
-## 2. 서브 모듈 생성
+### 2. 서브 모듈 생성
 2.1. core, api-server1, api-server2 모듈을 생성한다.
 
 ![](001-04.png)
@@ -60,7 +61,7 @@ description: ""
 <br/>
 <br/>
 
-## 3. root 프로젝트 settings.gradle.kts 파일 설정
+### 3. root 프로젝트 settings.gradle.kts 파일 설정
 **settings.gradle.kts** 는 빌드 대상 프로젝트를 설정하는 파일이다.  
 서브 모듈을 include 해주면 gradle 탭의 root 프로젝트 하위에 모듈이 표시가 된다.  
 
@@ -75,20 +76,20 @@ description: ""
 
 **⚠️  만약 unlink 를 안하면??**
 
-빌드를 시도할 경우 root 프로젝트의 하위 모듈이 빌드가 되지 않고, 같은 레벨에 있는 모듈이 빌드가 된다.  
+빌드를 시도할 경우 root 프로젝트의 **하위 모듈이 빌드가 되지 않고**, 같은 레벨에 있는 모듈이 빌드가 된다.  
 이는 파일명 자체에서도 확인할 수 있는데, 하위 모듈이 될 경우 해당 프로젝트 명은 콜론(:) 표시가 되어야 하는데, unlink를 하지 않은 api-server2의 경우 파일명 뒤에 프로젝트명에 콜론표시가 없다.
 
 ![](001-11.png)
 
 <br/>
 
-## 4. build.gradle.kts
+### 4. build.gradle.kts
 
 많이 삽질한 단계…
 
 각각 모듈 내의 build.gradle.kts 에 설정을 해줘도 되지만, 관리를 편하게 하기 위해 **root 프로젝트의 build.gradle.kts 파일에 모두 설정**하도록 하였다. (그래서 위 서브 모듈 생성시에 src를 제외하고 모두 지웠다.)
 
-### AS IS)
+#### AS IS)
 
 ```groovy
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -128,7 +129,7 @@ tasks.withType<Test> {
 }
 ```
 
-### TO BO)
+#### TO BO)
 
 ```groovy
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -206,7 +207,7 @@ project(":api-server2") {
 
 <br/>
 
-## 5. application.yaml 설정
+### 5. application.yaml 설정
 
 각 api 모듈들은 각 다른 포트로 실행되어야 하므로 port 를 다르게 지정해준다.
 
@@ -214,12 +215,15 @@ project(":api-server2") {
 
 <br/>
 <br/>
+<br/>
 
-# ✔️ 공통모듈 의존성 테스트
+## ✔️ 공통모듈 의존성 테스트
 
 core 모듈에 요청 로깅 필터 클래스 생성 후 빈으로 등록하여 각 api 모듈에서 로깅이 되는지 확인 한다.
 
-## 1. core 모듈에 RequestLoggingFilter 생성 후 Bean으로 등록
+<br/>
+
+### 1. core 모듈에 RequestLoggingFilter 생성 후 Bean으로 등록
 
 ReqeustLoggingFilter 클래스
 
@@ -278,23 +282,25 @@ build.gradle.kts 의 subprojects/ apply 블럭 내에 kotlin-spring 플러그인
 
 ![](001-15.png)
 
-<Br/>
+<br/>
+<br/>
 
-## 2. 각 api 모듈에 controller 생성 후 테스트
+### 2. 각 api 모듈에 controller 생성 후 테스트
 
 ![](001-16.png)
 
 **api-server1, api-server2 모두 테스트시에 logging이 되지 않는다. 왜?**
 
 <br/>
+<br/>
 
-## 3. ComponentScan 설정
+### 3. ComponentScan 설정
 
 프로젝트가 실행되면서 component scan을 하게되는데, 별도로 ComponentScan 관련 설정을 하지 않으면 @SpringBootApplication 이 정의된 곳이 base package 가 된다.
 
 따라서 각 `@SpringBootApplication` 가 설정되어 있는 클래스에 ComponentScan 설정을 해줘야 한다.
 
-![](00117.png)
+![](001-17.png)
 
 <br/>
 
