@@ -26,20 +26,28 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-7d6382d6a684d67a2cc0.js"
+    "url": "webpack-runtime-1b2cd62588d3995716d8.js"
   },
   {
     "url": "framework-c50c4d43c442b0cfdcd1.js"
   },
   {
-    "url": "app-4fda6585355fb5221d73.js"
+    "url": "app-dd4419e112c796bdb434.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-2296adb1de2fc003fbd5.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "448fc2d0436dcb14ef944af29106e4ef"
+    "revision": "63b2c1247458fd5c4949d0687a3788b4"
+  },
+  {
+    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
+    "revision": "c7047792c6f91b88e0d9abc0cd819e92"
+  },
+  {
+    "url": "page-data/app-data.json",
+    "revision": "b3ac5c971e0d16673ce1e7b50bf405ed"
   },
   {
     "url": "polyfill-b94d61d2f9d8c78e7b0d.js"
@@ -61,12 +69,12 @@ const { NavigationRoute } = workbox.routing
 
 const navigationRoute = new NavigationRoute(async ({ event }) => {
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^`), ``)
+  pathname = pathname.replace(new RegExp(`^/devHistoryBlog`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-4fda6585355fb5221d73.js`))) {
+  if (!resources || !(await caches.match(`/devHistoryBlog/app-dd4419e112c796bdb434.js`))) {
     return await fetch(event.request)
   }
 
@@ -79,7 +87,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/devHistoryBlog/offline-plugin-app-shell-fallback/index.html`
   return await caches.match(offlineShell)
 })
 
