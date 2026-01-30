@@ -257,7 +257,6 @@
 <url> <loc>https://ssongey.github.io/devHistoryBlog/tags/noco-db/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/algo/posts/2023-06-06--004</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2022-10-23--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://ssongey.github.io/devHistoryBlog/tags/gslb/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/errors/posts/2020-09-22--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/errors/2020-08-29-001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/tags/node/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -304,6 +303,9 @@
 <url> <loc>https://ssongey.github.io/devHistoryBlog/hisoty/posts/2022-04-29--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/tags/shell/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/categories/hisoty/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2024-05-10--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/tags/gslb/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/tags/slb/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/algo/posts/2021-03-20--004</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/tags/method/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/history/posts/2022-04-30--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -318,6 +320,9 @@
 <url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2022-08-23--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2022-12-09--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/history/posts/2022-09-17--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2024-06-15--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/tags/circuit/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/tags/resilience-4-j/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2022-04-30--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/tags/ingress/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/errors/posts/2022-09-14--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -326,10 +331,18 @@
 <url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2022-12-09--002</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/history/posts/2022-09-03--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/tags/swap/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2025-01-23--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/tags/prometheus/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/tags/prom-ql/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2022-08-21--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/history/posts/2022-08-21--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2025-03-10--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2024-07-14--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/tags/rate-limit/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2022-07-25--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/tags/kotlin-java/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/works/posts/2024-06-22--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/tags/spring-batch/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/history/posts/2022-08-07--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/history/posts/2022-08-07--002</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/history/posts/2022-07-30--001</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -338,14 +351,14 @@
 <url> <loc>https://ssongey.github.io/devHistoryBlog/tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/__sample/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/docker/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/algo/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/errors/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/etc/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/climbing/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/gatsby/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://ssongey.github.io/devHistoryBlog/algo/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/history/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/k8s/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/shell/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://ssongey.github.io/devHistoryBlog/works/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ssongey.github.io/devHistoryBlog/spring/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ssongey.github.io/devHistoryBlog/works/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>

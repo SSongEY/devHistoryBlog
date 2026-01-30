@@ -1,4 +1,2147 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[작업 기록 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 30 Jul 2023 17:23:54 GMT</lastBuildDate><item><title><![CDATA[Aritable 의 대체 오픈소스 NocoDB]]></title><link>https://ssongey.github.io/works/posts/2023-07-30--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2023-07-30--001</guid><pubDate>Sun, 30 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;✔️ NocoDB?&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eunyoung]]></title><description><![CDATA[작업 기록 블로그]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 30 Jan 2026 08:09:50 GMT</lastBuildDate><item><title><![CDATA[당신의 파드는 graceful 하게 종료되고 있을까?]]></title><link>https://ssongey.github.io/works/posts/2025-03-10--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2025-03-10--001</guid><pubDate>Mon, 10 Mar 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Kubernetes에서의 Graceful Termination&lt;/h2&gt;
+&lt;p&gt;쿠버네티스를 사용을 한다면, 파드를 graceful 하게 종료시키기 위해 deployment 매니페스트에 preStop Hook, terminationGracePeriodSeconds 를 설정하곤 한다.&lt;/p&gt;
+&lt;h3&gt;✔️ preStop Hook&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;파드가 종료를 요청받고, 컨테이너가 종료되기 직전 실행되는 훅&lt;/li&gt;
+&lt;li&gt;애플리케이션이 종료 전에 필요한 작업을 완료할 수 있도록 시간을 줄 수 있으며,&lt;/li&gt;
+&lt;li&gt;이는 서비스의 중단을 최소화하고, 데이터 무결성을 보장하는데 도움이 된다.&lt;/li&gt;
+&lt;li&gt;시간을 길게 설정할수록 안정성은 좋아지나 애플리케이션 다운시간이 길어지는 트레이드 오프가 생긴다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;✔️ terminationGracePeriodSeconds&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;파드 내의 모든 컨테이너가 종료 작업을 완료할 수 있도록 주어지는 유예기간 (초단위)&lt;/li&gt;
+&lt;li&gt;preStop Hook 과 마찬가지로 데이터 무결성 보장, 서비스 가용성 유지, 안정성 확보 등의 이점이 있다.&lt;/li&gt;
+&lt;li&gt;기본값은 30초이며, 설정된 시간이 넘게되면 파드는 SIGKILL 신호로 즉시 종료된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;예시&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; apps/v1
+&lt;span class=&quot;token key atrule&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Deployment
+&lt;span class=&quot;token key atrule&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; example&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;deployment
+&lt;span class=&quot;token key atrule&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;matchLabels&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; example&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;app
+  &lt;span class=&quot;token key atrule&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; example&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;app
+    &lt;span class=&quot;token key atrule&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;terminationGracePeriodSeconds&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;60&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# 유예 기간을 60초로 설정&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; example&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;container
+        &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; example&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;image&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
+        &lt;span class=&quot;token key atrule&quot;&gt;lifecycle&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;preStop&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;token key atrule&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;token key atrule&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;sh&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;-c&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;echo &apos;PreStop Hook Triggered&apos;; sleep 10&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# preStop Hook 명령 설정&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;80&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;✔️ Kubernetes에서 파드가 종료되는 순서&lt;/h3&gt;
+&lt;p&gt;그럼, 쿠버네티스에서 파드가 종료되는 순서를 알아보자.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 파드 삭제 요청&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;deployment rollout, scale down 등의 사용자 또는 시스템으로부터 파드 삭제 요청을 받는다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2. 파드를 종료중 상태로 업데이트&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;K8S API 서버는 파드의 상태를 ‘Terminating’으로 업데이트를 하고, 해당 파드는 모든 서비스의 endpodint에서 제거된다.&lt;/li&gt;
+&lt;li&gt;이 시점에 파드는 새 트래픽 수신을 중지하게되고, 실행중인 요청은 정상적으로 처리한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;3. preStop Hook 실행&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;파드에 ‘preStop’ 훅이 정의되어 있으면, 종료 신호를 받았을때 정의된 명령어가 실행된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;4. 컨테이너에 SIGTERM 신호 전송&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;preStop Hook 이 완료되면, K8S는 파드 내 컨테이너들에게 SIGTERM 신호를 보낸다.&lt;/li&gt;
+&lt;li&gt;이때 DB연결, WebSocket 스트림 등 오래 지속되는 연결에 대한 중지가 일어난다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;5. Graceful Termination Period&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;K8S는 파드에 정의된 ‘terminationGracePeriodSeconds’ 동안 컨테이너가 종료되기를 기다린다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;6. 파드 제거&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;마지막으로 파드가 제거된다.&lt;/li&gt;
+&lt;li&gt;이때, Graceful Termination Period 후에도 컨테이너가 계속 실행 중이면, SIGKILL 신호가 전송되어 강제로 컨테이너가 종료된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;유의할점.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Graceful Termination Period 와 preStop hook, SIGTERM signal이 병렬로 발생한다.&lt;/li&gt;
+&lt;li&gt;때문에 ‘애플리케이션이 종료 전에 필요한 작업을 완료할 수 있는 시간(preStop Hook 수행시간) + 애플리케이션 종료시간’ 보다  ‘terminationGracePeriodSeconds’ 시간이 커야 Graceful Termination이 보장된다고 봐야한다.&lt;/li&gt;
+&lt;li&gt;정상적인 Graceful Termination&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/13d88dee915e569cbb98a1a2e41f6d7b/53639/01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 73.33333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB0ElEQVQ4y31UXY+iQBDk//+ne7ncy2ou3HJowKCLChhlQVCRD2eooxuGHdm97aQyk+6eoma6GwODtW3Lq5QSQghem6ZBFEXY7XbYbre8Enzfx+FwwOPx4DwF4jCmhERSliWqqkJRFNjv99hsNiOIbL1es/9+v3Megc7QBz4RkpMUKkxN5ZHpeQQmpAQd5JwSfBfX7Umh7tRVPBFzXIzk7Nc+yoTn8xlJkiDPc1wuV5auguSj+O12gzpe3K7w394QhgEXrKnr8YNMWL5bKE+/O5ioYhMyWwCFB1xdiOQvRGoD5Lv7QPILj/0LMstCZpvInQXEnxlQlYN6unLbdPR1DzRdZVNsIwfB0UN4WvMaxf2aV1FX2bS/pxQ96qpTJz8IW/UOw1ul3QHr3cQisQa8MtzzEj9PP+BfNn2/on06N155WkUpJL4ziuv5aHvakfBzlRvI7gqy7TWovcJXbaX3JSvUx0dvZlVxNZLsk71v2vi0r7uKG7Q5Ho9wXReO4/B40Z4QBAEnkYVhCNu2Oe55HpbLJY+esjiOec4NpYCGfTabwTRNzOdzrFarUQHNKs0v+SlOxESYpulHgw83Nf43m/obUaIaAFKSZRnv6ecxfcd/isaJvC7NirMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/13d88dee915e569cbb98a1a2e41f6d7b/d9199/01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/13d88dee915e569cbb98a1a2e41f6d7b/8ff5a/01.png 240w,
+/devHistoryBlog/static/13d88dee915e569cbb98a1a2e41f6d7b/e85cb/01.png 480w,
+/devHistoryBlog/static/13d88dee915e569cbb98a1a2e41f6d7b/d9199/01.png 960w,
+/devHistoryBlog/static/13d88dee915e569cbb98a1a2e41f6d7b/53639/01.png 1358w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;terminationGracePeriodSeconds 시간이 충분치 않은 경우&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/3652e02db8a2b4d5715af061e14a3c48/bb543/02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 66.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAABr0lEQVQ4y3VTa5OaQBDk//+q+5T7dEQsTEmMWiZw4aXACvLa3c7MCmS1vKlqB3Z7WnZ61oEVWmv7FeM4Is9zpGmKLMtMTpLE5LZt8arWeV6QUqJpGnRdh7quF8EZs6AQwogylFKLhsM/Mzh4k0Xtta+C95nLNTPfeSYpJYk0Mv0/9B28rqevWfgkaIcjab/tFXrSGAiKaqW+Sw3E7UeNcdLgNdG0iLMc57JCermgoyJuUVlV5vhO3+TI/3ioki3K+Adk/Zv+4RO4RajzHUQaoCsPpJ5AFS6KvY904yP7FSDbbVF9hvj2/o4wDE3fHYyCBEJCBHSRERTplsQCwk80BJPPO2gRQJcJUBaEM1Bd0F9yRFFkJsIc2eqUiZZ68vHXhZswvuMjpkzwMg9v6RuEbJbjM9STSZPLyoAbz6bgC3e7obkbNk/A5LKcjFkE7ZgJ9jjNHK30w8zN/Ic5nB9ezdyDGGXu0/Pcvbwpt9sNh8MBrku98jyD1WqF/X5vbgtHHMfmnQ1gR1n8dDphvV7D930URTGZYn3B8XjEZrNBEASmeBiGl3fcDr6C1+t14f0DzaLw4tOwjj8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/3652e02db8a2b4d5715af061e14a3c48/d9199/02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/3652e02db8a2b4d5715af061e14a3c48/8ff5a/02.png 240w,
+/devHistoryBlog/static/3652e02db8a2b4d5715af061e14a3c48/e85cb/02.png 480w,
+/devHistoryBlog/static/3652e02db8a2b4d5715af061e14a3c48/d9199/02.png 960w,
+/devHistoryBlog/static/3652e02db8a2b4d5715af061e14a3c48/bb543/02.png 1418w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;컨테이너에서의 Graceful Termination&lt;/h2&gt;
+&lt;p&gt;적당한 preStop Hook, terminationGracePeriodSeconds 설정으로 Graceful Termination 이 되었을까?&lt;/p&gt;
+&lt;p&gt;나도 그런줄 알았지만.. 컨테이너에 함정이 숨어 있었다.&lt;/p&gt;
+&lt;p&gt;리얼 환경 배포시에 위 설정값을 충분히 크게 줘도 &lt;strong&gt;DB 커넥션이 애플리케이션에서 강제로 종료되는 현상&lt;/strong&gt;이 발생하였고, 팀 내에서 아래 글을 발견하게 되었다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://vinodhinic.medium.com/are-you-sure-sigterm-is-received-by-your-application-in-kubernetes-885a3ce7ae4e&quot;&gt;https://vinodhinic.medium.com/are-you-sure-sigterm-is-received-by-your-application-in-kubernetes-885a3ce7ae4e&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;정리하면 도커는 2가지 방식, Shell과 Exec 방식을 지원하는데, &lt;strong&gt;도커파일에서 애플리케이션 실행 구문에 어떤 방식을 사용하냐에 따라&lt;/strong&gt; kubelet이 보낸 &lt;strong&gt;SIGTERM이 실제로 애플리케이션에 수신이 되지 않는다&lt;/strong&gt;는 점이다.&lt;/p&gt;
+&lt;h3&gt;✔️ Shell 방식&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;컨테이너 내 shell에서 해당 명령을 실행하며, &lt;strong&gt;PID 1 인 프로세스는 shell&lt;/strong&gt; 이 된다.&lt;/li&gt;
+&lt;li&gt;계층 순서는 ‘파드 &gt; 컨테이너 &gt; &lt;strong&gt;shell&lt;/strong&gt; &gt; 애플리케이션’ 이 된다.&lt;/li&gt;
+&lt;li&gt;kubelet이 SIGTERM 신호를 보내면 shell 프로세스에서 소비된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;docker&quot;&gt;&lt;pre class=&quot;language-docker&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ENTRYPOINT&lt;/span&gt; java &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;Dspring.profiles.active=$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;APP_PHASE&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;sandbox&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;jar /app/app.jar&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;✔️ Exec 방식&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;컨테이너에서 바로 애플리케이션이 실행되며, &lt;strong&gt;PID 1인 프로세스는 애플리케이션&lt;/strong&gt;이다.&lt;/li&gt;
+&lt;li&gt;계층 순서는 ‘파드 &gt; 컨테이너 &gt; 애플리케이션’ 이 된다.&lt;/li&gt;
+&lt;li&gt;kubelet이 SIGTERM 신호를 보내면 애플리케이션 프로세스에서 소비된다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;최대 단점은 환경변수를 사용할 수 없다는 것&lt;/strong&gt;이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;docker&quot;&gt;&lt;pre class=&quot;language-docker&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ENTRYPOINT&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;java&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;-jar&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/app/app.jar&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;✔️ Shell 방식의 컨테이너 내 애플리케이션 종료&lt;/h3&gt;
+&lt;p&gt;내가 서비스하고 있는 애플리케이션의 &lt;strong&gt;dockerfile 설정은 shell 방식&lt;/strong&gt;으로 되어 있었고,&lt;/p&gt;
+&lt;p&gt;kubelet에서 &lt;strong&gt;SIGTERM 신호를 보내도 shell 이 받아버려&lt;/strong&gt; Graceful Termination 을 위해 세팅되었던 K8S 설정들이 무의미 했다는걸 알게 되었다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;shell 방식의 애플리케이션 종료&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/01d4e72d63760a32a3263008e59d4fe6/0d292/03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 58.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAACKUlEQVQoz21T207bQBD1/79UtFW/IX0pICgXVaoKEkEEhBpCaKxEIQ5Jk/iWtWPHe7NPZ9cY0dKVx3PWM3Nmd33WwX+GlBJKKWy3W8xmT/A8D9Pp1PrJZALf922OlOJNrWNeVVVaAq1ry/OMyHJkWYY4jhBFIdmzD0MwtrZxk9fUlKWuCR8fJwiCGFwoFIWkJE5EBRUIa5wra8Wzt5jyTGxDeVnGqUaQ30IIAcf355h6PcTRBGkypeVGKHVIvWLCsZ1bjBpXZVgbYa38l5hWCTUp4CgZwp8dYz4+wNL7ioL9QLm9QFVcALxNdgmenCOLvkPn9A03QNkh8ms67Cs8PZ5iOTtFlg5pF7ImrNJjqPALVLQLbSzeRcX2Ua73MO5+Qu/yHdybj3CvduBef8CvznsMCN+1d9C5bGEdnEGJiT0GR4qUuq6oo1m+T1tZoTJbMVvVAeZeH53zE3zbb+Fkr4XDgxaOjj7j7OwQvV4bktMxYQEpIiLkcLQu3/z6UTDE3e+feFjdww0f8LDooj/v4tbvgOWMijX+rTNzIzMnTVMrgcaMFAK2QpCuEKY+gqTGLI/hsTGSjEFwYYs3m9TmF4XBG/KFWaHppu0vbwStFXWnR4lXWGrIohY7F/xF+KaOc245qqqqhW0GYwyu69K59DAYDNDv39ubYQrMSNIET3RrlqsliT22zReLhRW8uTmGzArbgGayXq8xHA4xGo3+Imvir0dT18Qa/AdPsI5MLMsufQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/01d4e72d63760a32a3263008e59d4fe6/d9199/03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/01d4e72d63760a32a3263008e59d4fe6/8ff5a/03.png 240w,
+/devHistoryBlog/static/01d4e72d63760a32a3263008e59d4fe6/e85cb/03.png 480w,
+/devHistoryBlog/static/01d4e72d63760a32a3263008e59d4fe6/d9199/03.png 960w,
+/devHistoryBlog/static/01d4e72d63760a32a3263008e59d4fe6/07a9c/03.png 1440w,
+/devHistoryBlog/static/01d4e72d63760a32a3263008e59d4fe6/0d292/03.png 1620w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;✔️ 그래서 어떻게 적용해야하나?&lt;/h3&gt;
+&lt;p&gt;보통은 환경변수를 통해 애플리케이션의 페이즈 등을 애플리케이션으로 전달하기 때문에, Exec 방식은 사용하기 힘들다. 그럼 어떻게 PID가 1 인 애플리케이션의 컨테이너 환경을 만들 수 있을까?&lt;/p&gt;
+&lt;p&gt;아래 해결책이 있다!!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;K8S 매니페스트에 command 와 args 필드를 이용하여 ENTRYPOINT 에 정의된 내용을 재정의 할수있다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/44316361/difference-between-docker-entrypoint-and-kubernetes-container-spec-command&quot;&gt;https://stackoverflow.com/questions/44316361/difference-between-docker-entrypoint-and-kubernetes-container-spec-command&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;아래는 실제 수정된 deployment.yaml 파일이다.&lt;/p&gt;
+&lt;p&gt;ENTRYPOINT에 정의한 내용을 다시 정의하고 있다. 여기서는 환경변수 사용도 가능하다.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/ea96b1487d97387f108435ade11f4259/1c1a4/04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 86.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABYlAAAWJQFJUiTwAAACMklEQVQ4y42Ti3KiQBBF+f+f2qqtbIzJ6qbiExTlzQwgCBpjFLjbPQYlKc0uVbcGmpnD7W5aC8sEsk4RIYN/jNCXIzxLHRwXFGeF1WmV14TWStKcUsKvY/hIYJchBtkMk9xBQM8sH/HHfXyOtd+dzl6kuQQMKBhiBfsYYpSbGK8djDMH08Il+El64WGwsvEcLZX+yIWCKXh9+YjmVZEK+ApKLg8SHVtH1zPwO5jjbjHB3XKKR3+GYWrDLSNY70KpAZ7BDGwcNmkt94H6OsN+mmN1zyB2yXvClr7CWsBE1ZADy32Ivlig4xj4YQzhHCUElaMNaOumQ//sMKR0Z5TmBPeU+hOl+pJYtM4xymzakal6S9I3Dj8D+XDH0fFI4K5rqBryB/rChLkLYGx81TBV/+sOk09APshNeKI6skuGPRCYxbU1tr6q6TfAtsMAPQJyp39ZUyWGzl7ZlYc5ORRXUm7Wq0B2yLXjWrJLTp/XwcqiJkWqQV4VX23QjZQXqnb3ln5Om5/ZIf/gDAu/TE3j8gxsAtb7CfhAv03XnaEXmgrGbjnGjRrSxPDUvMQWRqmjfv4RTRZ3n2ZZwCOQV0dqFhnYE3PoWw8mpW8fBc24hFNdtDyEsChuHYRa+Zn3eDzLaVUgqzfIsUV0TOFsaFMaw1wJuEWCNcX53bqlW8/M0dC6qrJEsS1QvK6x2ewg4xwyyoEa/31p+7IG6410oIP52x6GcODGGSZ2jLjYYV8Bzb5/6S8HRftCZb/Q2gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/ea96b1487d97387f108435ade11f4259/d9199/04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/ea96b1487d97387f108435ade11f4259/8ff5a/04.png 240w,
+/devHistoryBlog/static/ea96b1487d97387f108435ade11f4259/e85cb/04.png 480w,
+/devHistoryBlog/static/ea96b1487d97387f108435ade11f4259/d9199/04.png 960w,
+/devHistoryBlog/static/ea96b1487d97387f108435ade11f4259/1c1a4/04.png 1046w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;수정 전/후 PID 상태&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/a3055c4390889ca036fc202472109311/8aace/05.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 22.499999999999996%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABIUlEQVQY01WMW07CQBiFhxDRYrlUjMa1SEy0BVrKJSqJPJhCgWJ0K/IgDwKVAm5HYloak8YO7uU4HZTow5fvnDN/hiyX73DdFVzPxxvLvv8Bz1shCAJ8rSloGHLWlDLCP/13o+xuzU3DT5AYITjJSTiWMsgICZ6Psmmk9xLIJgUcpkVOLiXiQExC2t9sURbiMX6X2t1hJBBnf5FmowHLNNExDHRaBu66XdxbFqOHh/7GltlGr93i7rKbfsfc5miPHPXb5g3I4HGA8WiM0fMIw6ch7MkEU9vGYuZsmTtTzsJxfjz99x7xOp/hZTIGkc/yuK5XcVnVUdNKaLB8VauwrKKua6iVVWgFGZoio1xQoMoXKBcLDIXtCrfOeqVUxHn+FN/qK+R9BMsKQwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;05&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/a3055c4390889ca036fc202472109311/d9199/05.png&quot;
+        srcset=&quot;/devHistoryBlog/static/a3055c4390889ca036fc202472109311/8ff5a/05.png 240w,
+/devHistoryBlog/static/a3055c4390889ca036fc202472109311/e85cb/05.png 480w,
+/devHistoryBlog/static/a3055c4390889ca036fc202472109311/d9199/05.png 960w,
+/devHistoryBlog/static/a3055c4390889ca036fc202472109311/07a9c/05.png 1440w,
+/devHistoryBlog/static/a3055c4390889ca036fc202472109311/29114/05.png 1920w,
+/devHistoryBlog/static/a3055c4390889ca036fc202472109311/8aace/05.png 2732w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;테스트 해보자&lt;/h2&gt;
+&lt;p&gt;간단하게 DB Pool 가진 Springboot 애플리케이션을 만들어서 테스트 해본다.&lt;/p&gt;
+&lt;h3&gt;✔️ Exec 환경 테스트&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Exec 방식으로 ENTRYPOINT 를 수행하여 도커 이미지를 빌드한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;docker&quot;&gt;&lt;pre class=&quot;language-docker&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ENTRYPOINT&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;java&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;-jar&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;-Dspring.profiles.active=docker&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/app/check-pid-0.0.1-SNAPSHOT.jar&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;컨테이너 실행 후, PID 확인을 하면 java 가 PID 1 이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/f2537a1caade4a7d2592be5c5aa11d03/bd9eb/06.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 10.833333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAjUlEQVQI12OQ1lL+L6er9l9ZTeu/mqbuf00d/f/GZlZA2gDMV1TR/C+rIPtfSlbmv4i4zH9RCSCWhNJALCYpCxSXAtO8/EL/GYKjM/4n59b9D4rN/h8Ul/0/NCHnfwiQ9g5L/u8WEPPf1T8aSMf9dw+K/+8eGAsWcw+KA9NuQL5HcPx/Z58IMK1rYvMfAHnFQz93mcG8AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;06&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/f2537a1caade4a7d2592be5c5aa11d03/d9199/06.png&quot;
+        srcset=&quot;/devHistoryBlog/static/f2537a1caade4a7d2592be5c5aa11d03/8ff5a/06.png 240w,
+/devHistoryBlog/static/f2537a1caade4a7d2592be5c5aa11d03/e85cb/06.png 480w,
+/devHistoryBlog/static/f2537a1caade4a7d2592be5c5aa11d03/d9199/06.png 960w,
+/devHistoryBlog/static/f2537a1caade4a7d2592be5c5aa11d03/07a9c/06.png 1440w,
+/devHistoryBlog/static/f2537a1caade4a7d2592be5c5aa11d03/bd9eb/06.png 1442w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;해당 컨테이너에 SIGTERM 신호를 보내면&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker &lt;span class=&quot;token function&quot;&gt;kill&lt;/span&gt; --signal&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;SIGTERM check-pid-exec&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;start 로그 이후에 DB Pool이 정리되는 로그가 보인다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/80dabbbf097b0d505cc38fa57fe59f81/b4904/07.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 11.249999999999998%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAdElEQVQI1z2J2QrCMBQFL27dshcLfdS4pEmjpeL/f9oxXLAPw3DOUEhvTPOC+PpsTHll0vLFLWRc7hHXRypE+GIf5kLm79/8M7FpGEe44QwpWgjR4bDfoWsbKClgjUbv7LZl6c4a3kQErSSaumIbrVCdjvgBkg40dJgfgeAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;07&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/80dabbbf097b0d505cc38fa57fe59f81/d9199/07.png&quot;
+        srcset=&quot;/devHistoryBlog/static/80dabbbf097b0d505cc38fa57fe59f81/8ff5a/07.png 240w,
+/devHistoryBlog/static/80dabbbf097b0d505cc38fa57fe59f81/e85cb/07.png 480w,
+/devHistoryBlog/static/80dabbbf097b0d505cc38fa57fe59f81/d9199/07.png 960w,
+/devHistoryBlog/static/80dabbbf097b0d505cc38fa57fe59f81/07a9c/07.png 1440w,
+/devHistoryBlog/static/80dabbbf097b0d505cc38fa57fe59f81/b4904/07.png 1768w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;✔️ Shell 환경 테스트&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Shell 방식으로 ENTRYPOINT 를 수행하여 도커 이미지를 빌드한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;docker&quot;&gt;&lt;pre class=&quot;language-docker&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ENTRYPOINT&lt;/span&gt; java \
+  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;Dspring.profiles.active=$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;APP_PHASE&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;docker&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; \
+  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;jar /app/check&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;pid&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;0.0.1&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;SNAPSHOT.jar&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;컨테이너 실행 후, PID 확인을 하면 java PID는 7 이고, 이를 수행하는 /bin/sh 이 PID 1 이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/a17aff22f24a98f1dfbcc4ad11572163/6fa81/08.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 10%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAjUlEQVQI1x2L2QqCUAAF/YhKr9clbRMiCHooyjb1huaCRCvU/3/GpD4Mwxk4mvQ9DN/B9SZMgzmL5Qp/PGsIcDwXISW6sDGkg7BcDNOmr5v0BqLbpj3sbLmjzlp2+5HWX6L8gSpfJMWTzSlruBImFduo4HCp2auKXVwQqrblrI8p5+yOqj7Eza91Ur75A5SCP/5mCeTzAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;08&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/a17aff22f24a98f1dfbcc4ad11572163/d9199/08.png&quot;
+        srcset=&quot;/devHistoryBlog/static/a17aff22f24a98f1dfbcc4ad11572163/8ff5a/08.png 240w,
+/devHistoryBlog/static/a17aff22f24a98f1dfbcc4ad11572163/e85cb/08.png 480w,
+/devHistoryBlog/static/a17aff22f24a98f1dfbcc4ad11572163/d9199/08.png 960w,
+/devHistoryBlog/static/a17aff22f24a98f1dfbcc4ad11572163/07a9c/08.png 1440w,
+/devHistoryBlog/static/a17aff22f24a98f1dfbcc4ad11572163/6fa81/08.png 1856w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;해당 컨테이너에 SIGTERM 신호를 보내면&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker &lt;span class=&quot;token function&quot;&gt;kill&lt;/span&gt; --signal&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;SIGTERM check-pid-exec&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;아무런 반응이 없다. 애플리케이션 종료가 안된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/ba2c636da4f737b5894a0d0a0ab3e89b/9c1e6/09.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 12.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAiklEQVQI102L2wrCMBBEg9m8WhObXqCfoq2i1AvUau2D4P9/x7gbmuDDYYc5s6rtn2gvL+z5dtcJh9vMecTxPuM0fJbuDdl1vNudH2nbj99wxUkvqI0rIGTOw+YlUyGzHs7X8FUDuy1DL15Y2zwg2RV18NHJnzJEMKQDtCAdac56lXqTIMSf6P/dD7DrUgehMSidAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;09&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/ba2c636da4f737b5894a0d0a0ab3e89b/d9199/09.png&quot;
+        srcset=&quot;/devHistoryBlog/static/ba2c636da4f737b5894a0d0a0ab3e89b/8ff5a/09.png 240w,
+/devHistoryBlog/static/ba2c636da4f737b5894a0d0a0ab3e89b/e85cb/09.png 480w,
+/devHistoryBlog/static/ba2c636da4f737b5894a0d0a0ab3e89b/d9199/09.png 960w,
+/devHistoryBlog/static/ba2c636da4f737b5894a0d0a0ab3e89b/07a9c/09.png 1440w,
+/devHistoryBlog/static/ba2c636da4f737b5894a0d0a0ab3e89b/9c1e6/09.png 1734w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;해당 컨테이너 종료 명령어를 수행하면&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker stop check-pid-exec&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;SIGTERM 신호를 전달하고 10초간 대기 후 SIGKILL 신호를 전달하여 강제 종료한다. (start 로그 이후에 아무런 로그가 없다.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/882e4de08fc6b1aed471b358982a706e/baa75/10.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 11.249999999999998%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAARElEQVQI12NQ1zb8D8a6xmCsoWvyX13HCIiBbD1TIN8YzIfRakC1WvqmQGwGVQcR09QzAetlYObh+c/AxfWfgYGBKhgAc5kylKz+3/8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;10&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/882e4de08fc6b1aed471b358982a706e/d9199/10.png&quot;
+        srcset=&quot;/devHistoryBlog/static/882e4de08fc6b1aed471b358982a706e/8ff5a/10.png 240w,
+/devHistoryBlog/static/882e4de08fc6b1aed471b358982a706e/e85cb/10.png 480w,
+/devHistoryBlog/static/882e4de08fc6b1aed471b358982a706e/d9199/10.png 960w,
+/devHistoryBlog/static/882e4de08fc6b1aed471b358982a706e/07a9c/10.png 1440w,
+/devHistoryBlog/static/882e4de08fc6b1aed471b358982a706e/baa75/10.png 1746w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;애플리케이션이 SIGKILL 신호를 못받으면 무엇이 문제가 될까?&lt;/h2&gt;
+&lt;h3&gt;✔️ 맺고 있었던 DB 커넥션 등이 클라이언트에서 강제 종료가 된다.&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;애플리케이션(클라이언트)에서 커넥션이 강제 종료 되면, 클라이언트가 보낸 데이터가 DB에 적용되지 않을 수 있고,&lt;/li&gt;
+&lt;li&gt;클라이언트가 트랜잭션을 진행 중이었다면, 해당 트랜잭션은 롤백될 수 있다.&lt;/li&gt;
+&lt;li&gt;또한, 강제로 종료된 커넥션은 DB 입장에서 종료되지 않은 상태로 남아있을 수 있어 자원 누수로 이어질 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;실제 Shell 환경 테스트를 진행해보면, DB에 클라이언트가 비정상적으로 종료된 흔적이 남는다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SHOW&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;STATUS&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;LIKE&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Aborted%&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Aborted_clients&lt;/code&gt;: 클라이언트가 비정상적으로 종료되어 서버가 연결을 중단한 횟수&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Aborted_connects&lt;/code&gt;: MySQL 서버에 접속을 시도했으나 실패한 연결 횟수&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/0916035b6f88afceddebf7b9290f26ce/6e6fb/11.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 618px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 52.916666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABVklEQVQoz3WT25KCQAxEUUREUS4iIl4QQSyf/f9va+tkd/ZhCx5SmSFJpzsZvLIsdTwetVwutd/v9Xq9lOe52fV6VV3XCsNQh8PB8larlS6Xi8Wpvd1uStNUs9lMnufJezwewqIo0ul00ufzsULOwzCo6zrFcaymaczIoylxGr7fbxVFocVi8QO4Xq8VBIF98H3/7zyfz+0Mu81mY0DEiaGGOgP4b8g8n89Gn45Iy7JMbduaFJIAAZR4VVXGGNBRwO12qyRJhAcIEM4AA8JsmBtGHHkAwnwUcLfbGQASSMQDBANi3AHDA8gokD4pGQnP59MY3e93kwQLhs42nWyakOcKJxkyu77vDZAngAeUswNlObBDiSucnCFy3GadNO4UYG7TGDnuPikZSbBgMcwMDzMkureGCr7zGgBiUcxxFJBuPB0AYMh7owns8PwRLIvv5MFwFOjXviWi+kiB0RiaAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;11&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/0916035b6f88afceddebf7b9290f26ce/6e6fb/11.png&quot;
+        srcset=&quot;/devHistoryBlog/static/0916035b6f88afceddebf7b9290f26ce/8ff5a/11.png 240w,
+/devHistoryBlog/static/0916035b6f88afceddebf7b9290f26ce/e85cb/11.png 480w,
+/devHistoryBlog/static/0916035b6f88afceddebf7b9290f26ce/6e6fb/11.png 618w&quot;
+        sizes=&quot;(max-width: 618px) 100vw, 618px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;✔️ 애플리케이션 종료 리스너가 수행하지 않는다.&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;애플리케이션이 종료될때 이벤트 리스너를 받아 필요한 로직을 수행하는 경우가 있을 것이다.&lt;/li&gt;
+&lt;li&gt;애플리케이션이 강제 종료되면, 리스너 수행이 되지 않아 문제가 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/c90d1fdc8048cde5a574336e5dbebb45/f0293/12.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 10%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAiElEQVQI1x2K6QqCQAAGe4AwSwvNMwsiCIs0j1VrNex6//eZtv0xDN8xKZuBQpELSZoL8lpyLjoy0VPfnzTDh3b4Ivo3mdpq+dLdP5fdSHUbKdoHl0pyurZMtseUeH/AcT3slaPthzFxsmPth5og2uAFEdbS0dn1AtUl6u9imBazua28YGqY/AAyMDwnLiQTRAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;12&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/c90d1fdc8048cde5a574336e5dbebb45/d9199/12.png&quot;
+        srcset=&quot;/devHistoryBlog/static/c90d1fdc8048cde5a574336e5dbebb45/8ff5a/12.png 240w,
+/devHistoryBlog/static/c90d1fdc8048cde5a574336e5dbebb45/e85cb/12.png 480w,
+/devHistoryBlog/static/c90d1fdc8048cde5a574336e5dbebb45/d9199/12.png 960w,
+/devHistoryBlog/static/c90d1fdc8048cde5a574336e5dbebb45/07a9c/12.png 1440w,
+/devHistoryBlog/static/c90d1fdc8048cde5a574336e5dbebb45/29114/12.png 1920w,
+/devHistoryBlog/static/c90d1fdc8048cde5a574336e5dbebb45/f0293/12.png 2250w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;✔️ 기타&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;애플리케이션이 강제 종료되면, 메모리 누수, 파일 디스크립터 누수 등의 문제를 초래할 수 있고,&lt;/li&gt;
+&lt;li&gt;서비스가 갑자기 중단되므로 해당 서비스의 가용성이 저하된다.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[프로메테우스 삽질기]]></title><link>https://ssongey.github.io/works/posts/2025-01-23--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2025-01-23--001</guid><pubDate>Thu, 23 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. 무엇을 표현하고 싶었는가?&lt;/h2&gt;
+&lt;h3&gt;✔︎ 서비스 지표&lt;/h3&gt;
+&lt;p&gt;발급 건수, 카드 종류별 건수, 실패 건수 등 카드 발급 현황에 대한 지표 구성&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;무엇을 고려 하였는가?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;카드별 발급 건수 표시로 카드 선호도/수요 분석&lt;/li&gt;
+&lt;li&gt;카드 발급 실패에 대한 원인 파악&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/1009f4ccff1970c73f107aec857ea569/cf151/01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 45.416666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAACE0lEQVQozyWSW0/bQBCF/UoIKont+Lbrtb2OEzsXIAQIkNJQFapEatWLCu1DpUq0VV/b/y99nYSHo/WOR2fmnLNOnKT0i4pJ1RCFCV4QU9gB9fYeJHR7EWXTkFUVgVIs3y24XY9ZrXLWryybi5LNqGKkMhLpd+5szUN9wkNzwlQXTFTOpj/mYXjMTBW4WjG7P6W+GhOZlPWPFV9/nvPtccDT54rfb4f8WUy5NCVZqHG+VxP+Naf8qqasTJ+l/HgaHPN3NOcmsbhWc/ZhzvT+iLhIuf1yxfJ+xM1Nzv3LgvV5yVo2nGYFRqc47Z6iE+fovCaMNQdeQNsP8cKYJM3xejGdbkDXD4jSlJPlKc2wJEpigijCc13cjkvX8+iGPo5qXqOO3mOONxg7FCKDki1za1FpQaIzelFCRwbl5YDJ7JJPC0ueir9+RHv/gFarTWvvGY4aLEiHC0xekRrxTHxI5Cz7dke2hReEHLq+DCqYXSy5m1mMks2l1trbZ0/Qau3vvh1fkvEl2TBWslHOYTfEl7QTremJbFdSDhMtMM916YlFQSjhBVKLlRHpetfnbVMOU00gOBSfImPIxyWxeOWFSkiUDAt3TykQ2WEcEwmBzkr6wxHlYEQ9PpKzke0tmVjiXG/mrD5e0Jw1XK7nvHm8RhVGBvTIbC5eZvL+ZJA1WMELN0CL9KoeUQ23hFMhrHfqMlvxHzU0/yh++51sAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/1009f4ccff1970c73f107aec857ea569/d9199/01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/1009f4ccff1970c73f107aec857ea569/8ff5a/01.png 240w,
+/devHistoryBlog/static/1009f4ccff1970c73f107aec857ea569/e85cb/01.png 480w,
+/devHistoryBlog/static/1009f4ccff1970c73f107aec857ea569/d9199/01.png 960w,
+/devHistoryBlog/static/1009f4ccff1970c73f107aec857ea569/07a9c/01.png 1440w,
+/devHistoryBlog/static/1009f4ccff1970c73f107aec857ea569/29114/01.png 1920w,
+/devHistoryBlog/static/1009f4ccff1970c73f107aec857ea569/cf151/01.png 3672w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br/&gt;
+&lt;h3&gt;✔︎ traffic (트래픽)&lt;/h3&gt;
+&lt;p&gt;서버로 들어오는 총 요청에 대한 파악을 위해 지표 구성&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;무엇을 고려 하였는가?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;부하 확인&lt;/li&gt;
+&lt;li&gt;리전별 요청 비율로 리전 이상 현상 감지
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/627313729d2936c49adef62548d110f5/e437f/02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 17.083333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA3UlEQVQI10XOvUrDUADF8SBYaXLTm9wmN6lJmpukHza0WC0oCOIiRRzVqYODFAcfokN3cRBcfBdf7e/FxeEsZzjn54RRQl8PiPQxodKoOMUPNUE/wZMR2bBitlhSVCNkGOG6As/zbQSdrmRhAu42t+jTS9IkxWlWU+qzCe3NnKKtKY3hwnZ5kfN4v2TejiibGfX4xJ4OcLve36AvBM5hyOdzh4+fPcP9N7GUODrL0HlOPjbosmDSGHZP12zXK762a86nFa6VqjghUP9CYYUHRwGbK8Hb+yvpwwuq1+MXzWFVWUOlqJcAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/627313729d2936c49adef62548d110f5/d9199/02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/627313729d2936c49adef62548d110f5/8ff5a/02.png 240w,
+/devHistoryBlog/static/627313729d2936c49adef62548d110f5/e85cb/02.png 480w,
+/devHistoryBlog/static/627313729d2936c49adef62548d110f5/d9199/02.png 960w,
+/devHistoryBlog/static/627313729d2936c49adef62548d110f5/07a9c/02.png 1440w,
+/devHistoryBlog/static/627313729d2936c49adef62548d110f5/29114/02.png 1920w,
+/devHistoryBlog/static/627313729d2936c49adef62548d110f5/e437f/02.png 3664w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h3&gt;✔︎ atency (지연)&lt;/h3&gt;
+&lt;p&gt;응답 시간에 대한 파악을 위해 지표 구성&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;무엇을 고려 하였는가?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;일반 사용자가 체감하는 응답 시간 - P95, 성공 응답 평균 시간
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/fb1b0bd5527096f80528ab2b3408fcc5/5148a/03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 99.58333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAABYlAAAWJQFJUiTwAAAD/klEQVQ4y4VUWW8bVRj1OyL17vHs+2KPZ2yPl6S2SZxmUSFp2hAS4kBoglKUKAIkEEIgoBIgnhE8wCvifx7OnbiR+lIejr47yz33+853vlsolmsoVeooVe9QrjYg3jl+hDjpI2ynaHV6jAljN4+a6WClVEGxUrvfV8r3VVGQNRP1popKvfka6rJG6JBUHabnw3JDHtLKIdaG7ZPYRbUh8385jyKZgiC7e9mExFhjLBPVugSlQWKuQ2YbxF0k/RG6g1WkjNl4gjBOUa5JeXZif04oKTrqkoIiP6hNBQphySp8ZjazbdR4oN/qEAni7gBJb3gXSRp3M7TTDColEIRCujzDCjMTZFuOg4lp4qssxe0ow3XWQ7Mpo+UHCKhlZ0nUIWmajRkHObnI2vainLRQbmqYOi5+SCNcpzHOO238uTnDP9vr+HdzglgVFagQWotMhG6qYS/XTh7Fs+H4qEkyCqL++cYWvri4wvGLW+yfXeLi+59x+9NvuPn2RzheiLdL1VyrIksqVpYdXa7z5/t1DYWVlRLWDk/w/I+/cfTNd3j88TlOX/6C57//heOXv0IP27mNKsvGvQm5hpWGgsh3sTUdYX3cx6OHGTYnA8zHPUz7HRimjeKyi/9LSD8WyrU7I0v0XIN6NhWT1pEZDTSEDwlxsrDEGyEkIU+hWKpxUccD6vSAL15FocmrKYnoQdFhYRGXEojvQsfSkqxUadxPWMGOQqSjAaKEm4m42+PGLmzfZ4YiU4WZy5AVFRKt1SQa7KZE1Je61mUl73Cu4XB/iO1PZrCooxN68Ns+vIhrz6J+KmxHh21z/HQVhqrAJAweYisaFA5EhdPkDVyYXZvknJTeZoads0fY+WCK3cM1PDud4OD9MRaLCU6OVnG5mOH8aIrFu/wvs7GfediNPTxrRRjQfyss1eLcR6p5N3qjvTEObnZxfLuJ0+t1XH1J3Exx9WmKsyMPn30Y4PLAw+3TEC92Iny+FeNqLcbXoz52eUm8xTKDpo6hYqMqCINhGz6nw6WWHhHGLY4ZbxPLgKJxJHUFmkawVI2l6oRGzQzOu1TjhWLpUFs2JJ8ZipLDQYyE/usMUiREn/7rDhIMV7voZwkeToZoUVNLl2FTR4ewVRWeqkGlh6skV6ixTGJhwYI/iOC0AliBB5vwIh9u4BIewshB3Lbhuzp8mySmhoDwdGqmG9DqCiSSueMIamDdNSXbHuHx+Q72PprjyeIdnF5s4PhsisvLGebzPixbg2UqcCwNtqHCJZmtiQxZKi8NYa0k0WE5Wu7LQjQLsfo0xcZhjPlBiL2jAO89cbE4cdHvqjCNJlxLhmvKLFeGRz0dRUZAX6rCg1IDaUelLCy/VsN/GfNGSOzZU9kAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/fb1b0bd5527096f80528ab2b3408fcc5/d9199/03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/fb1b0bd5527096f80528ab2b3408fcc5/8ff5a/03.png 240w,
+/devHistoryBlog/static/fb1b0bd5527096f80528ab2b3408fcc5/e85cb/03.png 480w,
+/devHistoryBlog/static/fb1b0bd5527096f80528ab2b3408fcc5/d9199/03.png 960w,
+/devHistoryBlog/static/fb1b0bd5527096f80528ab2b3408fcc5/5148a/03.png 1228w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h3&gt;✔︎ errors (오류)&lt;/h3&gt;
+&lt;p&gt;에러 응답에 대해 파악하기 위한 지표 구성&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;무엇을 고려 하였는가?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;5xx/ 4xx 에러율 확인에 따른 이상현상 감지 및 에러 메시지 확인&lt;/li&gt;
+&lt;li&gt;연동서버 이상현상 감지
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/099d6e1b09b5e056fac2132f31d6a008/5ab15/04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABzklEQVQoz2VSTW+bQBTkmiaVbTC7sB8sGAzY4LhVouZSRWl76KGHtlL//1+ZzlsTK1IOTwuz++bNzG6S5iUyZZAXDtvCYqvlf8FKR9wizQviJlaqLvulqxB2e1TNHornNjyT24BklZPENLDtBB0GrDONj6nm5i5iReixIqbZpEoSUoAMsKFGfzhhnD+hbvs4WJkKyfN9wI/HDv9eJvz9OqIsS8ydxcvDPmI/n3p4WyCjOuM9XVycFC5QXQe/lKma6CD5dvb4fnb49eDw58mjCwZTayP2+wvxR49DY+L03WGArmnR1dhsNd2oWPItJXEkd+scdxuFD2uFm5WincuG2L4ldst9adqqAm5HJXUHW7fQxsfsYq6MIBZJE9+O8Dzkww6OspvhhEALZWkjVrcDnA+xMWOTVCl2eSGB2RlfR7JMk9w2SIbpHMPtDzPqbkA3zjEbUSA5tf0x3qaoyZYbFoLNVqHp9tiPJ7TDEdpW0IwiETUVLQiJoRL5LkgmjYrhB9r0xC6E5vqkZH19SlG94ByUjNN9VDccZ04cOHGKzelibT5/xjid3igsrnXNbinZTxxzssxO8isoW3ITlW8f9CuR8RUsXViu8rCz/D3pfxmnCs9fokrAAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/099d6e1b09b5e056fac2132f31d6a008/d9199/04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/099d6e1b09b5e056fac2132f31d6a008/8ff5a/04.png 240w,
+/devHistoryBlog/static/099d6e1b09b5e056fac2132f31d6a008/e85cb/04.png 480w,
+/devHistoryBlog/static/099d6e1b09b5e056fac2132f31d6a008/d9199/04.png 960w,
+/devHistoryBlog/static/099d6e1b09b5e056fac2132f31d6a008/07a9c/04.png 1440w,
+/devHistoryBlog/static/099d6e1b09b5e056fac2132f31d6a008/29114/04.png 1920w,
+/devHistoryBlog/static/099d6e1b09b5e056fac2132f31d6a008/5ab15/04.png 2446w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;h2&gt;2.︎ 무엇이 어려웠는가? (왜 안맞나?, 표현이 어려웠던 것은 무엇인가? …)&lt;/h2&gt;
+&lt;h3&gt;2.1. promQL 문법의 이해&lt;/h3&gt;
+&lt;h4&gt;✔︎ &lt;code class=&quot;language-text&quot;&gt;http_server_requests_seconds_count{uri=&amp;quot;/api&amp;quot;}[5m]&lt;/code&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;http_server_requests_seconds_count&lt;/code&gt; 메트릭을 사용할꺼고,&lt;/li&gt;
+&lt;li&gt;uri가 “/api” 인 데이터만 필터 할꺼고,&lt;/li&gt;
+&lt;li&gt;지금 시점부터 5분 전까지의 데이터를 추출&lt;/li&gt;
+&lt;li&gt;현재 2dzzv 파드에서 발생한 이벤트 총 카운트는 2건, cxw24 파드는 1건
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/89da7a1b5575ce43ffacd2964e115976/869d7/06.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 19.583333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlUlEQVQY04WO2wrDIBBE/f/vKxQKKYVeSTTaRtdLE6erSSh5ijA4e2ZgV3gfQEUU4MiDnK9z9YucIzhLtUNLv+SWu8i5+sPxjFZqCOy+vNsIIaK53KHNAKHNB7J/z1IGSmmo3syemdbMefPKC+s4k+zbrocdXL349uxqJlL6Isa0Vfr7TZ7meWXlsmmc4Pk/NVc8XhI/rj02J8GTuF0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;06&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/89da7a1b5575ce43ffacd2964e115976/d9199/06.png&quot;
+        srcset=&quot;/devHistoryBlog/static/89da7a1b5575ce43ffacd2964e115976/8ff5a/06.png 240w,
+/devHistoryBlog/static/89da7a1b5575ce43ffacd2964e115976/e85cb/06.png 480w,
+/devHistoryBlog/static/89da7a1b5575ce43ffacd2964e115976/d9199/06.png 960w,
+/devHistoryBlog/static/89da7a1b5575ce43ffacd2964e115976/07a9c/06.png 1440w,
+/devHistoryBlog/static/89da7a1b5575ce43ffacd2964e115976/869d7/06.png 1477w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;✔︎ &lt;code class=&quot;language-text&quot;&gt;increase(http_server_requests_seconds_count{uri=&amp;quot;/api&amp;quot;}[5m])&lt;/code&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;위 결과에서 증가건수 계산&lt;/li&gt;
+&lt;li&gt;시간에 따른 카운트 변화가 없으므로 증가는 0
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/7915e4c2940451822eea8344f5bf0aba/07d7d/07.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 10%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAZElEQVQI1zWNQQ6AIAwE/f9HBVpAo6KHwrrFeJhs03SnSy4bUspIUhCJOJk7qRCtc78GRYj63TBFMs6rod0Peu8wI8wxBpZSdqh+5UixOD6z7AJ/FoIgUvo/9vu6HRMzm9IJhS/6zJhJ4gLzCAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;07&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/7915e4c2940451822eea8344f5bf0aba/d9199/07.png&quot;
+        srcset=&quot;/devHistoryBlog/static/7915e4c2940451822eea8344f5bf0aba/8ff5a/07.png 240w,
+/devHistoryBlog/static/7915e4c2940451822eea8344f5bf0aba/e85cb/07.png 480w,
+/devHistoryBlog/static/7915e4c2940451822eea8344f5bf0aba/d9199/07.png 960w,
+/devHistoryBlog/static/7915e4c2940451822eea8344f5bf0aba/07a9c/07.png 1440w,
+/devHistoryBlog/static/7915e4c2940451822eea8344f5bf0aba/07d7d/07.png 1478w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h3&gt;2.2. 프로메테우스에서 수집하는 메트릭 중에 무엇을 사용했나?&lt;/h3&gt;
+&lt;h4&gt;✔︎ &lt;code class=&quot;language-text&quot;&gt;http_server_requests_seconds_count&lt;/code&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;서비스 시작 이후의 누적 요청 횟수
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/6fe4a476d34425d77836b9370abca975/11a8f/08.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 2.9166666666666665%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAOElEQVQI1zWLwQ0AIAgD3X9RjRYBGQCB6ONyTdo2kDhtdZZTTibYidXxcsJi5RX7PlD73yNQtfpe+RpLtV0AIl4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;08&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/6fe4a476d34425d77836b9370abca975/d9199/08.png&quot;
+        srcset=&quot;/devHistoryBlog/static/6fe4a476d34425d77836b9370abca975/8ff5a/08.png 240w,
+/devHistoryBlog/static/6fe4a476d34425d77836b9370abca975/e85cb/08.png 480w,
+/devHistoryBlog/static/6fe4a476d34425d77836b9370abca975/d9199/08.png 960w,
+/devHistoryBlog/static/6fe4a476d34425d77836b9370abca975/11a8f/08.png 1272w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;✔︎ &lt;code class=&quot;language-text&quot;&gt;http_server_requests_seconds_bucket&lt;/code&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;요청 응답 시간의 분포
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/999dae4e408a6fde49330febe320c7ce/fe720/09.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 34.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsTAAALEwEAmpwYAAABCElEQVQoz31Ru3LDMAzT//9chgxObMvWW1acXtJrd5SgnF6mDDoaJAiSsCnbHanc9Pm0gbi2L4TckOuOKJE1F6tifm/tjigxCJ84y5uWhOf3L4w2SYKNbEqCy7bDx05mZG1x+V+kCCcc/D6w4TJ73PYHDAmrL1jkTUtUgZAa7JrgQoUVIdavc8AqWIVFiPxZOIxB8DA5FTdMjDbqG0bXSdJ0mbwOYI6182AVq7BLuNpw1AKs5E/nUQfryVyfW3GD/Olk5cnJenrTCxiz5LlIFW/Ny3j1UAhqcu2C8fgZrNl3wTcPGYm5OXsNE9xsDd0TNrwEKMrNOIhnU4BnpcN3+syongrv8fzBH5M1AOkFqsaVAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;09&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/999dae4e408a6fde49330febe320c7ce/d9199/09.png&quot;
+        srcset=&quot;/devHistoryBlog/static/999dae4e408a6fde49330febe320c7ce/8ff5a/09.png 240w,
+/devHistoryBlog/static/999dae4e408a6fde49330febe320c7ce/e85cb/09.png 480w,
+/devHistoryBlog/static/999dae4e408a6fde49330febe320c7ce/d9199/09.png 960w,
+/devHistoryBlog/static/999dae4e408a6fde49330febe320c7ce/07a9c/09.png 1440w,
+/devHistoryBlog/static/999dae4e408a6fde49330febe320c7ce/fe720/09.png 1448w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h3&gt;2.3. 지표를 표현하기 위해서 어떤 함수를 사용했는가?&lt;/h3&gt;
+&lt;h4&gt;✔︎ 단순히 카운터로 누적 수를 계산하면 될꺼 같은데, 왜 increase, rate 를 사용했을까?&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스가 재실행 될 경우 해당 메트릭의 값이 0으로 리셋된다.&lt;/li&gt;
+&lt;li&gt;increase, rate 함수는 리셋을 스스로 감지하여 이전 상태를 보정하여 증가량을 계산한다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;아래와 같이 카운터의 결과가 나왔을때, 각 increase의 값을 더해서 누적 수를 계산한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;시간      누적수   증가
+13:00:00 100
+13:01:00 200 -&amp;gt; 100
+13:02:00 300 -&amp;gt; 100
+13:03:00 150 -&amp;gt; 0 (리셋 이벤트 발생)
+13:04:00 0
+13:05:00 0
+13:06:00 50  -&amp;gt; 50
+13:07:00 100 -&amp;gt; 50
+--------------------
+increase 결과: 300&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/c26e8d2ebd81a5724258c61d2bb8e772/71b12/10.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 51.25000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB2klEQVQoz41S227TQBT0D0RQFMeO7+u74yYhBURREaiobWLHjZ1wkUquvJC4RDyUl/L1w+66scoDEg+rmdk9Ozv2OcL+9hajqytkaYosSfhKRyNMJznK7Q7lrsTu+xY/ypLqLdd5lmGcjOr66/EYF+cf8OvuDsLw8hLtVguyKFbrEVdlGZqiQGu3oUgS14okQ2o2ITfFuo6dHT1pIKWPCBP6GjFNOJYFm6JLCOwHblsmR2IYHA81UewhjDzKqTZMBL4L4uqYFQUEFtfSdX7pcJFhvUd1zXUDfmgjHgSIjj26X9XF/QAmUVHQ30QTXtcm/zI8aNcl6Dz3EfU8dHo+LM2AF9jovohgmAqmOTVkDTA17b8SMpOo68HrEDi+CV1V4MeEJzSsB8MsSf/6ZG72iB/Mg8jh6cJjF/nHDMvNHJ++zDD7nKN7EkE325UhGxlDVeuLnuPwlCy1axPeCMvQqZGHuBvwhpy+eYVheoH352/x+vQl+oMYtmNWTXl3dgZRfAbPtuFTs0G/z5EZxWGIE6odYlVnvR4fsaNGg48SG5mnlOt0tJSWhGQ4hPBzv8dkkmGzXmOzWmG9XGJ+c8P54uuc4zd6tlosOGcp2KcVdDGcFjnfY2a/7+/xB6xCOF7Nm4s8AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;10&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/c26e8d2ebd81a5724258c61d2bb8e772/d9199/10.png&quot;
+        srcset=&quot;/devHistoryBlog/static/c26e8d2ebd81a5724258c61d2bb8e772/8ff5a/10.png 240w,
+/devHistoryBlog/static/c26e8d2ebd81a5724258c61d2bb8e772/e85cb/10.png 480w,
+/devHistoryBlog/static/c26e8d2ebd81a5724258c61d2bb8e772/d9199/10.png 960w,
+/devHistoryBlog/static/c26e8d2ebd81a5724258c61d2bb8e772/71b12/10.png 1308w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;✔︎ increase&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;주어진 시간 범위 내에서 카운터 값의 총 증가량&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;5분동안 요청된 총 증가량&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;increase(http_server_requests_seconds_count[5m])&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;✔︎ rate&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;초당 증가율&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;5분동안의 초당 증가율&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;rate(http_server_requests_seconds_count[5m])&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;✔︎ histogram_quantile&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;히스토그램 데이터 기반으로 특정 분위수(예: 50%, 90%) 값을 추정하는 데 사용&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;5분동안의 초당 증가율을 구하는데, 상위 1%는 제외하여 연산한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;histogram_quantile(0.9, rate(http_server_requests_seconds_bucket[5m]))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;✔︎ 왜 소수가 나올까?&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;선형 보간&lt;/strong&gt;을 수행하기 때문이다.&lt;/li&gt;
+&lt;li&gt;실제 요청이 특정 시점에 몰려 있더라도 일정한 속도로 증가한다고 가정하여 1.009와 같은 소수점 값이 나올 수 있음.&lt;/li&gt;
+&lt;li&gt;보간: 주어진 데이터 사이의 값들을 추정하여 새로운 값을 생성하는 방법&lt;/li&gt;
+&lt;li&gt;참고: &lt;br/&gt;
+&lt;a href=&quot;https://promlabs.com/blog/2021/01/29/how-exactly-does-promql-calculate-rates/&quot;&gt;https://promlabs.com/blog/2021/01/29/how-exactly-does-promql-calculate-rates/&lt;/a&gt; &lt;br/&gt;
+&lt;a href=&quot;https://velog.io/@skynet/Prometheus-rate-%EC%97%B0%EC%82%B0%EC%9D%98-%EC%8B%A4%ED%96%89-%EC%9B%90%EB%A6%AC&quot;&gt;https://velog.io/@skynet/Prometheus-rate-%EC%97%B0%EC%82%B0%EC%9D%98-%EC%8B%A4%ED%96%89-%EC%9B%90%EB%A6%AC&lt;/a&gt; &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h3&gt;2.4. 그래서 그라파나에서 어떻게 사용하는데?&lt;/h3&gt;
+&lt;p&gt;그라파나에서는 프로메테우스 웹 ui와는 다르게 from, to, step 를 추가 설정한다.&lt;/p&gt;
+&lt;h4&gt;✔︎ from, to(range) 의 총 수치 나타내기&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;그라파나에서 지정한 시간 범위의 총 수치를 표현하기 위해서는 $__range 변수를 사용한다.
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/ae84ae6f83f430706976c2ae4e4978bc/bc70e/11.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 62.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAACIElEQVQ4y22T3XKbMBCFuYkxGBDoDwHGBmzseGznIk4zzUxv+iCd6fu/xOmuME6nzcXHSoI9HGlXQRStEMcJlssYYRj9B6/zNxwXiyWG3RG3bx94ffvu2Y8ndMPhQcAfzklRlNwjEU/jNBXIC+Xn/N22H3F+uRGvuBDH4wn9MHoxfhdkosBXpBmTQ+QShdTIeE7rVVWj27Zw1RrGNRQb2LJGSXNXt5MgJ85kYo4FRCEnccFziZgctsd3XH/+xmZ3Jmd7bLq93zZHFv3SYZLmUKXBcBtQ7xt0Lx0OHwdIm6M5vGP88QvNQCI9vd/26Mcj6k0HZRyClJJnkkSQmPCRhXVtSUTDrEu4vkLZVVDaoiSB9XmEamqPbGh9XUPTcQSSnDCqMj7RNCWNLZSzPtrWodxUHjc0MHUN25Gj6wGaxHQ9CWlbTQ5rSpBWwVQlCiMhVP6JLibUREZrkhwqTT8+b2GvPeylhzl1MH0L7chhkSvfHgW1RqEdJTpfAE92R3zCgpqqaahFdLMlVyV0WU2Qy0DRI6e28ILKEuRU0jHQmJP/hbdlxivc8xtMu39sdSbQ9EiEQq5JWLFLEpeKipN+NvmD2P/QnW7oLpfp/Cw7c/dIDlcrSqT+KmyDnCqaKIGVyBCnCcJlhKen0F/BxSL0V49vjWl31E7PVKiNd/W3aMBdzo5WfLXCGFpPZ8gi3EKGzoYbnXfCt4YLwuOJ6iE4xz8uakSV/Ay8BgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;11&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/ae84ae6f83f430706976c2ae4e4978bc/d9199/11.png&quot;
+        srcset=&quot;/devHistoryBlog/static/ae84ae6f83f430706976c2ae4e4978bc/8ff5a/11.png 240w,
+/devHistoryBlog/static/ae84ae6f83f430706976c2ae4e4978bc/e85cb/11.png 480w,
+/devHistoryBlog/static/ae84ae6f83f430706976c2ae4e4978bc/d9199/11.png 960w,
+/devHistoryBlog/static/ae84ae6f83f430706976c2ae4e4978bc/07a9c/11.png 1440w,
+/devHistoryBlog/static/ae84ae6f83f430706976c2ae4e4978bc/29114/11.png 1920w,
+/devHistoryBlog/static/ae84ae6f83f430706976c2ae4e4978bc/bc70e/11.png 2738w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;✔︎ 시간 흐름에 따른 수치 나타내기&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;시간 흐름에 따른 수치를 표현하기 위해서는 [계산시간범위:step] 을 사용한다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;아래 쿼리는 (sum by (uri) (rate(http&lt;em&gt;server&lt;/em&gt;requests&lt;em&gt;seconds&lt;/em&gt;count{namespace=“$namespace”, uri!~”^(/actuator|/swagger|/api-docs).*“}[1m:1m]))),&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;그라파나에서 지정한 시간 범위(24h)를&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;1분마다 쪼개 초당 증가율을 구하는데,&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;x축의 기준을 1분 단위로 가져간다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/0936e28b9fb7dd289069df2183cb4c8c/292f3/12.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 42.91666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABlUlEQVQoz22SS2/bMBCEeUjj6E09SOptibIUW47d5pYUhR2gQNFD21vbW4Dk//+HyYoKWiPO4cOuAO5whitm2y6sCcs5w3Y8LBYWoljierNHv77BcD2i6wYs2/5d2DTkEK7r/8OZqhfAD0JMF8aJRKs7NLqnSmKNRllrVMvuDMbD2Az+JzIE/JWAIxYZ+v0XFPUKWVEjLxuDysozmO1xisTBIw6Phl0/oBrAoWq5ATn1EcoSq/u/qPsduWjRTJHJbSxScp/O9RX26zDi+ecNnn58xOO3Lf587fH4fYffD2vc7Rt0lUKuJGSrUYwd4ipDXBeGpCBUhiTNicz07DhqPGw1DusWh6HBcWxxnPpNi8/rBrerErqkw80AtfsEudIQbWVIliWSkkSrYq5ZDnbl+Li0fSy8CBd2gIsrd8by8IFY2LQwehZFcfPtLTkp55jJSdyT2CyMBL2hgFBkW2YQMjXEiaJvRYek2bKkhVTDBoJcTIPT2fdgKW2G83nTKi0Qkvi03YT6SJIYiYb0HxoRMQ+d9m95AXSB6SkkGFUvAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;12&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/0936e28b9fb7dd289069df2183cb4c8c/d9199/12.png&quot;
+        srcset=&quot;/devHistoryBlog/static/0936e28b9fb7dd289069df2183cb4c8c/8ff5a/12.png 240w,
+/devHistoryBlog/static/0936e28b9fb7dd289069df2183cb4c8c/e85cb/12.png 480w,
+/devHistoryBlog/static/0936e28b9fb7dd289069df2183cb4c8c/d9199/12.png 960w,
+/devHistoryBlog/static/0936e28b9fb7dd289069df2183cb4c8c/07a9c/12.png 1440w,
+/devHistoryBlog/static/0936e28b9fb7dd289069df2183cb4c8c/29114/12.png 1920w,
+/devHistoryBlog/static/0936e28b9fb7dd289069df2183cb4c8c/292f3/12.png 3400w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;두 포인트간 사이는 1분&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/39153e9ef8f0a7bfcb6b171c6e32f88c/29c1d/13.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 44.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB6klEQVQozz1S25KaUBDkJZWrV1AEURFFRRHkIqC7Gs1uLpVfSDaVb1PXqk1espsP7PQ5a+Whizlzpnt6hqOsrrZIlgXy9QbLfIWsWCPL14zXyIsrzMMY3+5+4PHpLxZxivVmhzRbIU4yxGlObo4lzxLkKHVNR6mmQe86KFXqqDAuC1Q1VOsNvHj5Bteb9zgcT3j1ugTDHmISJJhd4E58mJ0+4UA3u1AMswOtZcH25mjoJppE4wLdsPCuXMN+f4PT/Rklxt2Rh1laIIwzROkKiyTHdB5hRP6Ad4rR7qLZ7v0XFNCahoSI35aq2O5ucDzdywlsOjI4TaWmoqY2JcSU9YYOtdG6CNKyPQ1kYdtxobJAChJiHfuPX+TI5aoKx1+g3XeJIUfsPDenkBAzqKN0KGCNpnBo2xqM0Z+F0OisZdkcbwqVe/nw+SsOh6Pc7SBMYA0n6IndcZ91OhQNRCz4iuhoewHy6z2Wqy2KzR4+SS5X4F2a7G4/4fzwGzpJgyCWTYWBHmvEvYgd5oUBpeN60OimP/alyJjFI47fY6FNaHS44Q7PD7/QpKDpjGCNZ89fck26bTFv0KVhD6BkfGtTP4A/X8CbBYgS8fcy5kL4QYSx5+P73U/8eXxCGKXyXQoERMG3G8hzJGuF1j8oKhC2Ym6tpwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;13&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/39153e9ef8f0a7bfcb6b171c6e32f88c/d9199/13.png&quot;
+        srcset=&quot;/devHistoryBlog/static/39153e9ef8f0a7bfcb6b171c6e32f88c/8ff5a/13.png 240w,
+/devHistoryBlog/static/39153e9ef8f0a7bfcb6b171c6e32f88c/e85cb/13.png 480w,
+/devHistoryBlog/static/39153e9ef8f0a7bfcb6b171c6e32f88c/d9199/13.png 960w,
+/devHistoryBlog/static/39153e9ef8f0a7bfcb6b171c6e32f88c/29c1d/13.png 1375w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br/&gt;
+&lt;h3&gt;2.5. 왜 기대한 값이 나오지 않을까?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;rate, increase 를 쓰면 총 건수에 대한 값이 정확히 노출 될 줄 알았지…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;✔︎ 소수로 나타나지는 결과&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;위에서 설명한 것 처럼 보간법 때문에 정수가 아닌 소수로 나타날 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;✔︎ 카운터 리셋 감지시에 기대와 다른  increase 결과&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;롤아웃 후, 각 파드 별로 1건의 요청이 들어왔을때, increase 의 결과는 1이 아니라 0으로 표시가 된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;카운트가 0→1 로 변하는게 아니라 NaN → 1로 변화하는걸로 예상&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;때문에, 정확한 총 건수에 실패하며, 파드 수가 많을 수록 누락되는 건수가 많아 진다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;language-text&quot;&gt;http_server_requests_seconds_count{uri=&amp;quot;/card-types/{cardType}/intro&amp;quot;}[5m] 결과&lt;/code&gt;&lt;/strong&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/bd7ab20b0949d00ce35a03c8faaef6b1/3c5de/14.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 472px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 62.083333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABOUlEQVQoz51TXW+DMAzk//+5FaZRAgQIX9MArVJbHlpIbzlvsJdqGliykjjJ5Xx2vMv1iqquYcoSTdNCZ5mMSZoiL4zzQmJ0nvk8nWBMiSRJEanYuUJhDJq2xePxgIeNNs8z8rxwD2rESYKDHyDLcrTtu+x5RN3iAlj8Ar4cfGid7QOkTdOMVGtJ9Rgp+EEg8uxO2VqLvh/w0XXo+l7Gfhhwvlxkf2Vo7XNWS9zK3K5Mn5kwHMdR8qfQddOgLCupIqtKrQpXaYpOnbh/dV1h3JnUramjimMZKQMfFIbUhU5Rp2nC/X5fnbHb7SZxXuCY5bkUhG0TBK8Cqtx8YlH2tA1Zk1EcJwjDoxSFLilvrrID1E4C5cCOUYS3MPyZq++U/8tsAeQlas7fVddO86qSn8L15rb5q8KLfQFJlptBMgDPNgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;14&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/bd7ab20b0949d00ce35a03c8faaef6b1/3c5de/14.png&quot;
+        srcset=&quot;/devHistoryBlog/static/bd7ab20b0949d00ce35a03c8faaef6b1/8ff5a/14.png 240w,
+/devHistoryBlog/static/bd7ab20b0949d00ce35a03c8faaef6b1/3c5de/14.png 472w&quot;
+        sizes=&quot;(max-width: 472px) 100vw, 472px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;language-text&quot;&gt;increase(http_server_requests_seconds_count{uri=&amp;quot;/card-types/{cardType}/intro&amp;quot;}[5m]) 결과&lt;/code&gt;&lt;/strong&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/7f7256ac9e1c02cdf5df4cc87c576abd/b4098/15.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 816px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 36.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsTAAALEwEAmpwYAAABTUlEQVQoz21R23aCMBDk/7+sVWwVrKjcBJSrINTKpQrTnbS+Nefsyewmu5mZaF+3G9I0Q1lVCMMIjuvieIpRFGeUZSX4BM/z1V5dLoiTBEmaIs0yhFEEV866vkffD+i6Hlqe5zgEAQzDxMvrDLO5Dtt24DguDodA4fflSg0l1hdv2GwsuK6n9vX6AzchNU0T7vc7tCzLEUVH+P5BMTzFsTwQwpaBQRiqOiOOE1TVBeM4SjPU4pBxnPB4PP5yQCNNSqN0ymRjnheo6waf16vClMszMqnrWtlD+ZmoK85nNayn7GEQhlKknN1uj7m+gC5BdqyROT1dimRa4HoeVisD1nan8qVgwzTVILIcOJAG01zDXMOyttjKZTayyXYc7Pe2wr74SQvKskTTNIpR13Vo21Z597RAY8If+pb9+Urb/l5knY3ErE9P8/5Zyk+JHxPpCxiRX3FiAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;15&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/7f7256ac9e1c02cdf5df4cc87c576abd/b4098/15.png&quot;
+        srcset=&quot;/devHistoryBlog/static/7f7256ac9e1c02cdf5df4cc87c576abd/8ff5a/15.png 240w,
+/devHistoryBlog/static/7f7256ac9e1c02cdf5df4cc87c576abd/e85cb/15.png 480w,
+/devHistoryBlog/static/7f7256ac9e1c02cdf5df4cc87c576abd/b4098/15.png 816w&quot;
+        sizes=&quot;(max-width: 816px) 100vw, 816px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;2건의 요청이 들어왔을땐?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;language-text&quot;&gt;http_server_requests_seconds_count{uri=&amp;quot;/card-types/{cardType}/intro&amp;quot;}[5m] 결과&lt;/code&gt;&lt;/strong&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/c0f79e89e550f25f1f74be195df3ef47/4ee7f/16.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 486px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 61.24999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABU0lEQVQoz51T2ZKCQAz0/39vvWAARS5RTgELUGyng+ju0y47ValOxaFNpyeLtm2RZhmKskSaZsiLQpA1iXSMTOd13aBpGhRFKffzvBCsde3xeIBncb1eEUVHnJNEMD6d4Pk+gjDEMY4lZ8Q6z7IcQRBia5gwTYXlag1D534Q4H6/j4SYcdgFCZVlwbIdIbU1hmH0IeSl32J44e12E0JTWUJqaELH2YmaYRj+TjjNh10cDp4mMqE0KeWSmCPp+36+ZB4aUNU1OPuqqnDRQWPfHVJG13US/Jduiq6Xi62ut20nyDq75G/T/V6+7z8u8ynsdnuEUQTP80USZexdF657kKFPgy8vF3GUkk2lBLeGIfgvlylrdNkendY4Eqt5Ln83hZ3ajiNhvbqnQbNM+eGy570f9nqzwddyJbI579mElMxV41YlSaq354ToqLfsnOg3Okp+Arh+mwnovsyKAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;16&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/c0f79e89e550f25f1f74be195df3ef47/4ee7f/16.png&quot;
+        srcset=&quot;/devHistoryBlog/static/c0f79e89e550f25f1f74be195df3ef47/8ff5a/16.png 240w,
+/devHistoryBlog/static/c0f79e89e550f25f1f74be195df3ef47/e85cb/16.png 480w,
+/devHistoryBlog/static/c0f79e89e550f25f1f74be195df3ef47/4ee7f/16.png 486w&quot;
+        sizes=&quot;(max-width: 486px) 100vw, 486px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;language-text&quot;&gt;increase(http_server_requests_seconds_count{uri=&amp;quot;/card-types/{cardType}/intro&amp;quot;}[5m]) 결과&lt;/code&gt;&lt;/strong&gt;
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/73fda5a36757dc9c2209adf52b04267c/d56e1/17.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 27.083333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQY001Qi46DMAzj//9utw0Kg41C24F4iSLeAl8T6XazZLlpKseNp42BUhq5UgjDiNWYt1MNmWVQWnM/ih6QMuN+3/dY1xWEbdvQdh3atsMwDPCezxc/9gMBIUJcrzfc/QCPOEYqJRvkuUJRFM5Y8V2cJG6oYWPCeZ4feuTeNA1PMO8Cdd2gqmtYO2BZFialsdZinCbs+45vUH0cx79hHCf8Vd+lulx+WAXVQYBAiE9ySk283X1O2LYtJjdg23Y2+kvqlWUJrQ3vijRNJX+rqmpORJzmmVOSwezO1u1qHEfmtxnhF8l3d0IfhOMUAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;17&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/73fda5a36757dc9c2209adf52b04267c/d9199/17.png&quot;
+        srcset=&quot;/devHistoryBlog/static/73fda5a36757dc9c2209adf52b04267c/8ff5a/17.png 240w,
+/devHistoryBlog/static/73fda5a36757dc9c2209adf52b04267c/e85cb/17.png 480w,
+/devHistoryBlog/static/73fda5a36757dc9c2209adf52b04267c/d9199/17.png 960w,
+/devHistoryBlog/static/73fda5a36757dc9c2209adf52b04267c/d56e1/17.png 1130w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;br/&gt;
+&lt;h3&gt;2.5. 아쉬운 점&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;프로메테우스를 통해 수집한 지표들은 정확한 &lt;strong&gt;“건수”&lt;/strong&gt;를 도출하기 힘들다.&lt;/li&gt;
+&lt;li&gt;실제, 건수가 많은 지표에 10건 이하의 건수 누락은 크게 문제가 안되겠지만, 카드 발급 현황의 경우, 파드 수 만큼 개수가 빠지므로 크게 표시가 남.&lt;/li&gt;
+&lt;li&gt;따라서, &lt;strong&gt;정확한 건수를 위한 지표보다는 현황 및 이상 감지 용도로 적합하다.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[rateLimit 고민 기록]]></title><link>https://ssongey.github.io/works/posts/2024-07-14--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2024-07-14--001</guid><pubDate>Sun, 14 Jul 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이번에 톡사원증이 오픈을 하게 되었다.&lt;br/&gt;
+톡사원증은 특정 증명서 발급을 통해 회사 이력을 카드로 인증해주는 서비스이다.&lt;br/&gt;
+요 기쁜 소식을 사내에 오픈 공지를 올렸을때, 순간적으로 트래픽이 살짝 높아지게 되었는데, 이때 증명서 발급 신청 건이 우수수 실패가 되었다.&lt;/p&gt;
+&lt;p&gt;맙소사… 아직 대외로 오픈소식을 알리기도 전인데 이게 왠 날벼락인가…&lt;br/&gt;
+이대로라면 프로모션시에 큰 장애가 날 듯 싶어 급하게 rate limiter 를 개발하게 되었다.&lt;/p&gt;
+&lt;h2&gt;요구사항은,&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;증명서 별로, 발급 신청시 rate limit 을 적용한다.&lt;/li&gt;
+&lt;li&gt;분산환경에서 동작해야 한다.&lt;/li&gt;
+&lt;li&gt;발급신청시에 요청수 체크 및 카운트를 증가 시키고, 그외 특정 api 들에서도 요청수 체크를 할 수 있어야 한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;br/&gt;
+&lt;h2&gt;구현방법&lt;/h2&gt;
+&lt;p&gt;rate limit 를 구현하는 방법은 다양하다.&lt;/p&gt;
+&lt;p&gt;nginx에서 사용자 IP 별 요청을 제한하거나 어플리케이션 단에서 queue를 이용하는 방법, 또는 redis 를 이용하는 방법 등 여러가지 방법이 있는데, 이중 최대한 쉽게 구현할 수 있는 redis 를 사용하기로 했다. (예시도 많고..)&lt;/p&gt;
+&lt;p&gt;그리고 방법은 2가지를 정할 수 있는데,&lt;/p&gt;
+&lt;h3&gt;구현방법1) 고정 윈도 카운터&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;타임라인을 고정된 윈도우로 나누고, 각 윈도우마다 카운트 체크를 한다.&lt;/li&gt;
+&lt;li&gt;카운트가 임계치를 넘어가면 새로운 윈도우가 열릴때까지 요청은 버려진다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/328e1684ea378d8b8658a13d91b33830/bc3ae/01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 52.916666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABP0lEQVQoz31SCY6DMAzk/z/rH2C3UFigpRwNN5SpJ1ojWLFYshxn7ImPOBB5v99Wj4T38zyf4ootywKHh2marKMBPKulkFATtrjeMX9HWFUVmqZBnucIggBRFOF2uyHLMgzDgDRNMY6jtbwPw9Cq5tHuCEngui7u9zviOLaaJIklIHa5XKzl3RZnvOd5FtPuLCGr0PaORFs6EuYxf1dh23XoJamoXngWJUzbEl2T2JbOTlVnSDLiO8LumaH3v2CCK4z/jS4MMFw95DLDUuaTPR6n1fd9v/rOLC9VsoxGdBl6zFLdIgF5/APf99f5FkVht83lkISWfivxXIp+Laeua5RlieplUDctjJRvxNbGoBGMOMmM+PWvv1WSMZ9t8yHbMre5LXsrfJlV/vexOUPdsm1Zt/R36Nvh87EzXH8J9QPqQ1i0wS7TXAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/328e1684ea378d8b8658a13d91b33830/d9199/01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/328e1684ea378d8b8658a13d91b33830/8ff5a/01.png 240w,
+/devHistoryBlog/static/328e1684ea378d8b8658a13d91b33830/e85cb/01.png 480w,
+/devHistoryBlog/static/328e1684ea378d8b8658a13d91b33830/d9199/01.png 960w,
+/devHistoryBlog/static/328e1684ea378d8b8658a13d91b33830/bc3ae/01.png 1268w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;고정 윈도 카운터의 단점&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;이 방법은 redis 공식 문서에도 소개된 만큼 구현하기 쉬운 장점이 있지만, (&lt;a href=&quot;https://redis.io/docs/latest/commands/incr/&quot;&gt;https://redis.io/docs/latest/commands/incr/&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;아래와 같이 윈도우 경계부근에서 일시적으로 많은 트래픽이 몰려드는 경우에는, 기대했던 시스템의 처리 한도보다 최대 2배의 많은양을 처리하게 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/a90e342e346ec010d2d9e208f08ed059/7b1dc/02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 956px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 52.083333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABKElEQVQoz41Sa2+DMAzs//9x3ecCQUC7VcB4Bcobbr5MQWys6iydsHzkcrZzWtcVjL7vMc8z0jQ1SJIEn1mGaRjQdR3mcURVVRsXxzHatsUo9WmajAa1TlbQ8zxcr1f4vm9yQkn+HkV4O5/hOReEQbBxxO12g+M4KIriKEgXz2IQ92L/T47u6PIgSPvMiWVZvscg7bZNDS2t6rJEXWvDWZjL5J+XgrbWNA1cpXDxFFQY4uN+f+3QEs9antMED+WiVQ5KWZKua7Mcghfmeb6dNYJUtwS/P/B4oJWBl0mMWlBJzsUFshzXdRHJwniulHGwQ47BtEzbLPLZ7GdkUWltntV+JHaGFNLC27ppmUK8yf70O3JplQdtW/tgPRP+sBQbexf7Bf2HY3wBs48Jbk/2R8YAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/a90e342e346ec010d2d9e208f08ed059/7b1dc/02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/a90e342e346ec010d2d9e208f08ed059/8ff5a/02.png 240w,
+/devHistoryBlog/static/a90e342e346ec010d2d9e208f08ed059/e85cb/02.png 480w,
+/devHistoryBlog/static/a90e342e346ec010d2d9e208f08ed059/7b1dc/02.png 956w&quot;
+        sizes=&quot;(max-width: 956px) 100vw, 956px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;ts &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; CURRENT_UNIX_TIME&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+keyname &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; key+&lt;span class=&quot;token string&quot;&gt;&quot;:&quot;&lt;/span&gt;+ts
+MULTI
+    INCR&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;keyname&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    EXPIRE&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;keyname,10&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+EXEC
+current &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; RESPONSE_OF_INCR_WITHIN_MULTI
+IF current &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt; THEN
+    ERROR &lt;span class=&quot;token string&quot;&gt;&quot;too many requests per second&quot;&lt;/span&gt;
+ELSE
+    PERFORM_API_CALL&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+END&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;구현방법2) 이동 윈도우&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;매번 현재시간을 기준으로 윈도우를 나누고, 각 윈도우마다 카운트 체크를 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/40b2d0601a8bd4b5cf80c9f7ba40486a/7960f/03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 57.50000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAABZklEQVQoz5VTi26DMAzs///gNE0rpWODUsqrBEhIuPmyggjaQ4tkSM7JxT47h3mesR1c77EFz/McaZpCa71iWz/HYQ/+RtjUNcrbDWaafibkZ5INzjmiXHgH14yI1nXdljkg4L5pc4EnVEqtaaRvZyRJgizLEEUR4jjG8XhEdrkgPp1QF0VASDKeDwiHYYAxxoNaddDjCCsbrbVwYnVVQfU9RrFJfHvCXvCAkIAnfGwy8i/rBq3czGS0kK5D5vN/InTpO4Y4Qvn6gjY+QSdn5M9PuElBKimI7tXfEZJwERaSMozo6exXNOOAD9ExFU2pbXG9BtWnLAuhrzKBtm09SFIjGhnrfGvQrFSxvd8xCj5JFoby0Cdz7mcwTdOsnXJg/pWITlBJdJ0cZpvQ7jKnvyxLf6nqQj+N53iec17iUy6kFcZH9b5raL6OVZLdYIZsseClbDXcvhYa02CUPLj3LYT0+4ch4xPnrqtRlSRpzAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/40b2d0601a8bd4b5cf80c9f7ba40486a/d9199/03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/40b2d0601a8bd4b5cf80c9f7ba40486a/8ff5a/03.png 240w,
+/devHistoryBlog/static/40b2d0601a8bd4b5cf80c9f7ba40486a/e85cb/03.png 480w,
+/devHistoryBlog/static/40b2d0601a8bd4b5cf80c9f7ba40486a/d9199/03.png 960w,
+/devHistoryBlog/static/40b2d0601a8bd4b5cf80c9f7ba40486a/7960f/03.png 1274w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;이동 윈도우의 단점&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;위 그림만 봐서는 고정 윈도우의 단점을 해결 할 수 있을 듯.. 보였지만&lt;/li&gt;
+&lt;li&gt;실제 구현 방법을 보면 이 방법도 함정이 보인다..ㅠㅜ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;current = 0
+MULTI
+ZREMRANGEBYSCORE $key 0 ($currentTime - $slidingwindow)
+current = ZRANGE $key 0 -1
+EXEC
+
+IF current &amp;gt; 100 THEN
+ERROR &amp;quot;too many requests per second&amp;quot;
+ELSE
+PERFORM_API_CALL()
+MULTI
+ZADD $key $currentTime
+EXPIRE $key $slidingwindow
+EXEC&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;위 코드는 sorted set를 이용한 이동 윈도우 구현 방법이고, 데이터는 현재 시간이 들어간다.&lt;/li&gt;
+&lt;li&gt;sorted set 이기 때문에 시간순으로 정렬이 되며, ZREMRANGEBYSCORE 명령어를 이용하여 현재 윈도우에서 제외되는 데이터를 지운다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/eff7c4de3be3b5ede70b15ea88480466/fbf76/04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 63.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVQ4y31Ta2+DMAzs//9rkzbtOxOshfIYBcqbJHDzRaQqjM7SCcePi+2YE0SWZbFw4jRnJ/I8R5Km6LsOlehGa+xz+T29InwmI4qiQLoS1rd/CDdEO+Ij6YTwJuRt227sLs9WqJSCMYZWTNME1fcYBdSzLEMYhrherxiGAWVV4Sa2QfwULZUyf9NyvyZTiqJE4Hn49n07M1++npz5jYU0CAKkUfSojHn9Sv4g5M28iXNhO3mS2GqPxLY2z1gErjvm/6nQla0ZyFnuiQSksE+xIzyskA6GNP4Xuo836OgMlcbow7OF+Ukx+R6az3eM0QXzetFhhTTwUdg255OHFyh5xbFpkPEcxzAS01clksBHIbM1a4XM2RDSUNe1XQfOcBLMKznbnyWI0GJT1m8wawUlj8EY5jGf+izxJxq4tJWsA/VGqiK4Zw7dk97St/oZf7/fUZal1UlqW+aujeN4+KoMiqTtVwvPdrmjTuyf4srd/24E7Rz8kc/5me/OvzpZ98YG8RBHAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/eff7c4de3be3b5ede70b15ea88480466/d9199/04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/eff7c4de3be3b5ede70b15ea88480466/8ff5a/04.png 240w,
+/devHistoryBlog/static/eff7c4de3be3b5ede70b15ea88480466/e85cb/04.png 480w,
+/devHistoryBlog/static/eff7c4de3be3b5ede70b15ea88480466/d9199/04.png 960w,
+/devHistoryBlog/static/eff7c4de3be3b5ede70b15ea88480466/fbf76/04.png 1252w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;이때, ZREMRANGEBYSCORE 명령어와 ZADD 명령어는 한 트랜잭션에 존재하지 않기 때문에 정말 짧은 순간에 트래픽이 몰렸을 경우, 방어가 되지 않는 문제가 생긴다.&lt;/p&gt;
+&lt;br/&gt;
+&lt;h2&gt;그래서 결론은?&lt;/h2&gt;
+&lt;p&gt;각 단점을 다시 정리하면,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;고정윈도우는, 정해진 시간(윈도우)에&lt;/strong&gt; burst traffic 발생시에 최대 2배 처리가 되고,&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;이동윈도우는, 동일하거나 정말 짧은 시간에&lt;/strong&gt; burst traffic 발생시 아예 방어가 안된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;하지만 전자증명서 서비스 특성상, 정말 짧은시간에 burst traffic이 발생할 확률보단 정해진 시간에 burst traffic 이 발생할 확률이 높아 두번째 방법을 선택하게 되었다.&lt;/p&gt;
+&lt;p&gt;아직 개발 전이지만.. 시간이 너무 촉박하다ㅠㅜ 어휴&lt;/p&gt;</content:encoded></item><item><title><![CDATA[스프링 배치작업 기록]]></title><link>https://ssongey.github.io/works/posts/2024-06-22--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2024-06-22--001</guid><pubDate>Sat, 22 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;스프링 배치를 사용하여 매일 한번씩 카카오 계정 서버에서 휴면/탈퇴 계정 목록을 가져와 내가 담당하고 있는 서비스를 탈퇴 시키는 작업을 진행했고, 이에 대한 기록을 남긴다.&lt;/p&gt;
+&lt;h2&gt;1. 요구사항&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;매일 휴면계정 목록을 가져와서 카카오 전자증명서 서비스를 탈퇴시킨다.&lt;/li&gt;
+&lt;li&gt;매일 탈퇴계정 가져와서 카카오 전자증명서 서비스 탈퇴 및 DB에 저장된 증명서 발급 내역 테이블에서 개인정보 컬럼을 null로 업데이트한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2. 배치 스케줄러를 어떻게 수행할 것인가?&lt;/h2&gt;
+&lt;h3&gt;2.1. k8s cronJob + api 서버&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;방법&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;스케줄러는 k8s cronJob 이 담당&lt;/li&gt;
+&lt;li&gt;배치 작업을 수행하는 api 를 생성하며, cronJob이 해당 api를 호출한다.&lt;/li&gt;
+&lt;li&gt;해당 api 의 배치 로직 실패시에 알람 구현 필요&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;배치 오류 발생시?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;상세 에러 내용은 kibana에서 확인 (es에 서빙이 되도록 로그 작업 필요)&lt;/li&gt;
+&lt;li&gt;배치 작업을 수행하는 api 를 수동으로 호출 필요&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;2.2. jenkins + api 서버&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;방법&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;스케줄러는 jenkins cron이 담당&lt;/li&gt;
+&lt;li&gt;배치 작업을 수행하는 api 를 생성하며, jenkins가 해당 api를 호출한다.&lt;/li&gt;
+&lt;li&gt;실패에 대한 알람은 jenkins 플러그인 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;배치 오류 발생시?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;상세 에러 내용은 kibana에서 확인 (es에 서빙이 되도록 로그 작업 필요)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;배치가 오래 걸릴수 있으니 http 커넥션을 계속 맺고 있을수 없다고 판단, @Async 어노테이션을 이용하여 비동기로 수행. 때문에 젠킨스에 배치에 대한 호출로그는 남겠지만, 수행 로그는 남지 않음.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;수동으로 실행하는 젠킨스 파이프라인 미리 생성하여 해당 파이프라인 수행.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;2.3. jenkins + springbatch&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;방법&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;스케줄러는 jenkins cron이 담당&lt;/li&gt;
+&lt;li&gt;배치 작업은 spring batch가 담당, jenkins cron은 springbatch 애플리케이션 파드를 실행시킴&lt;/li&gt;
+&lt;li&gt;수행 시간에 파드가 생겼다가 작업이 끝나면 사라짐.&lt;/li&gt;
+&lt;li&gt;실패에 대한 알람은 jenkins 플러그인 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;배치 오류 발생시?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;상세 에러 내용은 젠킨스 수행 로그에서 확인&lt;/li&gt;
+&lt;li&gt;수동으로 실행하는 젠킨스 파이프라인 미리 생성하여 해당 파이프라인 수행.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;3번 사용 결정 이유&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;배치를 위한 파드(서버)를 계속 띄울 필요 없이, 배치가 수행되는 시간에만 파드를 띄울수 있다는 장점이 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;리소스 절약 및 서버에 대한 관리가 불필요.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;파트 내에 이미 kubernetes plugin 이 설치된 젠킨스가 있어서 세팅이 간단 했던것도 한몫함.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://plugins.jenkins.io/kubernetes&quot;&gt;Jenkins kubernetes plugin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;한 곳에서 (jenkins) 수행 로그(결과 또는 에러 로그) 확인 및 재수행(retry)을 진행할 수 있다는 장점이 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;api로 수행을 할 경우, 수행 로그 확인과 재수행(retry) 위치가 달라진다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. spring batch 작업을 진행하면서 겪은 일&lt;/h2&gt;
+&lt;h3&gt;3.1. multi datasource 설정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;spring batch 를 사용하기 위해서는 &lt;strong&gt;기본적으로 필요한 메타 테이블들이 존재&lt;/strong&gt;한다.&lt;/li&gt;
+&lt;li&gt;해당 테이블은 비즈니스 로직에서 사용하는 DB에 생성하기에는 너무 불필요한 테이블이였다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;때문에 &lt;strong&gt;비즈니스 DB와 spring batch DB를 분리&lt;/strong&gt;하기로 결정.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;비즈니스 DB는 기존대로 mysql 사용, spring batch DB는 h2 사용.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;파드가 생성되어 애플리케이션이 시작될때 h2 로드 및 아래 spring batch 메타 테이블은 h2에 생성.&lt;/li&gt;
+&lt;li&gt;애플리케이션이 종료되면 h2에 생성된 테이블 삭제 및 h2도 같이 종료. (메타 테이블에 저장된 배치 이력 데이터 사라짐)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/bce78d74ec50ca823267f3786e435b30/58a91/01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 80.83333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAAClElEQVQ4y4VUaXPaMBTk//+cNue0nU4DTSbhDtjGFz4xYPAFtqmxzfZJQJoPIdXMWpZk7Vvte3LDj1Lcv0i4ex7j9umV4+5ZQEdxcakdDoeLa41NusVYmkCcyLwXJBlBvMGu2GObF3BXMWYEexFgHiSoT2SXSBtRskFvJHK0ByOMJBWiOoVhu/BWIa4eOrj69YLrZge/XxWUVf05YV3XqOoD2HKa5fRe8037skK+y+HYJhzTgL/wgLp6I7pIyB6iscCXZh83j0N8bfbwrS1ht68Qxgl64wk6wzGpH0Mi5fuy5BuZkJqEvAcLwgkX6xUE8lCSFTgzD0GUoOIqa6RFhWibI87+ICtKTvRZ44RRFNHRbNi2BcdxkGUZXzQpEdePr7hu9fH1oYvvbREFWTEPUnSpCgbaDH3VRVe20SFE6e5IuA5D6NMpFEVFSO9nf7abmOYUqATHsXlg1py5j2Z7iObLAK3OEK+KAc1ZYpOdCYMAuq7zzZZloSSf9vs9wijm85qmwTRNFEXBPQyI2KXT2JQslrRzqylpnHC1XmNKCjVV5ZvZRkYaJQkMw+CBPM/j/rFA7EQsgKpq8H3/jZBVyD+FROiSfyqRuu7xlmzTFBapMGhtSkp9f8nnfRIgSRIH8zzZbBAQR57np6TEMUyLJcTlkZmPrAVhBEHWMBJlKngZE1VHSQrZTVLtOXRnTr0H1ZphYhDxNj0ShuTJ9OQVQ0zjkrK53uywTHLYPnm2TuCFWyRUPv8tG8dboi/IGBBYLyo65usIP9oC7p+GuGl1cdvq4WdvgpEx51VwCZyQihzVO7Axu3ayQj8NQYAkitwvppz5dC7uj65f4zj5DqePsnwHQTMxVg0OaWrT2IJuz05q8KHCv7datrAKw+zRAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/bce78d74ec50ca823267f3786e435b30/d9199/01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/bce78d74ec50ca823267f3786e435b30/8ff5a/01.png 240w,
+/devHistoryBlog/static/bce78d74ec50ca823267f3786e435b30/e85cb/01.png 480w,
+/devHistoryBlog/static/bce78d74ec50ca823267f3786e435b30/d9199/01.png 960w,
+/devHistoryBlog/static/bce78d74ec50ca823267f3786e435b30/07a9c/01.png 1440w,
+/devHistoryBlog/static/bce78d74ec50ca823267f3786e435b30/29114/01.png 1920w,
+/devHistoryBlog/static/bce78d74ec50ca823267f3786e435b30/58a91/01.png 1990w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;비즈니스 로직에서 사용하는 DB(mysql) 설정(application.yaml)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;kotlin&quot;&gt;&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;spring&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+  jpa&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+    database&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; mysql
+    database&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;platform&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;hibernate&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dialect&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;MySQL8Dialect
+    &lt;span class=&quot;token operator&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;spring batch에서 필요한 메타 데이터 테이블 생성을 위한 설정 (BatchConfig.kt)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;kotlin&quot;&gt;&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token annotation builtin&quot;&gt;@EnableConfigurationProperties&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;BatchProperties&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token annotation builtin&quot;&gt;@Configuration&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; BatchConfig &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token comment&quot;&gt;// @Bean 없이 생성해야 primany datasource bean 은 mysql 이 된다.&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;val&lt;/span&gt; batchDataSource &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;EmbeddedDatabaseBuilder&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;EmbeddedDatabaseType&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;H2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;addScript&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;classpath:org/springframework/batch/core/schema-drop-h2.sql&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;addScript&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;classpath:/org/springframework/batch/core/schema-h2.sql&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+		&lt;span class=&quot;token comment&quot;&gt;// 메타 테이블 스키마에 대한 초기화를 진행한다. 해당 설정이 없으면 테이블 생성은 mysql에 생성된다.&lt;/span&gt;
+    &lt;span class=&quot;token annotation builtin&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;batchDataSourceInitializer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+        resourceLoader&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ResourceLoader&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        properties&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; BatchProperties&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; BatchDataSourceInitializer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;BatchDataSourceInitializer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            batchDataSource&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            resourceLoader&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            properties&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+		&lt;span class=&quot;token comment&quot;&gt;// 배치설정를 진행하며, 여기서 설정된 datasource에 배치 메타 데이터에 대해 crud 가 발생&lt;/span&gt;
+    &lt;span class=&quot;token annotation builtin&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;batchConfigurer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; BatchConfigurer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;DefaultBatchConfigurer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;batchDataSource&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;2. JPA로 수행되는 CUD 쿼리가 수행이 안되는 현상.&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;위처럼 생성하게 되면 batch 관련 DataSource 는 h2 기준으로 생성이 된다.&lt;/li&gt;
+&lt;li&gt;Spring Batch는 기본적으로 &lt;code class=&quot;language-text&quot;&gt;DataSourceTransactionManager&lt;/code&gt; 를 사용하므로 JPA로 수행되는 쿼리도 해당 트랜잭션 매니저로 수행이 된다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;DataSourceTransactionManager&lt;/code&gt;으로 수행이 되면 JpaTransaction이 생성되지 않아 기본 쿼리인 조회(select)만 수행이 가능하게 된다.&lt;/li&gt;
+&lt;li&gt;이를 해결하기 위해 JpaTransaction bean을 생성하여 batch job에 주입해준다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;kotlin&quot;&gt;&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token annotation builtin&quot;&gt;@Configuration&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; JpaConfig &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token comment&quot;&gt;// datasource bean 은 mysql 이다.&lt;/span&gt;
+    &lt;span class=&quot;token annotation builtin&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token annotation builtin&quot;&gt;@Primary&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;jpaTransactionManager&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dataSource&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; DataSource&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; JpaTransactionManager &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;JpaTransactionManager&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dataSource &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dataSource &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; JobConfig &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token annotation builtin&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;dormantStep&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+        jpaTransactionManager&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; JpaTransactionManager&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Step &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; stepBuilderFactory&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dormantStep&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;tasklet&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dormantUserTasklet&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;transactionManager&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;jpaTransactionManager&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation builtin&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;dormantJob&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+        dormantStep&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Step&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        jobCompletionListener&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; JobExecutionListener
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Job &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; jobBuilderFactory&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dormantJob&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listener&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;jobCompletionListener&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dormantStep&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;3. index가 없을 경우 update, delete 쿼리가 수행되면?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;update, delete 쿼리에 필요한 인덱스를 DB팀에 요청 후에 jenkins 세팅을 하게 되었다.&lt;/li&gt;
+&lt;li&gt;리얼에서 파이프라인 세팅 및 테스트를 하다가 실수로 spring batch job을 수행하게 되었다.&lt;/li&gt;
+&lt;li&gt;갑자기 약 1-2분간 ‘PessimisticLockingFailureException’ 오류가 발생하여 서비스 불능 상태가 되었고, batch job 수행이 완료된 후 락이 풀렸다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;where 절로 인해 테이블 전체가 Lock이 걸리진 않을거라고 예상했는데… &lt;strong&gt;InnoDB에서 &lt;a href=&quot;https://dev.mysql.com/doc/refman/8.4/en/update.html&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;UPDATE&lt;/code&gt;&lt;/a&gt;또는 &lt;a href=&quot;https://dev.mysql.com/doc/refman/8.4/en/delete.html&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;DELETE&lt;/code&gt;&lt;/a&gt;는 where 절과 상관없이 스캔된 모든 인덱스 레코드에 잠금을 건다&lt;/strong&gt;. 수행 당시에는 조건에 걸린 필드에 인덱스가 없었기 때문에 모든 row에 락이 걸리게 된 것이다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html&quot;&gt;https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;실시간 서비스에서 서치가 오래걸리는 update, delete 의 경우는 꼭꼭 인덱스를 세팅하고 수행하자.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;4. Transaction 이 너무 긴 현상&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;kotlin&quot;&gt;&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ATestlet&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Tasklet &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token operator&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;loop&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;token function&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;RunnerClass&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token annotation builtin&quot;&gt;@Transactional&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token operator&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;한개의 tasklet 을 사용하여 loop를 돌며 트랜젝션 어노테이션이 붙은 함수를 수행하도록 하였고, 해당 함수에서는 update, delete 쿼리가 수행된다.&lt;/li&gt;
+&lt;li&gt;loop 가 한번 돌떄마다 commit 이 발생할 것이라고 예상했는데, 예상한바와 다르게 프로세스가 끝나야 실제 DB에 반영이 되었다.&lt;/li&gt;
+&lt;li&gt;해당 원인파악은 아직 못한 상태…&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Circuit 적용 고민]]></title><link>https://ssongey.github.io/works/posts/2024-06-15--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2024-06-15--001</guid><pubDate>Sat, 15 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;현재 맡고 있는 서비스는 정부전자문서지갑 API에 대한 의존도가 높은데, 이 API는 장애가 잦은 편이다.
+장애가 발생하면 서비스 응답 속도가 느려지고, 결국 사용자 경험이 나빠진다.
+&lt;br/&gt;
+이런 문제를 해결하기 위해 &lt;strong&gt;Circuit Breaker 적용을 좀 더 세분화하여 진행&lt;/strong&gt;했다.
+&lt;br/&gt;
+기존에는 큰 기능 단위로만 Client Bean을 나누었지만, &lt;strong&gt;API 특성별로 더 세분화하여 대응&lt;/strong&gt;하기로 했다.&lt;/p&gt;
+&lt;br/&gt;
+&lt;h2&gt;1. Client Bean 세분화&lt;/h2&gt;
+&lt;p&gt;일반적으로 외부 API를 호출하는 Client Bean은 &lt;strong&gt;host 단위&lt;/strong&gt;로 생성한다.
+하지만 장애가 잦은 API에 대해 더 정밀한 대응이 필요했기에, &lt;strong&gt;장애 유형별, 구간별로 Client Bean을 추가 분리&lt;/strong&gt;했다.
+&lt;strong&gt;분리된 client들은 서로 중복으로 api path를 가질 수 있으며, 각 client 객체는 호출되는 시점이 다르다.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;✔︎ 구조 개선&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;기존 구조 (AS-IS)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;개인 전자문서 지갑 관련 api 연동 client bean&lt;/li&gt;
+&lt;li&gt;수취기관 관련 api 연동 client bean&lt;/li&gt;
+&lt;li&gt;증명서 신청/제출 등 api 연동 client bean&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;개선된 구조 (TO-BE)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;장애가 자주 발생하는 api별 client bean 생성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;증명서 신청을 위한 부가정보 조회 api 전용 client bean&lt;/li&gt;
+&lt;li&gt;사용자의 전자문서지갑 상태 조회 api 전용 client bean&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;점검 유형 정하기 위한 구간별 client bean&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;전자증명서 홈 진입 시 사용되는 api 전용 client bean&lt;/li&gt;
+&lt;li&gt;증명서 신청 플로우에서 사용되는 api 전용 client bean&lt;/li&gt;
+&lt;li&gt;증명서 보냄/받음 플로우에서 사용되는 api 전용 client bean&lt;/li&gt;
+&lt;li&gt;내 증명서 확인 플로우에서 사용되는 api 전용 client bean&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;그외 api 전용 client bean 생성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h3&gt;✔︎ 적용 효과&lt;/h3&gt;
+&lt;p&gt;서비스 특성상 &lt;strong&gt;read timeout이 15초&lt;/strong&gt;로 설정되어 있었고,
+정부전자문서지갑 서버는 &lt;strong&gt;Timeout 에러가 자주 발생&lt;/strong&gt;하는 상태였다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Circuit Breaker가 오픈되면서&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;15초 동안 기다리지 않고 &lt;strong&gt;빠르게 사용자에게 오류 페이지로 랜딩&lt;/strong&gt;이 가능했다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Client Bean을 세분화하면서&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;어떤 플로우가 문제인지 좀 더 명확하게 파악&lt;/strong&gt;할 수 있었다.&lt;/li&gt;
+&lt;li&gt;점검 종류를 빠르게 파악이 가능하여 &lt;strong&gt;빠른 대응이 가능&lt;/strong&gt;했다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h2&gt;2. 불필요한 Pod 수 조정&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Circuit Breaker는 각 파드에서의 에러율을 기준으로 동작&lt;/strong&gt;하기 때문에,
+트래픽 대비 Pod 수가 많으면 &lt;strong&gt;서킷이 제대로 동작하지 않는 문제&lt;/strong&gt;가 있다.&lt;br/&gt;
+현재 트래픽에 비해 설정된 Pod 수가 많았고, &lt;strong&gt;적절한 Pod 개수로 조정&lt;/strong&gt;하여 서킷이 정상적으로 동작할 수 있도록 했다.&lt;/p&gt;
+&lt;h3&gt;✔︎ 적용 효과&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;트래픽이 많지 않은 시간대 &amp;#x26; 요일에도 &lt;strong&gt;Circuit Breaker가 정상적으로 동작&lt;/strong&gt;하도록 개선됨.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h2&gt;3. Sliding Window 타입 결정&lt;/h2&gt;
+&lt;p&gt;Resilience4j의 Circuit Breaker는 아래 2가지 &lt;strong&gt;Sliding Window 방식&lt;/strong&gt;을 지원한다.
+&lt;a href=&quot;https://resilience4j.readme.io/docs/circuitbreaker&quot;&gt;참고&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Count-based Sliding Window&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;요청 개수 단위로 데이터를 저장하고 집계하는 방식&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Time-based Sliding Window&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;요청 시간 단위로 데이터를 저장하고 집계하는 방식&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;p&gt;처음에는 Time-based 방식을 고려했지만,
+&lt;strong&gt;Client Bean 세분화 및 낮은 트래픽을 가진 서비스의 특성&lt;/strong&gt;을 고려하여 &lt;strong&gt;Count-based&lt;/strong&gt;로 결정했다.&lt;/p&gt;
+&lt;h3&gt;✔︎ 적용 효과&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;트래픽이 낮은 늦은 밤, 새벽 시간대에도 서킷이 동작하도록 개선 됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h2&gt;4. Fallback 적용 여부&lt;/h2&gt;
+&lt;h3&gt;✔︎ Fallback이란?&lt;/h3&gt;
+&lt;p&gt;서비스를 차단한 경우, 예외를 발생시키는 대신 미리 준비된 동작을 실행하는 것을 의미한다.&lt;br/&gt;
+즉, Circuit Breaker가 Open 상태일 때 요청을 에러로 응답하지 않고, 대체 응답을 제공하는 방식이다.&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;이번 작업의 목표는 빠르게 에러를 감지하고 사용자에게 안내하는 것&lt;/strong&gt;이었기 때문에, &lt;strong&gt;Fallback을 적용하지 않고 즉시 에러 안내 페이지를 노출&lt;/strong&gt;하도록 했다.&lt;/p&gt;
+&lt;br/&gt;
+&lt;h2&gt;5. 최종 정리&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;장애가 자주 발생하는 API별로 Client Bean을 세분화&lt;/strong&gt;하여 장애 감지 속도를 높임&lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pod 개수를 조정하여 Circuit Breaker가 정상 동작하도록 개선&lt;/strong&gt;&lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;트래픽 특성을 고려해 Count-based Sliding Window 방식 적용&lt;/strong&gt;&lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fallback을 사용하지 않고 빠른 에러 안내 제공&lt;/strong&gt;&lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[GSLB에 대해 알아봅시다]]></title><link>https://ssongey.github.io/works/posts/2024-05-10--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2024-05-10--001</guid><pubDate>Fri, 10 May 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. GSLB 는 SLB와 무엇이 다른가?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;SLB : Server Load Balancing&lt;/li&gt;
+&lt;li&gt;GSLB : Global Server Load Balancing&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GSLB는 DNS + SLB&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;일반적인 DNS 기능 + LB Method 적용이 가능&lt;/li&gt;
+&lt;li&gt;DNS는 단순 R/R 으로 IP만 응답함&lt;/li&gt;
+&lt;li&gt;위치(topology)를 기반으로 응답을 다르게 주거나&lt;/li&gt;
+&lt;li&gt;Ratio를 줘서 6:4 등의 비율로 나누어 주거나&lt;/li&gt;
+&lt;li&gt;하는 등의 제어가 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h2&gt;2. SLB&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;구성단위는 &lt;strong&gt;VIP&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;VIP에 여러대의 서버를 바인딩&lt;/li&gt;
+&lt;li&gt;즉, LB가 실제 트래픽을 받는 구조, 때문에 트래픽 규모에 따른 한계가 있을 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;✔️ Traffic Flow&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;클라이언트는 DNS에서 도메인 주소의 IP 주소를 질의하여 얻어옴&lt;/li&gt;
+&lt;li&gt;레코드 타입: A (도메인에 IPv4 주소를 연결하는 방식)&lt;/li&gt;
+&lt;li&gt;이때 IP는 미리 등록한 SLB VIP&lt;/li&gt;
+&lt;li&gt;클라이언트는 DNS 질의를 통해 얻어온 VIP로 접속을 시도&lt;/li&gt;
+&lt;li&gt;해당 VIP를 가진 SLB는 Method에 따라 Client의 요청을 서버로 분배&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/7514617a693225b4aeeff4093b637649/09ede/01.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 57.50000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAACEElEQVQoz32TTY/SQBzG+V6e/ACe/TheNvGwRhOzwdIt9HU67ZQOLGWDlRdhKbBmY4I3o9GYcDCiB7MGD8vC48xAWdclTvKkzbz8/s88/7awXq8hJcf7Dx9xNswwGQ2RTd4gy4YYDjcajUYYj8d7NZlM1Pp8Pkchhy2vlghChvODh/j06D5C7SnikwTNJEEiFIYhKqYJc48sy0KpVFLQG6BQwm18fvwAvw7uoWUcIu0NcDboo9/vo3l6CkIIfN+/I0qpgkqnhZUArRYL/O41wHkEahRR15/AJRSe58FzXRDPFQeJOOirpwT/LQmVThVQ2cMCyx/fwOoNuH4AwmJVlcrqIgY3jIQDB+WKBceV4OCWOxnHDvj2IsO76QV+Xl7iVVkDdUyEgafchNUYccVAWCziyPRxpFvQLF+tVcUa5zGCIFDaXbnbey0yGuD71y8YvHgG5uioMku4I2CcIy5pqD8/BIuOwekxGK0gYj5qtboAcgGu3gZiO66vV2AnDTgeERtrSNMUL1stpJ0OPN6E7gQwVV6bG0TKIRfX/cfhrsvLK3BRjYhGyA0yl1yUeGrecgOUPQoWborudXgDXKoNediu6K7sch68KhJQJSreVdO2YozBtu27wLxbhmFA0zT1scrKjuOoA7btbGWruXxeFtd1XfxZ2QaYQ6fTqcqu2+3u1BEZttvt/0rukedmsxn+AC9M8gVQEbhxAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;01&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/7514617a693225b4aeeff4093b637649/d9199/01.png&quot;
+        srcset=&quot;/devHistoryBlog/static/7514617a693225b4aeeff4093b637649/8ff5a/01.png 240w,
+/devHistoryBlog/static/7514617a693225b4aeeff4093b637649/e85cb/01.png 480w,
+/devHistoryBlog/static/7514617a693225b4aeeff4093b637649/d9199/01.png 960w,
+/devHistoryBlog/static/7514617a693225b4aeeff4093b637649/07a9c/01.png 1440w,
+/devHistoryBlog/static/7514617a693225b4aeeff4093b637649/09ede/01.png 1710w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;✔️ Health Check&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;보통 아래 2가지를 방식을 표준으로 사용한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;L4 : TCP port check&lt;/li&gt;
+&lt;li&gt;L7 : HTTP METHOD 를 사용하여 response code 또는 message 확인 (ex. health_check.html)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;interval, response timeout, retry, down time 등의 정책을 정하여 헬스체크를 수행한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h2&gt;3. GSLB&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;구성단위는 &lt;strong&gt;도메인&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;도메인에 여러개의 서버 IP 혹은 VIP를 바인딩&lt;/li&gt;
+&lt;li&gt;도메인으로 들어오는 질의에 대해 GSLB에서 서버 IP 혹은 VIP를 응답&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;즉, GSLB는 DNS의 쿼리만 받음&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;클라이언트에서는 응답받은 서버 IP 혹은 VIP로 트래픽 전송&lt;/li&gt;
+&lt;li&gt;트래픽의 규모와는 직접적으로 연관이 없음&lt;/li&gt;
+&lt;li&gt;DNS 질의양(QPS)에 따른 영향은 있을 수 있으나, 큰 문제가 되는 경우는 적음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;✔️ Traffic Flow&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;클라이언트는 DNS에서 서비스 도메인 주소를 질의하여 얻어옴&lt;/li&gt;
+&lt;li&gt;레코드 타입: CNAME (Alias 형태로 다른 도메인을 연결하는 방식)&lt;/li&gt;
+&lt;li&gt;이때는 결과값은 GSLB의 도메인&lt;/li&gt;
+&lt;li&gt;클라이언트는 DNS 질의를 통해 얻어온 GSLB 도메인으로 다시 질의&lt;/li&gt;
+&lt;li&gt;요청을 받은 GSLB는 Method에 따라 VIP 또는 서버 IP를 응답&lt;/li&gt;
+&lt;li&gt;클라이언트는 질의를 통해 얻어온 VIP 또는 서버 IP로 접속을 시도&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;5-1. VIP로 시도했다면, 해당 VIP를 가진 SLB는 Method에 따라 Client의 요청을 서버로 분배&lt;/p&gt;
+&lt;p&gt;5-2. 서버 IP로 시도했다면, 바로 서버로 접근&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/b173b9b97802a2d4f97574a7bc05934f/05244/02.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 55.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAACUklEQVQoz22S22sTQRSH898JPor/gG8+CL6JT75YFB+09qFqaS57n53dbS6Nbpq0uTVtEooKCmIQUttk074HC1WknzOb4n3gsMw5v/nNd85Oht/W6ekprXabN6+HMJ/BxbnKflPxlYtBC75/udyfp7n/rcx8PmcymTCbzRgffubD231Go/ccVUNOPr7jeJZwkiRMjw5JplOSZMJ0dsL0+BPT6TGJOpfouqqdnZ2RaSuibDaLZZoYriB+skRpdRlLFLm3cosbD66Ss7K027spfTWu464/Y3z/Cu3l22xuNdntdqi+rHJwcECm1WphKjPP83Bcj8BbR6oIhWDp+R1uPr6OI/Lsd1v0ujs0GjUC4wWHj67RXb1LvNOhv79HrVZjOBwuCC3LQigDIXwiWSCUFoFvYXkhtutTcCXCM/E9AylMosDCFqG6SCoQF1fB5HI5+v3+wtA0rZRQRxjK1DznBOQdiS+81DTrFjEdoTRCaQKl8XBdR4WL7/vk8/lfhppQtx1GG7yqlKlUNjHEBq5jpwbikiJrB5RKFaWpsKk0uuY6zp+GnU4n/Smr68qwHLH39AE1UcCQIYbtKbMFuetpakmxJNlbeUjsm+REhOV4fxu2sR2XSrVKuSjTOYaBT7lcRIYqlFibBmGkyMuUNrRGEoVKUykRREUCKSkUCgwGAzLb29vpRlPYtoNhGFj2olVPzUePQ+dslXNUe5ZlpzR67np+umVdW1tbo9frkRmNRuopNNDPR3/jOKZe36LZbP4brWaq0U+k0aj/zOuz9Xqd8XjMDzz0sZkhIY8/AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;02&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/b173b9b97802a2d4f97574a7bc05934f/d9199/02.png&quot;
+        srcset=&quot;/devHistoryBlog/static/b173b9b97802a2d4f97574a7bc05934f/8ff5a/02.png 240w,
+/devHistoryBlog/static/b173b9b97802a2d4f97574a7bc05934f/e85cb/02.png 480w,
+/devHistoryBlog/static/b173b9b97802a2d4f97574a7bc05934f/d9199/02.png 960w,
+/devHistoryBlog/static/b173b9b97802a2d4f97574a7bc05934f/07a9c/02.png 1440w,
+/devHistoryBlog/static/b173b9b97802a2d4f97574a7bc05934f/05244/02.png 1752w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;✔️ Health Check&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;DNS는 H/C 가 안되지만, GSLB는 바인딩된 VIP 혹은 서버 IP에 대해 SLB H/C 가 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h2&gt;4. 도메인 구성은 어떻게 해야 하는데?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;서비스 도메인 &gt; CNAME : GSLB 도메인 &gt; VIP 또는 서버IP&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;서비스 도메인 &lt;a href=&quot;http://www.my-service.com&quot;&gt;my-service.com&lt;/a&gt; 설정&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;레코드 타입: CNAME&lt;/li&gt;
+&lt;li&gt;TTL : 600&lt;/li&gt;
+&lt;li&gt;레코드 값: my-service-hash.kgslb.com&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GSLB 도메인 &lt;a href=&quot;http://my-service-hash.kgslb.com&quot;&gt;my-service-hash.kgslb.com&lt;/a&gt; 설정&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;레코드 타입: A&lt;/li&gt;
+&lt;li&gt;트래픽 분배 방식: R/R&lt;/li&gt;
+&lt;li&gt;H/C : TCP 443, 80&lt;/li&gt;
+&lt;li&gt;레코드 값&lt;/li&gt;
+&lt;li&gt;vip 10.1.1.1, 설정트래픽 50%&lt;/li&gt;
+&lt;li&gt;vip 10.1.1.2, 설정트래픽 50%&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;h2&gt;5. H/C 는 어떻게 동작하고 있는거지?&lt;/h2&gt;
+&lt;p&gt;아래 L4, L7 H/C 동작을 보면, L4는 80포트 커넥션 확인만, L7는 HTTP 요청까지 진행한다.&lt;/p&gt;
+&lt;p&gt;뭐가 더 좋을까?&lt;/p&gt;
+&lt;h4&gt;✔️ &lt;strong&gt;L4 H/C&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;GSLB ↔ SLB, SLB ↔ 서버 각각 H/C 를 진행한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/14a8fb70b4b481d0cd26d0ff0ab8ac2e/17fba/03.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 40.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABHElEQVQoz3VSi26EIBD0/7+x1VrP87QgDxFR1Km7qQYvKclIlNlhdtYsxghjDIqiQPNsUFUPVN8V5nkGrX3fsW0b74S6rlGWJYNq2ra9eISMHsuywFqL0XkM1sG5kUXOlQp67zGOI8ONDtM03QXPoil41KLAj2rgZ0cUJqSC/61T7BJctwgXNJ7mA8LVWNZwK0gF5yVA6haP7hPKSoTob9yMWg1hgpQCeZ5zNkorDMOApmk4SxKj1rTWINl4GAjrzDuZIZ6xBjSPjG6nIq00Hwgh+D2EgK7roJTCuq7scqO8DwP29YIuvuCOs+0Q6fueQRdyyzQUKSU7pCmykySztOX9EAcN7KgBfXvLNruIf78HgRylQV+CJ/cdCfcXc1tvY4CMt9gAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;03&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/14a8fb70b4b481d0cd26d0ff0ab8ac2e/d9199/03.png&quot;
+        srcset=&quot;/devHistoryBlog/static/14a8fb70b4b481d0cd26d0ff0ab8ac2e/8ff5a/03.png 240w,
+/devHistoryBlog/static/14a8fb70b4b481d0cd26d0ff0ab8ac2e/e85cb/03.png 480w,
+/devHistoryBlog/static/14a8fb70b4b481d0cd26d0ff0ab8ac2e/d9199/03.png 960w,
+/devHistoryBlog/static/14a8fb70b4b481d0cd26d0ff0ab8ac2e/07a9c/03.png 1440w,
+/devHistoryBlog/static/14a8fb70b4b481d0cd26d0ff0ab8ac2e/29114/03.png 1920w,
+/devHistoryBlog/static/14a8fb70b4b481d0cd26d0ff0ab8ac2e/17fba/03.png 2456w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;✔️ &lt;strong&gt;L7 H/C&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;GSLB ↔ 서버 H/C 진행도 가능하다.&lt;/li&gt;
+&lt;li&gt;때문에, 최종 endpoint 까지의 H/C 가 가능하다는 점에서 L7 H/C 가 매력적으로 보인다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/c1c3aef34dabe737c84b3962d7fe043e/0e758/04.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 49.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABcUlEQVQoz3VSiZaDIAz0/3+w+3bdWs9aFa0W8ACZTejaukfDw/BMGCaZBCAbhgFRFCFNU9oJ4jiGUopDcM5hXVfv2dq2xfF4RJ7n/k6SxDDGPnIDPhhjCPQGJfX3VrD2nsS2B5znBTfKHfVMXkIr/Yh5QD47WnIckFQfyJsIVynozx2E1x5wsTNEXyG6HFB1BfR8uz/q1ifD1VmouUM9fNKO6NLz1T8MjcYw1si7A/kKdp2xt6DrOkzTBL0A78WE8DxCUs5I/wrqE8cYkFvQNA0YV/QL3lKFQkwwvq8CNcU4J+CPpQvlzeF0BT5bQBL40Pe++T35ZVk8Q0O5RkqoJMMQ51BZAWdXL1AYhpAUC7ZmstLMqDyfwaxfiWJJwE40KPMMorqQKM9p8CVvKrdCIMsyD8ovMch/Y8OM67r27C9VBbkDfIjCJZVl6efqRDPIs7YB/mbIgNxLLpGBtdY/Ge7VZGAulf0rQPYcZ7G2vWf4BfYdB71b5iU3AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;04&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/c1c3aef34dabe737c84b3962d7fe043e/d9199/04.png&quot;
+        srcset=&quot;/devHistoryBlog/static/c1c3aef34dabe737c84b3962d7fe043e/8ff5a/04.png 240w,
+/devHistoryBlog/static/c1c3aef34dabe737c84b3962d7fe043e/e85cb/04.png 480w,
+/devHistoryBlog/static/c1c3aef34dabe737c84b3962d7fe043e/d9199/04.png 960w,
+/devHistoryBlog/static/c1c3aef34dabe737c84b3962d7fe043e/07a9c/04.png 1440w,
+/devHistoryBlog/static/c1c3aef34dabe737c84b3962d7fe043e/29114/04.png 1920w,
+/devHistoryBlog/static/c1c3aef34dabe737c84b3962d7fe043e/0e758/04.png 2502w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h4&gt;✔️  L7 H/C를 사용하는게 항상 좋을까?&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;SRV#2가 H/C에 실패하면&lt;/li&gt;
+&lt;li&gt;GSLB도 SLB#1 H/C를 실패로 간주할 수 있고,&lt;/li&gt;
+&lt;li&gt;실패로 간주되면 GSLB에서 VIP1이 다운이되어 Datacenter#1 로 트래픽 요청이 끊길 수 있다는 점을 고려해야하기 때문에 보통은 L4 H/C를 사용한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/devHistoryBlog/static/a9a7987bf72c12eb3a82267ccb6b1e4e/50e7d/05.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 56.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAACRElEQVQoz22T22/TMBTG+9fxyDsSiIf9G/CAkNA2BuIybUzrJakTXxJnTdKm3VRtS7vC0ySEuL0gNLakHZvUPTKE0MexW6RNYOnIzvHnn48/OxVcadPpFMPhEG9eH+D35RllflH8pLic93/HJn7gf61yfn6OsiwxmUxw9O0YH98f4vOHQxTHX3A2PsJJUWAynpCmwHg8Rnk6QXH6HeXJVxTFMcrxKeVLy7i4uEBFSolqtQrXdSkYFK9B+ZvwWIDF9Xu4++gGXmw+xW5/D/3dXeRuHdHKEt4t38Lh4m1EcYp8fx/9fh9xHKMShiGazSY45/B8TsA6Ar6BkCs8W72Phcc3se48x2iQY7DXR96JoZw6Pq3cwdsnC0izHkajAwwGA0RRhIrWGowxCCHAhYRWLnToouVuIHv4AA6XcHwJwV0EwoFSnp03Wk8o6gV837cMU5QFmgp9+jCJIJBQUqDhK1QbDFJwmiNbPA2H0aa0OCSNlDOQ53m2GDOeAyMwAppQKkS73Ubc7kDUGfSrNfjksYEa0CZTCHQLnU4badomvSIguw6MIo16vYaXG3ScUCKLBdKOhl5bRbC8BD8I6LjcLqgRUEcKWSLRSRSaMkCDcQLy68Bmk9nbSlrB7NiSI040pN6iKqStQEqFrThBsjXzLVCCbjWCDGcaAzQ6+2wch6qjnpNXxtyZL9LubMbGY9NzWym3T4yxuYZyjOYMw+QreZ4jyzLs7Oyg283sW0rTFL1eD9vb2/+E0SZJYr2+mu92u/Yv+wM1/6yqllDuaAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;05&quot;
+        title=&quot;&quot;
+        src=&quot;/devHistoryBlog/static/a9a7987bf72c12eb3a82267ccb6b1e4e/d9199/05.png&quot;
+        srcset=&quot;/devHistoryBlog/static/a9a7987bf72c12eb3a82267ccb6b1e4e/8ff5a/05.png 240w,
+/devHistoryBlog/static/a9a7987bf72c12eb3a82267ccb6b1e4e/e85cb/05.png 480w,
+/devHistoryBlog/static/a9a7987bf72c12eb3a82267ccb6b1e4e/d9199/05.png 960w,
+/devHistoryBlog/static/a9a7987bf72c12eb3a82267ccb6b1e4e/07a9c/05.png 1440w,
+/devHistoryBlog/static/a9a7987bf72c12eb3a82267ccb6b1e4e/50e7d/05.png 1738w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item><item><title><![CDATA[Aritable 의 대체 오픈소스 NocoDB]]></title><link>https://ssongey.github.io/works/posts/2023-07-30--001</link><guid isPermaLink="false">https://ssongey.github.io/works/posts/2023-07-30--001</guid><pubDate>Sun, 30 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;✔️ NocoDB?&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Aritable 의 대체 오픈소스로, MySql, MariaDB, PostgreSql, SqlServer, Sqlite, Amazon Aurora 등 관계형 데이터베이스를 스마트 스프레드 시트로 변경하여 사용 가능한 툴이다.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;DB 데이터 CRUD를 위한 어드민 페이지 대체용&lt;/strong&gt;으로 아주 적합하다.&lt;/li&gt;
