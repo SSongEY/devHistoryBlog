@@ -6,6 +6,7 @@
 <li>매일 휴면계정 목록을 가져와서 카카오 전자증명서 서비스를 탈퇴시킨다.</li>
 <li>매일 탈퇴계정 가져와서 카카오 전자증명서 서비스 탈퇴 및 DB에 저장된 증명서 발급 내역 테이블에서 개인정보 컬럼을 null로 업데이트한다.</li>
 </ul>
+<br/>
 <h2>2. 배치 스케줄러를 어떻게 수행할 것인가?</h2>
 <h3>2.1. k8s cronJob + api 서버</h3>
 <p><strong>방법</strong></p>
@@ -19,6 +20,7 @@
 <li>상세 에러 내용은 kibana에서 확인 (es에 서빙이 되도록 로그 작업 필요)</li>
 <li>배치 작업을 수행하는 api 를 수동으로 호출 필요</li>
 </ul>
+<br/>
 <h3>2.2. jenkins + api 서버</h3>
 <p><strong>방법</strong></p>
 <ul>
@@ -36,6 +38,7 @@
 </li>
 <li>수동으로 실행하는 젠킨스 파이프라인 미리 생성하여 해당 파이프라인 수행.</li>
 </ul>
+<br/>
 <h3>2.3. jenkins + springbatch</h3>
 <p><strong>방법</strong></p>
 <ul>
@@ -70,6 +73,7 @@
 </ul>
 </li>
 </ul>
+<br/>
 <h2>3. spring batch 작업을 진행하면서 겪은 일</h2>
 <h3>3.1. multi datasource 설정</h3>
 <ul>
@@ -157,7 +161,8 @@
     <span class="token annotation builtin">@Bean</span>
     <span class="token keyword">fun</span> <span class="token function">batchConfigurer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> BatchConfigurer <span class="token operator">=</span> <span class="token function">DefaultBatchConfigurer</span><span class="token punctuation">(</span>batchDataSource<span class="token punctuation">)</span>
 <span class="token punctuation">}</span></code></pre></div>
-<h3>2. JPA로 수행되는 CUD 쿼리가 수행이 안되는 현상.</h3>
+<br/>
+<h3>3.2. JPA로 수행되는 CUD 쿼리가 수행이 안되는 현상.</h3>
 <ul>
 <li>위처럼 생성하게 되면 batch 관련 DataSource 는 h2 기준으로 생성이 된다.</li>
 <li>Spring Batch는 기본적으로 <code class="language-text">DataSourceTransactionManager</code> 를 사용하므로 JPA로 수행되는 쿼리도 해당 트랜잭션 매니저로 수행이 된다.</li>
@@ -196,7 +201,8 @@
             <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre></div>
-<h3>3. index가 없을 경우 update, delete 쿼리가 수행되면?</h3>
+<br/>
+<h3>3.3. index가 없을 경우 update, delete 쿼리가 수행되면?</h3>
 <ul>
 <li>update, delete 쿼리에 필요한 인덱스를 DB팀에 요청 후에 jenkins 세팅을 하게 되었다.</li>
 <li>리얼에서 파이프라인 세팅 및 테스트를 하다가 실수로 spring batch job을 수행하게 되었다.</li>
@@ -209,6 +215,7 @@
 </li>
 <li>실시간 서비스에서 서치가 오래걸리는 update, delete 의 경우는 꼭꼭 인덱스를 세팅하고 수행하자.</li>
 </ul>
+<br/>
 <h3>4. Transaction 이 너무 긴 현상</h3>
 <div class="gatsby-highlight" data-language="kotlin"><pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">class</span> <span class="token function">ATestlet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> Tasklet <span class="token punctuation">{</span>
 	<span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">execute</span><span class="token punctuation">(</span> <span class="token punctuation">{</span>
