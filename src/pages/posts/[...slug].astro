@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
 import { href, tagUrl } from '../../consts';
 import { formatDate } from '../../utils/format';
 
@@ -13,24 +14,38 @@ export async function getStaticPaths() {
 interface Props { post: CollectionEntry<'posts'>; }
 const { post } = Astro.props;
 const { title, date, tags, summary } = post.data;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
+
+// h2·h3가 2개 이상일 때만 목차 사이드바 노출
+const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const showToc = tocHeadings.length >= 2;
 ---
-<BaseLayout title={title} description={summary}>
-  <article class="post" data-pagefind-body>
-    <header class="post-header">
-      <h1 data-pagefind-meta="title">{title}</h1>
-      <div class="meta">
-        <span>{formatDate(date)}</span>
-      </div>
-      <div style="margin-top:10px">
-        {tags.map((t) => <a class="tag" href={tagUrl(t)} data-pagefind-filter="tag">#{t}</a>)}
-      </div>
-    </header>
+<BaseLayout title={title} description={summary} wide={showToc}>
+  <div class:list={['post-layout', { 'no-toc': !showToc }]}>
+    {showToc && (
+      <aside class="toc-col">
+        <TableOfContents headings={headings} />
+      </aside>
+    )}
 
-    <div class="post-body">
-      <Content />
+    <div class="post-main">
+      <article class="post" data-pagefind-body>
+        <header class="post-header">
+          <h1 data-pagefind-meta="title">{title}</h1>
+          <div class="meta">
+            <span>{formatDate(date)}</span>
+          </div>
+          <div style="margin-top:10px">
+            {tags.map((t) => <a class="tag" href={tagUrl(t)} data-pagefind-filter="tag">#{t}</a>)}
+          </div>
+        </header>
+
+        <div class="post-body">
+          <Content />
+        </div>
+      </article>
+
+      <a class="back-link" href={href('/')}>← 목록으로</a>
     </div>
-  </article>
-
-  <a class="back-link" href={href('/')}>← 목록으로</a>
+  </div>
 </BaseLayout>

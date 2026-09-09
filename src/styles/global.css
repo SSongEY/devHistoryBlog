@@ -156,6 +156,30 @@ figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
   background: #eef1ff; color: #4f46e5;
 }
 a.tag:hover { text-decoration: none; filter: brightness(0.96); }
+.tag.t { background: #eef1ff; color: #4f46e5; }
+.tag.c { background: #eafaf0; color: #137a44; }
+
+/* ---- 2-column grid (본문) ---- */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+/* ---- code location 주석 ---- */
+.loc { font-size: 12px; color: var(--muted); font-family: "SF Mono", ui-monospace, Menlo, monospace; margin: -8px 0 2px; }
+
+/* ---- glossary table ---- */
+/* raw HTML <table class="glosstable"> 또는 :::glossary 로 감싼 마크다운 표 둘 다 지원 */
+table.glosstable td:first-child,
+.glossary table td:first-child { font-weight: 750; white-space: nowrap; width: 1%; }
+table.glosstable td:nth-child(2),
+.glossary table td:nth-child(2) { color: var(--muted); font-size: 13px; white-space: nowrap; width: 1%; font-family: "SF Mono", ui-monospace, Menlo, monospace; }
+table.glosstable td:nth-child(3),
+.glossary table td:nth-child(3) { font-size: 14px; }
+.glossary table { margin: 0; }
+
+/* ---- formula 내부 큰 글씨 span ---- */
+.formula .big { font-size: 20px; }
+
+/* ---- footer note ---- */
+.foot { color: var(--muted); font-size: 13px; margin-top: 40px; text-align: center; }
 
 /* ============================================================
    블로그 인덱스 (최신 목록 · 검색 · 태그 필터)
@@ -197,9 +221,28 @@ a.pager-num:hover, a.pager-btn:hover { background: #f0f0f5; text-decoration: non
 .empty-msg { color: var(--muted); padding: 40px 0; text-align: center; }
 
 /* ============================================================
-   포스트 상세
+   포스트 상세 (목차 사이드바 + 본문 2단 그리드)
    ============================================================ */
-article.post { max-width: var(--maxw); margin: 0 auto; padding-top: 40px; }
+.wrap-wide { max-width: calc(var(--maxw) + 300px); }
+
+.post-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 44px; align-items: start; }
+.post-layout.no-toc { grid-template-columns: minmax(0, 1fr); }
+.post-layout.no-toc .post-main { max-width: var(--maxw); margin: 0 auto; }
+.post-main { min-width: 0; }
+
+/* sticky TOC */
+.toc-col { position: sticky; top: 76px; }
+nav.toc { font-size: 14px; max-height: calc(100vh - 100px); overflow-y: auto; padding-right: 4px; }
+nav.toc .toc-title { font-weight: 700; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px 10px; }
+nav.toc a { display: block; color: var(--muted); text-decoration: none; padding: 4px 10px; border-radius: 7px; margin: 1px 0; line-height: 1.45; transition: .15s; }
+nav.toc a:hover { background: #f0f0f5; color: var(--ink); text-decoration: none; }
+nav.toc a.active { background: var(--accent); color: #fff; font-weight: 600; }
+nav.toc a.sub { padding-left: 22px; font-size: 13px; }
+
+/* 앵커 점프 시 sticky 헤더에 안 가리게 */
+.post-body h2[id], .post-body h3[id] { scroll-margin-top: 82px; }
+
+article.post { max-width: var(--maxw); margin: 0; padding-top: 40px; }
 article.post .post-header { border-bottom: 1px solid var(--line); padding-bottom: 22px; margin-bottom: 8px; }
 article.post .post-header h1 { margin: .1em 0 .3em; }
 article.post .post-header .meta { font-size: 14px; color: var(--muted); }
@@ -212,9 +255,17 @@ article.post .post-header .meta .dot { margin: 0 7px; opacity: .5; }
 .tags-cloud a:hover { border-color: var(--accent); text-decoration: none; }
 .tags-cloud a .count { color: var(--muted); font-size: 12px; font-weight: 500; }
 
+/* 좁은 화면: 목차 숨기고 본문 단일 컬럼 */
+@media (max-width: 1040px) {
+  .post-layout { grid-template-columns: minmax(0, 1fr); }
+  .toc-col { display: none; }
+  .post-main { max-width: var(--maxw); margin: 0 auto; }
+}
+
 @media (max-width: 700px) {
   body { font-size: 16px; }
   .hero h1 { font-size: 30px; }
   h1 { font-size: 30px; }
   h2 { font-size: 24px; }
+  .two { grid-template-columns: 1fr; }
 }

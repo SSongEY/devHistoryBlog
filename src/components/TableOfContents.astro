@@ -1,0 +1,39 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+interface Props { headings: Heading[]; }
+const { headings } = Astro.props;
+// h2·h3만 목차에 노출
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+<nav class="toc" id="toc" aria-label="목차">
+  <div class="toc-title">목차</div>
+  {toc.map((h) => (
+    <a href={`#${h.slug}`} class={h.depth === 3 ? 'sub' : ''}>{h.text}</a>
+  ))}
+</nav>
+
+<script>
+  // 스크롤 위치에 따라 현재 섹션 목차 링크를 하이라이트
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('nav.toc a'));
+  if (links.length) {
+    const map = new Map(links.map((a) => [a.getAttribute('href')!.slice(1), a]));
+    const heads = Array.from(document.querySelectorAll<HTMLElement>('.post-body h2[id], .post-body h3[id]'));
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            links.forEach((l) => l.classList.remove('active'));
+            const a = map.get(e.target.id);
+            if (a) a.classList.add('active');
+          }
+        });
+      },
+      { rootMargin: '-10% 0px -80% 0px', threshold: 0 },
+    );
+    heads.forEach((h) => obs.observe(h));
+  }
+</script>

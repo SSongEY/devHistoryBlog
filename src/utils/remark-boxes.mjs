@@ -20,6 +20,8 @@ const MAP = {
   formula: (attrs) => ({ className: attrs.big !== undefined ? 'formula big' : 'formula' }),
   analogy: () => ({ className: 'analogy' }),
   card: () => ({ className: 'card' }),
+  // :::glossary 로 감싼 일반 마크다운 표에 단어장 스타일(영문 컬럼 mono 등) 적용
+  glossary: () => ({ className: 'glossary' }),
 };
 
 export function remarkBoxes() {
