@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { href, tagUrl } from '../../consts';
+import { formatDate } from '../../utils/format';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => import.meta.env.DEV || !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+interface Props { post: CollectionEntry<'posts'>; }
+const { post } = Astro.props;
+const { title, date, tags, summary } = post.data;
+const { Content } = await post.render();
+---
+<BaseLayout title={title} description={summary}>
+  <article class="post" data-pagefind-body>
+    <header class="post-header">
+      <h1 data-pagefind-meta="title">{title}</h1>
+      <div class="meta">
+        <span>{formatDate(date)}</span>
+      </div>
+      <div style="margin-top:10px">
+        {tags.map((t) => <a class="tag" href={tagUrl(t)} data-pagefind-filter="tag">#{t}</a>)}
+      </div>
+    </header>
+
+    <div class="post-body">
+      <Content />
+    </div>
+  </article>
+
+  <a class="back-link" href={href('/')}>← 목록으로</a>
+</BaseLayout>

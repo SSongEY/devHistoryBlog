@@ -1,0 +1,62 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Search from 'astro-pagefind/components/Search';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import Pagination from '../components/Pagination.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, href, tagUrl } from '../consts';
+
+const TOP_TAGS = 15;
+
+// 주의: getStaticPaths는 Astro가 모듈 최상단으로 hoist하므로
+// 이 함수 밖의 top-level 변수는 참조할 수 없다(상수는 함수 안에서 선언).
+export const getStaticPaths = (async ({ paginate }) => {
+  const PAGE_SIZE = 20;
+  const posts = (await getCollection('posts', ({ data }) => import.meta.env.DEV || !data.draft)).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  );
+  const tagCount = new Map<string, number>();
+  for (const p of posts) for (const t of p.data.tags) tagCount.set(t, (tagCount.get(t) ?? 0) + 1);
+  const allTags = [...tagCount.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  return paginate(posts, { pageSize: PAGE_SIZE, props: { allTags } });
+}) satisfies GetStaticPaths;
+
+const { page, allTags } = Astro.props as {
+  page: import('astro').Page<Awaited<ReturnType<typeof getCollection<'posts'>>>[number]>;
+  allTags: [string, number][];
+};
+const topTags = allTags.slice(0, TOP_TAGS);
+---
+<BaseLayout>
+  <section class="hero">
+    <div class="eyebrow">Dev History</div>
+    <h1>{SITE_TITLE}</h1>
+    <p>{SITE_DESCRIPTION}</p>
+  </section>
+
+  <div class="toolbar">
+    <div class="search-box">
+      <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false, showSubResults: true, excerptLength: 20 }} />
+    </div>
+
+    {allTags.length > 0 && (
+      <div class="tag-chips">
+        {topTags.map(([t, c]) => (
+          <a class="tag" href={tagUrl(t)}>#{t} <span class="tc">{c}</span></a>
+        ))}
+        <a class="tag more" href={href('/tags')}>전체 태그 {allTags.length}개 →</a>
+      </div>
+    )}
+  </div>
+
+  {page.data.length === 0 ? (
+    <p class="empty-msg">아직 글이 없습니다.</p>
+  ) : (
+    <ul class="post-list">
+      {page.data.map((post) => <PostCard post={post} />)}
+    </ul>
+  )}
+
+  <Pagination currentPage={page.currentPage} lastPage={page.lastPage} baseHref={href('/')} />
+</BaseLayout>

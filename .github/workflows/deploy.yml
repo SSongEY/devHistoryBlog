@@ -1,0 +1,39 @@
+name: Deploy blog to GitHub Pages
+
+# 'blog' 브랜치에 push될 때만 빌드·배포한다. (develop/master는 사용 안 함)
+on:
+  push:
+    branches: [blog]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 동시 배포 방지 (진행 중 배포는 취소하지 않고 큐잉)
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build with Astro
+        uses: withastro/action@v3
+        # withastro/action이 node 설정 + 의존성 설치 + astro build
+        # (+ astro-pagefind 인덱싱) + upload-pages-artifact 까지 처리
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

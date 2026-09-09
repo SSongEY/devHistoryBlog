@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { postUrl, tagUrl } from '../consts';
+import { formatDate } from '../utils/format';
+
+interface Props { post: CollectionEntry<'posts'>; }
+const { post } = Astro.props;
+const { title, date, tags, summary } = post.data;
+---
+<li class="post-card" data-tags={tags.join('|')}>
+  <h3><a href={postUrl(post.slug)}>{title}</a></h3>
+  <div class="meta">
+    <span>{formatDate(date)}</span>
+  </div>
+  {summary && <p class="summary">{summary}</p>}
+  <div>
+    {tags.map((t) => <a class="tag" href={tagUrl(t)}>#{t}</a>)}
+  </div>
+</li>

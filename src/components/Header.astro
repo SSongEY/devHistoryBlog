@@ -1,0 +1,12 @@
+---
+import { SITE_TITLE, href } from '../consts';
+---
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href={href('/')}>{SITE_TITLE}</a>
+    <nav>
+      <a href={href('/')}>홈</a>
+      <a href={href('/tags')}>태그</a>
+    </nav>
+  </div>
+</header>

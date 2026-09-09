@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { tagUrl } from '../../consts';
+
+const posts = await getCollection('posts', ({ data }) => import.meta.env.DEV || !data.draft);
+const tagCount = new Map<string, number>();
+for (const p of posts) for (const t of p.data.tags) tagCount.set(t, (tagCount.get(t) ?? 0) + 1);
+const tags = [...tagCount.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+---
+<BaseLayout title="태그">
+  <section class="hero">
+    <div class="eyebrow">Tags</div>
+    <h1>태그</h1>
+    <p>{tags.length}개의 태그</p>
+  </section>
+
+  {tags.length === 0 ? (
+    <p class="empty-msg">아직 태그가 없습니다.</p>
+  ) : (
+    <div class="tags-cloud">
+      {tags.map(([t, c]) => (
+        <a href={tagUrl(t)}>#{t} <span class="count">{c}</span></a>
+      ))}
+    </div>
+  )}
+</BaseLayout>
