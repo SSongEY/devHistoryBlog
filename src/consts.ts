@@ -7,8 +7,10 @@ export const SITE_DESCRIPTION = '업무·학습·트러블슈팅 기록';
  */
 export function href(path = ''): string {
   const b = import.meta.env.BASE_URL.replace(/\/$/, '');
-  if (!path || path === '/') return b || '/';
-  return b + (path.startsWith('/') ? path : '/' + path);
+  if (!path || path === '/') return b + '/';
+  const clean = (path.startsWith('/') ? path : '/' + path).replace(/\/$/, '');
+  // 항상 trailing slash (GitHub Pages 한글 경로 리다이렉트 버그 회피)
+  return b + clean + '/';
 }
 
 /** 게시글 slug → 상세 URL */

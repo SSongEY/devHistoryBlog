@@ -5,7 +5,8 @@ interface Props {
   baseHref: string; // 1페이지 URL (예: /devHistoryBlog 또는 /devHistoryBlog/tags/xxx)
 }
 const { currentPage, lastPage, baseHref } = Astro.props;
-const url = (n: number) => (n === 1 ? baseHref : `${baseHref}/${n}`);
+// baseHref는 항상 trailing slash로 끝난다(예: /devHistoryBlog/ 또는 /devHistoryBlog/tags/xxx/)
+const url = (n: number) => (n === 1 ? baseHref : `${baseHref}${n}/`);
 
 // 윈도우형 페이지 번호: 1 … (현재±2) … lastPage
 const w = 2;
