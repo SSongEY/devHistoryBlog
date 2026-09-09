@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PagedList from '../../components/PagedList.astro';
+import { href } from '../../consts';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => import.meta.env.DEV || !data.draft);
+  const byTag = new Map<string, CollectionEntry<'posts'>[]>();
+  for (const p of posts) {
+    for (const t of p.data.tags) {
+      if (!byTag.has(t)) byTag.set(t, []);
+      byTag.get(t)!.push(p);
+    }
+  }
+  return [...byTag.entries()].map(([tag, list]) => ({
+    params: { tag },
+    props: { tag, posts: list.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()) },
+  }));
+}
+
+interface Props { tag: string; posts: CollectionEntry<'posts'>[]; }
+const { tag, posts } = Astro.props;
+---
+<BaseLayout title={`#${tag}`}>
+  <section class="hero">
+    <div class="eyebrow">Tag</div>
+    <h1>#{tag}</h1>
+    <p>{posts.length}개의 글</p>
+  </section>
+
+  <PagedList posts={posts} />
+
+  <a class="back-link" href={href('/tags')}>← 전체 태그</a>
+</BaseLayout>

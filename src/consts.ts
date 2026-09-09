@@ -18,7 +18,8 @@ export function postUrl(slug: string): string {
   return href(`/posts/${slug}`);
 }
 
-/** 태그명 → 태그 페이지 URL */
+/** 태그명 → 태그 페이지 URL. 태그에 '/'(예: ci/cd)가 있어도 rest 라우트와 맞게 세그먼트별 인코딩 */
 export function tagUrl(tag: string): string {
-  return href(`/tags/${encodeURIComponent(tag)}`);
+  const enc = tag.split('/').map(encodeURIComponent).join('/');
+  return href(`/tags/${enc}`);
 }

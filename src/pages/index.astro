@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import Search from 'astro-pagefind/components/Search';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PagedList from '../components/PagedList.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, href, tagUrl } from '../consts';
+
+const TOP_TAGS = 15;
+const posts = (await getCollection('posts', ({ data }) => import.meta.env.DEV || !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const tagCount = new Map<string, number>();
+for (const p of posts) for (const t of p.data.tags) tagCount.set(t, (tagCount.get(t) ?? 0) + 1);
+const allTags = [...tagCount.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+const topTags = allTags.slice(0, TOP_TAGS);
+---
+<BaseLayout>
+  <section class="hero">
+    <div class="eyebrow">Dev History</div>
+    <h1>{SITE_TITLE}</h1>
+    <p>{SITE_DESCRIPTION}</p>
+  </section>
+
+  <div class="toolbar">
+    <div class="search-box">
+      <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false, showSubResults: true, excerptLength: 20 }} />
+    </div>
+
+    {allTags.length > 0 && (
+      <div class="tag-chips">
+        {topTags.map(([t, c]) => (
+          <a class="tag" href={tagUrl(t)}>#{t} <span class="tc">{c}</span></a>
+        ))}
+        <a class="tag more" href={href('/tags')}>전체 태그 {allTags.length}개 →</a>
+      </div>
+    )}
+  </div>
+
+  {posts.length === 0 ? (
+    <p class="empty-msg">아직 글이 없습니다.</p>
+  ) : (
+    <PagedList posts={posts} />
+  )}
+</BaseLayout>

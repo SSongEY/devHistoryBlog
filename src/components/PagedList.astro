@@ -1,0 +1,99 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import PostCard from './PostCard.astro';
+
+interface Props { posts: CollectionEntry<'posts'>[]; }
+const { posts } = Astro.props;
+
+// 페이지당 개수: 최소 5 · 최대 20 · 기본 5 (독자가 조절, localStorage 저장)
+const DEFAULT_SIZE = 5;
+---
+<div class="list-controls">
+  <span class="list-count muted" id="listCount"></span>
+  <label class="page-size">페이지당
+    <select id="pageSize" aria-label="페이지당 글 수">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+    개
+  </label>
+</div>
+
+<ul class="post-list" id="postList">
+  {posts.map((post, i) => <PostCard post={post} hidden={i >= DEFAULT_SIZE} />)}
+</ul>
+
+<nav class="pager" id="pager" aria-label="페이지 네비게이션"></nav>
+
+<script>
+  const MIN = 5, MAX = 20, DEFAULT = 5, KEY = 'blogPageSize';
+  const list = document.getElementById('postList');
+  const sel = document.getElementById('pageSize') as HTMLSelectElement | null;
+  const pager = document.getElementById('pager');
+  const countEl = document.getElementById('listCount');
+
+  if (list && sel && pager) {
+    const cards = Array.from(list.querySelectorAll<HTMLElement>('.post-card'));
+    const clamp = (n: number) => Math.min(MAX, Math.max(MIN, Number.isFinite(n) ? n : DEFAULT));
+    let size = clamp(parseInt(localStorage.getItem(KEY) || '', 10));
+    let page = 1;
+    sel.value = String(size);
+
+    function windowed(cur: number, last: number): (number | '…')[] {
+      const w = 2, set = new Set<number>([1, last, cur]);
+      for (let i = 1; i <= w; i++) { set.add(cur - i); set.add(cur + i); }
+      const nums = [...set].filter((n) => n >= 1 && n <= last).sort((a, b) => a - b);
+      const out: (number | '…')[] = []; let prev = 0;
+      for (const n of nums) { if (prev && n - prev > 1) out.push('…'); out.push(n); prev = n; }
+      return out;
+    }
+
+    function mk(label: string, target: number, cls: string, disabled: boolean, active: boolean) {
+      const el = document.createElement(disabled || active ? 'span' : 'button');
+      el.textContent = label;
+      el.className = cls + (active ? ' active' : '') + (disabled ? ' disabled' : '');
+      if (!disabled && !active) {
+        el.addEventListener('click', () => { page = target; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+      }
+      return el;
+    }
+
+    function renderPager(last: number) {
+      pager!.innerHTML = '';
+      if (last <= 1) return;
+      pager!.appendChild(mk('← 이전', page - 1, 'pager-btn', page <= 1, false));
+      const nums = document.createElement('span'); nums.className = 'pager-nums';
+      for (const it of windowed(page, last)) {
+        if (it === '…') {
+          const g = document.createElement('span'); g.className = 'pager-gap'; g.textContent = '…'; nums.appendChild(g);
+        } else {
+          nums.appendChild(mk(String(it), it, 'pager-num', false, it === page));
+        }
+      }
+      pager!.appendChild(nums);
+      pager!.appendChild(mk('다음 →', page + 1, 'pager-btn', page >= last, false));
+    }
+
+    function render() {
+      const total = cards.length;
+      const last = Math.max(1, Math.ceil(total / size));
+      if (page > last) page = last;
+      const start = (page - 1) * size, end = start + size;
+      cards.forEach((c, i) => c.classList.toggle('hidden', !(i >= start && i < end)));
+      if (countEl) countEl.textContent = total ? `총 ${total}편` : '';
+      renderPager(last);
+    }
+
+    sel.addEventListener('change', () => {
+      size = clamp(parseInt(sel.value, 10));
+      localStorage.setItem(KEY, String(size));
+      sel.value = String(size);
+      page = 1;
+      render();
+    });
+
+    render();
+  }
+</script>

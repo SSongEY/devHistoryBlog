@@ -3,11 +3,11 @@ import type { CollectionEntry } from 'astro:content';
 import { postUrl, tagUrl } from '../consts';
 import { formatDate } from '../utils/format';
 
-interface Props { post: CollectionEntry<'posts'>; }
-const { post } = Astro.props;
+interface Props { post: CollectionEntry<'posts'>; hidden?: boolean; }
+const { post, hidden = false } = Astro.props;
 const { title, date, tags, summary } = post.data;
 ---
-<li class="post-card" data-tags={tags.join('|')}>
+<li class:list={['post-card', { hidden }]} data-tags={tags.join('|')}>
   <h3><a href={postUrl(post.slug)}>{title}</a></h3>
   <div class="meta">
     <span>{formatDate(date)}</span>

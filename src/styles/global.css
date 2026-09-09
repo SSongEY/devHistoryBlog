@@ -206,6 +206,16 @@ a.pager-num:hover, a.pager-btn:hover { background: #f0f0f5; text-decoration: non
 .pager-num.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 .pager-btn.disabled { color: #c7c7cc; background: #fafafc; }
 .pager-gap { color: var(--muted); padding: 0 2px; }
+.pager:empty { margin: 0; }
+
+/* 페이지당 개수 선택 */
+.list-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 22px 0 0; }
+.list-controls .page-size { font-size: 14px; color: var(--muted); }
+.list-controls .list-count { font-size: 13px; }
+.list-controls select {
+  font-size: 14px; padding: 4px 26px 4px 9px; margin: 0 4px; border: 1px solid var(--line);
+  border-radius: 8px; background: #fff; color: var(--ink); cursor: pointer;
+}
 
 /* post list */
 .post-list { list-style: none; padding: 0; margin: 20px 0 0; }
