@@ -225,7 +225,7 @@ a.pager-num:hover, a.pager-btn:hover { background: #f0f0f5; text-decoration: non
    ============================================================ */
 .wrap-wide { max-width: calc(var(--maxw) + 300px); }
 
-.post-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 44px; align-items: start; }
+.post-layout { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 44px; align-items: start; }
 .post-layout.no-toc { grid-template-columns: minmax(0, 1fr); }
 .post-layout.no-toc .post-main { max-width: var(--maxw); margin: 0 auto; }
 .post-main { min-width: 0; }

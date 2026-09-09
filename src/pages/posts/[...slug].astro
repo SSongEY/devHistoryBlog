@@ -22,12 +22,6 @@ const showToc = tocHeadings.length >= 2;
 ---
 <BaseLayout title={title} description={summary} wide={showToc}>
   <div class:list={['post-layout', { 'no-toc': !showToc }]}>
-    {showToc && (
-      <aside class="toc-col">
-        <TableOfContents headings={headings} />
-      </aside>
-    )}
-
     <div class="post-main">
       <article class="post" data-pagefind-body>
         <header class="post-header">
@@ -47,5 +41,11 @@ const showToc = tocHeadings.length >= 2;
 
       <a class="back-link" href={href('/')}>← 목록으로</a>
     </div>
+
+    {showToc && (
+      <aside class="toc-col">
+        <TableOfContents headings={headings} />
+      </aside>
+    )}
   </div>
 </BaseLayout>
